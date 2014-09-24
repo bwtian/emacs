@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# e0_builtinEmacs: just for built in packages, no require and no el
+\ln -sfv ~/Dropbox/config/emacs/00_setEmacs/00_initEmacs/e0_builtinEmacs.init.el ~/Dropbox/config/emacs/e0_builtinEmacs/init.el
+\ln -sfv ~/Dropbox/config/emacs/00_setEmacs/00_initEmacs/e0_builtinEmacs.org ~/Dropbox/config/emacs/e0_builtinEmacs/e0_builtinEmacs.org
+\ln -sfv ~/Dropbox/config/emacs/00_setEmacs/00_initEmacs/share ~/Dropbox/config/emacs/e0_builtinEmacs/share
+

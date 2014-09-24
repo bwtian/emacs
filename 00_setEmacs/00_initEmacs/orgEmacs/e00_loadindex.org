@@ -1,0 +1,88 @@
+* e00_loadindex.org
+** Load Paths When no use ELPA
+  ;; `load-path’ lists all directories where Emacs should look for eLisp libraries
+   ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp")
+   ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/emacs-goodies-el")
+   ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+   ;; (add-to-list 'load-path "/etc/emacs/site-start.d/")
+   ;; (add-to-list 'load-path "~/.emacs.d/lisp")
+   ;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
+   ;; (add-to-list 'load-path "~/.emacs.d/elpa")
+   ;;(setq load-path (cons (expand-file-name "~/Dropbox/config/emacs/emacs.d/site-lisp") load-path))
+;;(add-to-list 'load-path "/home/tian/Dropbox/config/emacs/emacs.d/plugins.site/ess-13.09-1/") ;; use stable
+;;(add-to-list 'load-path "/home/tian/Dropbox/config/emacs/emacs.d/plugins.site/ess-13.09-1/lisp/") ;; use stable
+
+
+;;(add-to-list 'load-path  "~/Dropbox/config/emacs/emacs.d/plugins.git/yas")
+   ;; load path by ELPA
+   ;; (add-to-list 'load-path "~/.emacs.d/plugins.git/ac") ;; connect to symbol link folder
+   ;; (add-to-list 'load-path "~/.emacs.d/plugins.git/ac/dict") ;; connect to symbol link folder 
+   ;; (add-to-list 'load-path "~/.emacs.d/plugins.git/popup")
+
+
+;;(add-to-list 'load-path "~/Dropbox/config/emacs/emacs.d/plugins.git/yas")
+;; (setq yas/root-directory (expand-file-name "~/Dropbox/config/emacs.d/plugins.git/e10_Complete/yasnippet-0.7.0/snippets"))
+
+    ;; load path
+  ;; (add-to-list 'load-path "~/Dropbox/config/emacs/emacs.d/src.git/org-mode/lisp")
+  ;; (add-to-list 'load-path
+  "~/Dropbox/config/emacs/emacs.d/src.git/org-mode/contrib/lisp")
+(if (string-equal system-type "windows-nt")
+  (add-to-list 'load-path
+  "~/Dropbox/config/emacs.d/plugins.git/emacs.win.modified/site-lisp/")
+  (add-to-list 'load-path
+  "~/Dropbox/config/emacs.d/plugins.git/emacs.win.modified/site-lisp/org/")
+  (add-to-list 'load-path
+  "~/Dropbox/config/emacs.d/plugins.git/emacs.win.modified/site-lisp/auctex/"))
+;; (add-to-list 'load-path
+"~/Dropbox/config/emacs.d/plugins.git/e20_OrgNote/evernote-mode/")
+;; (if (string-equal system-type "windows-nt")
+;;     (setq enh-enclient-command "C:/PROGRA~1/Ruby193/bin/enclient.rb")) ; for windows
+
+;;(add-to-list 'load-path "~/Dropbox/config/emacs/emacs.d/src.git/auctex/style/")
+;; (load "~/Dropbox/config/emacs.d/plugins.git/e30_Latex/auctex-ln/latex.el" nil t t)
+;; (load "~/Dropbox/config/emacs.d/plugins.git/e30_Latex/auctex-ln/preview/preview-latex.el" nil t t)
+
+;; Update: git clone git://jblevins.org/git/markdown-mode.git ~/Dropbox/config/emacs.d/plugins.git/e90_Others/markdown-mode.git
+(add-to-list 'load-path
+"~/Dropbox/config/emacs.d/plugins.git/e90_Others/markdown-mode.git")
+
+;;(add-to-list 'load-path "~/Dropbox/config/emacs/emacs.d/plugins.git/ess/")
+;;(add-to-list 'load-path "~/Dropbox/config/emacs/emacs.d/plugins.git/ess/lisp/")
+#+BEGIN_SRC emacs-lisp
+;;(add-to-list 'load-path  "~/Dropbox/config/emacs/emacs.d/plugins.git/acR")
+;;(add-to-list 'load-path "~/Dropbox/config/emacs/emacs.d/plugins.git/Ryas")
+#+END_SRC
+;; ;; (add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e50_R/e2wm")
+
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python/python-mode.el-6.0.8")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python/python-mode.el-6.0.8/completion")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python/rope-0.9.4")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python/pymacs-0.25")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python/ropemacs-0.7")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e60_Python/ropomode-0.2")
+(add-to-list 'load-path
+"~/Dropbox/config/emacs.d/plugins.git/e60_Python/pylookup-3202709")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp")
+  (add-to-list 'load-path "~/.emacs.d/elpa")
+  (setq load-path (cons (expand-file-name
+  "~/Dropbox/config/emacs/emacs.d/site-lisp") load-path))
+ ;;  ((string-equal system-type "darwin")   ; Mac OS X
+  ;;   (;;progn
+  ;;     (add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e20_OrgNote/org-mode/")
+  ;;     (add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e20_OrgNote/org-mode/org-Hansen/")
+  ;;     (message "Mac OS X")
+  ;;     )
+  ;;   )
+(add-to-list
+'load-path "~/Dropbox/config/emacs.d/plugins.git/e90_Others/")
+;; (add-to-list 'load-path
+"~/Dropbox/config/emacs.d/plugins.git/e90_Others/emacs-w3m/")
+;; ;;update:git clone https://github.com/tsgates/git-emacs.git ~/Dropbox/config/emacs.d/plugins.git/e90_Others/git-emacs.git
+;; (add-to-list 'load-path
+"~/Dropbox/config/emacs.d/plugins.git/e90_Others/git-emacs.git")
+(add-to-list 'load-path
+"~/Dropbox/config/emacs.d/plugins.git/e90_Others/markdown-mode.git")
+(add-to-list 'load-path "~/Dropbox/config/emacs.d/plugins.git/e80_Program/")
+ 

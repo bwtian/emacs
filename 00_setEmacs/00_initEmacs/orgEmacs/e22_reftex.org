@@ -1,0 +1,161 @@
+* e20_reftex.org
+** reftex-mode
+#+BEGIN_SRC emacs-lisp
+(require 'reftex)
+(setq reftex-default-bibliography '("/home/tian/Dropbox/4refs/bib/library.bib"))
+(setq reftex-file-extensions
+      '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
+;; Make RefTeX faster
+(setq reftex-enable-partial-scans t)
+(setq reftex-keep-temporary-buffers nil)
+(setq reftex-enable-partial-scans t)
+(setq reftex-allow-automatic-rescan nil)
+
+(autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t) 
+(autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil) 
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil) 
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t) 
+
+(when (locate-library "zotero")
+      (add-hook 'TeX-mode-hook 'zotero-minor-mode))
+#+END_SRC
+** org-mode: reftex, cdlatex, pdflatex
+#+BEGIN_SRC emacs-lisp
+(defun org-mode-reftex-setup ()
+  (interactive)
+  (load-library "reftex")
+  (and (buffer-file-name)
+       (file-exists-p (buffer-file-name))
+       (reftex-parse-all)))
+(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+(define-key org-mode-map (kbd "C-c )") 'reftex-citation)
+#+END_SRC
+** Emacs latex mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+#+END_SRC
+** AUCTex mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
+(setq reftex-plug-into-AUCTeX t)
+#+END_SRC
+** Rnw mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with Rnw mode
+#+END_SRC
+
+** yatex-mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
+#+END_SRC
+
+** zotero
+
+*** zotelo
+C-c z c         zotelo-set-collection (also C-c z s)
+C-c z u         zotelo-update-database
+C-c z e         zotelo-export-secondary
+C-c z r         zotelo-reset
+C-c z t         zotelo-set-translator
+\bibliography{file1, file2, ...}
+\zotelo{file1, file2, ...}
+\nobibliography{file1, file2, ...}
+
+#+BEGIN_SRC emacs-lisp
+(require 'zotelo)
+(add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+#+END_SRC
+
+*** zotxt
+M-x org-zotxt-mode
+sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
+#+BEGIN_SRC emacs-lisp
+;; prefer completion-at-point to pcomplete
+(require 'zotxt)
+(add-hook 'org-mode-hook 'org-zotxt-mode)
+(define-key org-mode-map (kbd "C-M-i") 'completion-at-point)
+#+END_SRC
+
+** PDF Processing
+
+This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
+
+#+begin_src emacs-lisp
+  (setq org-latex-pdf-process
+            '("pdflatex -interaction nonstopmode -output-directory %o %f"
+              "bibtex %b"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+    ;; (setq org-latex-pdf-process
+    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "biber %b"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;;; biber
+  ;; (setq org-latex-to-pdf-process 
+  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
+#+end_src
+
+** Bibtex
+#+begin_src emacs-lisp
+(defun my-bibliography-selector-hook (backend)
+    (case backend
+      (latex
+       (when (save-excursion
+               (re-search-forward "^[ \t]*\\bibliography\\(?:style\\)?{" nil t))
+         (while (re-search-forward "^[ \t]*#+BIBLIOGRAPHY:.*$" nil t)
+           (when (eq (org-element-type (save-match-data (org-element-at-point)))
+                     'keyword)
+             (replace-match "")))))
+      (html
+       (when (save-excursion
+               (re-search-forward "^[ \t]*#+BIBLIOGRAPHY:.*$" nil t))
+         (while (re-search-forward "^[ \t]*\\bibliography\\(?:style\\)?{.*$" nil t)
+           (replace-match ""))))))
+
+(add-hook 'org-export-before-parsing-hook 'my-bibliography-selector-hook)
+#+end_src
+
+
+*** Bibretrieve customisations
+
+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/elpa/bibretrieve-20131013.1132/bibretrieve")
+(byte-recompile-directory "~/.emacs.d/elpa/bibretrieve-20131013.1132" 0)
+(load "bibretrieve")
+(setq bibretrieve-backends '(("citebase" . 10) ("mrl" . 10) ("arxiv" . 5) ("zbm" . 5)))
+
+(defun bibretrieve-scholar-create-url (author title)
+
+  (let ((tempfile (make-temp-file "scholar" nil ".bib")))
+
+    (call-process-shell-command "~/bin/gscholar/gscholar/gscholar.py --all" nil nil nil 
+                (if (> (length author) 0) (concat "\"" author "\""))
+                (if (> (length title) 0)  (concat "\"" title "\""))
+                (concat " > " tempfile))
+    (concat "file://" tempfile)
+))
+
+(defun bibretrieve-scholar ()
+  (interactive)
+  (setq mm-url-use-external t)
+  (setq bibretrieve-backends '(("scholar" . 5)))
+  (bibretrieve)
+  (setq mm-url-use-external nil)
+)
+
+(defun bibretrieve-amazon-create-url (author title)
+  (concat "http://lead.to/amazon/en/?key="(mm-url-form-encode-xwfu title) "&si=ble&op=bt&bn=&so=sa&ht=us"))
+
+(defun bibretrieve-amazon ()
+  (interactive)
+  (setq mm-url-use-external t)
+  (setq mm-url-program "w3m")
+  (setq mm-url-arguments (list "-dump"))
+  (setq bibretrieve-backends '(("amazon" . 5)))
+  (bibretrieve)
+  (setq mm-url-use-external nil)
+)
+end_src
+

@@ -1,0 +1,18 @@
+
+;; ----- smex-history -----
+(
+ org-version
+ cd
+ 5x5
+ df
+ all
+ arp
+ dbx
+)
+
+;; ----- smex-data -----
+(
+ (R . 1)
+ (starter-kit-compile . 1)
+ (org-version . 1)
+)

@@ -1,0 +1,86 @@
+* e19_org_Latex.org
+http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
+=Changes of Variables=
+| Org 7.x                  | Org 8.x               |
+|--------------------------+-----------------------|
+| org-latex.el             | ox-latex.el           |
+| org-latex-to-pdf-process | org-latex-pdf-process |
+| org-export-latex-classes | org-latex-classes     |
+
+** Define article class
+#+BEGIN_SRC emacs-lisp
+   (setq org-latex-classes '(
+                             ("book"
+                              "\\documentclass{book}"
+                              ("\\part{%s}" . "\\part*{%s}")
+                              ("\\chapter{%s}" . "\\chapter*{%s}")
+                              ("\\section{%s}" . "\\section*{%s}")
+                              ("\\subsection{%s}" . "\\subsection*{%s}")
+                              ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+                             ("org-article"
+                              "\\documentclass{org-article}
+   [NO-DEFAULT-PACKAGES]
+   [PACKAGES]
+   [EXTRA]"
+                              ("\\section{%s}" . "\\section*{%s}")
+                              ("\\subsection{%s}" . "\\subsection*{%s}")
+                              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                             ("article"
+                              "\\documentclass{article}"
+                              ("\\section{%s}" . "\\section*{%s}")
+                              ("\\subsection{%s}" . "\\subsection*{%s}")
+                              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                             ("koma-article"
+                              "\\documentclass{scrartcl}"
+  ;; [NO-DEFAULT-PACKAGES]
+  ;; [EXTRA]"
+                              ("\\section{%s}" . "\\section*{%s}")
+                              ("\\subsection{%s}" . "\\subsection*{%s}")
+                              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                            
+                             ("jsarticle"
+                              "\\documentclass{jsarticle}
+  \\usepackage[dvipdfmx]{graphicx}
+  \\usepackage{url}
+  \\usepackage{atbegshi}
+  \\AtBeginShipoutFirst{\\special{pdf:tounicode EUC-UCS2}}
+  \\usepackage[dvipdfmx,setpagesize=false]{hyperref}
+   [NO-DEFAULT-PACKAGES]
+   [PACKAGES]
+   [EXTRA]"
+                              ("\\section{%s}" . "\\section*{%s}")
+                              ("\\subsection{%s}" . "\\subsection*{%s}")
+                              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                             
+                             ("jsbook"
+                              "\\documentclass{jsbook}
+  \\usepackage[dvipdfmx]{graphicx}
+  \\usepackage{url}
+  \\usepackage{atbegshi}
+  \\AtBeginShipoutFirst{\\special{pdf:tounicode EUC-UCS2}}
+  \\usepackage[dvipdfmx,setpagesize=false]{hyperref}
+   [NO-DEFAULT-PACKAGES]
+   [PACKAGES]
+   [EXTRA]"
+                              ("\\chapter{%s}" . "\\chapter*{%s}")
+                              ("\\section{%s}" . "\\section*{%s}")
+                              ("\\subsection{%s}" . "\\subsection*{%s}")
+                              ("\\subsubsection{%s}" . "\\subsubsection*{%(setq  )}")
+                              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+                             ))
+#+END_SRC
+** Default setting
+#+BEGIN_SRC emacs-lisp
+ (setq org-latex-pdf-process
+       '("pdflatex %f" "pdflatex %f" "pdflatex %f"))
+(setq org-latex-default-class "koma-article")
+#+END_SRC

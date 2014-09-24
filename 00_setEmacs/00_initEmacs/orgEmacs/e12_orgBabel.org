@@ -1,0 +1,109 @@
+* e12_org-babel.org
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2014-06-06 Fri 21:23
+  :ARCHIVE_FILE: ~/Dropbox/config/emacs/00_setEmacs/00_initEmacs/orgEmacs/e02_core.org
+  :ARCHIVE_OLPATH: e02_core.org/Org-mode-core
+  :ARCHIVE_CATEGORY: e02_core
+  :END:
+Org-babel Key-bindings
+http://orgmode.org/worg/org-contrib/babel/index.html
+Usage: <s TAB, C-c C-c, C-c ', C-c
+s    #+BEGIN_SRC ... #+END_SRC
+e    #+BEGIN_EXAMPLE ... #+END_EXAMPLE
+q    #+BEGIN_QUOTE ... #+END_QUOTE
+v    #+BEGIN_VERSE ... #+END_VERSE
+c    #+BEGIN_CENTER ... #+END_CENTER
+l    #+BEGIN_LaTeX ... #+END_LaTeX
+L    #+LaTeX:
+h    #+BEGIN_HTML ... #+END_HTML
+H    #+HTML:
+a    #+BEGIN_ASCII ... #+END_ASCII
+A    #+ASCII:
+i    #+INDEX: line
+I    #+INCLUDE: line
+:arg para. :results output :exports both :colnames yes
+-n show code line number -r show Tag Reference
+** Add [[http://orgmode.org/worg/org-contrib/babel/languages.html][languages]] :active code in Org-mode
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
+  ;;(require 'org-install)
+  (require 'ob-tangle)
+  (require 'ob-clojure)
+  (org-babel-do-load-languages
+  'org-babel-load-languages
+  '(
+    (emacs-lisp  . t)
+    (sh          . t)
+    (R           . t)
+    (org         . t)
+    (latex       . t)
+    (python      . t)
+    (ruby        . t)
+    (perl        . t)
+    (js          . t)
+    (scheme      . t)
+    (C           . t)
+    (clojure     . t)
+    (dot         . t)
+    (lilypond    . t)
+    (octave      . t)
+    (gnuplot     . t)
+    (screen      . nil)
+   ; (shell       . t) ;; not work
+    (sql         . nil)
+    (sqlite      . t)
+    (ditaa       . t)
+    (plantuml    . t)
+    ))
+  
+
+  (setq org-confirm-babel-evaluate nil) ;;; Do not prompt to confirm evaluation
+
+  ;;;; Use the current window for indirect buffer display
+  (setq org-indirect-buffer-display 'current-window)
+  (setq org-src-window-setup 'current-window) ;; After C-c '
+  (setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
+ 
+;;graphviz mode for dot hilight in babel
+;;install graphviz
+(load "graphviz-dot-mode.el")
+(add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
+(add-hook 'graphviz-dot-mode-hook (lambda () (local-set-key [f5] "\C-x\C-s\C-cc\C-m\C-cp")))
+
+;; ditaa
+;; sudo apt-get install ditaa
+
+
+;; R-babel Languages set up for windows
+  (if (string-equal system-type "windows-nt")
+  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.0/bin/x64/R --slave --no-save"))  
+  
+#+END_SRC
+;; Face for Babel
+  ;; (defface org-block-begin-line
+  ;;   '((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
+  ;;   "Face used for the line delimiting the begin of source blocks.")
+  
+  ;; (defface org-block-background
+  ;;   '((t (:background "#FFFFEA")))
+  ;;   "Face used for the source block background.")
+  
+  ;; (defface org-block-end-line
+  ;;   '((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
+  ;;   "Face used for the line delimiting the end of source blocks.")
+** Babel Headers
+#+BEGIN_SRC emacs-lisp
+(setq org-babel-default-header-args
+		   (list '(:session . "*R*")
+			 '(:eval . ,(if (getopt "evaluate") "yes" "no"))
+			 '(:results . "output replace")
+			 '(:exports . "both")
+			 '(:cache . "yes")
+			 '(:noweb . "yes")
+			 '(:hlines . "no")
+			 '(:tangle . "no")
+			 '(:padnewline . "yes")
+			 ))
+
+#+END_SRC
