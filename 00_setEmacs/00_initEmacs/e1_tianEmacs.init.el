@@ -29,7 +29,7 @@
   ;; setting default package to be installed
   ;(defvar my-default-packages  '(
                                  ;ess
-                                 ;org
+                                ;org
 				 ;))
 
  ; (dolist (p my-default-packages)
