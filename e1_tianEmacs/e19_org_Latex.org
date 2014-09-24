@@ -1,1 +1,0 @@
-/home/tian/SparkleShare/emacs.d/00_setEmacs/00_initEmacs/orgEmacs/e19_org_Latex.org
