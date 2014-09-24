@@ -1,0 +1,1 @@
+/home/tian/SparkleShare/emacs.d/00_setEmacs/00_initEmacs/e1_tianEmacs.init.el
