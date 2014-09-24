@@ -29,6 +29,7 @@
 #+BEGIN_SRC emacs-lisp
 (setq vc-follow-symlinks t) ;; Avoid Yes No to Symbol link to Git-Control ed source file
 (setq auto-revert-check-vc-info t)
+(setq auto-revert-interval 1)
 #+END_SRC
 ** Recentf-mode
 #+BEGIN_SRC emacs-lisp
