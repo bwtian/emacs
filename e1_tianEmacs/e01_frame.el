@@ -58,3 +58,5 @@
 ;;  (global-linum-mode 1)  ; turn on display line numbers in margin but make emacs slow.
   (global-hl-line-mode 1) ; turn on highlighting current line
   ;;(setq linum-format "%5d ") ;; Width of linum
+
+;;(set-face-attribute 'default nil :family "Consolas" :height 104)
