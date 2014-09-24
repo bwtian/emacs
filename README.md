@@ -1,4 +1,4 @@
 emacs.d
 =======
 
-.emacs with org mode
+.emacs configure and note with org mode
