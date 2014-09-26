@@ -35,6 +35,10 @@
    ac-quick-help-height 25
    ac-quick-help-scroll-down
    )
+  (defun ac-quick-help-force ()
+     (interactive)
+     (ac-quick-help t))
+
 
   ;; ac-Popup background colors
   (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
