@@ -179,8 +179,8 @@ In order to enable Emacs’ standard OutlineMode for .R files:
     (setq ess-language "R")
     )
 (add-hook 'ess-post-run-hook 'ess-set-language t)
-(add-hook 'ess-pre-run-hook (lambda () (ess-load-hook t))) ;; R 起動直前の処理
-(add-hook 'R-mode-hook 'ess-load-hook) ;; R-mode 起動直後の処理
+;;(add-hook 'ess-pre-run-hook (lambda () (ess-load-hook t))) ;; R 起動直前の処理
+;;(add-hook 'R-mode-hook 'ess-load-hook) ;; R-mode 起動直後の処理
 #+END_SRC
 ** DONE R Mode list
 #+BEGIN_SRC emacs-lisp
