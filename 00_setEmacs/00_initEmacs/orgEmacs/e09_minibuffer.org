@@ -40,7 +40,14 @@
   (add-hook 'ess-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'R-mode-hook 'turn-on-eldoc-mode)
 #+END_SRC
-
+** Smex
+#+BEGIN_SRC emacs-lisp
+  (require 'smex)
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "C-x x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+#+END_SRC
 
 ** helm
 
