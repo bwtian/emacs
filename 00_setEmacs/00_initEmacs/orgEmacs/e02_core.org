@@ -230,7 +230,7 @@ M-q::fill-paragraph
 #+BEGIN_SRC emacs-lisp
   (setq default-abbrev-mode t)
   (setq transient-mark-mode t)
-  (global-auto-revert-mode 1)
+  (global-auto-revert-mode t)
 #+END_SRC
 ** Miscs
 #+BEGIN_SRC emacs-lisp
