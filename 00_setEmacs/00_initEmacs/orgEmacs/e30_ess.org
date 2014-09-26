@@ -18,6 +18,9 @@ Auto-scrolling of R console to bottom and Shift key extension
 ;; It causes commands to be invisible, and leaves junk like + + + > > >
 #+END_SRC
 ** ESS Auto complete:: DEFAULT > 12.09
+#+BEGIN_SRC emacs-lisp
+(setq ess-use-auto-complete t)
+#+END_SRC
 ** ESS Code indentation 
 ;; http://ess.r-project.org/Manual/ess.html#Indenting
 ;; https://svn.r-project.org/ESS/trunk/lisp/ess-custom.el
