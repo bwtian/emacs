@@ -27,14 +27,14 @@
     (package-refresh-contents))
   
   ;; setting default package to be installed
-  ;(defvar my-default-packages  '(
-                                 ;ess
-                                ;org
-				 ;))
+  (defvar my-default-packages  '(
+                                ess
+                                org
+				 ))
 
- ; (dolist (p my-default-packages)
-    ; (when (not (package-installed-p p))
-      ; (package-install p)))
+  (dolist (p my-default-packages)
+     (when (not (package-installed-p p))
+       (package-install p)))
 ;; Init file after (package-initialize) for newest org  mode
   ;; Org-mode that was shipped with Emacs
   ;; (setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
