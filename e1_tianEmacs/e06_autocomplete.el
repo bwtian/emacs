@@ -8,7 +8,7 @@
 
 (setq
  ac-delay 0 ;; 0.1 
- ac-auto-start 1 ;; t conflict with ESS, complete form fourth character, t=2 
+ ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
  ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
@@ -29,11 +29,6 @@
  ac-quick-help-height 25
  ac-quick-help-scroll-down
  )
-(defun ac-quick-help-force ()
-   (interactive)
-   (ac-quick-help t))
-
-
 ;; ac-Popup background colors
 (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
 (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
@@ -49,8 +44,10 @@
 ;;(define-key ac-completing-map (kbd "<tab>") nil)
 ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
 ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+(define-key ac-completing-map [tab] 'ac-complete)
+(define-key ac-completing-map [return] nil)
 (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-(define-key ac-completing-map (kbd "M-h") 'ac-quick-help-force)
+(define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
 (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
 ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
 

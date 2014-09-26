@@ -11,7 +11,7 @@
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
 
-(setq ess-use-auto-complete t)
+;;(setq ess-use-auto-complete 'script-only)
 
 (setq ess-default-style 'BSD)   ; Common R chosen
 
