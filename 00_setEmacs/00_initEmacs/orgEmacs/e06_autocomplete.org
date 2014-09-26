@@ -46,35 +46,36 @@
    ac-candidate-limit 25 ;; nil
    ac-ignore-case 'smart
    ;(setq ac-auto-start 1)
-   ac-fuzzy-enable t ;; Fuzzy mode
+   ;ac-fuzzy-enable t ;; Fuzzy mode
    ac-dwim t )   ;; DO What I mean
 
-   (setq 
-      ;; ac-use-quick-help nil                   ; no tool tip
-      ac-use-quick-help t ;; use quick help
-      ac-quick-help-prefer-pos-tip t
-      ac-quick-help-delay 0.5 ;;
-      ac-quick-help-height 25
-      ac-quick-help-scroll-down
-      )
+  (setq 
+   ;; ac-use-quick-help nil                   ; no tool tip
+   ac-use-quick-help t ;; use quick help
+   ac-quick-help-prefer-pos-tip t
+   ac-quick-help-delay 0.5 ;;
+   ac-quick-help-height 25
+   ac-quick-help-scroll-down
+   )
+
      ;; ac-Popup background colors
-     (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
-     (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
-     (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
-   
-     ;; Motion
-     (setq ac-use-menu-map t)    ;; Keybinding
-     (define-key ac-menu-map (kbd "C-n")         'ac-next)
-     (define-key ac-menu-map (kbd "C-p")         'ac-previous)
-     (define-key ac-completing-map "\M-n" nil) ;; was ac-next
-     (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
-     ;;(define-key ac-completing-map (kbd "<tab>") nil)
-     ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
-   ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-     (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-     (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
-     (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
-      ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
+  (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
+  (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
+  (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
+
+  ;; Motion
+  (setq ac-use-menu-map t)    ;; Keybinding
+  (define-key ac-menu-map (kbd "C-n")         'ac-next)
+  (define-key ac-menu-map (kbd "C-p")         'ac-previous)
+  (define-key ac-completing-map "\M-n" nil) ;; was ac-next
+  (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+  ;;(define-key ac-completing-map (kbd "<tab>") nil)
+  ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
+  ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+  (define-key ac-completing-map (kbd "M-/")   'ac-stop)
+  (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
+  (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
+  ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
 #+END_SRC
 ** DONE AC-Popup-Color C-c p
 #+BEGIN_SRC emacs-lisp
