@@ -38,13 +38,14 @@
    ;;ac-auto-show-menu nil
    ;;ac-auto-start nil + ac-trigger-key "TAB"
    ac-trigger-key nil
-   ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, D=2 
-   ac-auto-show-menu 0.01 ;;0.001 ;; show menu with 0.05 delay
+   ;; ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, D=2 
+   ;;ac-auto-show-menu 0.01 ;;0.001 ;; show menu with 0.05 delay
    ac-use-comphist t ;; sort Candidate
    ac-candidate-limit nil
    ac-menu-height 25 ;;12 Max height for complete candidate menu
    ac-candidate-limit 25 ;; nil
    ac-ignore-case 'smart
+   ;(setq ac-auto-start 1)
    ac-fuzzy-enable t ;; Fuzzy mode
    ac-dwim t )   ;; DO What I mean
 
