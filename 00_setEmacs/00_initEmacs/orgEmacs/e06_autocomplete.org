@@ -9,25 +9,7 @@
   (ac-config-default)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
 #+END_SRC
-  ;; give a key to trigger ac when it is not automatically triggered
-  ;;(ac-set-trigger-key "<C-return>")
-  ;; make del also trigger the ac
-  ;;(setq ac-trigger-commands (cons 'backward-delete-char-untabify ac-trigger-commands))
-  
-  ;; Use tab to complete but enter not
-  (define-key ac-completing-map "\r" nil)
-  ;;(define-key ac-completing-map "\t" 'ac-complete)
-  ;; (define-key ac-completing-map [return] nil)
-  (define-key ac-completing-map [tab] 'ac-complete)
-  ;; NOTE:
-  ;; If we do not require pos-tip explicitly, this feature will not be
-  ;; triggered, even we set `ac-quick-help-prefer-pos-tip' to t, which
-  ;; is already the default value. We can see the implementation of
-  ;; `ac-quick-help-use-pos-tip-p' to find the reason.
-  
-  ;; ac-setup  AC settings to adjust the completion to your needs
-  ;; Quick help will appear at the side of completion menu, so you can
-  ;; easily see the help.
+ 
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
   (setq
@@ -37,6 +19,7 @@
    ;;ac-auto-show-menu nil
    ;;ac-auto-start nil + ac-trigger-key "TAB"
    ac-trigger-key nil
+   ac-use-menu-map t
    ;; ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, D=2 
    ac-auto-show-menu 0.1 ;;0.001 ;; show menu with 0.05 delay
    ac-use-comphist t ;; sort Candidate
@@ -165,3 +148,23 @@
   ;;                                   makefile-gmake-mode makefile-bsdmake-mo
   ;;                                   autoconf-mode makefile-automake-mode)))
 #+END_SRC
+** Note
+ ;; give a key to trigger ac when it is not automatically triggered
+  ;;(ac-set-trigger-key "<C-return>")
+  ;; make del also trigger the ac
+  ;;(setq ac-trigger-commands (cons 'backward-delete-char-untabify ac-trigger-commands))
+  
+  ;; Use tab to complete but enter not
+  (define-key ac-completing-map "\r" nil)
+  ;;(define-key ac-completing-map "\t" 'ac-complete)
+  ;; (define-key ac-completing-map [return] nil)
+  (define-key ac-completing-map [tab] 'ac-complete)
+  ;; NOTE:
+  ;; If we do not require pos-tip explicitly, this feature will not be
+  ;; triggered, even we set `ac-quick-help-prefer-pos-tip' to t, which
+  ;; is already the default value. We can see the implementation of
+  ;; `ac-quick-help-use-pos-tip-p' to find the reason.
+  
+  ;; ac-setup  AC settings to adjust the completion to your needs
+  ;; Quick help will appear at the side of completion menu, so you can
+  ;; easily see the help.
