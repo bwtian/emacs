@@ -32,3 +32,52 @@
  (define-key cm-map "f" 'outline-forward-same-level)        ; Forward - same level
  (define-key cm-map "b" 'outline-backward-same-level)       ; Backward - same level
  (global-set-key "\M-o" cm-map)
+
+(eval-after-load 'outline
+  '(progn
+    (require 'outline-magic)
+    (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
+
+;; (require 'outshine)
+;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             ;; Redefine arrow keys, since promoting/demoting and moving
+;;             ;; subtrees up and down are less frequent tasks then
+;;             ;; navigation and visibility cycling
+;;             (when (require 'outshine nil 'NOERROR)
+;;               (org-defkey org-mode-map
+;;                           (kbd "M-<left>") 'outline-hide-more)
+;;               (org-defkey org-mode-map
+;;                           (kbd "M-<right>") 'outline-show-more)
+;;               (org-defkey org-mode-map
+;;                           (kbd "M-<up>") 'outline-previous-visible-heading)
+;;               (org-defkey org-mode-map
+;;                           (kbd "M-<down>") 'outline-next-visible-heading)))
+;;           'append)
+
+(add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+(add-hook 'TeXinfo-mode-hook 'outline-minor-mode)   
+(add-hook 'LaTeX-mode-hook 'outline-minor-mode)   
+(add-hook 'ess-mode-hook  'outline-minor-mode)   
+(add-hook 'Rnw-mode-hook  'outline-minor-mode)   
+
+;;(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)))
+
+(add-hook 'ess-mode-hook
+            '(lambda ()
+               (outline-minor-mode)
+               (setq outline-regexp "\\(^#\\{4,5\\} \\)\\|\\(^[a-zA-Z0-9_\.]+ ?<-?function(.*{\\)")
+               (defun outline-level ()
+                 (cond ((looking-at "^##### ") 1)
+                   ((looking-at "^#### ") 2)
+                   ((looking-at "^[a-zA-Z0-9_\.]+ ?<- ?function(.*{") 3)
+                   (t 1000)))
+               ))
+;;; Java
+  ;; (setq outline-regexp "\\(?:\\([ \t]*.*\\(class\\|interface\\)[ \t]+[a-zA-Z0-9_]+[ \t\n]*\\({\\|extends\\|implements\\)\\)\\|[ \t]*\\(public\\|private\\|static\\|final\\|native\\|synchronized\\|transient\\|volatile\\|strictfp\\| \\|\t\\)*[ \t]+\\(\\([a-zA-Z0-9_]\\|\\( *\t*< *\t*\\)\\|\\( *\t*> *\t*\\)\\|\\( *\t*, *\t*\\)\\|\\( *\t*\\[ *\t*\\)\\|\\(]\\)\\)+\\)[ \t]+[a-zA-Z0-9_]+[ \t]*(\\(.*\\))[ \t]*\\(throws[ \t]+\\([a-zA-Z0-9_, \t\n]*\\)\\)?[ \t\n]*{\\)" )
+
+;;; Automatically activate TeX-fold-mode.
+    (add-hook 'LaTeX-mode-hook(lambda ()
+                                (Tex-fold-mode 1)))
+;;(setq TeX-fold-type-list '(comment))
