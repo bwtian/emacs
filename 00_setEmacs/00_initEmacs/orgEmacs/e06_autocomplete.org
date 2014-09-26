@@ -28,10 +28,10 @@
   ;; ac-setup  AC settings to adjust the completion to your needs
   ;; Quick help will appear at the side of completion menu, so you can
   ;; easily see the help.
-** AC-Popup-Menue and Popup help
+** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
   (setq
-   ac-delay 0 ;; 0.2   
+   ;;ac-delay 0 ;; 0.2   
    ;;ac-show-menu-immediately-on-auto-complete t
    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
    ;; Set up Complete menu
@@ -45,8 +45,8 @@
    ac-menu-height 25 ;;12 Max height for complete candidate menu
    ac-candidate-limit 25 ;; nil
    ac-ignore-case 'smart
-   ;(setq ac-auto-start 1)
-   ;ac-fuzzy-enable t ;; Fuzzy mode
+   ac-auto-start 1
+   ac-fuzzy-enable t ;; Fuzzy mode
    ac-dwim t )   ;; DO What I mean
 
   (setq 
@@ -54,7 +54,7 @@
    ac-use-quick-help t ;; use quick help
    ac-quick-help-prefer-pos-tip t
    ac-quick-help-delay 0.2 ;;
-   ;; ac-quick-help-height 25
+   ac-quick-help-height 25
    ac-quick-help-scroll-down
    )
 
