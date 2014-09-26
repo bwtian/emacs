@@ -22,6 +22,7 @@
 (setq ido-use-filename-at-point 'guess) 
 (setq ido-create-new-buffer 'always)
 (setq ido-max-directory-size 100000)
+(setq ido-auto-merge-delay-time 0.5)
 (ido-mode (quote both))
 ; Use the current window when visiting files and buffers with ido
 (setq ido-default-file-method 'selected-window)
