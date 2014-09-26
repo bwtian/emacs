@@ -192,9 +192,18 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 #+END_SRC
 ** DONE R Auto Complete Source
 #+BEGIN_SRC emacs-lisp
-  (require 'ac-R)
-  (require 'helm-R)
-
+(require 'ac-R)
+(require 'helm-R)
+(require 'anything-R)
+    (setq anything-R-help-limit 40)
+      (setq anything-R-local-limit 20)
+      ;; C-c r で R の関数やオブジェクトを検索できるようにする
+      (when (require 'anything-R nil t)
+        ;; ess-smart-comma が導入されたので repospkg と localpkg はあまり必要なさそう
+        (setq anything-for-R-list '(anything-c-source-R-help
+                                    anything-c-source-R-local))
+        (define-key ess-mode-map (kbd "C-c r") 'anything-for-R)
+        (define-key inferior-ess-mode-map (kbd "C-c r") 'anything-for-R))
 
 #+END_SRC
 ** TODO inlineR
@@ -222,12 +231,4 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 #+END_SRC
 ** Note
   (setq helm-)
-      (setq anything-R-help-limit 40)
-      (setq anything-R-local-limit 20)
-      ;; C-c r で R の関数やオブジェクトを検索できるようにする
-      (when (require 'anything-R nil t)
-        ;; ess-smart-comma が導入されたので repospkg と localpkg はあまり必要なさそう
-        (setq anything-for-R-list '(anything-c-source-R-help
-                                    anything-c-source-R-local))
-        (define-key ess-mode-map (kbd "C-c r") 'anything-for-R)
-        (define-key inferior-ess-mode-map (kbd "C-c r") 'anything-for-R))
+  
