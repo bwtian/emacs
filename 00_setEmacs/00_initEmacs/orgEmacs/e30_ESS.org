@@ -6,10 +6,7 @@
   (setq ess-ask-for-ess-directory nil) ;; Dont ask each time when start an interactive R session  C-c C-s
 
 #+END_SRC
-** 
-;; 最初に ESS を呼び出した時の処理
-  (when (not ess-loaded-p)
-    ;; アンダースコアの入力が " <- " にならないようにする
+
     (ess-toggle-underscore nil)
     ;; C-c r を押した際に表示される候補数の上限値
     ;; 表示数が多いと処理が重くなる
