@@ -166,4 +166,4 @@
       (if (> (length ess-process-name-list) 0)
           (when (one-window-p)
             (split-window-horizontally)
-            (other-window 1)))
+            (other-window 1))))

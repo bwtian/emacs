@@ -227,5 +227,5 @@ In order to enable Emacs’ standard OutlineMode for .R files:
       (if (> (length ess-process-name-list) 0)
           (when (one-window-p)
             (split-window-horizontally)
-            (other-window 1)))
+            (other-window 1))))
 #+END_SRC  
