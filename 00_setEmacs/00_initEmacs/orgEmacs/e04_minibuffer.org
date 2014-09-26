@@ -43,7 +43,52 @@
 
 
 ** helm
+
+*** Load Helm
+
 #+BEGIN_SRC emacs-lisp
 (require 'helm-config)
+#+END_SRC
 
+(require 'helm-command)
+(require 'helm-descbinds)
+(setq helm-idle-delay             0.3
+      helm-input-idle-delay       0.3
+      helm-candidate-number-limit 200)
+(let ((key-and-func
+       `((,(kbd "C-r")   helm-for-files)
+         (,(kbd "C-^")   helm-c-apropos)
+         (,(kbd "C-;")   helm-resume)
+         (,(kbd "M-s")   helm-occur)
+         (,(kbd "M-x")   helm-M-x)
+         (,(kbd "M-y")   helm-show-kill-ring)
+         (,(kbd "M-z")   helm-do-grep)
+         (,(kbd "C-S-h") helm-descbinds)
+        )))
+  (loop for (key func) in key-and-func
+        do (global-set-key key func)))
+(require 'migemo)
+;; for cmigemo
+(setq migemo-command "cmigemo"
+      migemo-options '("-q" "--emacs" "-i" "\g")
+      migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict"
+      migemo-user-dictionary nil
+      migemo-regex-dictionary nil
+      migemo-coding-system 'utf-8)
+;; for helm-migemo
+(require 'helm-migemo)
+(setq helm-use-migemo t)
+;; 候補が表示されないときがあるので
+;; migemoらないように設定
+(defadvice helm-c-apropos
+  (around ad-helm-apropos activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+(defadvice helm-M-x
+  (around ad-helm-M-x activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+(push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
 #+END_SRC
