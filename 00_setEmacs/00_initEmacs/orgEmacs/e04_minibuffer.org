@@ -48,6 +48,9 @@
 
 #+BEGIN_SRC emacs-lisp
 (require 'helm-config)
+(require 'helm-descbinds)
+(require 'helm-migemo)
+(require 'helm-gtags)
 (setq helm-idle-delay             0.2
       helm-input-idle-delay       0.2
       helm-candidate-number-limit 200)
