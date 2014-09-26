@@ -56,7 +56,7 @@
   ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
   ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
   (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-  (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
+  (define-key ac-completing-map (kbd "M-h") 'ac-quick-help-force)
   (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
   ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
 #+END_SRC
