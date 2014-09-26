@@ -1,4 +1,4 @@
-* e07_autocomplete.org
+* e06_autocomplete.org
  Auto Complete Popup globally makes Emacs auto-completion nicer
 ** DONE AC-Load
 #+BEGIN_SRC emacs-lisp
@@ -28,10 +28,10 @@
   ;; ac-setup  AC settings to adjust the completion to your needs
   ;; Quick help will appear at the side of completion menu, so you can
   ;; easily see the help.
-** AC-Popup-Menue 
+** AC-Popup-Menue and Popup help
 #+BEGIN_SRC emacs-lisp
   (setq
-   ;;ac-delay 0.2   
+   ac-delay 0 ;; 0.2   
    ;;ac-show-menu-immediately-on-auto-complete t
    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
    ;; Set up Complete menu
@@ -39,7 +39,7 @@
    ;;ac-auto-start nil + ac-trigger-key "TAB"
    ac-trigger-key nil
    ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, D=2 
-   ac-auto-show-menu 0.1 ;;0.001 ;; show menu with 0.05 delay
+   ac-auto-show-menu 0.01 ;;0.001 ;; show menu with 0.05 delay
    ac-use-comphist t ;; sort Candidate
    ac-candidate-limit nil
    ac-menu-height 25 ;;12 Max height for complete candidate menu
@@ -47,15 +47,12 @@
    ac-ignore-case 'smart
    ac-fuzzy-enable t ;; Fuzzy mode
    ac-dwim t )   ;; DO What I mean
-#+END_SRC
-** AC-Quick Tool tip Help
 
- #+BEGIN_SRC emacs-lisp
    (setq 
       ;; ac-use-quick-help nil                   ; no tool tip
       ac-use-quick-help t ;; use quick help
       ac-quick-help-prefer-pos-tip t
-      ac-quick-help-delay 0.1 ;;
+      ac-quick-help-delay 0.5 ;;
       ac-quick-help-height 25
       ac-quick-help-scroll-down
       )
