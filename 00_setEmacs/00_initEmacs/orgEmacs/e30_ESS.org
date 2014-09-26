@@ -58,13 +58,11 @@
             (other-window 1)))
     ;; *.R と R のプロセスを結びつける
     ;; これをしておかないと補完などの便利な機能が使えない
-    (ess-force-buffer-current "Process to load into: ")))
+   
  
-;; R-mode 起動直後の処理
-(add-hook 'R-mode-hook 'ess-load-hook)
- 
-;; R 起動直前の処理
-(add-hook 'ess-pre-run-hook (lambda () (ess-load-hook t)))
+
+
+(add-hook 'ess-pre-run-hook (lambda () (ess-load-hook t))) ;; R 起動直前の処理
 ** iESS Mode: ESS-comint Mode
 Auto-scrolling of R console to bottom and Shift key extension
 #+BEGIN_SRC emacs-lisp
@@ -73,11 +71,11 @@ Auto-scrolling of R console to bottom and Shift key extension
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
-
 #+END_SRC
 ** ESS Auto complete:: DEFAULT > 12.09
 #+BEGIN_SRC emacs-lisp
 (setq ess-use-auto-complete t)
+(ess-force-buffer-current "Process to load into: ")))
 #+END_SRC
 ** ESS Code indentation 
 ;; http://ess.r-project.org/Manual/ess.html#Indenting
@@ -211,7 +209,8 @@ In order to enable Emacs’ standard OutlineMode for .R files:
     (setq-default ess-language "R")
     (setq ess-language "R")
     )
-  (add-hook 'ess-post-run-hook 'ess-set-language t)
+(add-hook 'ess-post-run-hook 'ess-set-language t)
+(add-hook 'R-mode-hook 'ess-load-hook) ;; R-mode 起動直後の処理
 #+END_SRC
 ** DONE R Mode list
 #+BEGIN_SRC emacs-lisp
