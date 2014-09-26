@@ -77,19 +77,14 @@
 ;;(define-key global-map (kbd "C-x C-f") 'helm-find-files)
 ;;(define-key global-map (kbd "C-x C-r") 'helm-recentf)
 (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+(define-key global-map (kbd "M-z")     'helm-do-grep)
+(define-key global-map (kbd "M-s")     'helm-occur)
 (define-key global-map (kbd "C-c i")   'helm-imenu)
 ;;(define-key global-map (kbd "C-x b")   'helm-buffers-list)
 #+END_SRC
 
 (require 'helm-command)
-(require 'helm-descbinds)
 
-(let ((key-and-func
-       `((,(kbd "C-r")   helm-for-files)
-         (,(kbd "C-^")   helm-c-apropos)
-         (,(kbd "C-;")   )
-         (,(kbd "M-s")   helm-occur)
-         (,(kbd "M-z")   helm-do-grep)
   (loop for (key func) in key-and-func
         do (global-set-key key func)))
 (require 'migemo)
