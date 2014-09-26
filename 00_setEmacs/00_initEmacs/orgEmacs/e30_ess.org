@@ -118,12 +118,12 @@ In order to enable Emacs’ standard OutlineMode for .R files:
                                       (ess-fl-keyword:= . t)
                                       (ess-R-fl-keyword:F&T . t)))))
 #+END_SRC
-** ESS-rdired 
+** ESS rdired 
 #+BEGIN_SRC emacs-lisp
 (autoload 'ess-rdired "ess-rdired" 
   "View *R* objects in a dired-like buffer." t)
 #+END_SRC
-** ESS-Sweave
+** ESS Sweave
 #+BEGIN_SRC emacs-lisp
 ;; Lets you do 'C-c C-c Sweave' from your Rnw file
 (defun emacsmate-add-Sweave ()
