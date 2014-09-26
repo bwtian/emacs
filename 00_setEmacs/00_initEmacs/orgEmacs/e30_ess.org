@@ -2,9 +2,68 @@
 #+BEGIN_SRC emacs-lisp
   (require 'ess-site)  ;; Load ESS from ELPA to Highlight R and Auto-complte
   (setq ess-eval-visibly nil) ; ESS will not print the evaluated comands, also speeds up the evaluation
-  (setq ess-ask-for-ess-directory nil) ;; Dont ask each time when start an interactive R session 
-  
+  (setq ess-ask-for-ess-directory nil) ;; Dont ask each time when start an interactive R session  C-c C-s
+
 #+END_SRC
+** 
+;; 最初に ESS を呼び出した時の処理
+  (when (not ess-loaded-p)
+    ;; アンダースコアの入力が " <- " にならないようにする
+    (ess-toggle-underscore nil)
+    ;; C-c r を押した際に表示される候補数の上限値
+    ;; 表示数が多いと処理が重くなる
+    (setq anything-R-help-limit 40)
+    (setq anything-R-local-limit 20)
+    ;; C-c r で R の関数やオブジェクトを検索できるようにする
+    (when (require 'anything-R nil t)
+      ;; ess-smart-comma が導入されたので repospkg と localpkg はあまり必要なさそう
+      (setq anything-for-R-list '(anything-c-source-R-help
+                                  anything-c-source-R-local))
+      (define-key ess-mode-map (kbd "C-c r") 'anything-for-R)
+      (define-key inferior-ess-mode-map (kbd "C-c r") 'anything-for-R))
+    ;; C-c C-g で オブジェクトの内容を確認できるようにする
+    (require 'ess-R-object-popup nil t)
+    ;; 補完機能を有効にする
+    (setq ess-use-auto-complete t)
+    ;; anything を使いたいので IDO は邪魔
+    (setq ess-use-ido nil)
+    ;; キャレットがシンボル上にある場合にもエコーエリアにヘルプを表示する
+    (setq ess-eldoc-show-on-symbol t)
+    ;; 起動時にワーキングディレクトリを尋ねられないようにする
+    (setq ess-ask-for-ess-directory nil)
+    ;; # の数によってコメントのインデントの挙動が変わるのを無効にする
+    (setq ess-fancy-comments nil)
+    (setq ess-loaded-p t)
+    (unless from-iess-p
+      ;; ウィンドウが1つの状態で *.R を開いた場合はウィンドウを縦に分割して R を表示する
+      (when (one-window-p)
+        (split-window-horizontally)
+        (let ((buf (current-buffer)))
+          (ess-switch-to-ESS nil)
+          (switch-to-buffer-other-window buf)))
+      ;; R を起動する前だと auto-complete-mode が off になるので自前で on にする
+      ;; cf. ess.el の ess-load-extras
+      (when (and ess-use-auto-complete (require 'auto-complete nil t))
+        (add-to-list 'ac-modes 'ess-mode)
+        (mapcar (lambda (el) (add-to-list 'ac-trigger-commands el))
+                '(ess-smart-comma smart-operator-comma skeleton-pair-insert-maybe))
+        (setq ac-sources '(ac-source-R ac-source-filename)))))
+ 
+  (if from-iess-p
+      ;; R のプロセスが他になければウィンドウを分割する
+      (if (> (length ess-process-name-list) 0)
+          (when (one-window-p)
+            (split-window-horizontally)
+            (other-window 1)))
+    ;; *.R と R のプロセスを結びつける
+    ;; これをしておかないと補完などの便利な機能が使えない
+    (ess-force-buffer-current "Process to load into: ")))
+ 
+;; R-mode 起動直後の処理
+(add-hook 'R-mode-hook 'ess-load-hook)
+ 
+;; R 起動直前の処理
+(add-hook 'ess-pre-run-hook (lambda () (ess-load-hook t)))
 ** iESS Mode: ESS-comint Mode
 Auto-scrolling of R console to bottom and Shift key extension
 #+BEGIN_SRC emacs-lisp
@@ -141,3 +200,64 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 (add-hook 'Rnw-mode-hook 'emacsmate-add-Sweave)
 #+END_SRC
 
+** R Basic
+#+BEGIN_SRC emacs-lisp
+  (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
+  (autoload 'R "ess-site" "start R" t)
+  (setq-default inferior-R-program-name "R")  ;; Search R in a nonstandard location on Linux
+  (setq-default ess-dialect "R")
+  (setq-default inferior-R-args "--no-restore-history --no-save ")
+  (setq ess-local-process-name "R")
+  (defun ess-set-language ()
+    (setq-default ess-language "R")
+    (setq ess-language "R")
+    )
+  (add-hook 'ess-post-run-hook 'ess-set-language t)
+#+END_SRC
+** DONE R Mode list
+#+BEGIN_SRC emacs-lisp
+  ;;(setq auto-mode-alist
+   ;;     (cons (cons "\\.r$|\\.R$" 'R-mode) auto-mode-alist))
+
+  (add-to-list 'auto-mode-alist '("\\.[rR]$" . R-mode))
+  ;; *.r.txt and *.R.txt files activate r-mode            ; Obsolete. Just set TextEdit.app for .R in Finder
+  ;; Maybe useful for result files, open with ESS (emacs) or TextEdit.app (GUI) automatically
+  (setq auto-mode-alist
+        (cons '("\\.r\\.txt$" . R-mode) auto-mode-alist))
+  (setq auto-mode-alist
+        (cons '("\\.R\\.txt$" . R-mode) auto-mode-alist))
+  (setq auto-mode-alist
+        (cons '("\\.RRR$" . R-mode) auto-mode-alist))
+
+
+#+END_SRC
+** DONE R Data Summary ess-R-object-popup  R-object-tooltip to show summary
+#+BEGIN_SRC emacs-lisp
+  (require 'ess-R-object-popup)
+  (define-key ess-mode-map (kbd "C-c s") 'ess-R-object-popup)
+  ;; the alist
+  (setq ess-R-object-popup-alist
+        '((numeric    . "summary")
+          (factor     . "table")
+          (integer    . "summary")
+          (lm         . "summary")
+          (other      . "str")))
+  
+#+END_SRC
+** DONE R Data view  C-c v, C-c V
+#+BEGIN_SRC emacs-lisp
+(define-key ess-mode-map (kbd "C-c V") 'ess-R-dv-ctable)
+(define-key ess-mode-map (kbd "C-c v") 'ess-R-dv-pprint)
+#+END_SRC
+** DONE R Auto Complete Source
+#+BEGIN_SRC emacs-lisp
+      (require 'ac-R)
+#+END_SRC
+** TODO inlineR
+#+BEGIN_SRC emacs-lisp
+  ;; (require 'inlineR)
+  ;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")
+  ;; (setq inlineR-default-image "png")
+  ;; (setq inlineR-default-dir "/tmp/")
+  ;; (setq inlineR-cairo-p t)
+#+END_SRC
