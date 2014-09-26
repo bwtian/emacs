@@ -2,6 +2,7 @@
 #+BEGIN_SRC emacs-lisp
   (require 'ess-site)  ;; Load ESS from ELPA to Highlight R and Auto-complte
   (setq ess-eval-visibly nil) ; t ESS will not print the evaluated comands, also speeds up the evaluation
+  (setq ess-eval-visibly-p nil)   ; fast ;; Must-haves for ESS
   ;; This causes commands to be invisible, and leaves junk like + + + > > >;
   (setq ess-ask-for-ess-directory nil) ;; Dont ask each time when start an interactive R session  C-c C-s
 #+END_SRC
@@ -228,7 +229,4 @@ In order to enable Emacs’ standard OutlineMode for .R files:
           (when (one-window-p)
             (split-window-horizontally)
             (other-window 1)))
-#+END_SRC
-** Note
-  (setq helm-)
-  
+#+END_SRC  
