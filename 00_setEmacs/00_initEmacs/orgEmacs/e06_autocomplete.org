@@ -31,7 +31,7 @@
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
   (setq
-   ;;ac-delay 0 ;; 0.2   
+   ac-delay 0 ;; 0.1   
    ;;ac-show-menu-immediately-on-auto-complete t
    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
    ;; Set up Complete menu
