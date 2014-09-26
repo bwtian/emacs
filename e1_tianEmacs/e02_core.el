@@ -149,20 +149,3 @@
 ))
 (global-set-key (kbd "C-c C-a") 'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)
-
-;;(cua-mode t) ;;
-(setq cua-enable-cua-keys nil)  ;; disable C-c,v,x style
-(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
-(transient-mark-mode 1) ;; No region when it is not highlighted
-(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
- ;; shift + click select region
-(define-key global-map (kbd "<S-down-mouse-1>") 'ignore) ; turn off font dialog
-;;(define-key global-map (kbd "<S-return>") 'cua-set-mark)
-(put 'mouse-set-point 'CUA 'move)
-(global-set-key [f1] 'cua-mode)
-
-(setq default-abbrev-mode t)
-(setq transient-mark-mode t)
-(global-auto-revert-mode 1)
-
-(setq read-file-name-completion-ignore-case t)
