@@ -18,7 +18,7 @@ Auto-scrolling of R console to bottom and Shift key extension
 ** ESS Auto complete:: DEFAULT > 12.09
 #+BEGIN_SRC emacs-lisp
 (setq ess-use-auto-complete t)
-(ess-force-buffer-current "Process to load into: ")))
+(ess-force-buffer-current "Process to load into: ")
 #+END_SRC
 ** ESS Code indentation 
 ;; http://ess.r-project.org/Manual/ess.html#Indenting
