@@ -53,7 +53,8 @@
 (require 'helm-gtags)
 (setq helm-idle-delay             0.2
       helm-input-idle-delay       0.2
-      helm-candidate-number-limit 200)
+      helm-candidate-number-limit 200
+      helm-buffer-max-length      50)
 #+END_SRC
 
 *** Helm Keybindings
