@@ -135,3 +135,13 @@
 
 (define-key ess-mode-map (kbd "C-c V") 'ess-R-dv-ctable)
 (define-key ess-mode-map (kbd "C-c v") 'ess-R-dv-pprint)
+
+(require 'ac-R)
+(require 'helm-R)
+(require 'anything-R)
+
+;; (require 'inlineR)
+;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")
+;; (setq inlineR-default-image "png")
+;; (setq inlineR-default-dir "/tmp/")
+;; (setq inlineR-cairo-p t)
