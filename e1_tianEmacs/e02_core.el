@@ -160,3 +160,9 @@
 ;;(define-key global-map (kbd "<S-return>") 'cua-set-mark)
 (put 'mouse-set-point 'CUA 'move)
 (global-set-key [f1] 'cua-mode)
+
+(setq default-abbrev-mode t)
+(setq transient-mark-mode t)
+(global-auto-revert-mode 1)
+
+(setq read-file-name-completion-ignore-case t)
