@@ -219,7 +219,8 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 #+END_SRC
 ** DONE R Auto Complete Source
 #+BEGIN_SRC emacs-lisp
-      (require 'ac-R)
+(require 'ac-R)
+(require 'helm-R)
 #+END_SRC
 ** TODO inlineR
 #+BEGIN_SRC emacs-lisp
