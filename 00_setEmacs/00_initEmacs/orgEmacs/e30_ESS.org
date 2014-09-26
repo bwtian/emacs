@@ -29,20 +29,9 @@
     ;; anything を使いたいので IDO は邪魔
     (setq ess-use-ido nil)
     ;; キャレットがシンボル上にある場合にもエコーエリアにヘルプを表示する
-    (setq ess-eldoc-show-on-symbol t)
-    ;; 起動時にワーキングディレクトリを尋ねられないようにする
-    (setq ess-ask-for-ess-directory nil)
-    ;; # の数によってコメントのインデントの挙動が変わるのを無効にする
-    (setq ess-fancy-comments nil)
-    (setq ess-loaded-p t)
-    (unless from-iess-p
+   
+  
 
-      (when (one-window-p)
-        (split-window-horizontally)
-        (let ((buf (current-buffer)))
-          (ess-switch-to-ESS nil)
-          (switch-to-buffer-other-window buf)))
-    
  
 
 
@@ -80,7 +69,7 @@ Auto-scrolling of R console to bottom and Shift key extension
 ** Ess eldoc
 #+BEGIN_SRC emacs-lisp
 (require 'ess-eldoc)
-(setq ess-eval-visibly-p nil) 
+(setq ess-eldoc-show-on-symbol t)
 #+END_SRC
 
 ** ESS Code fold
