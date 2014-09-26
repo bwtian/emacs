@@ -53,8 +53,8 @@
    ;; ac-use-quick-help nil                   ; no tool tip
    ac-use-quick-help t ;; use quick help
    ac-quick-help-prefer-pos-tip t
-   ac-quick-help-delay 0.5 ;;
-   ac-quick-help-height 25
+   ac-quick-help-delay 0.2 ;;
+   ;; ac-quick-help-height 25
    ac-quick-help-scroll-down
    )
 
