@@ -2,6 +2,7 @@
 ** R Basic
 #+BEGIN_SRC emacs-lisp
   (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
+  (autoload 'R "ess-site" "start R" t)
   (setq-default inferior-R-program-name "R")  ;; Search R in a nonstandard location on Linux
   (setq-default ess-dialect "R")
   (setq-default inferior-R-args "--no-restore-history --no-save ")
@@ -12,12 +13,12 @@
     )
   (add-hook 'ess-post-run-hook 'ess-set-language t)
 #+END_SRC
-** R Mode list
+** DONE R Mode list
 #+BEGIN_SRC emacs-lisp
-  (setq auto-mode-alist
-        (cons (cons "\\.r$|\\.R$" 'R-mode) auto-mode-alist))
+  ;;(setq auto-mode-alist
+   ;;     (cons (cons "\\.r$|\\.R$" 'R-mode) auto-mode-alist))
 
-
+  (add-to-list 'auto-mode-alist '("\\.[rR]$" . R-mode))
   ;; *.r.txt and *.R.txt files activate r-mode            ; Obsolete. Just set TextEdit.app for .R in Finder
   ;; Maybe useful for result files, open with ESS (emacs) or TextEdit.app (GUI) automatically
   (setq auto-mode-alist
@@ -29,7 +30,7 @@
 
 
 #+END_SRC
-** R Data Summary ess-R-object-popup  R-object-tooltip to show summary
+** DONE R Data Summary ess-R-object-popup  R-object-tooltip to show summary
 #+BEGIN_SRC emacs-lisp
   (require 'ess-R-object-popup)
   (define-key ess-mode-map (kbd "C-c s") 'ess-R-object-popup)
@@ -42,16 +43,16 @@
           (other      . "str")))
   
 #+END_SRC
-** R Data view  C-c v, C-c V
+** DONE R Data view  C-c v, C-c V
 #+BEGIN_SRC emacs-lisp
 (define-key ess-mode-map (kbd "C-c V") 'ess-R-dv-ctable)
 (define-key ess-mode-map (kbd "C-c v") 'ess-R-dv-pprint)
 #+END_SRC
-** R Auto Complete
+** DONE R Auto Complete Source
 #+BEGIN_SRC emacs-lisp
       (require 'ac-R)
 #+END_SRC
-** inlineR
+** TODO inlineR
 #+BEGIN_SRC emacs-lisp
   ;; (require 'inlineR)
   ;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")
