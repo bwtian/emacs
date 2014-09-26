@@ -44,6 +44,6 @@
 
 ** helm
 #+BEGIN_SRC emacs-lisp
-
+(require 'helm-config)
 
 #+END_SRC
