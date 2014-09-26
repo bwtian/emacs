@@ -19,6 +19,8 @@ Auto-scrolling of R console to bottom and Shift key extension
 #+END_SRC
 ** ESS Auto complete:: DEFAULT > 12.09
 #+BEGIN_SRC emacs-lisp
+(require ‘auto-complete)
+(require ‘auto-complete-acr)
 (setq ess-use-auto-complete t)
 #+END_SRC
 ** ESS Code indentation 
