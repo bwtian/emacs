@@ -163,6 +163,6 @@
 
 (setq default-abbrev-mode t)
 (setq transient-mark-mode t)
-(global-auto-revert-mode 1)
+(global-auto-revert-mode t)
 
 (setq read-file-name-completion-ignore-case t)
