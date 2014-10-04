@@ -27,6 +27,8 @@
 (add-hook 'LaTeX-mode-hook 'linum-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'folding-mode)
+(add-hook 'TeX-mode-hook 'font-lock-mode)
+(add-hook 'LaTeX-mode-hook 'font-lock-mode)
 
 ;(setq LaTeX-math-mode t)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
