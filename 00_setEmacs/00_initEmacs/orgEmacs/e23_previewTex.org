@@ -24,11 +24,20 @@
 #+srcname: pdf-mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-(setq TeX-PDF-mode t)  ;; mode pdflatex
 #+END_SRC
+
 
 **  Default Programs 
 #+BEGIN_SRC emacs-lisp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Use Okular as the pdf viewer. Build okular 
+;; command, so that Okular jumps to the current line 
+;; in the viewer.
+(setq TeX-view-program-selection
+ '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+ '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   (setq TeX-view-program-list
         '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
           ("Gsview" "gsview32.exe %o")
