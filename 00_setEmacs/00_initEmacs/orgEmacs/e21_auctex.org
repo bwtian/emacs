@@ -22,8 +22,8 @@ Latex Editor: AuxTex
 
 ** Load Auctex mode
 #+BEGIN_SRC emacs-lisp
- (load "auctex-pkg.el" nil t t)
- (load "latex.el" nil t t)
+;; (load "auctex-pkg.el" nil t t)
+ (load "latex.el" nil t t) ;; import for not ask master files
 #+END_SRC
    
 ** Auctex Core
