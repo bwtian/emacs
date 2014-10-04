@@ -164,8 +164,6 @@ If there is still something left do do start the next latex-command."
 #+LASTEDIT:  
 #+CATEGORIES: Org-babel for Emacs init
 
-* Preview Latex
-
 ** Load Package
 #+BEGIN_SRC emacs-lisp
 ;;(load "preview-latex.el" nil t t)
@@ -182,7 +180,6 @@ If there is still something left do do start the next latex-command."
 #+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 #+END_SRC
-
 
 **  Default Programs 
 #+BEGIN_SRC emacs-lisp
