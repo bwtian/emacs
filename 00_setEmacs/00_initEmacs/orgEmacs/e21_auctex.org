@@ -38,7 +38,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (setq TeX-PDF-mode t) ;; compile documents to PDF by default
 #+END_SRC
 
-
 ** Minor modes with Latex
 
 #+BEGIN_SRC emacs-lisp
