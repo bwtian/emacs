@@ -209,9 +209,6 @@ If there is still something left do do start the next latex-command."
     (setq tex-dvi-view-command "xdvi")
     (setq tex-dvi-print-command "dvips")
     (setq tex-alt-dvi-print-command "dvips")
-
-
-
 ** Whizzy Tex: Toggle the preview window on/off with F9
 #+BEGIN_SRC emacs-lisp
   ;; sudo apt-get install whizzytex
