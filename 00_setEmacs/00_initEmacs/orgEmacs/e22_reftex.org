@@ -36,6 +36,7 @@
 (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
 #+END_SRC
 ** AUCTex mode
+C-c [
 #+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
 (setq reftex-plug-into-AUCTeX t)
