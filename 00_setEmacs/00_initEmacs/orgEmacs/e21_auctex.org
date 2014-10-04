@@ -25,7 +25,11 @@ Latex Editor: AuxTex
 ;; (load "auctex-pkg.el" nil t t)
  (load "latex.el" nil t t) ;; import for not ask master files
 #+END_SRC
-   
+ 
+** Close default Texmode
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
 ** Auctex Core
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
@@ -33,6 +37,9 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (setq LaTeX-math-mode t)
 (setq TeX-electric-escape t)
 (setq TeX-parse-self t)
+ (setq TeX-auto-save t)
+     (setq TeX-parse-self t)
+     (setq-default TeX-master nil)
 
 (setq-default TeX-master nil)
 ;;(setq TeX-PDF-mode t) ;; compile documents to PDF by default
