@@ -36,8 +36,13 @@
 #+END_SRC
 ** Emacs 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+  (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+  (add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+
 #+END_SRC
+
+#+RESULTS[980725cbaa40929f8ac88d25e704f7ee382fa2f9]:
+
 ** AUCTex mode
 C-c [
 #+BEGIN_SRC emacs-lisp
