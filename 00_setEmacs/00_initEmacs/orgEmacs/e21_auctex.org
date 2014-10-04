@@ -34,9 +34,10 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq TeX-electric-escape t)
 (setq-default TeX-master nil)
 (setq LaTeX-math-mode t)
-(setq TeX-electric-escape t)
+
 (setq TeX-engine 'pdflatex)
 (setq TeX-PDF-mode t) ;; use pdflatex instead of latex by default
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
@@ -45,7 +46,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'folding-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-
 #+END_SRC
 ** Enable synctex correlation
 #+BEGIN_SRC emacs-lisp
