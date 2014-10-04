@@ -40,6 +40,9 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 
 (setq TeX-engine 'pdflatex)
 (setq TeX-PDF-mode t) ;; use pdflatex instead of latex by default
+
+(require 'cdlatex)
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex) ; with AUCTeX LaTeX mode 
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'linum-mode)
