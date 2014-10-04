@@ -10,9 +10,26 @@
  (load "latex.el" nil t t) ;; import for not ask master files
 
 (setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
 (setq LaTeX-math-mode t)
 (setq TeX-electric-escape t)
-(setq TeX-parse-self t)
+(setq TeX-engine 'pdflatex)
+(setq TeX-PDF-mode t) ;; use pdflatex instead of latex by default
 
-(setq-default TeX-master nil)
-;;(setq TeX-PDF-mode t) ;; compile documents to PDF by default
+(setq TeX-source-correlate-method 'synctex)
+;; Enable synctex generation. Even though the command shows
+;; as "latex" pdflatex is actually called
+(custom-set-variables '(LaTeX-command "latex -synctex=1") )
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'linum-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'folding-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+;; enable auto-fill mode, nice for text
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
