@@ -30,7 +30,6 @@ Latex Editor: AuxTex
 #+BEGIN_SRC emacs-lisp
  (setq TeX-auto-save t)
  (setq TeX-parse-self t)
-
  (setq-default TeX-master nil)
 #+END_SRC
 ** Auctex Core
@@ -47,7 +46,11 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 
 #+END_SRC
 ** Minor modes with Latex
-
+#+BEGIN_SRC emacs-lisp
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+#+END_SRC
 
     (mapc (lambda (mode)
              (add-hook 'LaTeX-mode-hook mode))
