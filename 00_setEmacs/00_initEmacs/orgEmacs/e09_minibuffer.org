@@ -5,7 +5,7 @@
   (setq enable-recursive-minibuffers t) ;; nil
   (icomplete-mode 1)
   (setq resize-mini-windows t) ;; t for autosize nil for not
-
+  (global-set-key (kbd "C-x f") 'find-file-at-point) ;;defaule set the fill-column
   ;; don't let the cursor go into minibuffer prompt
   (setq minibuffer-prompt-properties (quote (read-only t point-entered
                                                        minibuffer-avoid-prompt
