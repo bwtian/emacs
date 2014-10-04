@@ -26,7 +26,7 @@ Latex Editor: AuxTex
  (load "preview.el" nil t t)
 ;;(load "preview-latex.el" nil t t)
 ;;(load "auctex-pkg.el" nil t t)
-;;(load "latex.el" nil t t) ;; import for not ask master files
+;(load "latex.el" nil t t) ;; import for not ask master files
 #+END_SRC
  
 ** Close default Tex mode
