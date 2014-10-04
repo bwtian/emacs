@@ -28,20 +28,15 @@ Latex Editor: AuxTex
  
 ** Close default Texmode
 #+BEGIN_SRC emacs-lisp
-
+ (setq TeX-auto-save t)
+ (setq TeX-parse-self t)
+ (setq-default TeX-master nil)
 #+END_SRC
 ** Auctex Core
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
-(setq TeX-auto-save t)
 (setq LaTeX-math-mode t)
 (setq TeX-electric-escape t)
-(setq TeX-parse-self t)
- (setq TeX-auto-save t)
-     (setq TeX-parse-self t)
-     (setq-default TeX-master nil)
-
-(setq-default TeX-master nil)
 ;;(setq TeX-PDF-mode t) ;; compile documents to PDF by default
 #+END_SRC
 
