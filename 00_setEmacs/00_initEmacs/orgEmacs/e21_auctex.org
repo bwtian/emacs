@@ -2,7 +2,7 @@
 #+AUTHOR: Bingwei TIAN
 #+EMAIL: bwtian@gmail.com
 #+OPTIONS: toc:nil num:nil 
-#+STARTUP: showall
+#+STARTUP: overview
 #+CREATED: [2014-06-03 Tue 11:09]  
 #+LASTEDIT:  
 #+CATEGORIES: Org-babel for Emacs init
@@ -155,6 +155,124 @@ If there is still something left do do start the next latex-command."
 (add-hook 'LaTeX-mode-hook
          '(lambda ()
             (define-key LaTeX-mode-map (kbd <"C-c C-a">) 'TeX-texify)))
+#+TITLE:auctex preview
+#+AUTHOR: Bingwei TIAN
+#+EMAIL: bwtian@gmail.com
+#+OPTIONS: toc:nil num:nil 
+#+STARTUP: showall 
+#+CREATED: [2014-06-03 Tue 11:09]  
+#+LASTEDIT:  
+#+CATEGORIES: Org-babel for Emacs init
+
+* Preview Latex
+
+** Load Package
+#+BEGIN_SRC emacs-lisp
+;;(load "preview-latex.el" nil t t)
+(load "preview.el" nil t t)
+#+END_SRC
+
+** Prettify Math in Buffers
+#+source: latex-pretty-symbols 
+#+BEGIN_SRC emacs-lisp
+  ;;(require 'latex-pretty-symbols)
+#+END_SRC
+- Take this out to compile to DVI, instead.
+#+srcname: pdf-mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+#+END_SRC
+
+
+**  Default Programs 
+#+BEGIN_SRC emacs-lisp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Use Okular as the pdf viewer. Build okular 
+;; command, so that Okular jumps to the current line 
+;; in the viewer.
+(setq TeX-view-program-selection
+ '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+ '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (setq TeX-view-program-list
+        '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+          ("Gsview" "gsview32.exe %o")
+          ("Okular" "okular --unique %o")
+          ("Evince" "evince %o")    ;; Gnomeers
+          ("Firefox" "firefox %o")))
+  (cond
+   ((eq system-type 'windows-nt)
+    (add-hook 'LaTeX-mode-hook
+              (lambda ()
+                (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+                                                   (output-dvi "Yap"))))))
+   ((eq system-type 'gnu/linux)
+    (add-hook 'LaTeX-mode-hook
+              (lambda ()
+                (setq TeX-view-program-selection '((output-pdf "Okular")
+                                                   (output-dvi "Okular")))))))
+
+  (setq TeX-output-view-style (quote (
+                                      ("^pdf$" "." "evince %o")
+                                      ("^ps$" "." "gv %o")
+                                      ("^dvi$" "." "xdvi %o")
+                                      )))
+  (setq tex-dvi-view-command "xdvi")
+  (setq tex-dvi-print-command "dvips")
+  (setq tex-alt-dvi-print-command "dvips")
+
+#+END_SRC
+
+** Whizzy Tex: Toggle the preview window on/off with F9
+#+BEGIN_SRC emacs-lisp
+  ;; sudo apt-get install whizzytex
+  (autoload 'whizzytex-mode "whizzytex" "WhizzyTeX, a minor-mode WYSIWIG environment for LaTeX" t)
+  (setq my-toggle-whizzy-count 0)
+  (defun my-toggle-whizzy-mode ()
+    (interactive)
+    (if (= (mod my-toggle-whizzy-count 2) 0)
+        (progn
+          (whizzytex-mode)
+          (message "WhizzyTeX on"))
+      (progn
+        (whizzy-mode-off)
+        (kill-buffer (concat "*" (buffer-name) "*"))
+        (message "WhizzyTeX off")))
+    (setq my-toggle-whizzy-count (+ my-toggle-whizzy-count 1)))
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (define-key LaTeX-mode-map (kbd "<f9>") 'my-toggle-whizzy-mode)))
+  ;; (setq LaTeX-default-options '("a4"))
+  ;; (setq LaTeX-float "hbt")
+  ;; (setq LaTeX-indent-level 2)
+  ;; (setq LaTeX-item-indent 0)
+  ;; (setq LaTeX-brace-indent-level 2)
+  ;; ;;
+  ;; (add-hook 'tex-mode-hook
+  ;;        (function
+  ;;         (lambda ()
+  ;;           (font-lock-mode 1))))
+  ;; ;;
+  ;; (add-hook 'LaTeX-mode-hook
+  ;;        (function
+  ;;         (lambda ()
+  ;;           (run-hooks 'tex-mode-hook))))
+
+  ;; (setq TeX-open-quote "<<")
+  ;; (setq TeX-close-quote ">>")
+  ;; (setq TeX-insert-braces nil)
+  ;; (setq preview-scale-function 1.3)
+  ;; (setq LaTeX-math-menu-unicode t)
+  ;; (require 'ac-math) ;; Latex Completion
+  ;; (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of {{{latex-mode}}}
+  ;; (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
+  ;;   (setq ac-sources
+  ;;      (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+  ;;                ac-sources)))
+  ;; (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
+  ;; (ac-flyspell-workaround)
+#+END_SRC
 
 ** Note
 ;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
