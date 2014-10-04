@@ -49,6 +49,7 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'folding-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode) ;Take this out to compile to DVI, instead.
 #+END_SRC
 ** Enable synctex correlation
 #+BEGIN_SRC emacs-lisp
@@ -59,8 +60,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+END_SRC
 ** Minor modes with Latex
 #+BEGIN_SRC emacs-lisp
-
-
 (add-hook 'LaTeX-mode-hook
                (lambda ()
                  (setq TeX-auto-untabify t     ; remove all tabs before saving
@@ -165,23 +164,12 @@ If there is still something left do do start the next latex-command."
 #+LASTEDIT:  
 #+CATEGORIES: Org-babel for Emacs init
 
-** Load Package
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
 ** Prettify Math in Buffers
 #+source: latex-pretty-symbols 
 #+BEGIN_SRC emacs-lisp
   ;;(require 'latex-pretty-symbols)
 #+END_SRC
-- Take this out to compile to DVI, instead.
-#+srcname: pdf-mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-#+END_SRC
-
-**  Default Programs 
+**  Default Programs for preview 
 #+BEGIN_SRC emacs-lisp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Use Okular as the pdf viewer. Build okular 
