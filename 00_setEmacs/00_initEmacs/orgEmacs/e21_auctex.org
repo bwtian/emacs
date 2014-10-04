@@ -173,43 +173,44 @@ If there is still something left do do start the next latex-command."
 #+END_SRC
 ** Default Programs for preview 
 #+BEGIN_SRC emacs-lisp
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Use Okular as the pdf viewer. Build okular 
-;; command, so that Okular jumps to the current line 
-;; in the viewer.
-(setq TeX-view-program-selection
- '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
- '(("PDF Viewer" "okular --unique %o#src:%n%b")))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Use Okular as the pdf viewer. Build okular 
+  ;; command, so that Okular jumps to the current line 
+  ;; in the viewer.
+  (setq TeX-view-program-selection
+   '((output-pdf "PDF Viewer")))
   (setq TeX-view-program-list
-        '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
-          ("Gsview" "gsview32.exe %o")
-          ("Okular" "okular --unique %o")
-          ("Evince" "evince %o")    ;; Gnomeers
-          ("Firefox" "firefox %o")))
-  (cond
-   ((eq system-type 'windows-nt)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
-                                                   (output-dvi "Yap"))))))
-   ((eq system-type 'gnu/linux)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                   (output-dvi "Okular")))))))
+   '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+#+END_SRC  
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    (setq TeX-view-program-list
+          '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+            ("Gsview" "gsview32.exe %o")
+            ("Okular" "okular --unique %o")
+            ("Evince" "evince %o")    ;; Gnomeers
+            ("Firefox" "firefox %o")))
+    (cond
+     ((eq system-type 'windows-nt)
+      (add-hook 'LaTeX-mode-hook
+                (lambda ()
+                  (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+                                                     (output-dvi "Yap"))))))
+     ((eq system-type 'gnu/linux)
+      (add-hook 'LaTeX-mode-hook
+                (lambda ()
+                  (setq TeX-view-program-selection '((output-pdf "Okular")
+                                                     (output-dvi "Okular")))))))
 
-  (setq TeX-output-view-style (quote (
-                                      ("^pdf$" "." "evince %o")
-                                      ("^ps$" "." "gv %o")
-                                      ("^dvi$" "." "xdvi %o")
-                                      )))
-  (setq tex-dvi-view-command "xdvi")
-  (setq tex-dvi-print-command "dvips")
-  (setq tex-alt-dvi-print-command "dvips")
+    (setq TeX-output-view-style (quote (
+                                        ("^pdf$" "." "evince %o")
+                                        ("^ps$" "." "gv %o")
+                                        ("^dvi$" "." "xdvi %o")
+                                        )))
+    (setq tex-dvi-view-command "xdvi")
+    (setq tex-dvi-print-command "dvips")
+    (setq tex-alt-dvi-print-command "dvips")
 
-#+END_SRC
+
 
 ** Whizzy Tex: Toggle the preview window on/off with F9
 #+BEGIN_SRC emacs-lisp
