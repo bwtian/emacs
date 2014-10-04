@@ -16,8 +16,8 @@ Latex Editor: AuxTex
   (require 'tex-site)   ; invoke the AUCTeX package (LaTeX support)
   (if (string-equal system-type "windows-nt")
       (require 'tex-mik))
-;(setq TeX-file-extensions
-;      '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
+(setq TeX-file-extensions
+      '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
 #+END_SRC
 
 ** Load Auctex mode
