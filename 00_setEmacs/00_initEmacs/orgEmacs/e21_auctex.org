@@ -23,7 +23,7 @@ Latex Editor: AuxTex
 ** Load Auctex mode
 #+BEGIN_SRC emacs-lisp
  (load "auctex-pkg.el" nil t t)
- ;;(load "latex.el" nil t t)
+ (load "latex.el" nil t t)
 #+END_SRC
    
 ** Auctex Core
