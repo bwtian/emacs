@@ -1,23 +1,26 @@
 * e20_reftex.org
 ** reftex-mode
 #+BEGIN_SRC emacs-lisp
-(require 'reftex)
-(setq reftex-default-bibliography '("/home/tian/Dropbox/4refs/bib/library.bib"))
-(setq reftex-file-extensions
-      '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
-;; Make RefTeX faster
-(setq reftex-enable-partial-scans t)
-(setq reftex-keep-temporary-buffers nil)
-(setq reftex-enable-partial-scans t)
-(setq reftex-allow-automatic-rescan nil)
+  (require 'reftex)
+  (setq reftex-default-bibliography '(
+                                      ;;"/home/tian/Dropbox/4refs/bib/library.bib"
+                                      "/home/tian/SparkleShare/p1402/p1402-cited.bib"
+                                      ))
+  (setq reftex-file-extensions
+        '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
+  ;; Make RefTeX faster
+  (setq reftex-enable-partial-scans t)
+  (setq reftex-keep-temporary-buffers nil)
+  (setq reftex-enable-partial-scans t)
+  (setq reftex-allow-automatic-rescan nil)
 
-(autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t) 
-(autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil) 
-(autoload 'reftex-citation "reftex-cite" "Make citation" nil) 
-(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t) 
+  (autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t) 
+  (autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil) 
+  (autoload 'reftex-citation "reftex-cite" "Make citation" nil) 
+  (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t) 
 
-(when (locate-library "zotero")
-      (add-hook 'TeX-mode-hook 'zotero-minor-mode))
+  (when (locate-library "zotero")
+        (add-hook 'TeX-mode-hook 'zotero-minor-mode))
 #+END_SRC
 ** org-mode: reftex, cdlatex, pdflatex
 #+BEGIN_SRC emacs-lisp

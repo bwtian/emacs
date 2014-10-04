@@ -1,6 +1,9 @@
 
 (require 'reftex)
-(setq reftex-default-bibliography '("/home/tian/Dropbox/4refs/bib/library.bib"))
+(setq reftex-default-bibliography '(
+                                    ;;"/home/tian/Dropbox/4refs/bib/library.bib"
+                                    "/home/tian/SparkleShare/p1402/p1402-cited.bib"
+                                    ))
 (setq reftex-file-extensions
       '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
 ;; Make RefTeX faster
