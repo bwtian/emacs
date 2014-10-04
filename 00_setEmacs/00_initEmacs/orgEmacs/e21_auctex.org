@@ -50,6 +50,10 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+;; enable auto-fill mode, nice for text
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
 #+END_SRC
 
     (mapc (lambda (mode)
