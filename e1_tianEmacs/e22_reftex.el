@@ -31,6 +31,7 @@
 (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
 
 (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
 (setq reftex-plug-into-AUCTeX t)
