@@ -83,3 +83,65 @@
 
 (autoload 'ess-rdired "ess-rdired" 
   "View *R* objects in a dired-like buffer." t)
+
+;; Lets you do 'C-c C-c Sweave' from your Rnw file
+(defun emacsmate-add-Sweave ()
+  (add-to-list 'TeX-command-list
+           '("Sweave" "R CMD Sweave %s"
+         TeX-run-command nil (latex-mode) :help "Run Sweave") t)
+  (add-to-list 'TeX-command-list
+           '("LatexSweave" "%l %(mode) %s"
+         TeX-run-TeX nil (latex-mode) :help "Run Latex after Sweave") t)
+  (setq TeX-command-default "Sweave"))
+
+(add-hook 'Rnw-mode-hook 'emacsmate-add-Sweave)
+
+(autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
+  (autoload 'R "ess-site" "start R" t)
+  (setq-default inferior-R-program-name "R")  ;; Search R in a nonstandard location on Linux
+  (setq-default ess-dialect "R")
+  (setq-default inferior-R-args "--no-restore-history --no-save ")
+  (setq ess-local-process-name "R")
+  (defun ess-set-language ()
+    (setq-default ess-language "R")
+    (setq ess-language "R")
+    )
+(add-hook 'ess-post-run-hook 'ess-set-language t)
+;;(add-hook 'ess-pre-run-hook (lambda () (ess-load-hook t))) ;; R 起動直前の処理
+;;(add-hook 'R-mode-hook 'ess-load-hook) ;; R-mode 起動直後の処理
+
+;;(setq auto-mode-alist
+ ;;     (cons (cons "\\.r$|\\.R$" 'R-mode) auto-mode-alist))
+
+(add-to-list 'auto-mode-alist '("\\.[rR]$" . R-mode))
+;; *.r.txt and *.R.txt files activate r-mode            ; Obsolete. Just set TextEdit.app for .R in Finder
+;; Maybe useful for result files, open with ESS (emacs) or TextEdit.app (GUI) automatically
+(setq auto-mode-alist
+      (cons '("\\.r\\.txt$" . R-mode) auto-mode-alist))
+(setq auto-mode-alist
+      (cons '("\\.R\\.txt$" . R-mode) auto-mode-alist))
+(setq auto-mode-alist
+      (cons '("\\.RRR$" . R-mode) auto-mode-alist))
+
+(require 'ess-R-object-popup)
+(define-key ess-mode-map (kbd "C-c s") 'ess-R-object-popup)
+;; the alist
+(setq ess-R-object-popup-alist
+      '((numeric    . "summary")
+        (factor     . "table")
+        (integer    . "summary")
+        (lm         . "summary")
+        (other      . "str")))
+
+(define-key ess-mode-map (kbd "C-c V") 'ess-R-dv-ctable)
+(define-key ess-mode-map (kbd "C-c v") 'ess-R-dv-pprint)
+
+(require 'ac-R)
+(require 'helm-R)
+(require 'anything-R)
+
+;; (require 'inlineR)
+;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")
+;; (setq inlineR-default-image "png")
+;; (setq inlineR-default-dir "/tmp/")
+;; (setq inlineR-cairo-p t)
