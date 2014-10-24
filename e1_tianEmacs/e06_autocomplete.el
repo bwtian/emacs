@@ -26,7 +26,7 @@
 (require 'pos-tip)
 (setq ac-quick-help-prefer-pos-tip)
   (setq
-   ac-delay 0 ;; 0.1 
+   ac-delay 0.1 ;; 0.1 
    ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
@@ -44,9 +44,9 @@
    ;; ac-use-quick-help nil                   ; no tool tip
    ac-use-quick-help t ;; use quick help
    ac-quick-help-prefer-pos-tip t
-   ac-quick-help-delay 0.02 ;;
-   ;;ac-quick-help-height 25
-   ;;ac-quick-help-scroll-down
+   ac-quick-help-delay 0.1 ;;
+   ac-quick-help-height 25
+   ac-quick-help-scroll-down
    )
   ;; ac-Popup background colors
   (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu

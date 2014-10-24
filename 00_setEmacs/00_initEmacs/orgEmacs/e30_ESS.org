@@ -1,4 +1,5 @@
 * e30_ess.org
+** Invoke ESS
 #+BEGIN_SRC emacs-lisp
   (require 'ess-site)  ;; Load ESS from ELPA to Highlight R and Auto-complte
   (setq ess-eval-visibly nil) ; t ESS will not print the evaluated comands, also speeds up the evaluation
