@@ -4,13 +4,30 @@
 #+BEGIN_SRC emacs-lisp
   ;; (require 'auto-complete-config) 
   (require 'auto-complete-config nil 'noerror)
-  (require 'auto-complete)
+  ;(require 'auto-complete)
   (global-auto-complete-mode t) ;; ac all mode
   ;;(global-auto-composition-mode 1)
   (ac-config-default)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
 #+END_SRC
- 
+** AC Source
+#+BEGIN_SRC emacs-lisp
+  ;; (add-to-list 'ac-dictionary-directories (expand-file-name
+  ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
+  ;; (setq ac-comphist-file (expand-file-name
+  ;;              "~/.emacs.d/ac-comphist.dat"))
+  (setq ac-comphist-file "~/SparkleShare/emacs.d/ac-comphist.dat")
+  (setq ac-use-comphist t) 
+  (set-default 'ac-sources
+             '(ac-source-semantic 
+               ac-source-yasnippet
+               ac-source-abbrev
+               ac-source-words-in-buffer
+               ac-source-words-in-all-buffer
+               ac-source-imenu
+               ac-source-files-in-current-dir
+               ac-source-filename))
+#+END_SRC
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
 (require 'pos-tip)
