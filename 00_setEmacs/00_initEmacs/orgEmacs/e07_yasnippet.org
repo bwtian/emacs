@@ -1,11 +1,24 @@
 * e08_yasnippet.org
 
 #+BEGIN_SRC emacs-lisp
-       (require 'yasnippet)
-       ;;(yas/initialize)
-       (yas/global-mode 1)
-       ;;(require 'auto-complete-yasnippet)
+  (require 'yasnippet)
+  ;;(yas/initialize)
+  (yas/global-mode 1)
+  ;;(require 'auto-complete-yasnippet)
+(defface ac-yasnippet-candidate-face
+  '((t (:background "sandybrown" :foreground "black")))
+  "Face for yasnippet candidate.")
 
+(defface ac-yasnippet-selection-face
+  '((t (:background "coral3" :foreground "white")))
+  "Face for the yasnippet selected candidate.")
+
+(defvar ac-source-yasnippet
+  '((candidates . ac-yasnippet-candidate)
+    (action . yas/expand)
+    (candidate-face . ac-yasnippet-candidate-face)
+    (selection-face . ac-yasnippet-selection-face))
+  "Source for Yasnippet.")
 #+END_SRC
 (require 'dropdown-list)
 (setq yas/prompt-functions '(yas/dropdown-prompt
