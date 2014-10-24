@@ -4,10 +4,8 @@
 #+BEGIN_SRC emacs-lisp
   ;; (require 'auto-complete-config) 
   (require 'auto-complete-config nil 'noerror)
-  
   (require 'auto-complete)
-
- (global-auto-complete-mode t) ;; ac all mode
+  (global-auto-complete-mode t) ;; ac all mode
   ;;(global-auto-composition-mode 1)
   (ac-config-default)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
@@ -48,6 +46,8 @@
   ;; Motion
    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
   (setq ac-use-menu-map t)    ;; Keybinding
+  (setq ac-trigger-commands
+      (cons 'backward-delete-char-untabify ac-trigger-commands))  
   (define-key ac-menu-map (kbd "C-n")         'ac-next)
   (define-key ac-menu-map (kbd "C-p")         'ac-previous)
   (define-key ac-completing-map "\M-n" nil) ;; was ac-next
