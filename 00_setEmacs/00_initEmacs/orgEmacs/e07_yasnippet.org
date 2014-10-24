@@ -4,8 +4,11 @@
   (require 'yasnippet)
   ;;(yas/initialize)
   (yas/global-mode 1)
-  ;;(require 'auto-complete-yasnippet)
+
 #+END_SRC
+** Yas and Ac
+#+BEGIN_SRC emacs-lisp
+ ;;(require 'auto-complete-yasnippet)
 (require 'dropdown-list)
 (setq yas/prompt-functions '(yas/dropdown-prompt
 yas/ido-prompt
@@ -31,6 +34,7 @@ yas/completing-prompt))
   "Source for Yasnippet.")
 
 (provide 'auto-complete-yasnippet)
+#+END_SRC
 ** Org-mode Yas
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook
