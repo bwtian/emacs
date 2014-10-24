@@ -2,9 +2,12 @@
  Auto Complete Popup globally makes Emacs auto-completion nicer
 ** DONE AC-Load
 #+BEGIN_SRC emacs-lisp
+  ;; (require 'auto-complete-config) 
   (require 'auto-complete-config nil 'noerror)
-  (require 'auto-complete-config) 
-  (global-auto-complete-mode t) ;; ac all mode
+  
+  (require 'auto-complete)
+
+ (global-auto-complete-mode t) ;; ac all mode
   ;;(global-auto-composition-mode 1)
   (ac-config-default)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
