@@ -1,7 +1,7 @@
 
 ;; (require 'auto-complete-config) 
 (require 'auto-complete-config nil 'noerror)
-;(require 'auto-complete)
+(require 'auto-complete)
 (global-auto-complete-mode t) ;; ac all mode
 ;;(global-auto-composition-mode 1)
 (ac-config-default)
