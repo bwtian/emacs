@@ -12,6 +12,7 @@
 (setq comint-move-point-for-output t)
 
 ;;(setq ess-use-auto-complete 'script-only)
+(setq ess-use-auto-complete t) ;DEFAULT > 12.09
 (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
 
 (setq ess-default-style 'BSD)   ; Common R chosen

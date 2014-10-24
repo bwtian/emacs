@@ -4,6 +4,7 @@
 #+BEGIN_SRC emacs-lisp
   (require 'auto-complete-config nil 'noerror)
   (require 'auto-complete)
+  (load "auto-complete") 
   (global-auto-complete-mode t) ;; ac all mode
   ;;(global-auto-composition-mode 1)
   (require 'auto-complete-config)  
