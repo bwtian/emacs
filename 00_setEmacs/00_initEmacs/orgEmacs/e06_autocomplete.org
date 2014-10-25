@@ -11,7 +11,7 @@
   (ac-flyspell-workaround)    ;; conflict with flyspell 
   (setq 
    ac-delay 0.1 ;; 0.1 fast for fisrt complete 
-   ac-auto-start 1 ;; t conflict with ESS, complete form fourth character, t=2 
+   ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
    ac-auto-show-menu 0.2 ;;0.001 ;; nil show menu with 0.05 delay
    ;;ac-show-menu-immediately-on-auto-complete t
@@ -220,17 +220,15 @@ rds Complete
   (setq company-dabbrev-ignore-case nil)
   (define-key company-mode-map "\t" nil)
   (define-key company-mode-map [(backtab)] 'company-complete-common)     
-  (define-key company-active-map "\C-q" 'company-search-candidates)
-  (define-key company-active-map "\C-e" 'company-filter-candidates)
    ;; (eval-after-load 'company
         ;;   '(progn
         ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
         ;; invert the navigation direction if the the completion popup-isearch-match
         ;; is displayed on top (happens near the bottom of windows)
-      (setq company-tooltip-flip-when-above t)
+  (setq company-tooltip-flip-when-above t)
 #+END_SRC
 ** Company-Color
-##+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (eval-after-load "company"
   '(progn
      (custom-set-faces
@@ -251,7 +249,7 @@ rds Complete
      (define-key company-active-map "\C-q" 'company-search-candidates)
      (define-key company-active-map "\C-e" 'company-filter-candidates)
      ))
-##+END_SRC
+#+END_SRC
 ** pop-help
 https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/site-lisp/company-quickhelp.el
 #+BEGIN_SRC emacs-lisp

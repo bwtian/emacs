@@ -8,7 +8,7 @@
  (ac-flyspell-workaround)    ;; conflict with flyspell 
  (setq 
   ac-delay 0.1 ;; 0.1 fast for fisrt complete 
-  ac-auto-start 1 ;; t conflict with ESS, complete form fourth character, t=2 
+  ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
   ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
   ac-auto-show-menu 0.2 ;;0.001 ;; nil show menu with 0.05 delay
   ;;ac-show-menu-immediately-on-auto-complete t
@@ -180,14 +180,33 @@
 (setq company-dabbrev-ignore-case nil)
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
-(define-key company-active-map "\C-q" 'company-search-candidates)
-(define-key company-active-map "\C-e" 'company-filter-candidates)
  ;; (eval-after-load 'company
       ;;   '(progn
       ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
       ;; invert the navigation direction if the the completion popup-isearch-match
       ;; is displayed on top (happens near the bottom of windows)
-    (setq company-tooltip-flip-when-above t)
+(setq company-tooltip-flip-when-above t)
+
+(eval-after-load "company"
+  '(progn
+     (custom-set-faces
+      '(company-preview
+        ((t (:foreground "darkgray" :underline t))))
+      '(company-preview-common
+        ((t (:inherit company-preview))))
+      '(company-tooltip
+        ((t (:background "lightgray" :foreground "black"))))
+      '(company-tooltip-selection
+        ((t (:background "steelblue" :foreground "white"))))
+      '(company-tooltip-common
+        ((((type x)) (:inherit company-tooltip :weight bold))
+         (t (:inherit company-tooltip))))
+      '(company-tooltip-common-selection
+        ((((type x)) (:inherit company-tooltip-selection :weight bold))
+         (t (:inherit company-tooltip-selection)))))
+     (define-key company-active-map "\C-q" 'company-search-candidates)
+     (define-key company-active-map "\C-e" 'company-filter-candidates)
+     ))
 
 (defun company-quickhelp-frontend (command)
   "`company-mode' front-end showing documentation in a
