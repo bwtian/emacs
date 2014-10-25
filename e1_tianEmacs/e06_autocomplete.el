@@ -62,9 +62,9 @@
   ;(define-key ac-completing-map [tab] 'ac-complete)
   ;(define-key ac-completing-map [return] nil)
   (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-  (define-key ac-completing-map (kbd "M-H") 'ac-quick-help)
-  (define-key ac-mode-map (kbd "C-M-H") 'ac-last-quick-help)
-  (define-key ac-mode-map (kbd "C-H") 'ac-last-help)
+  (define-key ac-completing-map (kbd "C-h h") 'ac-quick-help)
+  (define-key ac-mode-map (kbd "C-h l h") 'ac-last-quick-help)
+  (define-key ac-mode-map (kbd "C-h h h ") 'ac-last-help)
 
 ;; ----------------------------------------------------------------
 ;; 0.2.0 Popup and Show color of "Colorword or Hex code" with C-c p
@@ -85,7 +85,7 @@
 (when word
 (unless (member (downcase word) (mapcar #'downcase (defined-colors)))
 (setq word (concat "#" word)))
-(set-face-background 'popup-tip-face word)
+(set-fackek-background 'popup-tip-face word)
 (message "%s: %s"
 (propertize "Popup color"
 'face `(:background ,word))
