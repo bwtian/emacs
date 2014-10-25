@@ -1,7 +1,9 @@
 * e06_autocomplete.org
-|   | Default | AC | yasnippet | Company |
-|---+---------+----+-----------+---------|
-|   | C-M-i   |    |           |         |
+|   | Default | auto-complete | yasnippet | Company | ESS     |
+|---+---------+---------------+-----------+---------+---------|
+|   | C-M-i   |               | Tab       | S-Tab   | C-c Tab |
+|   |         |               |           |         |         |
+|---+---------+---------------+-----------+---------+---------|
 * hippie-expand
 #+BEGIN_SRC emacs-lisp
 (global-set-key "\C-o" 'hippie-expand)
