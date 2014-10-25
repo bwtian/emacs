@@ -335,6 +335,59 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
 (provide 'company-quickhelp)
 #+END_SRC
 
+* yasnippet
+** Invoke Yas
+#+BEGIN_SRC emacs-lisp
+  (require 'yasnippet)
+  ;;(yas/initialize)
+  (yas/global-mode 1)
+#+END_SRC
+** Yas and Ac
+#+BEGIN_SRC emacs-lisp
+ ;;(require 'auto-complete-yasnippet)
+(require 'dropdown-list)
+(setq yas/prompt-functions '(yas/dropdown-prompt
+yas/ido-prompt
+yas/completing-prompt))
+(defun ac-yasnippet-candidate ()
+  (let ((table (yas/get-snippet-tables major-mode)))
+    (if table
+      (let (candidates (list))
+            (mapcar (lambda (mode)          
+              (maphash (lambda (key value)    
+                (push key candidates))          
+              (yas/snippet-table-hash mode))) 
+            table)
+        (all-completions ac-prefix candidates)))))
+
+
+(defvar ac-source-yasnippet
+  '((candidates . ac-yasnippet-candidate)
+    (action . yas/expand)
+  
+    ;(candidate-face . ac-yasnippet-candidate-face)
+    ;(selection-face . ac-yasnippet-selection-face)
+) 
+  "Source for Yasnippet.")
+
+(provide 'auto-complete-yasnippet)
+#+END_SRC
+** Org-mode Yas
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook
+              (lambda ()
+              ;; yasnippet
+              (make-variable-buffer-local 'yas/trigger-key)
+              (setq yas/trigger-key [tab])
+              (define-key yas/keymap [tab] 'yas/next-field-group)
+              ;; flyspell mode to spell check everywhere
+              (flyspell-mode 1)))
+#+END_SRC
+** Ess-mode Yas
+#+BEGIN_SRC emacs-lisp
+(require 'r-autoyas)
+(add-hook 'ess-mode-hook 'r-autoyas-ess-activate)
+#+END_SRC
 * Auctex complte
 #+BEGIN_SRC emacs-lisp
   ;; add company-auctex
@@ -358,3 +411,4 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 #+END_SRC 
+
