@@ -19,24 +19,21 @@
         ;; ac-candidate-limit 25 ;; nil
         ac-use-comphist t ;; sort Candidate
         ac-menu-height 20 ;;12 Max height for complete candidate menu
-        ac-ignore-case 'smart
-        ac-fuzzy-enable t ;; Fuzzy mode
+        ;ac-ignore-case 'smart
+        ;ac-fuzzy-enable t ;; Fuzzy mode
         ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
         )
 #+END_SRC
 
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
-  (require 'pos-tip)
-
-
+ (require 'pos-tip)
  (setq ac-setup t)
  (setq ac-quick-help-prefer-pos-tip) 
     (setq
      ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
-
      ac-quick-help-height 25
-     ac-quick-help-scroll-down
+     ;ac-quick-help-scroll-down
      ;(setq ac-quick-help-prefer-pos-tip t)    
  )
     ;; ac-Popup background colors
