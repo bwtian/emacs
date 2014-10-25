@@ -370,7 +370,6 @@ yas/completing-prompt))
     ;(selection-face . ac-yasnippet-selection-face)
 ) 
   "Source for Yasnippet.")
-
 (provide 'auto-complete-yasnippet)
 #+END_SRC
 ** Org-mode Yas
