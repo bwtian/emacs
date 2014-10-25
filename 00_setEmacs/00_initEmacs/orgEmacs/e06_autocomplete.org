@@ -9,7 +9,7 @@
   ;;(global-auto-composition-mode 1)
   (require 'auto-complete-config)  
    (ac-flyspell-workaround)    ;; conflict with flyspell 
-(ac-config-default) ; make above work.
+
 #+END_SRC
 ** AC Source
 #+BEGIN_SRC emacs-lisp
@@ -26,7 +26,6 @@
                 ac-source-R-objects
                 ac-source-rcodetools
                 ac-source-yasnippet
-
                 ac-source-words-in-buffer
                 ac-source-words-in-all-buffer
                 ;ac-source-css-property
@@ -34,7 +33,6 @@
                 ac-source-math-unicode
                 ac-source-math-latex
                 ac-source-latex-commands
-
                 ;ac-source-dictionary
                 ac-source-look
                 ac-source-imenu
@@ -44,7 +42,7 @@
                 ac-source-symbols
                 ac-source-files-in-current-dir
                 ac-source-filename))
-
+(ac-config-default) ; make above work.
 #+END_SRC
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
@@ -206,3 +204,7 @@
   ;; ac-setup  AC settings to adjust the completion to your needs
   ;; Quick help will appear at the side of completion menu, so you can
   ;; easily see the help.
+* Company mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook 'global-company-mode)
+#+END_SRC
