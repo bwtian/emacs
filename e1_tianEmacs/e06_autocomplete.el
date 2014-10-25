@@ -25,7 +25,7 @@
 ;(setq ac-use-quick-help t)
 ;(setq ac-setup t)
 
-(setq ac-quick-help-use-pos-tip-p t)
+(setq ac-quick-help-use-pos-tip-p')
 ; (setq ac-quick-help-height 25)
 ; (setq ac-quick-help-scroll-down t)
 
