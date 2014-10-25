@@ -9,6 +9,7 @@
   ;;(global-auto-composition-mode 1)
   (require 'auto-complete-config)  
    (ac-flyspell-workaround)    ;; conflict with flyspell 
+(ac-config-default) ; make above work.
 #+END_SRC
 ** AC Source
 #+BEGIN_SRC emacs-lisp
@@ -20,18 +21,20 @@
    (setq ac-use-comphist t) 
    (set-default 'ac-sources
               '(ac-source-semantic 
-                ac-source-yasnippet
-                ac-source-abbrev
-                ac-source-words-in-buffer
-                ac-source-words-in-all-buffer
-                ;ac-source-css-property
                 ac-source-R
                 ac-source-R-args
                 ac-source-R-objects
+                ac-source-rcodetools
+                ac-source-yasnippet
+
+                ac-source-words-in-buffer
+                ac-source-words-in-all-buffer
+                ;ac-source-css-property
+                ac-source-abbrev      
                 ac-source-math-unicode
                 ac-source-math-latex
                 ac-source-latex-commands
-                ac-source-rcodetools
+
                 ;ac-source-dictionary
                 ac-source-look
                 ac-source-imenu
@@ -41,7 +44,7 @@
                 ac-source-symbols
                 ac-source-files-in-current-dir
                 ac-source-filename))
-  (ac-config-default) ; make above work.
+
 #+END_SRC
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
