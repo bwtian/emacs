@@ -7,10 +7,10 @@
 (global-auto-composition-mode 1)
 (ac-flyspell-workaround)    ;; conflict with flyspell 
 (setq 
- ac-delay 0.1 ;; 0.1 fast for fisrt complete 
+ ac-delay 0.0 ;; 0.1 fast for fisrt complete 
  ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
- ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"
- ac-auto-show-menu 0.2 ;;0.001 ;; nil show menu with 0.05 delay
+ ac-trigger-key "<C-tab>"  ;;ac-auto-start nil + ac-trigger-key "TAB"
+ ac-auto-show-menu 0.0 ;;0.001 ;; nil show menu with 0.05 delay
  ;;ac-show-menu-immediately-on-auto-complete t
  ;; ac-candidate-limit 25 ;; nil
  ac-use-comphist t ;; sort Candidate
@@ -20,41 +20,9 @@
  ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
  )
 
-;; (add-to-list 'ac-dictionary-directories (expand-file-name
-   ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
-   ;; (setq ac-comphist-file (expand-file-name
-   ;;              "~/.emacs.d/ac-comphist.dat"))
-   (setq ac-comphist-file "~/SparkleShare/emacs.d/ac-comphist.dat")
-   (setq ac-use-comphist t) 
-   (set-default 'ac-sources
-              '(ac-source-semantic 
-                ac-source-R
-                ac-source-R-args
-                ac-source-R-objects
-                ac-source-rcodetools
-                ac-source-yasnippet
-                ac-source-words-in-buffer
-                ac-source-words-in-all-buffer
-                ;ac-source-css-property
-                ac-source-abbrev      
-                ac-source-math-unicode
-                ac-source-math-latex
-                ac-source-latex-commands
-                ;ac-source-dictionary
-                ac-source-look
-                ac-source-imenu
-                ac-source-features
-                ac-source-functions
-                ac-source-variables 
-                ac-source-symbols
-                ac-source-files-in-current-dir
-                ac-source-filename))
-(ac-config-default) ; make above work.
-
 (require 'pos-tip)
-(setq ac-quick-help-prefer-pos-tip)
+(ac-setup)
   (setq
-
    ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
    ;;ac-quick-help-prefer-pos-tip t  ;; change the color background from ac to yas
    ac-quick-help-delay 0.5 ;;
@@ -164,6 +132,37 @@
 ;;                                   change-log-mode text-mode 
 ;;                                   makefile-gmake-mode makefile-bsdmake-mo
 ;;                                   autoconf-mode makefile-automake-mode)))
+
+;; (add-to-list 'ac-dictionary-directories (expand-file-name
+   ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
+   ;; (setq ac-comphist-file (expand-file-name
+   ;;              "~/.emacs.d/ac-comphist.dat"))
+   (setq ac-comphist-file "~/SparkleShare/emacs.d/ac-comphist.dat")
+   (setq ac-use-comphist t) 
+   (set-default 'ac-sources
+              '(ac-source-semantic 
+                ac-source-R
+                ac-source-R-args
+                ac-source-R-objects
+                ac-source-rcodetools
+                ac-source-yasnippet
+                ac-source-words-in-buffer
+                ac-source-words-in-all-buffer
+                ;ac-source-css-property
+                ac-source-abbrev      
+                ac-source-math-unicode
+                ac-source-math-latex
+                ac-source-latex-commands
+                ;ac-source-dictionary
+                ac-source-look
+                ac-source-imenu
+                ac-source-features
+                ac-source-functions
+                ac-source-variables 
+                ac-source-symbols
+                ac-source-files-in-current-dir
+                ac-source-filename))
+(ac-config-default) ; make above work.
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
