@@ -197,7 +197,7 @@
    ;; put most often used completions at stop of list
    (setq company-dabbrev-downcase nil)
    (setq company-dabbrev-ignore-case nil)
-   (setq company-dabbrev-other-buffers t)  
+  ; (setq company-dabbrev-other-buffers t)  
 
     ;; (eval-after-load 'company
          ;;   '(progn
