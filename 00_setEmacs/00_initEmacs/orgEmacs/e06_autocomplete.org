@@ -55,7 +55,7 @@
    ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
-   ac-auto-show-menu 0.1 ;;0.001 ;; nil show menu with 0.05 delay
+   ac-auto-show-menu 0.5 ;;0.001 ;; nil show menu with 0.05 delay
    ;;ac-show-menu-immediately-on-auto-complete t
    ;; ac-candidate-limit 25 ;; nil
    ac-use-comphist t ;; sort Candidate
