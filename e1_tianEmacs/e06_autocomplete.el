@@ -169,10 +169,41 @@
 ;;                                   autoconf-mode makefile-automake-mode)))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay 0)
-(setq company-auto-complete t)
+(setq company-idle-delay 0.5)
 (setq company-minimum-prefix-length 3)
-(setq company-show-numbers t)
 (setq company-tooltip-limit 25)
+(setq company-show-numbers t)
+;; put most often used completions at stop of list
+(setq company-transformers '(company-sort-by-occurrence))
+(setq company-auto-complete t)
 (setq company-dabbrev-downcase nil)
 (setq company-dabbrev-ignore-case nil)
+(eval-after-load 'company
+  '(progn
+     (define-key company-mode-map (kbd "M-TAB") 'company-complete)))
+
+(eval-after-load "company"
+  '(progn
+     (custom-set-faces
+      '(company-preview
+        ((t (:foreground "darkgray" :underline t))))
+      '(company-preview-common
+        ((t (:inherit company-preview))))
+      '(company-tooltip
+        ((t (:background "lightgray" :foreground "black"))))
+      '(company-tooltip-selection
+        ((t (:background "steelblue" :foreground "white"))))
+      '(company-tooltip-common
+        ((((type x)) (:inherit company-tooltip :weight bold))
+         (t (:inherit company-tooltip))))
+      '(company-tooltip-common-selection
+        ((((type x)) (:inherit company-tooltip-selection :weight bold))
+         (t (:inherit company-tooltip-selection)))))
+     (define-key company-active-map "\C-q" 'company-search-candidates)
+     (define-key company-active-map "\C-e" 'company-filter-candidates)
+     ))
+
+;; add company-auctex
+(require 'company-auctex)
+(require 'auto-complete-auctex)
+(company-auctex-init)
