@@ -166,18 +166,18 @@
 ;;                                   autoconf-mode makefile-automake-mode)))
 
 (require 'company)
-    (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-minimum-prefix-length 2)               ; 1 autocomplete right after '.'
-    (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
-    (setq company-echo-delay 0)                          ; remove annoying blinking
-   ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-    (setq company-tooltip-limit 20)                      ; bigger popup window
-    (setq company-show-numbers t)
-    ;; put most often used completions at stop of list
-      (setq company-transformers '(company-sort-by-occurrence))
-      (setq company-auto-complete t)
-      (setq company-dabbrev-downcase nil)
-      (setq company-dabbrev-ignore-case nil)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+(setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
+(setq company-echo-delay 0)                          ; remove annoying blinking
+                                        ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+(setq company-tooltip-limit 20)                      ; bigger popup window
+(setq company-show-numbers t)
+;; put most often used completions at stop of list
+(setq company-transformers '(company-sort-by-occurrence))
+(setq company-auto-complete t)
+(setq company-dabbrev-downcase nil)
+(setq company-dabbrev-ignore-case nil)
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
 (define-key company-active-map "\C-q" 'company-search-candidates)
