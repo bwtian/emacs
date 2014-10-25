@@ -41,7 +41,7 @@
 (require 'pos-tip)
 (setq ac-quick-help-prefer-pos-tip)
   (setq
-   ac-delay 0.1 ;; 0.1 fast for fisrt complete 
+   ac-delay 0.01 ;; 0.1 fast for fisrt complete 
    ac-auto-start 3 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
@@ -168,23 +168,23 @@
 ;;                                   autoconf-mode makefile-automake-mode)))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-minimum-prefix-length 1)               ; autocomplete right after '.'
-(setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
-(setq company-echo-delay 0)                          ; remove annoying blinking
-(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-(setq company-tooltip-limit 8)                      ; bigger popup window
-(setq company-show-numbers t)
-;; put most often used completions at stop of list
-  (setq company-transformers '(company-sort-by-occurrence))
-  (setq company-auto-complete t)
-  (setq company-dabbrev-downcase nil)
-  (setq company-dabbrev-ignore-case nil)
-  ;; (eval-after-load 'company
-  ;;   '(progn
-  ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-  ;; invert the navigation direction if the the completion popup-isearch-match
-  ;; is displayed on top (happens near the bottom of windows)
-(setq company-tooltip-flip-when-above t)
+ (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+ (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
+ (setq company-echo-delay 0)                          ; remove annoying blinking
+; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+ (setq company-tooltip-limit 20)                      ; bigger popup window
+ (setq company-show-numbers t)
+ ;; put most often used completions at stop of list
+   (setq company-transformers '(company-sort-by-occurrence))
+   (setq company-auto-complete t)
+   (setq company-dabbrev-downcase nil)
+   (setq company-dabbrev-ignore-case nil)
+   ;; (eval-after-load 'company
+   ;;   '(progn
+   ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+   ;; invert the navigation direction if the the completion popup-isearch-match
+   ;; is displayed on top (happens near the bottom of windows)
+ (setq company-tooltip-flip-when-above t)
 
 (eval-after-load "company"
   '(progn
