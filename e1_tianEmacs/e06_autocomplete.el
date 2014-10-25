@@ -163,27 +163,73 @@
 (ac-config-default) ; make above work.
 
 (require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+(setq company-global-modes t)
 (setq company-idle-delay nil)                         ; decrease delay before autocompletion popup shows
 (setq company-echo-delay 0)                          ; remove annoying blinking
-                                        ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-(setq company-tooltip-limit 20)                      ; bigger popup window
+(setq company-tooltip-limit 30)
+(setq company-minimum-prefix-length 3)
 (setq company-show-numbers t)
-;; put most often used completions at stop of list
 (setq company-transformers '(company-sort-by-occurrence))
 (setq company-auto-complete t)
-(setq company-dabbrev-downcase nil)
-(setq company-dabbrev-ignore-case nil)
-(define-key company-mode-map "\t" nil)
-(define-key company-mode-map [(backtab)] 'company-complete-common)     
- ;; (eval-after-load 'company
-      ;;   '(progn
-      ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-      ;; invert the navigation direction if the the completion popup-isearch-match
-      ;; is displayed on top (happens near the bottom of windows)
-(setq company-tooltip-flip-when-above t)
+(add-hook 'after-init-hook 'global-company-mode)
+;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
+;; M-NUM to select specific one, C-w to view its source file
+(global-set-key (kbd "C-c <tab>") 'company-complete)
+;; this will show a lot of garbage, use it only necessary
+;; (add-to-list 'company-backends 'company-ispell)
+(defalias 'ci 'company-ispell)
+(add-hook 'org-mode-hook
+                  (lambda ()
+                        (company-mode)
+                        (set (make-local-variable 'company-backends)
+                                 '((
+                                        company-dabbrev
+                                        company-dabbrev-code
+                                        company-ispell
+                                        company-files
+                                        company-yasnippet
+                                        ))
+                                 )))
+  (define-key company-mode-map "\t" nil)
+  (define-key company-mode-map [(backtab)] 'company-complete-common)     
+  ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+  ;; put most often used completions at stop of list
+  (setq company-dabbrev-downcase nil)
+  (setq company-dabbrev-ignore-case nil)
+  (setq company-dabbrev-other-buffers t)  
 
+   ;; (eval-after-load 'company
+        ;;   '(progn
+        ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+        ;; invert the navigation direction if the the completion popup-isearch-match
+        ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+
+(eval-after-load "company"
+  '(progn
+     (custom-set-faces
+      '(company-preview
+        ((t (:foreground "darkgray" :underline t))))
+      '(company-preview-common
+        ((t (:inherit company-preview))))
+      '(company-tooltip
+        ((t (:background "lightgray" :foreground "black"))))
+      '(company-tooltip-selection
+        ((t (:background "steelblue" :foreground "white"))))
+      '(company-tooltip-common
+        ((((type x)) (:inherit company-tooltip :weight bold))
+         (t (:inherit company-tooltip))))
+      '(company-tooltip-common-selection
+        ((((type x)) (:inherit company-tooltip-selection :weight bold))
+         (t (:inherit company-tooltip-selection)))))
+     (define-key company-active-map "\C-q" 'company-search-candidates)
+     (define-key company-active-map "\C-e" 'company-filter-candidates)
+     ))
+
+;;; WIP, somewhat usable
+(require 'company)
+(require 'pos-tip)
+ 
 (defun company-quickhelp-frontend (command)
   "`company-mode' front-end showing documentation in a
   `pos-tip' popup."
@@ -192,7 +238,7 @@
     (`hide
      (company-quickhelp--cancel-timer)
      (pos-tip-hide))))
-
+ 
 (defun company-quickhelp--show ()
   (company-quickhelp--cancel-timer)
   (let* ((selected (nth company-selection company-candidates))
@@ -213,24 +259,24 @@
                         (* (frame-char-width)
                            (- width (length company-prefix)
                               (if (< 0 extra) extra 1)))))))))
-
+ 
 (defvar company-quickhelp--timer nil
   "Quickhelp idle timer.")
-
-(defcustom company-quickhelp--delay 0.2
+ 
+(defcustom company-quickhelp--delay 0.5
   "Delay, in seconds, before the quickhelp popup appears.")
-
+ 
 (defun company-quickhelp--set-timer ()
   (when (null company-quickhelp--timer)
     (setq company-quickhelp--timer
           (run-with-idle-timer company-quickhelp--delay nil
                                'company-quickhelp--show))))
-
+ 
 (defun company-quickhelp--cancel-timer ()
   (when (timerp company-quickhelp--timer)
     (cancel-timer company-quickhelp--timer)
     (setq company-quickhelp--timer nil)))
-
+ 
 ;;;###autoload
 (define-minor-mode company-quickhelp-mode
   "Provides documentation popups for `company-mode' using `pos-tip'."
@@ -240,6 +286,7 @@
     (setq company-frontends
           (delq 'company-quickhelp-frontend company-frontends))
     (company-quickhelp--cancel-timer)))
+ 
 (provide 'company-quickhelp)
 
 ;; add company-auctex
