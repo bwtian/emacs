@@ -16,11 +16,16 @@ Auto-scrolling of R console to bottom and Shift key extension
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
 #+END_SRC
-** ESS Auto complete:: 
+** ESS Auto complete
+|-------+------+---------|
+| ESS   | AC   | company |
+|-------+------+---------|
+| C-M-i | auto | S-tab   |
+|-------+------+---------|
+ 
 #+BEGIN_SRC emacs-lisp
 ;;(setq ess-use-auto-complete 'script-only)
 (setq ess-use-auto-complete t) ;DEFAULT > 12.09
-(define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
 #+END_SRC
 ** ESS Code indentation 
 ;; http://ess.r-project.org/Manual/ess.html#Indenting
