@@ -21,37 +21,40 @@
  )
 
 (require 'pos-tip)
-;(setq ac-quick-help-prefer-pos-tip t)
-(setq ac-setup t)
-  (setq
-   ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
-   ac-quick-help-delay 0.5 ;;
-   ac-quick-help-height 25
-   ac-quick-help-scroll-down
-   )
-  ;; ac-Popup background colors
-  (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
-  (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
-  (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
 
-  ;; Motion
-   ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
-  (setq ac-use-menu-map t)    ;; Keybinding
-  (setq ac-trigger-commands
-      (cons 'backward-delete-char-untabify ac-trigger-commands))  
-  (define-key ac-menu-map (kbd "C-n")         'ac-next)
-  (define-key ac-menu-map (kbd "C-p")         'ac-previous)
-  (define-key ac-completing-map "\M-n" nil) ;; was ac-next
-  (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
-  ;;(define-key ac-completing-map (kbd "<tab>") nil)
-  ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
-  ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-  (define-key ac-completing-map [tab] 'ac-complete)
-  (define-key ac-completing-map [return] nil)
-  (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-  (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
-  (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
-  ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
+
+(setq ac-setup t)
+(setq ac-quick-help-prefer-pos-tip) 
+   (setq
+    ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
+    ac-quick-help-delay 0.3 ;;
+    ac-quick-help-height 25
+    ac-quick-help-scroll-down
+    ;(setq ac-quick-help-prefer-pos-tip t)    
+)
+   ;; ac-Popup background colors
+   (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
+   (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
+   (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
+
+   ;; Motion
+    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
+   (setq ac-use-menu-map t)    ;; Keybinding
+   (setq ac-trigger-commands
+       (cons 'backward-delete-char-untabify ac-trigger-commands))  
+   (define-key ac-menu-map (kbd "C-n")         'ac-next)
+   (define-key ac-menu-map (kbd "C-p")         'ac-previous)
+   (define-key ac-completing-map "\M-n" nil) ;; was ac-next
+   (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+   ;;(define-key ac-completing-map (kbd "<tab>") nil)
+   ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
+   ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+   (define-key ac-completing-map [tab] 'ac-complete)
+   (define-key ac-completing-map [return] nil)
+   (define-key ac-completing-map (kbd "M-/")   'ac-stop)
+   (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
+   (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
+   ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
 
 ;; ----------------------------------------------------------------
 ;; 0.2.0 Popup and Show color of "Colorword or Hex code" with C-c p

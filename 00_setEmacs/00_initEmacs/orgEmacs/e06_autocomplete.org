@@ -27,14 +27,17 @@
 ** AC-Popup-Menue help
 #+BEGIN_SRC emacs-lisp
   (require 'pos-tip)
-  ;(setq ac-quick-help-prefer-pos-tip t)
-  (setq ac-setup t)
+
+
+ (setq ac-setup t)
+ (setq ac-quick-help-prefer-pos-tip) 
     (setq
      ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
-     ac-quick-help-delay 0.5 ;;
+     ac-quick-help-delay 0.3 ;;
      ac-quick-help-height 25
      ac-quick-help-scroll-down
-     )
+     ;(setq ac-quick-help-prefer-pos-tip t)    
+ )
     ;; ac-Popup background colors
     (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
     (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
