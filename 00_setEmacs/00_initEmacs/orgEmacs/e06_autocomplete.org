@@ -30,7 +30,7 @@
         ;;ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
         ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
         ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
-        ac-quick-help-delay 0.5 ;;   
+        ac-quick-help-delay 1.5 ;;   
         ;;ac-show-menu-immediately-on-auto-complete t
         ;; ac-candidate-limit 25 ;; nil
         ac-use-comphist t ;; sort Candidate
@@ -44,13 +44,13 @@
 ** AC-Popup Tooltip
 #+BEGIN_SRC emacs-lisp
   (require 'pos-tip)
-  ;(setq ac-use-quick-help t)
+  (setq ac-use-quick-help t)
   ;(setq ac-setup t)
   ; (setq ac-quick-help-height 25)
   ; (setq ac-quick-help-scroll-down t)
 
   ;; ac-Popup background colors
-  (setq ac-quick-help-prefer-pos-tip t) 
+  ;(setq ac-quick-help-prefer-pos-tip t) 
   (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
   (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
   (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
