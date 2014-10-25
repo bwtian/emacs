@@ -168,4 +168,4 @@
 ;;                                   autoconf-mode makefile-automake-mode)))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay t)
+(setq company-idle-delay 0)
