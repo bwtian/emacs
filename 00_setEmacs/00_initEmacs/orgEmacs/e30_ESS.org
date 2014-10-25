@@ -162,13 +162,14 @@ In order to enable Emacs’ standard OutlineMode for .R files:
   (require 'ess-R-object-popup)
   (define-key ess-mode-map (kbd "C-c s") 'ess-R-object-popup)
   ;; the alist
-  (setq ess-R-object-popup-alist
-        '((numeric    . "summary")
-          (factor     . "table")
-          (integer    . "summary")
-          (lm         . "summary")
-          (other      . "str")))
-  
+(setq ess-R-object-tooltip-alist
+      '((numeric    . "summary")
+        (factor     . "table")
+        (integer    . "summary")
+        (lm         . "summary")
+        (data.frame . "summary")
+        (other      . "str")))
+
 #+END_SRC
 ** DONE R Data view  C-c v, C-c V
 #+BEGIN_SRC emacs-lisp
