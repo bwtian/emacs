@@ -19,12 +19,7 @@ Auto-scrolling of R console to bottom and Shift key extension
 (setq comint-move-point-for-output t)
 #+END_SRC
 ** ESS Auto complete
-|-------+------+---------|
-| ESS   | AC   | company |
-|-------+------+---------|
-| C-M-i | auto | S-tab   |
-|-------+------+---------|
- 
+
 #+BEGIN_SRC emacs-lisp
 ;;(setq ess-use-auto-complete 'script-only)
 (setq ess-use-auto-complete t) ;DEFAULT > 12.09
