@@ -19,22 +19,24 @@
         ;; ac-candidate-limit 25 ;; nil
         ac-use-comphist t ;; sort Candidate
         ac-menu-height 20 ;;12 Max height for complete candidate menu
-        ;ac-ignore-case 'smart
+        ac-ignore-case 'smart
         ac-fuzzy-enable t ;; Fuzzy mode
-        ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
+        ;ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
         )
 #+END_SRC
 
 ** AC-Popup Tooltip
 #+BEGIN_SRC emacs-lisp
   (require 'pos-tip)
-  (setq ac-use-quick-help t)
+  ;(setq ac-use-quick-help t)
   ;(setq ac-setup t)
-  ;(setq ac-quick-help-prefer-pos-tip t) 
-  ;(setq ac-quick-help-use-pos-tip-p t)
+
+  (setq ac-quick-help-use-pos-tip-p t)
   ; (setq ac-quick-help-height 25)
   ; (setq ac-quick-help-scroll-down t)
+
   ;; ac-Popup background colors
+  ;(setq ac-quick-help-prefer-pos-tip t) 
   (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
   (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
   (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
@@ -54,7 +56,7 @@
   ;(define-key ac-completing-map [tab] 'ac-complete)
   ;(define-key ac-completing-map [return] nil)
   (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-  (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
+  (dgetefine-key ac-completing-map (kbd "M-h") 'ac-quick-help)
   (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
   ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
 #+END_SRC
