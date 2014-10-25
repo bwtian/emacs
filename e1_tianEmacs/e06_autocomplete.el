@@ -21,7 +21,7 @@
  )
 
 (require 'pos-tip)
-(setq ac-quick-help-prefer-pos-tip t)
+;(setq ac-quick-help-prefer-pos-tip t)
 (setq ac-setup t)
   (setq
    ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
