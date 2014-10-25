@@ -206,6 +206,7 @@
 * Company mode
 ** Invoke Company
 #+BEGIN_SRC emacs-lisp
+(require 'company)
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
   (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
@@ -251,9 +252,6 @@
 ** pop-help
 https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/site-lisp/company-quickhelp.el
 #+BEGIN_SRC emacs-lisp
-(require 'company)
-(require 'pos-tip)
-
 (defun company-quickhelp-frontend (command)
   "`company-mode' front-end showing documentation in a
   `pos-tip' popup."
@@ -316,9 +314,9 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
 
 ** Auctex complte
 #+BEGIN_SRC emacs-lisp
-;; add company-auctex
-(require 'company-auctex)
-(require 'auto-complete-auctex)
-(company-auctex-init)
+  ;; add company-auctex
+  (require 'company-auctex)
+  (require 'auto-complete-auctex)
+  (company-auctex-init)
 
 #+END_SRC
