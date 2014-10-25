@@ -207,8 +207,8 @@ rds Complete
 #+BEGIN_SRC emacs-lisp
   (require 'company)
     (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-minimum-prefix-length 2)               ; 1 autocomplete right after '.'
-    (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
+    (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+    (setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
     (setq company-echo-delay 0)                          ; remove annoying blinking
    ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
     (setq company-tooltip-limit 20)                      ; bigger popup window
