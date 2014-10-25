@@ -63,7 +63,7 @@
 
    ac-ignore-case 'smart
    ac-fuzzy-enable t ;; Fuzzy mode
-   ac-dwim t    ;; DO What I mean
+   ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
 
    ;; ac-use-quick-help nil                   ; no tool tip
    ac-use-quick-help t ;; use quick help
