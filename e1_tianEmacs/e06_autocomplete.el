@@ -19,7 +19,7 @@
               ac-source-abbrev
               ac-source-words-in-buffer
               ac-source-words-in-all-buffer
-              ac-source-css-property
+              ;ac-source-css-property
               ac-source-R
               ac-source-R-args
               ac-source-R-objects
@@ -27,7 +27,7 @@
               ac-source-math-latex
               ac-source-latex-commands
               ac-source-rcodetools
-              ac-source-dictionary
+              ;ac-source-dictionary
               ac-source-look
               ac-source-imenu
               ac-source-features
