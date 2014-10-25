@@ -167,24 +167,25 @@
 ;;                                   makefile-gmake-mode makefile-bsdmake-mo
 ;;                                   autoconf-mode makefile-automake-mode)))
 
-(add-hook 'after-init-hook 'global-company-mode)
- (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
- (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
- (setq company-echo-delay 0)                          ; remove annoying blinking
-; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
- (setq company-tooltip-limit 20)                      ; bigger popup window
- (setq company-show-numbers t)
- ;; put most often used completions at stop of list
-   (setq company-transformers '(company-sort-by-occurrence))
-   (setq company-auto-complete t)
-   (setq company-dabbrev-downcase nil)
-   (setq company-dabbrev-ignore-case nil)
-   ;; (eval-after-load 'company
-   ;;   '(progn
-   ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-   ;; invert the navigation direction if the the completion popup-isearch-match
-   ;; is displayed on top (happens near the bottom of windows)
- (setq company-tooltip-flip-when-above t)
+(require 'company)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+  (setq company-idle-delay 0.5)                         ; decrease delay before autocompletion popup shows
+  (setq company-echo-delay 0)                          ; remove annoying blinking
+ ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+  (setq company-tooltip-limit 8)                      ; bigger popup window
+  (setq company-show-numbers t)
+  ;; put most often used completions at stop of list
+    (setq company-transformers '(company-sort-by-occurrence))
+    (setq company-auto-complete t)
+    (setq company-dabbrev-downcase nil)
+    (setq company-dabbrev-ignore-case nil)
+    ;; (eval-after-load 'company
+    ;;   '(progn
+    ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+    ;; invert the navigation direction if the the completion popup-isearch-match
+    ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
 
 (eval-after-load "company"
   '(progn
@@ -206,9 +207,6 @@
      (define-key company-active-map "\C-q" 'company-search-candidates)
      (define-key company-active-map "\C-e" 'company-filter-candidates)
      ))
-
-(require 'company)
-(require 'pos-tip)
 
 (defun company-quickhelp-frontend (command)
   "`company-mode' front-end showing documentation in a
@@ -267,7 +265,6 @@
           (delq 'company-quickhelp-frontend company-frontends))
     (company-quickhelp--cancel-timer)))
 (provide 'company-quickhelp)
-(require 'company-quickhelp)
 
 ;; add company-auctex
 (require 'company-auctex)
