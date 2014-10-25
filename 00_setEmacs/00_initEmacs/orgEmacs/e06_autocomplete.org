@@ -1,9 +1,12 @@
 * e06_autocomplete.org
-|   | Default | auto-complete | yasnippet | Company | ESS     |
-|---+---------+---------------+-----------+---------+---------|
-|   | C-M-i   |               | Tab       | S-Tab   | C-c Tab |
-|   |         |               |           |         |         |
-|---+---------+---------------+-----------+---------+---------|
+| Settings   | auto-complete | Company | yasnippet | ESS     | Default |
+|------------+---------------+---------+-----------+---------+---------|
+| Complete   |               |   S-Tab | Tab       | C-c Tab | C-M-i   |
+| Delay main |           0.2 |         |           |         |         |
+| Delay Menu |           0.3 |       0 |           |         |         |
+| Delay Pop  |           1.5 |         |           |         |         |
+| prefix     |             4 |       1 |           |         |         |
+|------------+---------------+---------+-----------+---------+---------|
 * hippie-expand
 #+BEGIN_SRC emacs-lisp
 (global-set-key "\C-o" 'hippie-expand)
