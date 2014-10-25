@@ -207,4 +207,5 @@
 * Company mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay 0)
 #+END_SRC
