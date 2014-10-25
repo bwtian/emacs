@@ -1,4 +1,6 @@
 * e30_ess.org
+https://github.com/mlf176f2/EmacsMate/blob/master/EmacsMate-ess.org
+http://kieranhealy.org/esk/starter-kit-stats.html
 ** Invoke ESS
 #+BEGIN_SRC emacs-lisp
   (require 'ess-site)  ;; Load ESS from ELPA to Highlight R and Auto-complte
@@ -27,7 +29,7 @@ Auto-scrolling of R console to bottom and Shift key extension
 ;;(setq ess-use-auto-complete 'script-only)
 (setq ess-use-auto-complete t) ;DEFAULT > 12.09
 #+END_SRC
-** ESS Code indentation 
+** DONE ESS Code indentation 
 ;; http://ess.r-project.org/Manual/ess.html#Indenting
 ;; https://svn.r-project.org/ESS/trunk/lisp/ess-custom.el
 ;; ESS provides: DEFAULT, OWN, GNU, BSD, K&R, C++, RRR, CLB.
@@ -44,13 +46,13 @@ Auto-scrolling of R console to bottom and Shift key extension
 (setq ess-default-style 'BSD)   ; Common R chosen
 #+END_SRC
 
-** Ess eldoc
+** DONE Ess eldoc
 #+BEGIN_SRC emacs-lisp
 (require 'ess-eldoc)
 (setq ess-eldoc-show-on-symbol t)
 #+END_SRC
 
-** ESS Code fold
+** DONE ESS Code fold
 In order to enable Emacs’ standard OutlineMode for .R files:
 #+BEGIN_SRC emacs-lisp
   (add-hook 'ess-mode-hook
@@ -67,14 +69,14 @@ In order to enable Emacs’ standard OutlineMode for .R files:
             '(lambda() (yafolding-mode)))
 #+END_SRC
 
-** ESS Tracebug: A debugger for your code
+** DONE ESS Tracebug: A debugger for your code
 #+BEGIN_SRC emacs-lisp
 (require 'ess-tracebug)    ;; http://code.google.com/p/ess-tracebug/
 (setq ess-use-tracebug t)                    ; permanent activation
 ; ;(setq ess-tracebug-prefix "\M-t")               ; activate with M-t
 (add-hook 'ess-post-run-hook 'ess-tracebug t)
 #+END_SRC
-** ESS Underscore  preservation
+** DONE ESS Smart Underscore  preservation
 ;; http://www.r-bloggers.com/a-small-customization-of-ess/
 (ess-toggle-underscore nil) ;; leave my underscore key alone!
 #+BEGIN_SRC emacs-lisp
@@ -82,33 +84,8 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 (setq ess-S-assign-key (kbd "C-="))
 (ess-toggle-S-assign-key t)     ; enable above key definition
 #+END_SRC
-** ESS Key-Bindings
-#+BEGIN_SRC emacs-lisp
-  ;; ESS Mode (.R file)
-    (define-key ess-mode-map "\C-l" 'ess-eval-line-and-step)
-    (define-key ess-mode-map "\C-p" 'ess-eval-function-or-paragraph-and-step)
-    (define-key ess-mode-map "\C-r" 'ess-eval-region)
 
-  ;; iESS Mode (R console)
-    (define-key inferior-ess-mode-map "\C-u" 'comint-kill-input)
-    (define-key inferior-ess-mode-map "\C-w" 'backward-kill-word)
-    (define-key inferior-ess-mode-map "\C-a" 'comint-bol)
-    (define-key inferior-ess-mode-map [home] 'comint-bol)
-
-  ;; Comint Mode (R console as well)
-    (define-key comint-mode-map "\C-e" 'comint-show-maximum-output)
-    (define-key comint-mode-map "\C-r" 'comint-show-output)
-    (define-key comint-mode-map "\C-o" 'comint-kill-output)
-
-  ;;Tracing bug
-    (define-key ess-mode-map "\M-]" 'next-error)
-    (define-key ess-mode-map "\M-[" 'previous-error)
-    (define-key inferior-ess-mode-map "\M-]" 'next-error-no-select)
-    (define-key inferior-ess-mode-map "\M-[" 'previous-error-no-select)
-    (define-key compilation-minor-mode-map [(?n)] 'next-error-no-select)
-    (define-key compilation-minor-mode-map [(?p)] 'previous-error-no-select)
-#+END_SRC
-** ESS Font-lock
+** DONE ESS Font-lock
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables
    ;; custom-set-variables was added by Custom.
@@ -147,7 +124,7 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 (add-hook 'Rnw-mode-hook 'emacsmate-add-Sweave)
 #+END_SRC
 
-** R Basic
+** DONE R Basic
 #+BEGIN_SRC emacs-lisp
   (autoload 'R-mode "ess-site" "Emacs Speaks Statistics mode" t)
   (autoload 'R "ess-site" "start R" t)
@@ -206,11 +183,11 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 #+END_SRC
 ** TODO inlineR
 #+BEGIN_SRC emacs-lisp
-  ;; (require 'inlineR)
-  ;; (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")
-  ;; (setq inlineR-default-image "png")
-  ;; (setq inlineR-default-dir "/tmp/")
-  ;; (setq inlineR-cairo-p t)
+   (require 'inlineR)
+   (setq inlineR-re-funcname "plot\|image\|hogehoge\|my-func")
+   (setq inlineR-default-image "png")
+   (setq inlineR-default-dir "/tmp/")
+   (setq inlineR-cairo-p t)
 #+END_SRC
 ** Window
 #+BEGIN_SRC emacs-lisp
@@ -238,3 +215,66 @@ In order to enable Emacs’ standard OutlineMode for .R files:
                                     anything-c-source-R-local))
         (define-key ess-mode-map (kbd "C-c r") 'anything-for-R)
         (define-key inferior-ess-mode-map (kbd "C-c r") 'anything-for-R))
+** ESS Key-Bindings
+#+BEGIN_SRC emacs-lisp
+  ;; ESS Mode (.R file)
+    (define-key ess-mode-map "\C-l" 'ess-eval-line-and-step)
+    (define-key ess-mode-map "\C-p" 'ess-eval-function-or-paragraph-and-step)
+    (define-key ess-mode-map "\C-r" 'ess-eval-region)
+
+  ;; iESS Mode (R console)
+    (define-key inferior-ess-mode-map "\C-u" 'comint-kill-input)
+    (define-key inferior-ess-mode-map "\C-w" 'backward-kill-word)
+    (define-key inferior-ess-mode-map "\C-a" 'comint-bol)
+    (define-key inferior-ess-mode-map [home] 'comint-bol)
+
+  ;; Comint Mode (R console as well)
+    (define-key comint-mode-map "\C-e" 'comint-show-maximum-output)
+    (define-key comint-mode-map "\C-r" 'comint-show-output)
+    (define-key comint-mode-map "\C-o" 'comint-kill-output)
+
+  ;;Tracing bug
+    (define-key ess-mode-map "\M-]" 'next-error)
+    (define-key ess-mode-map "\M-[" 'previous-error)
+    (define-key inferior-ess-mode-map "\M-]" 'next-error-no-select)
+    (define-key inferior-ess-mode-map "\M-[" 'previous-error-no-select)
+    (define-key compilation-minor-mode-map [(?n)] 'next-error-no-select)
+    (define-key compilation-minor-mode-map [(?p)] 'previous-error-no-select)
+#+END_SRC
+** Shift-Return
+#+BEGIN_SRC emacs-lisp
+(defun my-ess-start-R ()
+  (interactive)
+  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (R)
+        (set-window-buffer w2 "*R*")
+        (set-window-buffer w1 w1name))))
+(defun my-ess-eval ()
+  (interactive)
+  (my-ess-start-R)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+    (call-interactively 'ess-eval-line-and-step))
+  (when (eobp) ;; Bug Fix to allow end of buffer to insert line
+    (insert "\n")))
+
+(defun emacsmate-ess-add-shift-return ()
+  (when (boundp 'auto-indent-alternate-return-function-for-end-of-line-then-newline)
+    (set (make-local-variable 'auto-indent-alternate-return-function-for-end-of-line-then-newline)
+         'my-ess-eval))
+  (local-set-key [(shift return)] 'my-ess-eval))
+
+(defun emacsmate-add-control-up-and-down ()
+  (local-set-key [C-up] 'comint-previous-input)
+  (local-set-key [C-down] 'comint-next-input))
+
+(add-hook 'ess-mode-hook 'emacsmate-ess-add-shift-return)
+(add-hook 'inferior-ess-mode-hook 'emacsmate-add-control-up-and-down)
+(add-hook 'Rnw-mode-hook 'emacsmate-ess-add-shift-return)
+
+#+END_SRC
