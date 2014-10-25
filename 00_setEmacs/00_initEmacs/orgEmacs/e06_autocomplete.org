@@ -1,4 +1,5 @@
 * e06_autocomplete.org
+* AC mode
  Auto Complete Popup globally makes Emacs auto-completion nicer
 ** DONE AC-Load
 #+BEGIN_SRC emacs-lisp
@@ -28,7 +29,7 @@
 ** AC-Popup Tooltip
 #+BEGIN_SRC emacs-lisp
   (require 'pos-tip)
-  ;(setq ac-use-quick-help t)
+  (setq ac-use-quick-help t)
   ;(setq ac-setup t)
   ; (setq ac-quick-help-height 25)
   ; (setq ac-quick-help-scroll-down t)
