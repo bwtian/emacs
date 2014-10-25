@@ -1,4 +1,6 @@
-((("library" .
+((("company-mode-map" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("library" .
    [0 0 0 1 0 0 0])
   ("list2env" .
    [0 0 0 1 0 0 0 0])
@@ -697,7 +699,7 @@
   ("insert" .
    [2 0 0 0 0 0])
   ("defun" .
-   [11 0 0 0 0])
+   [11 0 0 1 0])
   ("ag/setup-arguments" .
    [0 0 0 0 0 0 1 0 1 1 0 0 0 0 0 0 0 1])
   ("expression" .
