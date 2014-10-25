@@ -180,7 +180,7 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 
 
 #+END_SRC
-** DONE R Data Summary ess-R-object-popup  R-object-tooltip to show summary
+** DONE R Data Summary ess-R-object-popup C-c s
 #+BEGIN_SRC emacs-lisp
   (require 'ess-R-object-popup)
   (define-key ess-mode-map (kbd "C-c s") 'ess-R-object-popup)
