@@ -204,6 +204,8 @@
 #+BEGIN_SRC emacs-lisp
 (require 'company)
 (setq company-global-modes t)
+(setq company-idle-delay nil)                         ; decrease delay before autocompletion popup shows
+(setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-tooltip-limit 30)
 (setq company-minimum-prefix-length 3)
 (setq company-show-numbers t)
@@ -228,15 +230,13 @@
 					company-yasnippet
 					))
 				 )))
-  (setq company-idle-delay nil)                         ; decrease delay before autocompletion popup shows
-  (setq company-echo-delay 0)                          ; remove annoying blinking
   (define-key company-mode-map "\t" nil)
   (define-key company-mode-map [(backtab)] 'company-complete-common)     
   ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
   ;; put most often used completions at stop of list
   (setq company-dabbrev-downcase nil)
   (setq company-dabbrev-ignore-case nil)
- (setq company-dabbrev-other-buffers t)  
+  (setq company-dabbrev-other-buffers t)  
 
    ;; (eval-after-load 'company
         ;;   '(progn
