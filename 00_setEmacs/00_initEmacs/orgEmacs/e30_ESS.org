@@ -206,6 +206,44 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 #+BEGIN_SRC emac-lisp
 (add-hook 'ess-mode-hook 'emacsmate-turn-on-org-table-comment-mode)
 #+END_SRC 
+** R copy correctly
+#+BEGIN_SRC emacs-lisp
+(defun emacsmate-ess-fix-path (beg end)
+  "Fixes ess path"
+  (save-restriction
+    (save-excursion
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (when (looking-at "[A-Z]:\\\\")
+        (while (search-forward "\\" nil t)
+          (replace-match "/"))))))
+
+(defun emacsmate-ess-turn-on-fix-path ()
+  (interactive)
+  (when (string= "S" ess-language)
+    (add-hook 'auto-indent-after-yank-hook 'emacsmate-ess-fix-path t t)))
+(add-hook 'ess-mode-hook 'emacsmate-ess-turn-on-fix-path)
+(defun emacsmate-ess-fix-code (beg end)
+  "Fixes ess path"
+  (save-restriction
+    (save-excursion
+      (save-match-data
+        (narrow-to-region beg end)
+        (goto-char (point-min))
+        (while (re-search-forward "^[ \t]*[>][ \t]+" nil t)
+          (replace-match "")
+          (goto-char (point-at-eol))
+          (while (looking-at "[ \t\n]*[+][ \t]+")
+            (replace-match "\n")
+            (goto-char (point-at-eol))))))))
+
+(defun emacsmate-ess-turn-on-fix-code ()
+  (interactive)
+  (when (string= "S" ess-language)
+    (add-hook 'auto-indent-after-yank-hook 'emacsmate-ess-fix-code t t)))
+(add-hook 'ess-mode-hook 'emacsmate-ess-turn-on-fix-code)
+
+#+END_SRC
 ** Window
 #+BEGIN_SRC emacs-lisp
 (when (one-window-p)
