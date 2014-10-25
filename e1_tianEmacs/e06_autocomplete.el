@@ -5,8 +5,7 @@
 (load "auto-complete") 
 (global-auto-complete-mode t) ;; ac all mode
 ;;(global-auto-composition-mode 1)
-
- (ac-flyspell-workaround)    ;; conflict with flyspell
+(ac-flyspell-workaround)    ;; conflict with flyspell
 
 ;; (add-to-list 'ac-dictionary-directories (expand-file-name
    ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
@@ -44,14 +43,14 @@
   (setq
    ac-delay 0.1 ;; 0.1 
    ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
-   ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"
+   ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
    ac-auto-show-menu 0.05 ;;0.001 ;; nil show menu with 0.05 delay
    ;;ac-show-menu-immediately-on-auto-complete t
    ;; ac-candidate-limit 25 ;; nil
    ac-use-comphist t ;; sort Candidate
-   ac-menu-height 50 ;;12 Max height for complete candidate menu
+   ac-menu-height 20 ;;12 Max height for complete candidate menu
 
    ac-ignore-case 'smart
    ac-fuzzy-enable t ;; Fuzzy mode

@@ -57,7 +57,7 @@
    ;;ac-show-menu-immediately-on-auto-complete t
    ;; ac-candidate-limit 25 ;; nil
    ac-use-comphist t ;; sort Candidate
-   ac-menu-height 50 ;;12 Max height for complete candidate menu
+   ac-menu-height 20 ;;12 Max height for complete candidate menu
 
    ac-ignore-case 'smart
    ac-fuzzy-enable t ;; Fuzzy mode
