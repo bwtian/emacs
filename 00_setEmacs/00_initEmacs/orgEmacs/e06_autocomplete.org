@@ -366,6 +366,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
   (add-hook hook 'company-mode))
 
 #+END_SRC
+
 *** Org-mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook
@@ -389,6 +390,35 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
 (company-auctex-init)
 (require 'auto-complete-auctex)
 #+END_SRC 
+
+** Keybindings
+#+BEGIN_SRC emacs-lisp
+
+;; default keybinding is in company.el
+(define-key company-active-map "\e\e\e" 'company-abort)
+(define-key company-active-map (kbd "l") 'company-abort)
+(define-key company-active-map (kbd "j") 'company-select-next)
+(define-key company-active-map (kbd "k") 'company-select-previous)
+;;(define-key company-active-map (kbd "<down>") 'company-select-next)
+;;(define-key company-active-map (kbd "<up>") 'company-select-previous)
+;;(define-key company-active-map [down-mouse-1] 'ignore)
+;;(define-key company-active-map [down-mouse-3] 'ignore)
+
+(define-key company-active-map [mouse-1] 'company-complete-mouse)
+(define-key company-active-map [mouse-3] 'company-select-mouse)
+(define-key company-active-map [up-mouse-1] 'ignore)
+(define-key company-active-map [up-mouse-3] 'ignore)
+
+(define-key company-active-map "" 'company-complete-selection)
+(define-key company-active-map "" 'company-complete)
+(define-key company-active-map "\t" 'company-complete)
+
+(define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
+;(define-key company-active-map "\C-w" 'company-show-location)
+(define-key company-active-map "\C-s" 'company-search-candidates)
+(define-key company-active-map "\C-\M-s" 'company-filter-candidates)
+
+#+END_SRC
 * yasnippet
 ** Invoke Yas
 #+BEGIN_SRC emacs-lisp
