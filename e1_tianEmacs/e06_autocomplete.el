@@ -47,7 +47,7 @@
    ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
-   ac-auto-show-menu 0.1 ;;0.001 ;; nil show menu with 0.05 delay
+   ac-auto-show-menu 0.05 ;;0.001 ;; nil show menu with 0.05 delay
    ;;ac-show-menu-immediately-on-auto-complete t
    ;; ac-candidate-limit 25 ;; nil
    ac-use-comphist t ;; sort Candidate
@@ -170,3 +170,9 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
+(setq company-auto-complete t)
+(setq company-minimum-prefix-length 1)
+(setq company-show-numbers t)
+(setq company-tooltip-limit 25)
+(define-key company-mode-map (kbd "C-n") 'company-select-next)
+(define-key company-mode-map (kbd "C-p") 'company-select-previous))
