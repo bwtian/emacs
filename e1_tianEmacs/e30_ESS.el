@@ -146,3 +146,15 @@
 ;; (setq inlineR-default-image "png")
 ;; (setq inlineR-default-dir "/tmp/")
 ;; (setq inlineR-cairo-p t)
+
+(when (one-window-p)
+        (split-window-horizontally)
+        (let ((buf (current-buffer)))
+          (ess-switch-to-ESS nil)
+          (switch-to-buffer-other-window buf)))
+  (if from-iess-p
+      ;; R のプロセスが他になければウィンドウを分割する
+      (if (> (length ess-process-name-list) 0)
+          (when (one-window-p)
+            (split-window-horizontally)
+            (other-window 1))))

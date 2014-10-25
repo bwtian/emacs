@@ -213,8 +213,7 @@ In order to enable Emacs’ standard OutlineMode for .R files:
   ;; (setq inlineR-cairo-p t)
 #+END_SRC
 ** Window
-
-;; ウィンドウが1つの状態で *.R を開いた場合はウィンドウを縦に分割して R を表示する
+#+BEGIN_SRC emacs-lisp
 (when (one-window-p)
         (split-window-horizontally)
         (let ((buf (current-buffer)))
@@ -226,6 +225,9 @@ In order to enable Emacs’ standard OutlineMode for .R files:
           (when (one-window-p)
             (split-window-horizontally)
             (other-window 1))))
+
+#+END_SRC
+;; ウィンドウが1つの状態で *.R を開いた場合はウィンドウを縦に分割して R を表示する
 
     (setq anything-R-help-limit 40)
       (setq anything-R-local-limit 20)
