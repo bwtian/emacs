@@ -189,15 +189,15 @@
  ;; M-NUM to select specific one, C-w to view its source file
  ;;(global-set-key (kbd "C-c <tab>") 'company-complete)
  ;; this will show a lot of garbage, use it only necessary
- (add-to-list 'company-backends 'company-ispell)
+ ;(add-to-list 'company-backends 'company-ispell)
  (defalias 'ci 'company-ispell)
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
-   ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+ (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
    ;; put most often used completions at stop of list
    (setq company-dabbrev-downcase nil)
    (setq company-dabbrev-ignore-case nil)
-  ; (setq company-dabbrev-other-buffers t)  
+   (setq company-dabbrev-other-buffers t)  
 
     ;; (eval-after-load 'company
          ;;   '(progn
