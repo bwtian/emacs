@@ -9,7 +9,7 @@
   (global-auto-complete-mode t) ;; ac all mode
   ;;(global-auto-composition-mode 1)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
-  (seq 
+  (setq 
    ac-delay 0.01 ;; 0.1 fast for fisrt complete 
    ac-auto-start 3 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
