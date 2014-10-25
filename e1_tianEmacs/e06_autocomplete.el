@@ -163,7 +163,6 @@
 (ac-config-default) ; make above work.
 
 (require 'company)
-(setq company-global-modes t)
 (setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-tooltip-limit 30)
@@ -177,7 +176,7 @@
 (global-set-key (kbd "C-c <tab>") 'company-complete)
 ;; this will show a lot of garbage, use it only necessary
 ;; (add-to-list 'company-backends 'company-ispell)
-(defalias 'ci 'company-ispell)
+;(defalias 'ci 'company-ispell)
 (add-hook 'org-mode-hook
                   (lambda ()
                         (company-mode)
