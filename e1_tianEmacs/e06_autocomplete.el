@@ -28,7 +28,7 @@
 ; (setq ac-quick-help-scroll-down t)
 
 ;; ac-Popup background colors
-(setq ac-quick-help-prefer-pos-tip) 
+(setq ac-quick-help-prefer-pos-tip t) 
 (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
 (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
 (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
@@ -313,7 +313,8 @@ yas/completing-prompt))
 (defvar ac-source-yasnippet
   '((candidates . ac-yasnippet-candidate)
     (action . yas/expand)
-  
+    (candidate-face . ac-candidate-face)
+    (selection-face . ac-selection-face)
     ;(candidate-face . ac-yasnippet-candidate-face)
     ;(selection-face . ac-yasnippet-selection-face)
 ) 

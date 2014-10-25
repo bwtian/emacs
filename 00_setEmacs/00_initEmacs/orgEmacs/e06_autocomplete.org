@@ -365,7 +365,8 @@ yas/completing-prompt))
 (defvar ac-source-yasnippet
   '((candidates . ac-yasnippet-candidate)
     (action . yas/expand)
-  
+    (candidate-face . ac-candidate-face)
+    (selection-face . ac-selection-face)
     ;(candidate-face . ac-yasnippet-candidate-face)
     ;(selection-face . ac-yasnippet-selection-face)
 ) 
