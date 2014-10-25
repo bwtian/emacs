@@ -1,24 +1,24 @@
 
-(require 'auto-complete-config nil 'noerror)
-(require 'auto-complete-config)  
-(require 'auto-complete)
-(load "auto-complete") 
-(global-auto-complete-mode t) ;; ac all mode
-(global-auto-composition-mode 1)
-(ac-flyspell-workaround)    ;; conflict with flyspell 
-(setq 
- ac-delay 0.01 ;; 0.1 fast for fisrt complete 
- ac-auto-start 1 ;; t conflict with ESS, complete form fourth character, t=2 
- ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
- ac-auto-show-menu 0.05 ;;0.001 ;; nil show menu with 0.05 delay
- ;;ac-show-menu-immediately-on-auto-complete t
- ;; ac-candidate-limit 25 ;; nil
- ac-use-comphist t ;; sort Candidate
- ac-menu-height 20 ;;12 Max height for complete candidate menu
- ac-ignore-case 'smart
- ac-fuzzy-enable t ;; Fuzzy mode
- ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
- )
+; (require 'auto-complete-config nil 'noerror)
+ (require 'auto-complete-config)  
+ (require 'auto-complete)
+ (load "auto-complete") 
+ (global-auto-complete-mode t) ;; ac all mode
+ (global-auto-composition-mode 1)
+ (ac-flyspell-workaround)    ;; conflict with flyspell 
+ (setq 
+  ac-delay 0.1 ;; 0.1 fast for fisrt complete 
+  ac-auto-start 1 ;; t conflict with ESS, complete form fourth character, t=2 
+  ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
+  ac-auto-show-menu 0.2 ;;0.001 ;; nil show menu with 0.05 delay
+  ;;ac-show-menu-immediately-on-auto-complete t
+  ;; ac-candidate-limit 25 ;; nil
+  ac-use-comphist t ;; sort Candidate
+  ac-menu-height 20 ;;12 Max height for complete candidate menu
+  ac-ignore-case 'smart
+  ac-fuzzy-enable t ;; Fuzzy mode
+  ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
+  )
 
 ;; (add-to-list 'ac-dictionary-directories (expand-file-name
    ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
@@ -57,7 +57,7 @@
 
    ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
    ;;ac-quick-help-prefer-pos-tip t  ;; change the color background from ac to yas
-   ac-quick-help-delay 1.5 ;;
+   ac-quick-help-delay 0.5 ;;
    ac-quick-help-height 25
    ac-quick-help-scroll-down
    )
@@ -186,6 +186,85 @@
       ;; invert the navigation direction if the the completion popup-isearch-match
       ;; is displayed on top (happens near the bottom of windows)
     (setq company-tooltip-flip-when-above t)
+
+(eval-after-load "company"
+  '(progn
+     (custom-set-faces
+      '(company-preview
+        ((t (:foreground "darkgray" :underline t))))
+      '(company-preview-common
+        ((t (:inherit company-preview))))
+      '(company-tooltip
+        ((t (:background "lightgray" :foreground "black"))))
+      '(company-tooltip-selection
+        ((t (:background "steelblue" :foreground "white"))))
+      '(company-tooltip-common
+        ((((type x)) (:inherit company-tooltip :weight bold))
+         (t (:inherit company-tooltip))))
+      '(company-tooltip-common-selection
+        ((((type x)) (:inherit company-tooltip-selection :weight bold))
+         (t (:inherit company-tooltip-selection)))))
+     (define-key company-active-map "\C-q" 'company-search-candidates)
+     (define-key company-active-map "\C-e" 'company-filter-candidates)
+     ))
+
+(defun company-quickhelp-frontend (command)
+  "`company-mode' front-end showing documentation in a
+  `pos-tip' popup."
+  (pcase command
+    (`post-command (company-quickhelp--set-timer))
+    (`hide
+     (company-quickhelp--cancel-timer)
+     (pos-tip-hide))))
+
+(defun company-quickhelp--show ()
+  (company-quickhelp--cancel-timer)
+  (let* ((selected (nth company-selection company-candidates))
+         (doc-buffer (company-call-backend 'doc-buffer selected))
+         (ovl company-pseudo-tooltip-overlay))
+    (when (and ovl doc-buffer)
+      (with-no-warnings
+        (let* ((width (overlay-get ovl 'company-width))
+               (col (overlay-get ovl 'company-column))
+               (extra (- (+ width col) (company--window-width))))
+          (pos-tip-show (with-current-buffer doc-buffer (buffer-string))
+                        nil
+                        nil
+                        nil
+                        300
+                        80
+                        nil
+                        (* (frame-char-width)
+                           (- width (length company-prefix)
+                              (if (< 0 extra) extra 1)))))))))
+
+(defvar company-quickhelp--timer nil
+  "Quickhelp idle timer.")
+
+(defcustom company-quickhelp--delay 0.2
+  "Delay, in seconds, before the quickhelp popup appears.")
+
+(defun company-quickhelp--set-timer ()
+  (when (null company-quickhelp--timer)
+    (setq company-quickhelp--timer
+          (run-with-idle-timer company-quickhelp--delay nil
+                               'company-quickhelp--show))))
+
+(defun company-quickhelp--cancel-timer ()
+  (when (timerp company-quickhelp--timer)
+    (cancel-timer company-quickhelp--timer)
+    (setq company-quickhelp--timer nil)))
+
+;;;###autoload
+(define-minor-mode company-quickhelp-mode
+  "Provides documentation popups for `company-mode' using `pos-tip'."
+  :global t
+  (if company-quickhelp-mode
+      (push 'company-quickhelp-frontend company-frontends)
+    (setq company-frontends
+          (delq 'company-quickhelp-frontend company-frontends))
+    (company-quickhelp--cancel-timer)))
+(provide 'company-quickhelp)
 
 ;; add company-auctex
 (require 'company-auctex)
