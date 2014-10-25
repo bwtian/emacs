@@ -20,7 +20,7 @@
         ac-use-comphist t ;; sort Candidate
         ac-menu-height 20 ;;12 Max height for complete candidate menu
         ;ac-ignore-case 'smart
-        ;ac-fuzzy-enable t ;; Fuzzy mode
+        ac-fuzzy-enable t ;; Fuzzy mode
         ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
         )
 #+END_SRC
