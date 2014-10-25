@@ -111,3 +111,6 @@
 ;;                ac-sources)))
 ;; (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
 ;; (ac-flyspell-workaround)
+
+(require 'magic-latex-buffer)
+(add-hook 'latex-mode-hook 'magic-latex-buffer)

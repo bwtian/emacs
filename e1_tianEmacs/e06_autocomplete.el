@@ -42,7 +42,7 @@
 (setq ac-quick-help-prefer-pos-tip)
   (setq
    ac-delay 0.1 ;; 0.1 fast for fisrt complete 
-   ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
+   ac-auto-start 3 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
@@ -267,6 +267,7 @@
           (delq 'company-quickhelp-frontend company-frontends))
     (company-quickhelp--cancel-timer)))
 (provide 'company-quickhelp)
+(require 'company-quickhelp)
 
 ;; add company-auctex
 (require 'company-auctex)
