@@ -232,8 +232,8 @@
   ;; M-NUM to select specific one, C-w to view its source file
   ;;(global-set-key (kbd "C-c <tab>") 'company-complete)
   ;; this will show a lot of garbage, use it only necessary
-  ;(add-to-list 'company-backends 'company-ispell)
-  (defalias 'ci 'company-ispell)
+  ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
+  ;(defalias 'ci 'company-ispell)
  (define-key company-mode-map "\t" nil)
  (define-key company-mode-map [(backtab)] 'company-complete-common)     
  (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
