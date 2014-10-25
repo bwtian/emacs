@@ -55,7 +55,7 @@
    ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
-   ac-auto-show-menu 0.5 ;;0.001 ;; nil show menu with 0.05 delay
+   ac-auto-show-menu 0.05 ;;0.001 ;; nil show menu with 0.05 delay
    ;;ac-show-menu-immediately-on-auto-complete t
    ;; ac-candidate-limit 25 ;; nil
    ac-use-comphist t ;; sort Candidate
@@ -206,7 +206,20 @@
   ;; Quick help will appear at the side of completion menu, so you can
   ;; easily see the help.
 * Company mode
+** Invoke Company
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
+(setq company-auto-complete t)
+(define-key company-mode-map (kbd "C-n") 'company-select-next)
+(define-key company-mode-map (kbd "C-p") 'company-select-previous))
+#+END_SRC
+** Company-Color
+#+BEGIN_SRC emacs
+(set-face-attribute 'company-tooltip nil :background "black" :foreground "gray40")
+(set-face-attribute 'company-tooltip-selection nil :inherit 'company-tooltip :background "gray15")
+(set-face-attribute 'company-preview nil :background "black")
+(set-face-attribute 'company-preview-common nil :inherit 'company-preview :foreground "gray40")
+(set-face-attribute 'company-scrollbar-bg nil :inherit 'company-tooltip :background "gray20")
+(set-face-attribute 'company-scrollbar-fg nil :background "gray40")
 #+END_SRC
