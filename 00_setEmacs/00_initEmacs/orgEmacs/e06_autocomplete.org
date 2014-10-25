@@ -208,7 +208,7 @@ rds Complete
   (require 'company)
     (add-hook 'after-init-hook 'global-company-mode)
     (setq company-minimum-prefix-length 2)               ; 1 autocomplete right after '.'
-    (setq company-idle-delay 0.1)                         ; decrease delay before autocompletion popup shows
+    (setq company-idle-delay nil)                         ; decrease delay before autocompletion popup shows
     (setq company-echo-delay 0)                          ; remove annoying blinking
    ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
     (setq company-tooltip-limit 20)                      ; bigger popup window
@@ -220,6 +220,8 @@ rds Complete
       (setq company-dabbrev-ignore-case nil)
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
+(define-key company-active-map "\C-q" 'company-search-candidates)
+(define-key company-active-map "\C-e" 'company-filter-candidates)
  ;; (eval-after-load 'company
       ;;   '(progn
       ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
@@ -228,7 +230,7 @@ rds Complete
     (setq company-tooltip-flip-when-above t)
 #+END_SRC
 ** Company-Color
-#+BEGIN_SRC emacs-lisp
+##+BEGIN_SRC emacs-lisp
 (eval-after-load "company"
   '(progn
      (custom-set-faces
@@ -249,7 +251,7 @@ rds Complete
      (define-key company-active-map "\C-q" 'company-search-candidates)
      (define-key company-active-map "\C-e" 'company-filter-candidates)
      ))
-#+END_SRC
+##+END_SRC
 ** pop-help
 https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/site-lisp/company-quickhelp.el
 #+BEGIN_SRC emacs-lisp

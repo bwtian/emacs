@@ -168,7 +168,7 @@
 (require 'company)
     (add-hook 'after-init-hook 'global-company-mode)
     (setq company-minimum-prefix-length 2)               ; 1 autocomplete right after '.'
-    (setq company-idle-delay 0.1)                         ; decrease delay before autocompletion popup shows
+    (setq company-idle-delay nil)                         ; decrease delay before autocompletion popup shows
     (setq company-echo-delay 0)                          ; remove annoying blinking
    ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
     (setq company-tooltip-limit 20)                      ; bigger popup window
@@ -180,33 +180,14 @@
       (setq company-dabbrev-ignore-case nil)
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
+(define-key company-active-map "\C-q" 'company-search-candidates)
+(define-key company-active-map "\C-e" 'company-filter-candidates)
  ;; (eval-after-load 'company
       ;;   '(progn
       ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
       ;; invert the navigation direction if the the completion popup-isearch-match
       ;; is displayed on top (happens near the bottom of windows)
     (setq company-tooltip-flip-when-above t)
-
-(eval-after-load "company"
-  '(progn
-     (custom-set-faces
-      '(company-preview
-        ((t (:foreground "darkgray" :underline t))))
-      '(company-preview-common
-        ((t (:inherit company-preview))))
-      '(company-tooltip
-        ((t (:background "lightgray" :foreground "black"))))
-      '(company-tooltip-selection
-        ((t (:background "steelblue" :foreground "white"))))
-      '(company-tooltip-common
-        ((((type x)) (:inherit company-tooltip :weight bold))
-         (t (:inherit company-tooltip))))
-      '(company-tooltip-common-selection
-        ((((type x)) (:inherit company-tooltip-selection :weight bold))
-         (t (:inherit company-tooltip-selection)))))
-     (define-key company-active-map "\C-q" 'company-search-candidates)
-     (define-key company-active-map "\C-e" 'company-filter-candidates)
-     ))
 
 (defun company-quickhelp-frontend (command)
   "`company-mode' front-end showing documentation in a
