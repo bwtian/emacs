@@ -349,7 +349,23 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
 
 
 ** Company Hooks
+#+BEGIN_SRC emacs-lisp
+(dolist (hook (list
+               'emacs-lisp-mode-hook
+               'lisp-mode-hook
+               'lisp-interaction-mode-hook
+               'scheme-mode-hook
+               'c-mode-common-hook
+               'python-mode-hook
+               'haskell-mode-hook
+               'asm-mode-hook
+	       'org-mode-hook
+	     ;  'text-mode-hook
+               'emms-tag-editor-mode-hook
+               'sh-mode-hook))
+  (add-hook hook 'company-mode))
 
+#+END_SRC
 *** Org-mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook
