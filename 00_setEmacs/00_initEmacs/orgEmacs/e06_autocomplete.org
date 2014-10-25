@@ -63,7 +63,7 @@
     (setq
      ;; ac-use-quick-help nil                   ; no tool tip
      ac-use-quick-help t ;; use quick help
-     ac-quick-help-prefer-pos-tip t
+     ;;ac-quick-help-prefer-pos-tip t
      ac-quick-help-delay 0.1 ;;
      ac-quick-help-height 25
      ac-quick-help-scroll-down
