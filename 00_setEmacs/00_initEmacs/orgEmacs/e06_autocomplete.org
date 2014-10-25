@@ -311,8 +311,8 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
           (delq 'company-quickhelp-frontend company-frontends))
     (company-quickhelp--cancel-timer)))
 (provide 'company-quickhelp)
+(require 'company-quickhelp)
 #+END_SRC
-
 
 ** Auctex complte
 #+BEGIN_SRC emacs-lisp
