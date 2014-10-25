@@ -250,8 +250,8 @@
   ;(defalias 'ci 'company-ispell)
  (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
     ;; put most often used completions at stop of list
-    (setq company-dabbrev-downcase nil)
-    (setq company-dabbrev-ignore-case nil)
+    (setq company-dabbrev-downcase t)
+    (setq company-dabbrev-ignore-case t)
     (setq company-dabbrev-other-buffers t)  
 
      ;; (eval-after-load 'company
@@ -483,7 +483,6 @@ yas/completing-prompt))
 (require 'r-autoyas)
 (add-hook 'ess-mode-hook 'r-autoyas-ess-activate)
 #+END_SRC
-
 
 * company-ess
 #+BEGIN_SRC emacs-lisp
