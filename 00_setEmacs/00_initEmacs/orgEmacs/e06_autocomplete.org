@@ -1,4 +1,5 @@
 * e06_autocomplete.org
+|-----------------+---------------+-----------+---------+---------|
 | Settings        | auto-complete | Company   | ESS     | Default |
 |-----------------+---------------+-----------+---------+---------|
 | Complete        |           Tab | M-NUM     | C-c Tab | C-M-i   |
@@ -348,6 +349,8 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
     (company-quickhelp--cancel-timer)))
  
 (provide 'company-quickhelp)
+(require 'company-quickhelp)
+
 #+END_SRC
 
 

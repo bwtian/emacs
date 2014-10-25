@@ -287,6 +287,7 @@
     (company-quickhelp--cancel-timer)))
  
 (provide 'company-quickhelp)
+(require 'company-quickhelp)
 
 (dolist (hook (list
                'emacs-lisp-mode-hook
