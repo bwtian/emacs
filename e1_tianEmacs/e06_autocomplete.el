@@ -180,7 +180,7 @@
 (setq company-dabbrev-ignore-case nil)
 (eval-after-load 'company
   '(progn
-     (define-key company-mode-map (kbd "M-TAB") 'company-complete)))
+     (define-key company-mode-map (kbd "S-TAB") 'company-complete)))
 
 (eval-after-load "company"
   '(progn
