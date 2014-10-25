@@ -1,4 +1,4 @@
- e06_autocomplete.org
+* e06_autocomplete.org
  Auto Complete Popup globally makes Emacs auto-completion nicer
 ** DONE AC-Load
 #+BEGIN_SRC emacs-lisp
@@ -317,3 +317,19 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
   (require 'auto-complete-auctex)
   (company-auctex-init)
 #+END_SRC
+
+* hippie-expand
+#+BEGIN_SRC emacs-lisp
+(global-set-key "\C-o" 'hippie-expand)
+(setq hippie-expand-try-functions-list
+      '(yas/hippie-try-expand
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+#+END_SRC 
