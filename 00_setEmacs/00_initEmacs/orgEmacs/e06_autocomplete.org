@@ -5,7 +5,7 @@
 | Delay main |           0.2 |         |           |         |         |
 | Delay Menu |           0.3 |       0 |           |         |         |
 | Delay Pop  |           1.5 |         |           |         |         |
-| prefix     |             4 |       1 |           |         |         |
+| prefix     |             2 |       3 |           |         |         |
 |------------+---------------+---------+-----------+---------+---------|
 * hippie-expand
 #+BEGIN_SRC emacs-lisp
@@ -34,7 +34,7 @@
   (global-auto-composition-mode 1)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
   (setq 
-        ac-auto-start 4 ;; t conflict with ESS, complete form fourth character, t=2 
+        ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
         ;;ac-trigger-key "TAB" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
         ac-delay 0.2 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
         ac-auto-show-menu 0.3 ;; nil or ; tiem setting very import to R
@@ -231,7 +231,7 @@
   (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
   (setq company-echo-delay 0)                          ; remove annoying blinking
   (setq company-tooltip-limit 20)
-  (setq company-minimum-prefix-length 1)
+  (setq company-minimum-prefix-length 3)
   (setq company-show-numbers t)
   (setq company-transformers '(company-sort-by-occurrence))
   (setq company-auto-complete t)
