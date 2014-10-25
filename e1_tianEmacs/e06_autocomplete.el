@@ -54,9 +54,9 @@
 (require 'pos-tip)
 (setq ac-quick-help-prefer-pos-tip)
   (setq
-   ;; ac-use-quick-help nil                   ; no tool tip
-   ac-use-quick-help t ;; use quick help
-   ;;ac-quick-help-prefer-pos-tip t
+
+   ac-use-quick-help nil ;; use quick help   nil                   ; no tool tip
+   ;;ac-quick-help-prefer-pos-tip t  ;; change the color background from ac to yas
    ac-quick-help-delay 0.1 ;;
    ac-quick-help-height 25
    ac-quick-help-scroll-down
@@ -164,6 +164,26 @@
 ;;                                   change-log-mode text-mode 
 ;;                                   makefile-gmake-mode makefile-bsdmake-mo
 ;;                                   autoconf-mode makefile-automake-mode)))
+
+(require 'company)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+  (setq company-idle-delay 0.5)                         ; decrease delay before autocompletion popup shows
+  (setq company-echo-delay 0)                          ; remove annoying blinking
+ ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+  (setq company-tooltip-limit 8)                      ; bigger popup window
+  (setq company-show-numbers t)
+  ;; put most often used completions at stop of list
+    (setq company-transformers '(company-sort-by-occurrence))
+    (setq company-auto-complete t)
+    (setq company-dabbrev-downcase nil)
+    (setq company-dabbrev-ignore-case nil)
+    ;; (eval-after-load 'company
+    ;;   '(progn
+    ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+    ;; invert the navigation direction if the the completion popup-isearch-match
+    ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
 
 ;; add company-auctex
 (require 'company-auctex)

@@ -1,4 +1,4 @@
-* e06_autocomplete.org
+ e06_autocomplete.org
  Auto Complete Popup globally makes Emacs auto-completion nicer
 ** DONE AC-Load
 #+BEGIN_SRC emacs-lisp
@@ -61,9 +61,9 @@
   (require 'pos-tip)
   (setq ac-quick-help-prefer-pos-tip)
     (setq
-     ;; ac-use-quick-help nil                   ; no tool tip
-     ac-use-quick-help t ;; use quick help
-     ;;ac-quick-help-prefer-pos-tip t
+
+     ac-use-quick-help nil ;; use quick help   nil                   ; no tool tip
+     ;;ac-quick-help-prefer-pos-tip t  ;; change the color background from ac to yas
      ac-quick-help-delay 0.1 ;;
      ac-quick-help-height 25
      ac-quick-help-scroll-down
@@ -203,7 +203,7 @@
   ;; easily see the help.
 * Company mode
 ** Invoke Company
-##+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (require 'company)
     (add-hook 'after-init-hook 'global-company-mode)
     (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
@@ -223,7 +223,7 @@
       ;; invert the navigation direction if the the completion popup-isearch-match
       ;; is displayed on top (happens near the bottom of windows)
     (setq company-tooltip-flip-when-above t)
-##+END_SRC
+#+END_SRC
 ** Company-Color
 ##+BEGIN_SRC emacs-lisp
 (eval-after-load "company"
