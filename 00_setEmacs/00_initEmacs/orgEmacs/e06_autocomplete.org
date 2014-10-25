@@ -140,7 +140,8 @@
 (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup)
 (setq ac-math-unicode-in-math-p t) ;;use unicode input
 #+END_SRC
-** TODO AC-Look  Words Complete
+** TODO AC-Look  Woli
+rds Complete
 #+BEGIN_SRC emacs-lisp
 (when (executable-find "look")
   (defun my-ac-look ()
