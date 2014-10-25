@@ -244,32 +244,6 @@ In order to enable Emacs’ standard OutlineMode for .R files:
 (add-hook 'ess-mode-hook 'emacsmate-ess-turn-on-fix-code)
 
 #+END_SRC
-** Window
-#+BEGIN_SRC emacs-lisp
-(when (one-window-p)
-        (split-window-horizontally)
-        (let ((buf (current-buffer)))
-          (ess-switch-to-ESS nil)
-          (switch-to-buffer-other-window buf)))
-  (if from-iess-p
-      ;; R のプロセスが他になければウィンドウを分割する
-      (if (> (length ess-process-name-list) 0)
-          (when (one-window-p)
-            (split-window-horizontally)
-            (other-window 1))))
-
-#+END_SRC
-;; ウィンドウが1つの状態で *.R を開いた場合はウィンドウを縦に分割して R を表示する
-
-    (setq anything-R-help-limit 40)
-      (setq anything-R-local-limit 20)
-      ;; C-c r で R の関数やオブジェクトを検索できるようにする
-      (when (require 'anything-R nil t)
-        ;; ess-smart-comma が導入されたので repospkg と localpkg はあまり必要なさそう
-        (setq anything-for-R-list '(anything-c-source-R-help
-                                    anything-c-source-R-local))
-        (define-key ess-mode-map (kbd "C-c r") 'anything-for-R)
-        (define-key inferior-ess-mode-map (kbd "C-c r") 'anything-for-R))
 ** ESS Key-Bindings
 #+BEGIN_SRC emacs-lisp
   ;; ESS Mode (.R file)
