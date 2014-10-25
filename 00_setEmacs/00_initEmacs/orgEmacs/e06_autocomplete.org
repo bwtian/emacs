@@ -48,7 +48,7 @@
 (require 'pos-tip)
 (setq ac-quick-help-prefer-pos-tip)
   (setq
-   ac-delay 0.1 ;; 0.1 fast for fisrt complete 
+   ac-delay 0.01 ;; 0.1 fast for fisrt complete 
    ac-auto-start 3 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
