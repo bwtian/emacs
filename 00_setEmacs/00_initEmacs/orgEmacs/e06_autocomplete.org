@@ -207,7 +207,7 @@ rds Complete
 #+BEGIN_SRC emacs-lisp
   (require 'company)
     (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-minimum-prefix-length 3)               ; 1 autocomplete right after '.'
+    (setq company-minimum-prefix-length 2)               ; 1 autocomplete right after '.'
     (setq company-idle-delay 0.1)                         ; decrease delay before autocompletion popup shows
     (setq company-echo-delay 0)                          ; remove annoying blinking
    ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
@@ -218,7 +218,9 @@ rds Complete
       (setq company-auto-complete t)
       (setq company-dabbrev-downcase nil)
       (setq company-dabbrev-ignore-case nil)
-      ;; (eval-after-load 'company
+(define-key company-mode-map "\t" nil)
+(define-key company-mode-map [(backtab)] 'company-complete-common)     
+ ;; (eval-after-load 'company
       ;;   '(progn
       ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
       ;; invert the navigation direction if the the completion popup-isearch-match
