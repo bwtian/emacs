@@ -5,24 +5,38 @@
 (global-auto-complete-mode t) ;; ac all mode
 ;;(global-auto-composition-mode 1)
 (require 'auto-complete-config)  
-(ac-config-default)
-(ac-flyspell-workaround)    ;; conflict with flyspell
+ (ac-flyspell-workaround)    ;; conflict with flyspell
 
 ;; (add-to-list 'ac-dictionary-directories (expand-file-name
-;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
-;; (setq ac-comphist-file (expand-file-name
-;;              "~/.emacs.d/ac-comphist.dat"))
-(setq ac-comphist-file "~/SparkleShare/emacs.d/ac-comphist.dat")
-(setq ac-use-comphist t) 
-(set-default 'ac-sources
-           '(ac-source-semantic 
-             ac-source-yasnippet
-             ac-source-abbrev
-             ac-source-words-in-buffer
-             ac-source-words-in-all-buffer
-             ac-source-imenu
-             ac-source-files-in-current-dir
-             ac-source-filename))
+ ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
+ ;; (setq ac-comphist-file (expand-file-name
+ ;;              "~/.emacs.d/ac-comphist.dat"))
+ (setq ac-comphist-file "~/SparkleShare/emacs.d/ac-comphist.dat")
+ (setq ac-use-comphist t) 
+ (set-default 'ac-sources
+            '(ac-source-semantic 
+              ac-source-yasnippet
+              ac-source-abbrev
+              ac-source-words-in-buffer
+              ac-source-words-in-all-buffer
+              ac-source-css-property
+              ac-source-R
+              ac-source-R-args
+              ac-source-R-objects
+              ac-source-math-unicode
+              ac-source-math-latex
+              ac-source-latex-commands
+              ac-source-rcodetools
+              ac-source-dictionary
+              ac-source-look
+              ac-source-imenu
+              ac-source-features
+              ac-source-functions
+              ac-source-variables 
+              ac-source-symbols
+              ac-source-files-in-current-dir
+              ac-source-filename))
+(ac-config-default) ; make above work.
 
 (require 'pos-tip)
 (setq ac-quick-help-prefer-pos-tip)
