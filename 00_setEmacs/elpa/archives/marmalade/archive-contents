@@ -1664,7 +1664,7 @@
        [(0 1 1)
 	nil "Easy Python test running in Emacs" single])
  (noflet .
-   [(0 0 13)
+   [(0 0 14)
      nil "locally override functions" single])
  (nodejs-repl .
 	      [(0 0 2 1)
@@ -3142,8 +3142,8 @@
       [(0 1)
        nil "Emacs Search Kit - An easy way to find files and/or strings in a project" tar])
  (eshell-manual .
-		[(1348477812)
-		 nil "An updated manual for Eshell." tar])
+		[(20141024)
+		 nil "An manual for Eshell." tar])
  (eshell-fringe-status .
 		       [(1 0 0)
 			nil "Show last status in fringe" single])
