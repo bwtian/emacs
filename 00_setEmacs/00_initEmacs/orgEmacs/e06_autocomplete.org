@@ -28,11 +28,12 @@
 ** AC-Popup Tooltip
 #+BEGIN_SRC emacs-lisp
   (require 'pos-tip)
-  (setq ac-setup t)
-  (setq ac-quick-help-prefer-pos-tip t) 
   (setq ac-use-quick-help t)
-  (setq ac-quick-help-height 25)
-  (setq ac-quick-help-scroll-down t)
+  ;(setq ac-setup t)
+  ;(setq ac-quick-help-prefer-pos-tip t) 
+  ;(setq ac-quick-help-use-pos-tip-p t)
+  ; (setq ac-quick-help-height 25)
+  ; (setq ac-quick-help-scroll-down t)
   ;; ac-Popup background colors
   (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
   (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
