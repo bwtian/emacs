@@ -41,12 +41,12 @@
 (require 'pos-tip)
 (setq ac-quick-help-prefer-pos-tip)
   (setq
-   ac-delay 0.1 ;; 0.1 
+   ;;ac-delay 0.5 ;; 0.1 
    ac-auto-start 2 ;; t conflict with ESS, complete form fourth character, t=2 
    ac-trigger-key nil ;;ac-auto-start nil + ac-trigger-key "TAB"
 
 
-   ac-auto-show-menu 0.05 ;;0.001 ;; nil show menu with 0.05 delay
+   ac-auto-show-menu 0.5 ;;0.001 ;; nil show menu with 0.05 delay
    ;;ac-show-menu-immediately-on-auto-complete t
    ;; ac-candidate-limit 25 ;; nil
    ac-use-comphist t ;; sort Candidate
@@ -168,7 +168,7 @@
 ;;                                   autoconf-mode makefile-automake-mode)))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay 0)
+(setq company-idle-delay 1.5)
 (setq company-minimum-prefix-length 3)
 (setq company-tooltip-limit 25)
 (setq company-show-numbers t)
@@ -201,6 +201,66 @@
      (define-key company-active-map "\C-q" 'company-search-candidates)
      (define-key company-active-map "\C-e" 'company-filter-candidates)
      ))
+
+(require 'company)
+(require 'pos-tip)
+
+(defun company-quickhelp-frontend (command)
+  "`company-mode' front-end showing documentation in a
+  `pos-tip' popup."
+  (pcase command
+    (`post-command (company-quickhelp--set-timer))
+    (`hide
+     (company-quickhelp--cancel-timer)
+     (pos-tip-hide))))
+
+(defun company-quickhelp--show ()
+  (company-quickhelp--cancel-timer)
+  (let* ((selected (nth company-selection company-candidates))
+         (doc-buffer (company-call-backend 'doc-buffer selected))
+         (ovl company-pseudo-tooltip-overlay))
+    (when (and ovl doc-buffer)
+      (with-no-warnings
+        (let* ((width (overlay-get ovl 'company-width))
+               (col (overlay-get ovl 'company-column))
+               (extra (- (+ width col) (company--window-width))))
+          (pos-tip-show (with-current-buffer doc-buffer (buffer-string))
+                        nil
+                        nil
+                        nil
+                        300
+                        80
+                        nil
+                        (* (frame-char-width)
+                           (- width (length company-prefix)
+                              (if (< 0 extra) extra 1)))))))))
+
+(defvar company-quickhelp--timer nil
+  "Quickhelp idle timer.")
+
+(defcustom company-quickhelp--delay 0.2
+  "Delay, in seconds, before the quickhelp popup appears.")
+
+(defun company-quickhelp--set-timer ()
+  (when (null company-quickhelp--timer)
+    (setq company-quickhelp--timer
+          (run-with-idle-timer company-quickhelp--delay nil
+                               'company-quickhelp--show))))
+
+(defun company-quickhelp--cancel-timer ()
+  (when (timerp company-quickhelp--timer)
+    (cancel-timer company-quickhelp--timer)
+    (setq company-quickhelp--timer nil)))
+
+;;;###autoload
+(define-minor-mode company-quickhelp-mode
+  "Provides documentation popups for `company-mode' using `pos-tip'."
+  :global t
+  (if company-quickhelp-mode
+      (push 'company-quickhelp-frontend company-frontends)
+    (setq company-frontends
+          (delq 'company-quickhelp-frontend company-frontends))
+    (company-quickhelp--cancel-timer)))
 
 ;; add company-auctex
 (require 'company-auctex)
