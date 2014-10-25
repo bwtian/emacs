@@ -202,47 +202,47 @@
 * Company mode
 ** Invoke Company
 #+BEGIN_SRC emacs-lisp
-(require 'company)
-(setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
-(setq company-echo-delay 0)                          ; remove annoying blinking
-(setq company-tooltip-limit 30)
-(setq company-minimum-prefix-length 3)
-(setq company-show-numbers t)
-(setq company-transformers '(company-sort-by-occurrence))
-(setq company-auto-complete t)
-(add-hook 'after-init-hook 'global-company-mode)
-;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
-;; M-NUM to select specific one, C-w to view its source file
-(global-set-key (kbd "C-c <tab>") 'company-complete)
-;; this will show a lot of garbage, use it only necessary
-;; (add-to-list 'company-backends 'company-ispell)
-;(defalias 'ci 'company-ispell)
-(add-hook 'org-mode-hook
-		  (lambda ()
-			(company-mode)
-			(set (make-local-variable 'company-backends)
-				 '((
-					company-dabbrev
-					company-dabbrev-code
-					company-ispell
-					company-files
-					company-yasnippet
-					))
-				 )))
-  (define-key company-mode-map "\t" nil)
-  (define-key company-mode-map [(backtab)] 'company-complete-common)     
-  ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-  ;; put most often used completions at stop of list
-  (setq company-dabbrev-downcase nil)
-  (setq company-dabbrev-ignore-case nil)
-  (setq company-dabbrev-other-buffers t)  
+  (require 'company)
+  (setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
+  (setq company-echo-delay 0)                          ; remove annoying blinking
+  (setq company-tooltip-limit 20)
+  (setq company-minimum-prefix-length 3)
+  (setq company-show-numbers t)
+  (setq company-transformers '(company-sort-by-occurrence))
+  (setq company-auto-complete t)
+  (add-hook 'after-init-hook 'global-company-mode)
+  ;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
+  ;; M-NUM to select specific one, C-w to view its source file
+  ;;(global-set-key (kbd "C-c <tab>") 'company-complete)
+  ;; this will show a lot of garbage, use it only necessary
+  ;; (add-to-list 'company-backends 'company-ispell)
+  ;(defalias 'ci 'company-ispell)
+  (add-hook 'org-mode-hook
+                    (lambda ()
+                          (company-mode)
+                          (set (make-local-variable 'company-backends)
+                                   '((
+                                          company-dabbrev
+                                          company-dabbrev-code
+                                          company-ispell
+                                          company-files
+                                          company-yasnippet
+                                          ))
+                                   )))
+    (define-key company-mode-map "\t" nil)
+    (define-key company-mode-map [(backtab)] 'company-complete-common)     
+    ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+    ;; put most often used completions at stop of list
+    (setq company-dabbrev-downcase nil)
+    (setq company-dabbrev-ignore-case nil)
+  ;  (setq company-dabbrev-other-buffers t)  
 
-   ;; (eval-after-load 'company
-        ;;   '(progn
-        ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-        ;; invert the navigation direction if the the completion popup-isearch-match
-        ;; is displayed on top (happens near the bottom of windows)
-  (setq company-tooltip-flip-when-above t)
+     ;; (eval-after-load 'company
+          ;;   '(progn
+          ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+          ;; invert the navigation direction if the the completion popup-isearch-match
+          ;; is displayed on top (happens near the bottom of windows)
+    (setq company-tooltip-flip-when-above t)
 #+END_SRC
 ** Company-Color
 #+BEGIN_SRC emacs-lisp
