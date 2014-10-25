@@ -23,10 +23,10 @@
 
 (require 'pos-tip)
 (setq ac-setup t)
-(setq ac-quick-help-prefer-pos-tip) 
+(setq ac-quick-help-prefer-pos-tip t) 
 (setq ac-use-quick-help t)
 (setq ac-quick-help-height 25)
-(setq ac-quick-help-scroll-down)
+(setq ac-quick-help-scroll-down t)
 ;; ac-Popup background colors
 (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
 (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
@@ -44,8 +44,8 @@
 ;;(define-key ac-completing-map (kbd "<tab>") nil)
 ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
 ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-(define-key ac-completing-map [tab] 'ac-complete)
-(define-key ac-completing-map [return] nil)
+;(define-key ac-completing-map [tab] 'ac-complete)
+;(define-key ac-completing-map [return] nil)
 (define-key ac-completing-map (kbd "M-/")   'ac-stop)
 (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
 (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
@@ -165,7 +165,7 @@
 (require 'company)
 (setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
 (setq company-echo-delay 0)                          ; remove annoying blinking
-(setq company-tooltip-limit 30)
+(setq company-tooltip-limit 20)
 (setq company-minimum-prefix-length 3)
 (setq company-show-numbers t)
 (setq company-transformers '(company-sort-by-occurrence))
@@ -173,7 +173,7 @@
 (add-hook 'after-init-hook 'global-company-mode)
 ;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
 ;; M-NUM to select specific one, C-w to view its source file
-(global-set-key (kbd "C-c <tab>") 'company-complete)
+;;(global-set-key (kbd "C-c <tab>") 'company-complete)
 ;; this will show a lot of garbage, use it only necessary
 ;; (add-to-list 'company-backends 'company-ispell)
 ;(defalias 'ci 'company-ispell)
@@ -195,7 +195,7 @@
   ;; put most often used completions at stop of list
   (setq company-dabbrev-downcase nil)
   (setq company-dabbrev-ignore-case nil)
-  (setq company-dabbrev-other-buffers t)  
+;  (setq company-dabbrev-other-buffers t)  
 
    ;; (eval-after-load 'company
         ;;   '(progn
