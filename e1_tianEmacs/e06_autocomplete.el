@@ -36,7 +36,7 @@
 
 (require 'pos-tip)
   (setq ac-use-quick-help t)
-        ac-quick-help-delay 0.9 ;;     
+        ac-quick-help-delay 0.2 ;;     
 ;(setq ac-setup t)
   ; (setq ac-quick-help-height 25)
   ; (setq ac-quick-help-scroll-down t)
@@ -62,9 +62,9 @@
   ;(define-key ac-completing-map [tab] 'ac-complete)
   ;(define-key ac-completing-map [return] nil)
   (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-  (define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
-  (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
-  ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
+  (define-key ac-completing-map (kbd "M-H") 'ac-quick-help)
+  (define-key ac-mode-map (kbd "C-M-H") 'ac-last-quick-help)
+  (define-key ac-mode-map (kbd "C-H") 'ac-last-help)
 
 ;; ----------------------------------------------------------------
 ;; 0.2.0 Popup and Show color of "Colorword or Hex code" with C-c p
