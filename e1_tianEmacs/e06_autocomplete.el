@@ -55,9 +55,9 @@
 (setq ac-quick-help-prefer-pos-tip)
   (setq
 
-   ac-use-quick-help nil ;; use quick help   nil                   ; no tool tip
+   ac-use-quick-help t ;; use quick help   nil                   ; no tool tip
    ;;ac-quick-help-prefer-pos-tip t  ;; change the color background from ac to yas
-   ac-quick-help-delay 0.1 ;;
+   ac-quick-help-delay 1.5 ;;
    ac-quick-help-height 25
    ac-quick-help-scroll-down
    )
