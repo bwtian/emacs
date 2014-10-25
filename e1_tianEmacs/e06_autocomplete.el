@@ -180,7 +180,7 @@
  (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
  (setq company-echo-delay 0)                          ; remove annoying blinking
  (setq company-tooltip-limit 20)
- (setq company-minimum-prefix-length 3)
+ (setq company-minimum-prefix-length 1)
  (setq company-show-numbers t)
  (setq company-transformers '(company-sort-by-occurrence))
  (setq company-auto-complete t)
