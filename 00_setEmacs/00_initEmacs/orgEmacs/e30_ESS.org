@@ -190,6 +190,22 @@ In order to enable Emacs’ standard OutlineMode for .R files:
    (setq inlineR-default-dir "/tmp/")
    (setq inlineR-cairo-p t)
 #+END_SRC
+** R hide show
+#+BEGIN_SRC emacs-lisp
+(defun emacsmate-turn-on-r-hide-show ()
+  (when (string= "S" ess-language)
+    (set (make-local-variable 'hs-special-modes-alist) '((ess-mode "{" "}" "#" nil nil)))
+    (hs-minor-mode 1)
+    (when (fboundp 'foldit-mode)
+      (foldit-mode 1))
+    (when (fboundp 'fold-dwim-org/minor-mode)
+      (fold-dwim-org/minor-mode))))
+(add-hook 'ess-mode-hook 'emacsmate-turn-on-r-hide-show)
+#+END_SRC
+** R and org
+#+BEGIN_SRC emac-lisp
+(add-hook 'ess-mode-hook 'emacsmate-turn-on-org-table-comment-mode)
+#+END_SRC 
 ** Window
 #+BEGIN_SRC emacs-lisp
 (when (one-window-p)
