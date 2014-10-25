@@ -1,4 +1,17 @@
 
+(global-set-key "\C-o" 'hippie-expand)
+(setq hippie-expand-try-functions-list
+      '(yas/hippie-try-expand
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+
 (require 'auto-complete-config nil 'noerror)
 ;(require 'auto-complete-config)  
 ;(require 'auto-complete)
@@ -164,46 +177,34 @@
 (ac-config-default) ; make above work.
 
 (require 'company)
-(setq company-idle-delay 0.3)                         ; decrease delay before autocompletion popup shows
-(setq company-echo-delay 0)                          ; remove annoying blinking
-(setq company-tooltip-limit 20)
-(setq company-minimum-prefix-length 3)
-(setq company-show-numbers t)
-(setq company-transformers '(company-sort-by-occurrence))
-(setq company-auto-complete t)
-(add-hook 'after-init-hook 'global-company-mode)
-;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
-;; M-NUM to select specific one, C-w to view its source file
-;;(global-set-key (kbd "C-c <tab>") 'company-complete)
-;; this will show a lot of garbage, use it only necessary
-;; (add-to-list 'company-backends 'company-ispell)
-;(defalias 'ci 'company-ispell)
-(add-hook 'org-mode-hook
-                  (lambda ()
-                        (company-mode)
-                        (set (make-local-variable 'company-backends)
-                                 '((
-                                        company-dabbrev
-                                        company-dabbrev-code
-                                        company-ispell
-                                        company-files
-                                        company-yasnippet
-                                        ))
-                                 )))
-  (define-key company-mode-map "\t" nil)
-  (define-key company-mode-map [(backtab)] 'company-complete-common)     
-  ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-  ;; put most often used completions at stop of list
-  (setq company-dabbrev-downcase nil)
-  (setq company-dabbrev-ignore-case nil)
-;  (setq company-dabbrev-other-buffers t)  
+ (setq company-idle-delay 1.5)                         ; decrease delay before autocompletion popup shows
+ (setq company-echo-delay 0)                          ; remove annoying blinking
+ (setq company-tooltip-limit 20)
+ (setq company-minimum-prefix-length 3)
+ (setq company-show-numbers t)
+ (setq company-transformers '(company-sort-by-occurrence))
+ (setq company-auto-complete t)
+ (add-hook 'after-init-hook 'global-company-mode)
+ ;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
+ ;; M-NUM to select specific one, C-w to view its source file
+ ;;(global-set-key (kbd "C-c <tab>") 'company-complete)
+ ;; this will show a lot of garbage, use it only necessary
+ (add-to-list 'company-backends 'company-ispell)
+ (defalias 'ci 'company-ispell)
+(define-key company-mode-map "\t" nil)
+(define-key company-mode-map [(backtab)] 'company-complete-common)     
+   ; (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+   ;; put most often used completions at stop of list
+   (setq company-dabbrev-downcase nil)
+   (setq company-dabbrev-ignore-case nil)
+   (setq company-dabbrev-other-buffers t)  
 
-   ;; (eval-after-load 'company
-        ;;   '(progn
-        ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-        ;; invert the navigation direction if the the completion popup-isearch-match
-        ;; is displayed on top (happens near the bottom of windows)
-  (setq company-tooltip-flip-when-above t)
+    ;; (eval-after-load 'company
+         ;;   '(progn
+         ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+         ;; invert the navigation direction if the the completion popup-isearch-match
+         ;; is displayed on top (happens near the bottom of windows)
+   (setq company-tooltip-flip-when-above t)
 
 (eval-after-load "company"
   '(progn
@@ -289,6 +290,23 @@
  
 (provide 'company-quickhelp)
 
+(add-hook 'org-mode-hook
+                  (lambda ()
+                        (company-mode)
+                        (set (make-local-variable 'company-backends)
+                                 '((
+                                        company-dabbrev
+                                        company-dabbrev-code
+                                        company-ispell
+                                        company-files
+                                        company-yasnippet
+                                        ))
+                                 )))
+
+(require 'company-auctex)
+(company-auctex-init)
+(require 'auto-complete-auctex)
+
 (require 'yasnippet)
 ;;(yas/initialize)
 (yas/global-mode 1)
@@ -332,21 +350,3 @@ yas/completing-prompt))
 
 (require 'r-autoyas)
 (add-hook 'ess-mode-hook 'r-autoyas-ess-activate)
-
-;; add company-auctex
-(require 'company-auctex)
-(require 'auto-complete-auctex)
-(company-auctex-init)
-
-(global-set-key "\C-o" 'hippie-expand)
-(setq hippie-expand-try-functions-list
-      '(yas/hippie-try-expand
-        try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        try-expand-dabbrev-from-kill
-        try-complete-file-name-partially
-        try-complete-file-name
-        try-expand-all-abbrevs
-        try-expand-list try-expand-line
-        try-complete-lisp-symbol-partially
-        try-complete-lisp-symbol))
