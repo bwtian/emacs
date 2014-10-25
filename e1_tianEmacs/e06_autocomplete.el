@@ -191,8 +191,6 @@
  ;; this will show a lot of garbage, use it only necessary
  ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
  ;(defalias 'ci 'company-ispell)
-(define-key company-mode-map "\t" nil)
-(define-key company-mode-map [(backtab)] 'company-complete-common)     
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
    ;; put most often used completions at stop of list
    (setq company-dabbrev-downcase nil)
@@ -290,6 +288,21 @@
  
 (provide 'company-quickhelp)
 
+(dolist (hook (list
+               'emacs-lisp-mode-hook
+               'lisp-mode-hook
+               'lisp-interaction-mode-hook
+               'scheme-mode-hook
+               'c-mode-common-hook
+               'python-mode-hook
+               'haskell-mode-hook
+               'asm-mode-hook
+               'org-mode-hook
+             ;  'text-mode-hook
+               'emms-tag-editor-mode-hook
+               'sh-mode-hook))
+  (add-hook hook 'company-mode))
+
 (add-hook 'org-mode-hook
                   (lambda ()
                         (company-mode)
@@ -306,6 +319,32 @@
 (require 'company-auctex)
 (company-auctex-init)
 (require 'auto-complete-auctex)
+
+(define-key company-mode-map "\t" nil)
+(define-key company-mode-map [(backtab)] 'company-complete-common)     
+;; default keybinding is in company.el
+(define-key company-active-map "\e\e\e" 'company-abort)
+(define-key company-active-map (kbd "l") 'company-abort)
+(define-key company-active-map (kbd "j") 'company-select-next)
+(define-key company-active-map (kbd "k") 'company-select-previous)
+;;(define-key company-active-map (kbd "<down>") 'company-select-next)
+;;(define-key company-active-map (kbd "<up>") 'company-select-previous)
+;;(define-key company-active-map [down-mouse-1] 'ignore)
+;;(define-key company-active-map [down-mouse-3] 'ignore)
+
+(define-key company-active-map [mouse-1] 'company-complete-mouse)
+(define-key company-active-map [mouse-3] 'company-select-mouse)
+(define-key company-active-map [up-mouse-1] 'ignore)
+(define-key company-active-map [up-mouse-3] 'ignore)
+
+(define-key company-active-map "" 'company-complete-selection)
+(define-key company-active-map "" 'company-complete)
+(define-key company-active-map "\t" 'company-complete)
+
+(define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
+;(define-key company-active-map "\C-w" 'company-show-location)
+(define-key company-active-map "\C-s" 'company-search-candidates)
+(define-key company-active-map "\C-\M-s" 'company-filter-candidates)
 
 (require 'yasnippet)
 ;;(yas/initialize)
