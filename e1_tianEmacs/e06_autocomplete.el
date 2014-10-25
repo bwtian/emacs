@@ -48,7 +48,7 @@
 ;(define-key ac-completing-map [tab] 'ac-complete)
 ;(define-key ac-completing-map [return] nil)
 (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-(dgetefine-key ac-completing-map (kbd "M-h") 'ac-quick-help)
+(define-key ac-completing-map (kbd "M-h") 'ac-quick-help)
 (define-key ac-mode-map (kbd "M-H") 'ac-last-quick-help)
 ;; (define-key ac-mode-map (kbd "M-H") 'ac-last-help)
 
