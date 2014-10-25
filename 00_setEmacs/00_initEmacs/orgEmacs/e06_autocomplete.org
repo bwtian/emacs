@@ -7,7 +7,7 @@
   (require 'auto-complete)
   (load "auto-complete") 
   (global-auto-complete-mode t) ;; ac all mode
-  ;;(global-auto-composition-mode 1)
+  (global-auto-composition-mode 1)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
   (setq 
    ac-delay 0.01 ;; 0.1 fast for fisrt complete 
