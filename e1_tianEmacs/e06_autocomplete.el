@@ -364,9 +364,9 @@
                                                (interactive)
                                                (company-abort)))
 
-(require 'yasnippet)
-;;(yas/initialize)
-(yas/global-mode 1)
+(when (require 'yasnippet nil t)
+  (setq yas-trigger-key "TAB")
+  (yas-global-mode 1))
 
 ;;(require 'auto-complete-yasnippet)
 (require 'dropdown-list)

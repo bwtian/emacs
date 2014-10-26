@@ -25,7 +25,7 @@ redo : Ctrl+?, Meta+_
 (define-key global-map (kbd "C-/") 'undo)
 (define-key global-map (kbd "C-x C-/") 'redo) 
 (defalias 'redo 'undo-tree-redo)
-(global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
+;(global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
 ;;(global-set-key (kbd "C-y") 'redo) ; 【Ctrl+y】; Microsoft Windows style
 
@@ -44,3 +44,9 @@ redo : Ctrl+?, Meta+_
 (global-set-key [f1] 'cua-mode)
 #+END_SRC
 
+**  Mullti-terminal
+#+BEGIN_SRC emacs-lisp
+ (require 'sane-term)
+ (global-set-key (kbd "C-x t") 'sane-term)
+ (global-set-key (kbd "C-x T") 'sane-term-create)
+#+END_SRC
