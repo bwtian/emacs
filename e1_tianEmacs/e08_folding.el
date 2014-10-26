@@ -36,7 +36,7 @@
 (eval-after-load 'outline
   '(progn
     (require 'outline-magic)
-    (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
+    (define-key outline-minor-mode-map (kbd "<C-S-tab>") 'outline-cycle)))
 
 ;; (require 'outshine)
 ;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)

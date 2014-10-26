@@ -49,7 +49,7 @@ http://www.emacswiki.org/emacs/OutlineMagic
 (eval-after-load 'outline
   '(progn
     (require 'outline-magic)
-    (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
+    (define-key outline-minor-mode-map (kbd "<C-S-tab>") 'outline-cycle)))
 #+END_SRC
 
 *** Outshine

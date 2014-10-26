@@ -40,10 +40,10 @@
   (global-auto-composition-mode 1)
   (ac-flyspell-workaround)    ;; conflict with flyspell 
   (setq 
-        ac-auto-start 3 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
-        ac-trigger-key  "<C-tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
-        ac-delay 0.2 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
-        ac-auto-show-menu 0.3 ;; nil or ; tiem setting very import to R
+        ac-auto-start nil ; nil ;; t conflict with ESS, complete form fourth character, t=2 
+        ac-trigger-key "<C-tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
+        ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
+        ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
 
         ;;ac-show-menu-immediately-on-auto-complete t
         ;; ac-candidate-limit 25 ;; nil
@@ -57,37 +57,39 @@
 
 ** AC-Popup Tooltip
 #+BEGIN_SRC emacs-lisp
-  (require 'pos-tip)
-  (setq ac-use-quick-help t)
-        ac-quick-help-delay 0.1 ;;     
-;(setq ac-setup t)
-  ; (setq ac-quick-help-height 25)
-  ;(setq ac-quick-help-scroll-down t)
+   (require 'pos-tip)
+   (setq ac-use-quick-help t)
+   (setq ac-quick-help-delay 0.1)
+   (setq ac-quick-help-use-pos-tip-p t)
+  ; (ac-quick-help-prefer-pos-tip) 
+                                           ;(setq ac-setup t)
+     ; (setq ac-quick-help-height 25)
+     ;(setq ac-quick-help-scroll-down t)
 
-  ;; ac-Popup background colors
-  (setq ac-quick-help-prefer-pos-tip t) 
-  (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
-  (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
-  (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
+     ;; ac-Popup background colors
 
-  ;; Motion
-      ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
-  (setq ac-use-menu-map t)    ;; Keybinding
-  (setq ac-trigger-commands
-        (cons 'backward-delete-char-untabify ac-trigger-commands))  
-  (define-key ac-menu-map (kbd "C-n")         'ac-next)
-  (define-key ac-menu-map (kbd "C-p")         'ac-previous)
-  (define-key ac-completing-map "\M-n" nil) ;; was ac-next
-  (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
-  ;;(define-key ac-completing-map (kbd "<tab>") nil)
-  ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
-  ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-  ;(define-key ac-completing-map [tab] 'ac-complete)
-  ;(define-key ac-completing-map [return] nil)
-  (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-  (define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
-  (define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
-  (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
+     (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
+     (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
+     (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
+
+     ;; Motion
+         ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
+     (setq ac-use-menu-map t)    ;; Keybinding
+     (setq ac-trigger-commands
+           (cons 'backward-delete-char-untabify ac-trigger-commands))  
+     (define-key ac-menu-map (kbd "C-n")         'ac-next)
+     (define-key ac-menu-map (kbd "C-p")         'ac-previous)
+     (define-key ac-completing-map "\M-n" nil) ;; was ac-next
+     (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+     ;;(define-key ac-completing-map (kbd "<tab>") nil)
+     ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
+     ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+     ;(define-key ac-completing-map [tab] 'ac-complete)
+     ;(define-key ac-completing-map [return] nil)
+     (define-key ac-completing-map (kbd "M-/")   'ac-stop)
+     (define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
+     (define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
+     (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 #+END_SRC
 ** DONE AC-Popup-Color C-c p
 #+BEGIN_SRC emacs-lisp
@@ -235,20 +237,25 @@
 ** Invoke Company
 #+BEGIN_SRC emacs-lisp
   (require 'company)
-  (setq company-idle-delay 0)                         ; decrease delay before autocompletion popup shows
-  (setq company-echo-delay 0)                          ; remove annoying blinking
+  (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
+  (setq company-echo-delay 0)  ; remove annoying blinking
+  (setq company-display-style 'pseudo-tooltip)
   (setq company-tooltip-limit 20)
+  (setq company-auto-expand t)
+  (setq company-tooltip-delay 0)
   (setq company-minimum-prefix-length 1)
   (setq company-show-numbers t)
   (setq company-transformers '(company-sort-by-occurrence))
+  (setq company-complete-on-edit nil)
+  (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
   (setq company-auto-complete t)
   (add-hook 'after-init-hook 'global-company-mode)
   ;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
   ;; M-NUM to select specific one, C-w to view its source file
-   ;; this will show a lot of garbage, use it only necessary
+  ;; this will show a lot of garbage, use it only necessary
   ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
   ;(defalias 'ci 'company-ispell)
- ;(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+ 
     ;; put most often used completions at stop of list
     (setq company-dabbrev-downcase nil)
     (setq company-dabbrev-ignore-case nil)
@@ -402,33 +409,41 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
 
 ** Keybindings
 #+BEGIN_SRC emacs-lisp
-(define-key company-mode-map "\t" nil)
-(define-key company-mode-map [(backtab)] 'company-complete-common)     
-;(global-set-key [(control tab)] 'company-complete-common)
-;; default keybinding is in company.el
-(define-key company-active-map "\e\e\e" 'company-abort)
-(define-key company-active-map (kbd "l") 'company-abort)
-(define-key company-active-map (kbd "j") 'company-select-next)
-(define-key company-active-map (kbd "k") 'company-select-previous)
-;;(define-key company-active-map (kbd "<down>") 'company-select-next)
-;;(define-key company-active-map (kbd "<up>") 'company-select-previous)
-;;(define-key company-active-map [down-mouse-1] 'ignore)
-;;(define-key company-active-map [down-mouse-3] 'ignore)
+  ;; Table Key
+  ;(define-key company-active-map "\t" 'company-complete) 
+  (define-key company-mode-map "\t" nil)
+  (define-key company-mode-map [(backtab)] 'company-complete-common)     
+  ;(global-set-key [(control tab)] 'company-complete-common)
 
-(define-key company-active-map [mouse-1] 'company-complete-mouse)
-(define-key company-active-map [mouse-3] 'company-select-mouse)
-(define-key company-active-map [up-mouse-1] 'ignore)
-(define-key company-active-map [up-mouse-3] 'ignore)
+  ;; default keybinding is in company.el
+  (define-key company-active-map "\e\e\e" 'company-abort)
+  (define-key company-active-map (kbd "l") 'company-abort)
+  (define-key company-active-map (kbd "j") 'company-select-next)
+  (define-key company-active-map (kbd "k") 'company-select-previous)
+  ;;(define-key company-active-map (kbd "<down>") 'company-select-next)
+  ;;(define-key company-active-map (kbd "<up>") 'company-select-previous)
+  ;;(define-key company-active-map [down-mouse-1] 'ignore)
+  ;;(define-key company-active-map [down-mouse-3] 'ignore)
 
-(define-key company-active-map "" 'company-complete-selection)
-(define-key company-active-map "" 'company-complete)
-(define-key company-active-map "\t" 'company-complete)
+  (define-key company-active-map [mouse-1] 'company-complete-mouse)
+  (define-key company-active-map [mouse-3] 'company-select-mouse)
+  (define-key company-active-map [up-mouse-1] 'ignore)
+  (define-key company-active-map [up-mouse-3] 'ignore)
 
-(define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
-;(define-key company-active-map "\C-w" 'company-show-location)
-(define-key company-active-map "\C-s" 'company-search-candidates)
-(define-key company-active-map "\C-\M-s" 'company-filter-candidates)
-
+  ;(define-key company-active-map "" 'company-complete-selection) ;space
+  ;(define-key company-active-map "" 'company-complete) ; space
+  (define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
+  (define-key company-active-map "\C-w" 'company-show-location)
+  (define-key company-active-map "\C-s" 'company-search-candidates)
+  (define-key company-active-map "\C-\M-s" 'company-filter-candidates)
+  (define-key company-active-map (kbd "\C-n") 'company-select-next)
+  (define-key company-active-map (kbd "\C-p") 'company-select-previous)
+  (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
+  (define-key company-active-map (kbd "\C-v") 'company-show-location)
+  (define-key company-active-map (kbd "<tab>") 'company-complete)
+  (define-key company-active-map (kbd "\C-g") '(lambda ()
+                                                 (interactive)
+                                                 (company-abort)))
 #+END_SRC
 * yasnippet
 ** Invoke Yas
@@ -615,3 +630,9 @@ yas/completing-prompt))
 ;;; company-ESS.el ends here
 (require 'company-ess)
 #+END_SRC 
+
+* Abbreviation
+#+BEGIN_SRC emacs-lisp
+(require 'pabbrev)
+(global-pabbrev-mode)
+#+END_SRC

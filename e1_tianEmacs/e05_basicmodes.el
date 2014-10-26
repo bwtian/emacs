@@ -18,3 +18,14 @@
 (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
 ;;(global-set-key (kbd "C-y") 'redo) ; 【Ctrl+y】; Microsoft Windows style
+
+;;(cua-mode t) ;;
+(setq cua-enable-cua-keys nil)  ;; disable C-c,v,x style
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(transient-mark-mode 1) ;; No region when it is not highlighted
+(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+ ;; shift + click select region
+(define-key global-map (kbd "<S-down-mouse-1>") 'ignore) ; turn off font dialog
+;;(define-key global-map (kbd "<S-return>") 'cua-set-mark)
+(put 'mouse-set-point 'CUA 'move)
+(global-set-key [f1] 'cua-mode)

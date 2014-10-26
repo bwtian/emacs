@@ -89,9 +89,9 @@
       ;;(global-set-key [f1] 'help)   
       ;;(global-set-key [C-f1] 'manual-entry)
       ;;(global-set-key [S-f1]  'man) 
-      (global-set-key [f1]   'outline-minor-mode)
-      (global-set-key [S-f1] 'org)
-      (global-set-key [C-f1] 'flyspell-mode )          
+      ;;(global-set-key [f1]   'outline-minor-mode)
+      ;;(global-set-key [S-f1] 'org)
+      ;;(global-set-key [C-f1] 'flyspell-mode )          
       ;; ;; F2 {default::Undo}
       ;; ;;(global-set-key [f2] 'rename-file)
       ;; (global-set-key [f2] 'undo)

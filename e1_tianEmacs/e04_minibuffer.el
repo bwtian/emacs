@@ -33,6 +33,23 @@
 (add-hook 'ess-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'R-mode-hook 'turn-on-eldoc-mode)
 
+;;(setq pop-up-frames t) ;; each file opens in a new window
+  ;;popwin.el and e2wm.el  
+  (auto-image-file-mode)
+  (setq uniquify-buffer-name-style 'forward)
+  (auto-compression-mode 1)
+;;SPLIT VERTIVALLY
+;(setq split-width-threshold 0
+ ;     split-height-threshold nil)
+
+;;MARK COLUMN 80
+(require 'fill-column-indicator)
+(add-hook 'after-change-major-mode-hook
+          '(lambda ()
+             (setq fci-rule-column 80)
+             (fci-mode)))
+  ;; (setq Man-notify-method 'pushy)
+
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
@@ -49,10 +66,10 @@
       helm-candidate-number-limit 200
       helm-buffer-max-length      50)
 
-(global-set-key (kbd "C-x b") 'helm-for-files)
+(global-set-key (kbd "C-c b") 'helm-for-files)
 (global-set-key (kbd "C-;") 'helm-resume)
 (global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-c b") 'helm-descbinds)
+(global-set-key (kbd "C-c d") 'helm-descbinds)
 (global-set-key (kbd "C-c o") 'helm-occur)
 (global-set-key (kbd "C-c s") 'helm-ag)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)

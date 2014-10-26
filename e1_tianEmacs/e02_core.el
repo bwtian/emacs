@@ -39,14 +39,6 @@
 (run-with-idle-timer 300 t 'recentf-save-list)
 (run-with-idle-timer 600 t 'recentf-cleanup)
 
-;;(setq pop-up-frames t) ;; each file opens in a new window
-;;popwin.el and e2wm.el  
-(auto-image-file-mode)
-(setq uniquify-buffer-name-style 'forward)
-(auto-compression-mode 1)
-;; (setq Man-notify-method 'pushy)
-;;(setq default-abbrev-mode t)
-
 (setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe 
   (setq skeleton-pair-on-word t)
   ;;(global-set-key "("  'skeleton-pair-insert-maybe)
@@ -150,19 +142,7 @@
 (global-set-key (kbd "C-c C-a") 'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)
 
-;;(cua-mode t) ;;
-(setq cua-enable-cua-keys nil)  ;; disable C-c,v,x style
-(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
-(transient-mark-mode 1) ;; No region when it is not highlighted
-(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
- ;; shift + click select region
-(define-key global-map (kbd "<S-down-mouse-1>") 'ignore) ; turn off font dialog
-;;(define-key global-map (kbd "<S-return>") 'cua-set-mark)
-(put 'mouse-set-point 'CUA 'move)
-(global-set-key [f1] 'cua-mode)
-
 (setq default-abbrev-mode t)
 (setq transient-mark-mode t)
 (global-auto-revert-mode t)
-
 (setq read-file-name-completion-ignore-case t)
