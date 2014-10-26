@@ -67,6 +67,7 @@
   _"\n"
 "%%% Local Variables: \n"
 "%%% mode: latex \n"
+"%%% mode: outline-minor \n"
 "%%% TeX-master: \"../main\" \n"
 "%%% TeX-engine: pdflatex \n"
 "%%% TeX-PDF-mode: t \n"
