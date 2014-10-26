@@ -41,7 +41,7 @@ redo : Ctrl+?, Meta+_
 (define-key global-map (kbd "<S-down-mouse-1>") 'ignore) ; turn off font dialog
 ;;(define-key global-map (kbd "<S-return>") 'cua-set-mark)
 (put 'mouse-set-point 'CUA 'move)
-(global-set-key [f1] 'cua-mode)
+;(global-set-key [f1] 'cua-mode)
 #+END_SRC
 
 **  Mullti-terminal
