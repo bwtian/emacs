@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (color-theme-sanityinc-solarized-light color-theme-sanityinc-solarized-dark)
 ;;;;;;  "color-theme-sanityinc-solarized" "color-theme-sanityinc-solarized.el"
-;;;;;;  (21580 39992 562326 0))
+;;;;;;  (21580 40318 948109 500000))
 ;;; Generated autoloads from color-theme-sanityinc-solarized.el
 
 (when (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
@@ -24,7 +24,7 @@ Apply the light solarized theme.
 
 ;;;### (autoloads nil nil ("color-theme-sanityinc-solarized-pkg.el"
 ;;;;;;  "sanityinc-solarized-dark-theme.el" "sanityinc-solarized-light-theme.el")
-;;;;;;  (21580 39992 610150 541000))
+;;;;;;  (21580 40318 950513 865000))
 
 ;;;***
 
