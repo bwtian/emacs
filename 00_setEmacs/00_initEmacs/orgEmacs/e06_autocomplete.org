@@ -59,10 +59,10 @@
 #+BEGIN_SRC emacs-lisp
   (require 'pos-tip)
   (setq ac-use-quick-help t)
-        ac-quick-help-delay 0.4 ;;     
+        ac-quick-help-delay 0.1 ;;     
 ;(setq ac-setup t)
   ; (setq ac-quick-help-height 25)
-  ; (setq ac-quick-help-scroll-down t)
+  ;(setq ac-quick-help-scroll-down t)
 
   ;; ac-Popup background colors
   (setq ac-quick-help-prefer-pos-tip t) 
