@@ -75,7 +75,7 @@
     _"\n"
   "%%% Local Variables: \n"
   "%%% mode: latex \n"
-  "%%% TeX-master: "../main" \n"
+  "%%% TeX-master: \"../main\" \n"
   "%%% TeX-engine: pdflatex \n"
   "%%% TeX-PDF-mode: t \n"
   "%%% End: \n")
