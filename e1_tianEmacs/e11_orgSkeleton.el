@@ -68,8 +68,9 @@
 "%%% Local Variables: \n"
 "%%% mode: latex \n"
 "%%% mode: outline-minor \n"
+"%%% coding: utf-8 \n"
 "%%% TeX-master: \"../main\" \n"
-"%%% TeX-engine: pdflatex \n"
+"%%% TeX-engine: xetex \n"
 "%%% TeX-PDF-mode: t \n"
 "%%% End: \n")
  (global-set-key [C-S-f9] 'latex-skeleton)
