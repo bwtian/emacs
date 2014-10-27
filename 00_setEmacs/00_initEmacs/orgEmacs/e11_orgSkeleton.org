@@ -27,7 +27,7 @@
     "#+PROPERTY:   cache yes \n"
     "#+PROPERTY:   tangle yes \n"
     "#+DEPENDENCY:"  " \n")
-    (global-set-key [C-S-f4] 'org-skeleton)
+    (global-set-key [C-S-f1] 'org-skeleton)
 
 
     (define-skeleton comment-skeleton
@@ -123,7 +123,7 @@
     "#+NAME: fig: \n"
     "#+HEADER: :cache yes :tangle yes :exports none\n"
     "#+HEADER: :results output graphics\n"
-    "#+BEGIN_SRC dot :file ~/Dropbox/3figs/test<2014-07-28 Mon>.png \n"
+    "#+BEGIN_SRC dot :file" str" \n"
     ""
     "digraph { \n"
              "fontname=\"Times\"; \n"
@@ -136,8 +136,8 @@
              _"\n"
              "//2. set path \n"
              _"\n"
-             "//3. set rank"
-             "{rank = same; A, B}\n"
+             "//3. set rank \n"
+             "{rank = same; A, B} \n"
             "}\n"
     "" 
     "#+END_SRC\n"
