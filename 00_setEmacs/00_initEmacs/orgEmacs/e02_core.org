@@ -51,25 +51,23 @@
   
 #+END_SRC
 
-** Pairs
+
 ** Make pair of {,[ and (
 *** skeleton-pair
 #+BEGIN_SRC emacs-lisp
   (setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe 
     (setq skeleton-pair-on-word t)
-    ;;(global-set-key "("  'skeleton-pair-insert-maybe)
-    ;;(global-set-key "["  'skeleton-pair-insert-maybe)
+    (global-set-key "("  'skeleton-pair-insert-maybe)
+    (global-set-key "["  'skeleton-pair-insert-maybe)
     (global-set-key "{"  'skeleton-pair-insert-maybe)
     (global-set-key "\"" 'skeleton-pair-insert-maybe)
     (global-set-key "\%" 'skeleton-pair-insert-maybe)
     ;;(global-set-key "\;" 'skeleton-pair-insert-maybe)
     ;;(global-set-key "\'" 'skeleton-pair-insert-maybe)
-    (global-set-key "\`" 'skeleton-pair-insert-maybe)
-    (global-set-key "\:" 'skeleton-pair-insert-maybe)
+    ;;(global-set-key "\`" 'skeleton-pair-insert-maybe)
+    ;;(global-set-key "\:" 'skeleton-pair-insert-maybe)
     ;;(global-set-key "<"  'skeleton-pair-insert-maybe)
 #+END_SRC
-
-
 #+BEGIN_SRC emacs-lisp
    (electric-pair-mode t)
 #+END_SRC

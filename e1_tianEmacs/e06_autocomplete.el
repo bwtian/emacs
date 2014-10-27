@@ -20,7 +20,7 @@
 (global-auto-composition-mode 1)
 (ac-flyspell-workaround)    ;; conflict with flyspell 
 (setq 
-      ac-auto-start 2 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
+      ac-auto-start nil ; nil ;; t conflict with ESS, complete form fourth character, t=2 
       ac-trigger-key "<C-tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
       ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
@@ -180,43 +180,46 @@
 (ac-config-default) ; make above work.
 
 (require 'company)
-  (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
-  (setq company-echo-delay 0)  ; remove annoying blinking
-  (setq company-display-style 'pseudo-tooltip)
-  (setq company-tooltip-limit 20)
-  (setq company-auto-expand t)
-  (setq company-tooltip-delay 0)
-  (setq company-minimum-prefix-length 1)
-  (setq company-show-numbers t)
-  (setq company-transformers '(company-sort-by-occurrence))
-  (setq company-complete-on-edit t)
-  (setq company-begin-commands '(self-insert-command 
-                                 org-self-insert-command
-                                 c-electric-lt-gt
-                                 c-electric-colon)) ; start autocompletion only after typing
-  (setq company-auto-complete t)
-  (add-hook 'after-init-hook 'global-company-mode)
-  ;; use F1 or C-h in the drop list to show the doc, Use C-s/C-M-s to search the candidates,
-  ;; M-NUM to select specific one, C-w to view its source file
-  ;; this will show a lot of garbage, use it only necessary
-  ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
-  ;(defalias 'ci 'company-ispell)
- 
-    ;; put most often used completions at stop of list
-(setq company-backends '(company-dabbrev
-                         (company-keywords company-dabbrev-code)
-                         company-files))
-    (setq company-dabbrev-time-limit 0.1)
-    (setq company-dabbrev-downcase nil)
-    (setq company-dabbrev-ignore-case nil)
-    (setq company-dabbrev-other-buffers t)  
+ (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
+ (setq company-echo-delay 0)  ; remove annoying blinking
+ (setq company-minimum-prefix-length 3)
+ (setq company-tooltip-delay 0)
+ (setq company-display-style 'pseudo-tooltip)
+ (setq company-tooltip-limit 20)
+ (setq company-auto-expand t)
+ (setq company-auto-complete t)
 
-     ;; (eval-after-load 'company
-          ;;   '(progn
-          ;;      (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-          ;; invert the navigation direction if the the completion popup-isearch-match
-          ;; is displayed on top (happens near the bottom of windows)
-    (setq company-tooltip-flip-when-above t)
+ (setq company-show-numbers t)
+ (setq company-transformers '(company-sort-by-occurrence))
+
+ (setq company-complete-on-edit t)
+ (setq company-begin-commands '(self-insert-command 
+                                org-self-insert-command
+                                ;c-electric-lt-gt
+                                ;c-electric-colon
+                                )) ; start autocompletion only after typing
+
+ (add-hook 'after-init-hook 'global-company-mode)
+
+ ;; this will show a lot of garbage, use it only necessary
+ ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
+ ;(defalias 'ci 'company-ispell)
+
+   ;; put most often used completions at stop of list
+; (setq company-backends '(company-dabbrev
+                       ; (company-keywords company-dabbrev-code)
+                       ; company-files))
+  ; (setq company-dabbrev-time-limit 0.1)
+   (setq company-dabbrev-downcase t)
+   (setq company-dabbrev-ignore-case t)
+   (setq company-dabbrev-other-buffers t)  
+
+  (eval-after-load 'company
+            '(progn
+             (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+         ;; invert the navigation direction if the the completion popup-isearch-match
+         ;; is displayed on top (happens near the bottom of windows)
+   (setq company-tooltip-flip-when-above t)
 
 (eval-after-load "company"
   '(progn
@@ -339,13 +342,17 @@
 ;(define-key company-active-map "\t" 'company-complete) 
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
-;(global-set-key [(control tab)] 'company-complete-common)
 
 ;; default keybinding is in company.el
 (define-key company-active-map "\e\e\e" 'company-abort)
-(define-key company-active-map (kbd "l") 'company-abort)
-(define-key company-active-map (kbd "j") 'company-select-next)
-(define-key company-active-map (kbd "k") 'company-select-previous)
+(define-key company-active-map (kbd "\C-g") '(lambda ()
+                                               (interactive)
+                                               (company-abort)))
+(define-key company-active-map (kbd "\C-n") 'company-select-next)
+(define-key company-active-map (kbd "\C-p") 'company-select-previous)
+;(define-key company-active-map (kbd "l") 'company-abort)
+;(define-key company-active-map (kbd "j") 'company-select-next)
+;(define-key company-active-map (kbd "k") 'company-select-previous)
 ;;(define-key company-active-map (kbd "<down>") 'company-select-next)
 ;;(define-key company-active-map (kbd "<up>") 'company-select-previous)
 ;;(define-key company-active-map [down-mouse-1] 'ignore)
@@ -362,14 +369,9 @@
 (define-key company-active-map "\C-w" 'company-show-location)
 (define-key company-active-map "\C-s" 'company-search-candidates)
 (define-key company-active-map "\C-\M-s" 'company-filter-candidates)
-(define-key company-active-map (kbd "\C-n") 'company-select-next)
-(define-key company-active-map (kbd "\C-p") 'company-select-previous)
 (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
 (define-key company-active-map (kbd "\C-v") 'company-show-location)
-(define-key company-active-map (kbd "<tab>") 'company-complete)
-(define-key company-active-map (kbd "\C-g") '(lambda ()
-                                               (interactive)
-                                               (company-abort)))
+;(define-key company-active-map (kbd "<tab>") 'company-complete)
 
 (when (require 'yasnippet nil t)
   (setq yas-trigger-key "TAB")

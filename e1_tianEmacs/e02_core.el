@@ -41,15 +41,15 @@
 
 (setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe 
   (setq skeleton-pair-on-word t)
-  ;;(global-set-key "("  'skeleton-pair-insert-maybe)
-  ;;(global-set-key "["  'skeleton-pair-insert-maybe)
+  (global-set-key "("  'skeleton-pair-insert-maybe)
+  (global-set-key "["  'skeleton-pair-insert-maybe)
   (global-set-key "{"  'skeleton-pair-insert-maybe)
   (global-set-key "\"" 'skeleton-pair-insert-maybe)
   (global-set-key "\%" 'skeleton-pair-insert-maybe)
   ;;(global-set-key "\;" 'skeleton-pair-insert-maybe)
   ;;(global-set-key "\'" 'skeleton-pair-insert-maybe)
-  (global-set-key "\`" 'skeleton-pair-insert-maybe)
-  (global-set-key "\:" 'skeleton-pair-insert-maybe)
+  ;;(global-set-key "\`" 'skeleton-pair-insert-maybe)
+  ;;(global-set-key "\:" 'skeleton-pair-insert-maybe)
   ;;(global-set-key "<"  'skeleton-pair-insert-maybe)
 
 (electric-pair-mode t)
