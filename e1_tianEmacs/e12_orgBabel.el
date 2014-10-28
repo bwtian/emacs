@@ -50,7 +50,9 @@
 
 ;; R-babel Languages set up for windows
   (if (string-equal system-type "windows-nt")
-  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.0/bin/x64/R --slave --no-save"))
+  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.0/bin/x64/R --slave --no-save"))  
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images) 
+  (add-hook 'org-mode-hook 'org-display-inline-images)
 
 (setq org-babel-default-header-args
                    (list '(:session . "*R*")

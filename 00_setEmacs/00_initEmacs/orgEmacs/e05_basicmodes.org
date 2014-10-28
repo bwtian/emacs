@@ -10,7 +10,6 @@
   ;;      (eval-print-last-sexp))))
 #+END_SRC
 
-
 ** Undo-Tree-Mode
 http://ergoemacs.org/emacs/emacs_best_redo_mode.html
 undo : Ctrl+/, Ctrl+_ 
