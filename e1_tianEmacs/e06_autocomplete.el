@@ -182,7 +182,7 @@
 (require 'company)
  (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
  (setq company-echo-delay 0)  ; remove annoying blinking
- (setq company-minimum-prefix-length 3)
+ (setq company-minimum-prefix-length 1)
  (setq company-tooltip-delay 0)
  (setq company-display-style 'pseudo-tooltip)
  (setq company-tooltip-limit 20)
@@ -209,17 +209,10 @@
 ; (setq company-backends '(company-dabbrev
                        ; (company-keywords company-dabbrev-code)
                        ; company-files))
-  ; (setq company-dabbrev-time-limit 0.1)
-   (setq company-dabbrev-downcase t)
-   (setq company-dabbrev-ignore-case t)
-   (setq company-dabbrev-other-buffers t)  
-
-  (eval-after-load 'company
-            '(progn
-             (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
-         ;; invert the navigation direction if the the completion popup-isearch-match
-         ;; is displayed on top (happens near the bottom of windows)
-   (setq company-tooltip-flip-when-above t)
+   (setq company-dabbrev-time-limit 0.1)
+   (setq company-dabbrev-downcase nil)
+   (setq company-dabbrev-ignore-case nil)
+   (setq company-dabbrev-other-buffers t)
 
 (eval-after-load "company"
   '(progn
@@ -342,12 +335,19 @@
 ;(define-key company-active-map "\t" 'company-complete) 
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)] 'company-complete-common)     
-
+   (eval-after-load 'company
+             '(progn
+              (define-key company-mode-map (kbd "<S-tab>") 'company-complete)))
+          ;; invert the navigation direction if the the completion popup-isearch-match
+          ;; is displayed on top (happens near the bottom of windows)
+(setq company-tooltip-flip-when-above t)
 ;; default keybinding is in company.el
-(define-key company-active-map "\e\e\e" 'company-abort)
+;;(define-key company-active-map "\e\e\e" 'company-abort)
+(define-key company-active-map "\e" 'company-abort)
 (define-key company-active-map (kbd "\C-g") '(lambda ()
                                                (interactive)
                                                (company-abort)))
+(define-key company-active-map "" 'company-abort) ; space
 (define-key company-active-map (kbd "\C-n") 'company-select-next)
 (define-key company-active-map (kbd "\C-p") 'company-select-previous)
 ;(define-key company-active-map (kbd "l") 'company-abort)
