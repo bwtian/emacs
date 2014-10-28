@@ -71,20 +71,20 @@ C-c z t         zotelo-set-translator
 \zotelo{file1, file2, ...}
 \nobibliography{file1, file2, ...}
 
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 (require 'zotelo)
 (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-#+END_SRC
++END_SRC
 
 *** zotxt
 M-x org-zotxt-mode
 sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 ;; prefer completion-at-point to pcomplete
 (require 'zotxt)
 (add-hook 'org-mode-hook 'org-zotxt-mode)
 (define-key org-mode-map (kbd "C-M-i") 'completion-at-point)
-#+END_SRC
++END_SRC
 
 ** PDF Processing
 
