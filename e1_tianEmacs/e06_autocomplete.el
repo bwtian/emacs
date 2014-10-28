@@ -191,7 +191,6 @@
 
  (setq company-show-numbers t)
  (setq company-transformers '(company-sort-by-occurrence))
-
  (setq company-complete-on-edit t)
  (setq company-begin-commands '(self-insert-command 
                                 org-self-insert-command
@@ -342,8 +341,8 @@
           ;; is displayed on top (happens near the bottom of windows)
 (setq company-tooltip-flip-when-above t)
 ;; default keybinding is in company.el
-;;(define-key company-active-map "\e\e\e" 'company-abort)
-(define-key company-active-map "\e" 'company-abort)
+(define-key company-active-map "\e\e\e" 'company-abort)
+
 (define-key company-active-map (kbd "\C-g") '(lambda ()
                                                (interactive)
                                                (company-abort)))
