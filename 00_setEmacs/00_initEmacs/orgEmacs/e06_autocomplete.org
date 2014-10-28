@@ -250,7 +250,6 @@
 
     (setq company-show-numbers t)
     (setq company-transformers '(company-sort-by-occurrence))
-
     (setq company-complete-on-edit t)
     (setq company-begin-commands '(self-insert-command 
                                    org-self-insert-command
