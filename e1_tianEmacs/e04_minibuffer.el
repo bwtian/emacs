@@ -39,8 +39,8 @@
   (setq uniquify-buffer-name-style 'forward)
   (auto-compression-mode 1)
 ;;SPLIT VERTIVALLY
-;(setq split-width-threshold 0
- ;     split-height-threshold nil)
+(setq split-width-threshold 0
+     split-height-threshold nil)
 
 ;;MARK COLUMN 80
 (require 'fill-column-indicator)
