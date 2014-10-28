@@ -2,7 +2,7 @@
 |-----------------+---------------+-----------+---------+---------|
 | Settings        | auto-complete | Company   | ESS     | Default |
 |-----------------+---------------+-----------+---------+---------|
-| Complete        |           C-Tab | M-NUM     | C-c Tab | C-M-i   |
+ Complete        |           C-Tab | M-NUM     | C-c Tab | C-M-i   |
 | Delay main      |           0.2 |           |         |         |
 | Delay Menu      |           0.3 | 0         |         |         |
 | Delay Pop       |           1.5 |           |         |         |
