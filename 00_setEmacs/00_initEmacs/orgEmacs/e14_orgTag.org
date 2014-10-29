@@ -20,9 +20,10 @@
                             ("export" . ?e)
                             ("ignoreheading" . ?i)
                             (:endgroup)
+
                             (:startgroup)
                             ("@errand" . ?E)
-                            ("@office" . ?O)
+                            ("@work" . ?W)
                             ("@home" . ?H)
                             ("@farm" . ?F)
                             ("@trip" . ?T)
