@@ -98,7 +98,7 @@
     "Input R babel in org-mode"
     ""
 
-    "#+HEADER: :cache yes :tangle yes :noweb yes \n"
+    "#+HEADER: :cache yes :tangle yes :noweb yes :colnames yes :var \n"
     "#+NAME: R:figA \n"
     "#+BEGIN_SRC R :session :file ../figs/test.png :results graphics \n"
     ;;"###############################################################################\n"
