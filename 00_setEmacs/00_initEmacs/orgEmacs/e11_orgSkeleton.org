@@ -11,7 +11,9 @@
       (define-skeleton org-skeleton
       "Header info for a emacs-org file."
       "Title: "
+
       "# -*- mode: org; org-export-babel-evaluate: nil -*- \n"
+      "* Header Settings \n"
       "#+TITLE:" str " \n"
       "#+AUTHOR: Bingwei Tian\\ {\\small Kyoto University, Kyoto\\E-mail: \\texttt{bwtian@gmail.com} \\thanks{bwtian@gmail.com}\n"
       "#+EMAIL: bwtian@gmail.com\n"
