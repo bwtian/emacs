@@ -29,3 +29,7 @@
 ;;(define-key global-map (kbd "<S-return>") 'cua-set-mark)
 (put 'mouse-set-point 'CUA 'move)
 ;(global-set-key [f1] 'cua-mode)
+
+(require 'sane-term)
+(global-set-key (kbd "C-x t") 'sane-term)
+(global-set-key (kbd "C-x T") 'sane-term-create)
