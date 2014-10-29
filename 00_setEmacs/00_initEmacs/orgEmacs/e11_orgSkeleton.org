@@ -15,7 +15,7 @@
       "#+TITLE:" str " \n"
       "#+AUTHOR: Bingwei TIAN\n"
       "#+EMAIL: bwtian@gmail.com\n"
-      "#+DATE:  \\today\n"
+      "#+DATE:" \today "  \n"
       "#+OPTIONS: H:4 toc:2 num:2 \n"
       "#+STARTUP: align fold nodlcheck hidestars oddeven lognotestate inlineimages \n"
       "#+LICENSE: GPLv3 \n"
