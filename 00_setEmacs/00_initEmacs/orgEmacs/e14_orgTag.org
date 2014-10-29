@@ -22,18 +22,19 @@
                             (:endgroup)
 
                             (:startgroup)
-                            ("@plan" . ?p)
-                            ("@write" . ?w)
-                            ("@home" . ?H)
-                            ("@farm" . ?F)
-                            ("@trip" . ?T)
+                            ("@design" . ?d)
+                            ("@coding" . ?c)
+                            ("@writing" . ?w)
+                            ("@review" . ?r)
+                            ("@submit" . ?s)
+                            ("@publish" . ?P)
                             (:endgroup)
+                            
                             (:startgroup)
-                            ("@errand" . ?E)
-                            ("@work" . ?W)
-                            ("@home" . ?H)
-                            ("@farm" . ?F)
-                            ("@trip" . ?T)
+                            ("@home" . ?a)
+                            ("@work" . ?b)
+                            ("@farm" . ?f)
+                            ("@trip" . ?t)
                             (:endgroup)
 
 
@@ -43,11 +44,12 @@
                             ("@read_book" . nil)
                             ("@read_ebook" . nil)
                             (:endgroup . nil)
-                            ("TODO" . ?t)
-                            ("WAITING" . ?w)
-                            ("HOLD" . ?h)
 
-                           
+                            ("TODO" . ?T)
+                            ("HOLD" . ?H)
+                            ("FIXT" . ?F)
+                            ("DONE" . ?D)                           
+                            ("CACELLED" . ?C)                           
                             ("FLAGGED" . ??))))
 
 ; Allow setting single tags without the menu
