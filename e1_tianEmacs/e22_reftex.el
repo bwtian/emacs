@@ -40,14 +40,6 @@
 
 (add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
 
-(require 'zotelo)
-(add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-
-;; prefer completion-at-point to pcomplete
-(require 'zotxt)
-(add-hook 'org-mode-hook 'org-zotxt-mode)
-(define-key org-mode-map (kbd "C-M-i") 'completion-at-point)
-
 (setq org-latex-pdf-process
           '("pdflatex -interaction nonstopmode -output-directory %o %f"
             "bibtex %b"
