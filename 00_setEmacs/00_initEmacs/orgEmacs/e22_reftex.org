@@ -48,6 +48,7 @@ C-c [
 #+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
 (setq reftex-plug-into-AUCTeX t)
+(setq reftex-plug-into-auctex t)
 #+END_SRC
 ** Rnw mode
 #+BEGIN_SRC emacs-lisp
