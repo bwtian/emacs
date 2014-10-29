@@ -41,6 +41,7 @@
       "#+END_ABSTRACT\n"
    )
       (global-set-key [C-S-f1] 'org-skeleton)
+#+END_SRC
   (define-skeleton latex-skeleton
     "Default LaTeX file initial contents."
     "Title: "
@@ -208,4 +209,4 @@
       "#+RESULTS: dot:"str" \n"
       )
       (global-set-key [C-S-f12] 'dot-skeleton)
-#+END_SRC
+
