@@ -6,7 +6,7 @@
   :ARCHIVE_OLPATH: e02_core.org/Org-mode-core
   :ARCHIVE_CATEGORY: e11_org-skeleton
   :END:
-#+BEGIN_SRC emacs-lisp
+
       ;; C-c C-e t
       (define-skeleton org-skeleton
       "Header info for a emacs-org file."
@@ -41,7 +41,7 @@
       "#+END_ABSTRACT\n"
    )
       (global-set-key [C-S-f1] 'org-skeleton)
-#+END_SRC
+#+BEGIN_SRC emacs-lisp
   (define-skeleton latex-skeleton
     "Default LaTeX file initial contents."
     "Title: "
@@ -209,4 +209,4 @@
       "#+RESULTS: dot:"str" \n"
       )
       (global-set-key [C-S-f12] 'dot-skeleton)
-
+#+END_SRC
