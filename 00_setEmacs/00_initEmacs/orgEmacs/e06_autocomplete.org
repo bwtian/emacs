@@ -240,10 +240,11 @@
 #+BEGIN_SRC emacs-lisp
     (require 'company)
     (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
-;    (setq company-echo-delay 0)  ; remove annoying blinking
     (setq company-minimum-prefix-length 3)
+
     (setq company-tooltip-delay 0)
-    (setq company-display-style 'pseudo-tooltip)
+    ;(setq company-echo-delay 0)  ; remove annoying blinking
+    ;(setq company-display-style 'pseudo-tooltip)
     (setq company-tooltip-limit 20)
     (setq company-auto-expand t)
     (setq company-auto-complete t)
@@ -397,7 +398,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                                    '((
                                           company-dabbrev
                                           company-dabbrev-code
-                                          company-ispell
+                                          ;company-ispell
                                           company-files
                                           company-yasnippet
                                           ))
