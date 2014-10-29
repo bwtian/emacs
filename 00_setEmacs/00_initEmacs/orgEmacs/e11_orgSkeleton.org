@@ -89,6 +89,7 @@
     "#+CAPTION: \n"
     "#+NAME: fig:study-area  \n"
     "#+NAME: tab:basic-data  \n"
+    "#+tblname: basic-data \n"
 
     )
     (global-set-key [C-S-f10] 'fig-skeleton)
