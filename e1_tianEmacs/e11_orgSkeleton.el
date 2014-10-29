@@ -1,4 +1,39 @@
 
+;; C-c C-e t
+    (define-skeleton org-skeleton
+    "Header info for a emacs-org file."
+    "Title: "
+    "# -*- mode: org; org-export-babel-evaluate: nil -*- \n"
+    "#+TITLE:" str " \n"
+    "#+AUTHOR: Bingwei Tian\\ {\\small Kyoto University, Kyoto\\E-mail: \\texttt{bwtian@gmail.com} \\thanks{bwtian@gmail.com}\n"
+    "#+EMAIL: bwtian@gmail.com\n"
+    "#+DATE: {\\today} \n"
+    "#+OPTIONS: H:4 toc:2 num:2 \n"
+    "#+COLUMNS: %25ITEM %TAGS %PRIORITY %T \n"
+    "#+STARTUP: align fold nodlcheck hidestars oddeven lognotestate inlineimages \n"
+    "#+BABEL: :session *R* :cache yes :tangle yes :exports both \n"
+    "#+LICENSE: GPLv3 \n"
+    "#+LASTEDIT:  \n"
+    "#+PROPERTY:   tangle yes \n"
+    "#+DEPENDENCY: \n"
+    "#INFOJS_OPT: \n"
+    "#+LaTeX_CLASS: article \n"
+    "#+LaTeX_CLASS_OPTIONS: [a4paper,times,12pt,listings-bw,microtype] \n"
+    "#+LATEX_HEADER: \\usepackage{longtable,tabulary,booktabs,threeparttable,tabularx,graphicx,float,wrapfig,url,underscore} \n"
+    "#+LaTeX_HEADER: \\usepackage{parnotes,amsmath,amssymb,marvosym,wasysym} \n"
+    "#+LATEX_HEADER: \\usepackage[citestyle=authoryear-icomp,bibstyle=authoryear,hyperref=true,maxcitenames=3,url=true,backend=biber,natbib=true]{biblatex} \n"
+    "#+LATEX_HEADER: \\usepackage[section,below]{placeins} \n"
+    "#+LaTeX_HEADER: \\usepackage[dvipsnames,svgnames,table]{xcolor} \n"
+    "#+LaTeX_HEADER: \\usepackage[innermargin=1.5in,outermargin=1.25in,vmargin=1.25in]{geometry} \n"
+    "#+LATEX_HEADER: \\usepackage[nomain,acronym,xindy,toc]{glossaries}\n"
+    "#+LATEX_HEADER: \\hypersetup{colorlinks=true,citecolor=blue,linkcolor=blue,citebordercolor={0 1 0},linktocpage,pdfstartview=FitH,anchorcolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue} \n"
+    "#+LATEX_HEADER: \\linespread{1.3} \n"
+    "#+BEGIN_ABSTRACT\n"
+    "Abstract：\n"
+    "#+END_ABSTRACT\n"
+ )
+    (global-set-key [C-S-f1] 'org-skeleton)
+
 (define-skeleton latex-skeleton
   "Default LaTeX file initial contents."
   "Title: "
