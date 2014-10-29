@@ -27,8 +27,52 @@
     "#+PROPERTY:   cache yes \n"
     "#+PROPERTY:   tangle yes \n"
     "#+DEPENDENCY:"  " \n")
-    (global-set-key [C-S-f1] 'org-skeleton)
+    "#+LaTeX_CLASS:article\n"
+    "#+BEGIN_ABSTRACT\n"
+    "Abstract：\n"
+    "#+END_ABSTRACT\n"
 
+   "#INFOJS_OPT: \n"
+  "#+BABEL: :session *R* :cache yes :results output graphics :exports both :tangle yes \n"
+    (global-set-key [C-S-f1] 'org-skeleton)
+(define-skeleton latex-skeleton
+  "Default LaTeX file initial contents."
+  "Title: "
+  "\\documentclass[a4paper]{article}\n\n"
+  "\\title{}\n"
+  "\\author{Bingwei Tian\\thanks{bwtian@gmail.com}}\n"
+  "\\date{\\today}\n\n"
+  "\\begin{document}\n\n"
+  "\\maketitle\n"
+  "\\begin{abstract}\n\n"
+  "\\end{abstract}\n\n"
+  "%\\tableofcontents\n\n"
+  "\\section{Introduction}\n\n"
+  "\\bibliography{}\n\n"
+  "\\end{document}\n\n"
+ )
+(global-set-key [C-S-f2] 'latex-skeleton)
+(define-skeleton rnw
+  "Default rnw file initial contents."
+  "Title: "
+  "\\documentclass[a4paper]{artie}\n\n"
+  "\\title{}\n"
+  "\\author{Bingwei Tian\\thanks{bwtian@gmail.com}}\n"
+  "\\date{\\today}\n\n"
+  "\\begin{document}\n\n"
+  "\\maketitle\n"
+  "\\begin{abstract}\n\n"
+  "\\end{abstract}\n\n"
+  "%\\tableofcontents\n\n"
+  "<<setup,include=FALSE>>=\n"
+  "opts_chunk$set(echo=FALSE,results='asis',fig.align='center',fig.width=8,out.width='.8\\\\paperwidth',fig.pos='!ht',warning=FALSE)
+knit_hooks$set(crop = hook_pdfcrop)\n"
+  "@\n\n"
+  "\\section{Introduction}\n\n"
+  "\\bibliography{}\n\n"
+  "\\end{document}\n\n"
+ )
+(global-set-key [C-S-f3] 'rnw)
 
     (define-skeleton comment-skeleton
     "Input #+BEGIN_COMMENT #+END_COMMENT in org-mode"
