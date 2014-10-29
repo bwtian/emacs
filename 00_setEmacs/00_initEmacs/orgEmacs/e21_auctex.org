@@ -70,6 +70,13 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
                    ;;(setq TeX-close-quote "~»")
               (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))
 #+END_SRC
+** Highlighting
+#+BEGIN_SRC emacs-lisp
+ (require 'magic-latex-buffer)
+ (add-hook 'latex-mode-hook 'magic-latex-buffer)
+
+#+END_SRC
+
 ** Use latexmk for compilation by default
 #+srcname: latemkdefault
 (eval-after-load "tex"
@@ -361,9 +368,3 @@ C-c C-f C-c  插入小型大写文本
 
 C-c C-f C-d  删除字体信息 
 
-** Highlighting
-#+BEGIN_SRC emacs-lisp
- (require 'magic-latex-buffer)
- (add-hook 'latex-mode-hook 'magic-latex-buffer)
-
-#+END_SRC
