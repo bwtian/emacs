@@ -31,6 +31,8 @@
         "#+BABEL: :session *R* :cache yes :tangle yes :exports both \n"
         "#+COLUMNS: %25ITEM %TAGS %PRIORITY %T \n"
         "#+PROPERTY: noweb yes \n"
+        "#+EXPORT_SELECT_TAGS:  \n"
+        "#+EXPORT_EXCLUDE_TAGS:  noexport \n"
         
         "** Latex Export \n"
         "#+LaTeX_CLASS: article \n"
