@@ -15,7 +15,7 @@
         "* Header Settings   :noexport: \n"
         "** File Info \n"
         "#+TITLE:" str " \n"
-        "#+AUTHOR: Bingwei Tian  \\thanks{bwtian@gmail.com} \\\~ \small Kyoto University, Kyoto, Japan \n"
+        "#+AUTHOR: Bingwei Tian  \\thanks{bwtian@gmail.com}\\\  \small Kyoto University, Kyoto, Japan \n"
         "#+EMAIL: bwtian@gmail.com \n"
         "#+LICENSE: GPLv3 \n"
         "#+DATE: \n"
