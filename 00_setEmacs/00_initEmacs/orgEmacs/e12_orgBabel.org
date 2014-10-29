@@ -61,7 +61,7 @@ I    #+INCLUDE: line
   (setq org-confirm-babel-evaluate nil) ;;; Do not prompt to confirm evaluation
 
   ;;;; Use the current window for indirect buffer display
-  (setq org-indirect-buffer-display 'current-window)
+  ;;(setq org-indirect-buffer-display 'current-window)
   (setq org-src-window-setup 'current-window) ;; After C-c '
   (setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
  
@@ -77,9 +77,7 @@ I    #+INCLUDE: line
 
 ;; R-babel Languages set up for windows
   (if (string-equal system-type "windows-nt")
-  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.0/bin/x64/R --slave --no-save"))  
-  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images) 
-  (add-hook 'org-mode-hook 'org-display-inline-images)
+  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.1bin/x64/R --slave --no-save"))  
 #+END_SRC
 ;; Face for Babel
   ;; (defface org-block-begin-line
@@ -94,7 +92,7 @@ I    #+INCLUDE: line
   ;;   '((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
   ;;   "Face used for the line delimiting the end of source blocks.")
 ** Babel Headers
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
 (setq org-babel-default-header-args
 		   (list '(:session . "*R*")
 			 '(:eval . ,(if (getopt "evaluate") "yes" "no"))
@@ -107,4 +105,4 @@ I    #+INCLUDE: line
 			 '(:padnewline . "yes")
 			 ))
 
-#+END_SRC
++END_SRC

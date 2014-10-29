@@ -12,29 +12,29 @@
     (org         . t)
     (latex       . t)
     (python      . t)
-    (ruby        . t)
-    (perl        . t)
-    (js          . t)
-    (scheme      . t)
-    (C           . t)
-    (clojure     . t)
+    ;;(ruby        . t)
+    ;;(perl        . t)
+   ;; (js          . t)
+    ;;(scheme      . t)
+    ;;(C           . t)
+    ;;(clojure     . t)
     (dot         . t)
-    (lilypond    . t)
-    (octave      . t)
-    (gnuplot     . t)
-    (screen      . nil)
+    ;;(lilypond    . t)
+    ;;(octave      . t)
+    ;;(gnuplot     . t)
+    ;;(screen      . nil)
    ; (shell       . t) ;; not work
-    (sql         . nil)
-    (sqlite      . t)
+    ;;(sql         . nil)
+    ;;(sqlite      . t)
     (ditaa       . t)
-    (plantuml    . t)
+    ;;(plantuml    . t)
     ))
   
 
   (setq org-confirm-babel-evaluate nil) ;;; Do not prompt to confirm evaluation
 
   ;;;; Use the current window for indirect buffer display
-  (setq org-indirect-buffer-display 'current-window)
+  ;;(setq org-indirect-buffer-display 'current-window)
   (setq org-src-window-setup 'current-window) ;; After C-c '
   (setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
  
@@ -50,18 +50,4 @@
 
 ;; R-babel Languages set up for windows
   (if (string-equal system-type "windows-nt")
-  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.0/bin/x64/R --slave --no-save"))  
-  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images) 
-  (add-hook 'org-mode-hook 'org-display-inline-images)
-
-(setq org-babel-default-header-args
-                   (list '(:session . "*R*")
-                         '(:eval . ,(if (getopt "evaluate") "yes" "no"))
-                         '(:results . "output replace")
-                         '(:exports . "both")
-                         '(:cache . "yes")
-                         '(:noweb . "yes")
-                         '(:hlines . "no")
-                         '(:tangle . "no")
-                         '(:padnewline . "yes")
-                         ))
+  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.1bin/x64/R --slave --no-save"))
