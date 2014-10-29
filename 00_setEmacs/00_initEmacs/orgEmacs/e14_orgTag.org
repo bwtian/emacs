@@ -17,7 +17,7 @@
 #+BEGIN_SRC emacs-lisp
 (setq org-tag-alist (quote ((:startgroup)
                             ("noexport" . ?n)
-                            ("export" . ?e)
+                            ("export" . ?e)3
                             ("ignoreheading" . ?i)
                             (:endgroup)
 
@@ -28,6 +28,7 @@
                             ("@review" . ?r)
                             ("@submit" . ?s)
                             ("@publish" . ?P)
+                            ("@update" . ?u)
                             (:endgroup)
                             
                             (:startgroup)
