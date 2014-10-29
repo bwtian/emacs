@@ -98,11 +98,10 @@
     (define-skeleton R-skeleton
     "Input R babel in org-mode"
     ""
-
     "#+HEADER: :cache yes :tangle yes :noweb yes :colnames yes :var \n"
     "#+HEADER: :export both :results output graphics :width 400 :height 300\n"
-    "#+NAME: R:figA \n"
-    "#+BEGIN_SRC R :session :file ../figs/test.png  \n"
+    "#+NAME: R:"str" \n"
+    "#+BEGIN_SRC R :session :file ./"str".png  \n"
     ;;"###############################################################################\n"
     ;;"## R code chunk:\n"
     ;;"###############################################################################\n"
@@ -113,8 +112,8 @@
     "#+END_SRC\n"
 
     "#+CAPTION: Table/figure name Out put of above code\n"
-    "#+NAME: fig:A  \n"
-    "#+RESULTS: R:figA  \n"
+    "#+NAME: fig:"str"  \n"
+    "#+RESULTS: R:"str"  \n"
     )
     (global-set-key [C-S-f11] 'R-skeleton)
 
