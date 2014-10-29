@@ -7,7 +7,7 @@
     "#+TITLE:" str " \n"
     "#+AUTHOR: Bingwei TIAN\n"
     "#+EMAIL: bwtian@gmail.com\n"
-    "#+DATE:" {\\today}" \n"
+    "#+DATE: {\\today} \n"
     "#+OPTIONS: H:4 toc:2 num:2 \n"
     "#+STARTUP: align fold nodlcheck hidestars oddeven lognotestate inlineimages \n"
     "#+LICENSE: GPLv3 \n"
@@ -105,7 +105,7 @@ knit_hooks$set(crop = hook_pdfcrop)\n"
     "========================================================\n")
     (global-set-key [C-S-f8] 'markdown-skeleton)
 
-    (define-skeleton latex-skeleton
+    (define-skeleton latexEnd-skeleton
     "Input end to latex sub file"
     ""
     _"\n"
@@ -117,7 +117,7 @@ knit_hooks$set(crop = hook_pdfcrop)\n"
   "%%% TeX-engine: xetex \n"
   "%%% TeX-PDF-mode: t \n"
   "%%% End: \n")
-   (global-set-key [C-S-f9] 'latex-skeleton)
+   (global-set-key [C-S-f9] 'latexEnd-skeleton)
 
     (define-skeleton fig-skeleton
     "Input NAME and CAPTION in org-mode"
@@ -126,7 +126,14 @@ knit_hooks$set(crop = hook_pdfcrop)\n"
     "#+NAME: fig:study-area  \n"
     "#+NAME: tab:basic-data  \n"
     "#+tblname: basic-data \n"
-
+    "\\begin{table}[h!]\n"
+    "\\centering\n"
+    "  \\caption{}\n"
+    "  \\label{tab:}\n"
+    "<<>>=\n"
+    "kable(,row.names=FALSE,booktabs=TRUE)\n"
+    "@\n"
+    "\\end{table}\n"
     )
     (global-set-key [C-S-f10] 'fig-skeleton)
 
