@@ -166,16 +166,31 @@ If there is still something left do do start the next latex-command."
 #+BEGIN_SRC emacs-lisp
   ;;(require 'latex-pretty-symbols)
 #+END_SRC
-** Default Programs for preview 
+** preview 
 #+BEGIN_SRC emacs-lisp
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Use Okular as the pdf viewer. Build okular 
-  ;; command, so that Okular jumps to the current line 
-  ;; in the viewer.
-  (setq TeX-view-program-selection
-   '((output-pdf "PDF Viewer")))
-  (setq TeX-view-program-list
-   '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Use Okular as the pdf viewer. Build okular 
+    ;; command, so that Okular jumps to the current line 
+    ;; in the viewer.
+    ;; (setq TeX-view-program-selection
+    ;;  '((output-pdf "PDF Viewer")))
+    ;; (setq TeX-view-program-list
+    ;;  '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(LaTeX-indent-level 4)
+   '(TeX-PDF-mode t)
+   '(TeX-engine (quote xetex))
+   '(TeX-source-correlate-method (quote synctex))
+   '(TeX-source-correlate-mode t)
+   '(TeX-source-correlate-start-server t)
+   '(TeX-view-program-list (quote (("Okular" "okular --unique %o#src:%n%b"))))
+   '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
+   '(show-paren-mode t))
+
 #+END_SRC  
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     (setq TeX-view-program-list
