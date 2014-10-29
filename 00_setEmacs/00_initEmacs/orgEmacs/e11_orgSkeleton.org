@@ -38,7 +38,8 @@
       "#+LATEX_HEADER: \linespread{1.3} \n"
       "#+BEGIN_ABSTRACT\n"
       "Abstract：\n"
-      "#+END_ABSTRACT\n")
+      "#+END_ABSTRACT\n"
+   )
       (global-set-key [C-S-f1] 'org-skeleton)
   (define-skeleton latex-skeleton
     "Default LaTeX file initial contents."
