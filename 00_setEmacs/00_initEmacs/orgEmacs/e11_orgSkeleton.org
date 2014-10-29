@@ -98,12 +98,12 @@
     "Input R babel in org-mode"
     ""
 
-    "#+HEADER: :cache yes :tangle yes\n"
-    "#+NAME: r:figA \n"
-    "#+BEGIN_SRC R :session :file ~/Dropbox/3figs/iamg/preffix-.png :results graphics\n"
-    "###############################################################################\n"
-    "## R code chunk:\n"
-    "###############################################################################\n"
+    "#+HEADER: :cache yes :tangle yes :noweb yes \n"
+    "#+NAME: R:figA \n"
+    "#+BEGIN_SRC R :session :file ../figs/test.png :results graphics \n"
+    ;;"###############################################################################\n"
+    ;;"## R code chunk:\n"
+    ;;"###############################################################################\n"
     ;; "#+ Rmd chunk \n"
     ;; "#' R Spin comments \n"
     _"\n"
@@ -112,7 +112,7 @@
 
     "#+CAPTION: Table/figure name Out put of above code\n"
     "#+NAME: fig:A  \n"
-    "#+RESULTS: r:figA  \n"
+    "#+RESULTS: R:figA  \n"
     )
     (global-set-key [C-S-f11] 'R-skeleton)
 
