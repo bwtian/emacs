@@ -11,13 +11,12 @@
       (define-skeleton org-skeleton
       "Header info for a emacs-org file."
       "Title: "
-
       "# -*- mode: org; org-export-babel-evaluate: nil -*- \n"
       "* Header Settings \n"
       "#+TITLE:" str " \n"
-      "#+AUTHOR: Bingwei Tian\\ {\\small Kyoto University, Kyoto\\E-mail: \\texttt{bwtian@gmail.com} \\thanks{bwtian@gmail.com}\n"
+      "#+AUTHOR: Bingwei Tian  \\thanks{bwtian@gmail.com} \\\~ \small Kyoto University, Kyoto, Japan \n"
       "#+EMAIL: bwtian@gmail.com\n"
-      "#+DATE: {\\today} \n"
+      "#+DATE: \\today \n"
       "#+OPTIONS: H:4 toc:2 num:2 \n"
       "#+COLUMNS: %25ITEM %TAGS %PRIORITY %T \n"
       "#+STARTUP: align fold nodlcheck hidestars oddeven lognotestate inlineimages \n"
