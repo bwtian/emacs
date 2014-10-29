@@ -21,7 +21,8 @@
   (autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil) 
   (autoload 'reftex-citation "reftex-cite" "Make citation" nil) 
   (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t) 
-
+(setq reftex-toc-split-windows-horizontally t) 
+(setq reftex-toc-split-windows-horizontally-fraction 0.15)   
 #+END_SRC
 ** org-mode: reftex, cdlatex, pdflatex
 #+BEGIN_SRC emacs-lisp

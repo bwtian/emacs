@@ -7,6 +7,16 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
 | org-latex-to-pdf-process | org-latex-pdf-process |
 | org-export-latex-classes | org-latex-classes     |
 
+
+** Default setting
+#+BEGIN_SRC emacs-lisp
+ (setq org-latex-pdf-process
+       '("pdflatex %f" "pdflatex %f" "pdflatex %f"))
+(setq org-latex-default-class "koma-article")
+#+END_SRC
+(setq org-latex-to-pdf-process
+'("xelatex -interaction nonstopmode %b"
+"xelatex -interaction nonstopmode %b"))
 ** Define article class
 #+BEGIN_SRC emacs-lisp
    (setq org-latex-classes '(
@@ -77,10 +87,4 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
                               ("\\paragraph{%s}" . "\\paragraph*{%s}")
                               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
                              ))
-#+END_SRC
-** Default setting
-#+BEGIN_SRC emacs-lisp
- (setq org-latex-pdf-process
-       '("pdflatex %f" "pdflatex %f" "pdflatex %f"))
-(setq org-latex-default-class "koma-article")
 #+END_SRC
