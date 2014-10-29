@@ -11,7 +11,7 @@
 
 (setq org-tag-alist (quote ((:startgroup)
                             ("noexport" . ?n)
-                            ("export" . ?e)3
+                            ("export" . ?e)
                             ("ignoreheading" . ?i)
                             (:endgroup)
 
