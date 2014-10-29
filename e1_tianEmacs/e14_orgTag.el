@@ -14,13 +14,23 @@
                             ("export" . ?e)
                             ("ignoreheading" . ?i)
                             (:endgroup)
+
                             (:startgroup)
-                            ("@errand" . ?E)
-                            ("@office" . ?O)
+                            ("@plan" . ?p)
+                            ("@write" . ?w)
                             ("@home" . ?H)
                             ("@farm" . ?F)
                             ("@trip" . ?T)
                             (:endgroup)
+                            (:startgroup)
+                            ("@errand" . ?E)
+                            ("@work" . ?W)
+                            ("@home" . ?H)
+                            ("@farm" . ?F)
+                            ("@trip" . ?T)
+                            (:endgroup)
+
+
                             (:startgroup . nil)
                             ("@read" . nil)
                             (:grouptags . nil)
@@ -30,14 +40,8 @@
                             ("TODO" . ?t)
                             ("WAITING" . ?w)
                             ("HOLD" . ?h)
-                            ("PERSONAL" . ?P)
-                            ("WORK" . ?W)
-                            ("FARM" . ?F)
-                            ("ORG" . ?O)
-                            ("NORANG" . ?N)
-                            ("crypt" . ?E)
-                            ("NOTE" . ?n)
-                            ("CANCELLED" . ?c)
+
+                           
                             ("FLAGGED" . ??))))
 
 ; Allow setting single tags without the menu

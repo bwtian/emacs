@@ -180,38 +180,39 @@
 (ac-config-default) ; make above work.
 
 (require 'company)
-    (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
-;    (setq company-echo-delay 0)  ; remove annoying blinking
-    (setq company-minimum-prefix-length 3)
-    (setq company-tooltip-delay 0)
-    (setq company-display-style 'pseudo-tooltip)
-    (setq company-tooltip-limit 20)
-    (setq company-auto-expand t)
-    (setq company-auto-complete t)
+ (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
+ (setq company-minimum-prefix-length 3)
 
-    (setq company-show-numbers t)
-    (setq company-transformers '(company-sort-by-occurrence))
-    (setq company-complete-on-edit t)
-    (setq company-begin-commands '(self-insert-command 
-                                   org-self-insert-command
-                                   ;c-electric-lt-gt
-                                   ;c-electric-colon
-                                   )) ; start autocompletion only after typing
+ (setq company-tooltip-delay 0)
+ ;(setq company-echo-delay 0)  ; remove annoying blinking
+ ;(setq company-display-style 'pseudo-tooltip)
+ (setq company-tooltip-limit 20)
+ (setq company-auto-expand t)
+ (setq company-auto-complete t)
 
-    (add-hook 'after-init-hook 'global-company-mode)
+ (setq company-show-numbers t)
+ (setq company-transformers '(company-sort-by-occurrence))
+ (setq company-complete-on-edit t)
+ (setq company-begin-commands '(self-insert-command 
+                                org-self-insert-command
+                                ;c-electric-lt-gt
+                                ;c-electric-colon
+                                )) ; start autocompletion only after typing
 
-    ;; this will show a lot of garbage, use it only necessary
-    ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
-    ;(defalias 'ci 'company-ispell)
-   
-      ;; put most often used completions at stop of list
-   ; (setq company-backends '(company-dabbrev
-                          ; (company-keywords company-dabbrev-code)
-                          ; company-files))
-      (setq company-dabbrev-time-limit 0.1)
-      (setq company-dabbrev-downcase nil)
-      (setq company-dabbrev-ignore-case nil)
-      (setq company-dabbrev-other-buffers t)
+ (add-hook 'after-init-hook 'global-company-mode)
+
+ ;; this will show a lot of garbage, use it only necessary
+ ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
+ ;(defalias 'ci 'company-ispell)
+
+   ;; put most often used completions at stop of list
+; (setq company-backends '(company-dabbrev
+                       ; (company-keywords company-dabbrev-code)
+                       ; company-files))
+   (setq company-dabbrev-time-limit 0.1)
+   (setq company-dabbrev-downcase nil)
+   (setq company-dabbrev-ignore-case nil)
+   (setq company-dabbrev-other-buffers t)
 
 (eval-after-load "company"
   '(progn
@@ -320,7 +321,7 @@
                                  '((
                                         company-dabbrev
                                         company-dabbrev-code
-                                        company-ispell
+                                        ;company-ispell
                                         company-files
                                         company-yasnippet
                                         ))
