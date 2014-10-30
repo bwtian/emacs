@@ -85,10 +85,17 @@ C-c M-s         (org-screenshot-take)
     (if (face-underline-p 'org-link)
         (set-face-underline-p 'org-link nil)
         (set-face-underline-p 'org-link t))
+'(org-export-latex-inline-image-extensions (quote ("pdf" "jpeg" "jpg" 
+"png" "ps" "eps" "svg")))
     (call-interactively 'iimage-mode))
   ;; I have this function bound to C-l with a call like this:
   (define-key org-mode-map (kbd "C-S-a") 'org-archive-subtree)
-
+  (defun my-svg-graphics (contents backend info)
+  (when (eq backend 'latex)
+  (replace-regexp-in-string "\\`\\\\includegraphics.+\\({.+\.svg}\\)"
+       "\\\\includesvg\1" contents))
+)
+(add-to-list 'org-export-filter-link-functions 'my-svg-graphics)
 
     ;; (defun do-org-show-all-inline-images ()
     ;; (interactive)

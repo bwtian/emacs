@@ -13,6 +13,7 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
  (setq org-latex-pdf-process
        '("pdflatex %f" "pdflatex %f" "pdflatex %f"))
 (setq org-latex-default-class "koma-article")
+
 #+END_SRC
 (setq org-latex-to-pdf-process
 '("xelatex -interaction nonstopmode %b"
@@ -27,6 +28,8 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
                               ("\\section{%s}" . "\\section*{%s}")
                               ("\\subsection{%s}" . "\\subsection*{%s}")
                               ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+
+
                              ("org-article"
                               "\\documentclass{org-article}
    [NO-DEFAULT-PACKAGES]
@@ -37,6 +40,8 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
                               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                               ("\\paragraph{%s}" . "\\paragraph*{%s}")
                               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+
+
                              ("article"
                               "\\documentclass{article}"
                               ("\\section{%s}" . "\\section*{%s}")
@@ -44,6 +49,8 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
                               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                               ("\\paragraph{%s}" . "\\paragraph*{%s}")
                               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+
+
                              ("koma-article"
                               "\\documentclass{scrartcl}"
   ;; [NO-DEFAULT-PACKAGES]
