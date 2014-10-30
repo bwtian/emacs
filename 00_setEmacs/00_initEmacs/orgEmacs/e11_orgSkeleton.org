@@ -36,7 +36,7 @@
       "** Latex Export \n"
       "#+LaTeX_CLASS: article \n"
       "#+LaTeX_CLASS_OPTIONS: [a4paper,times,12pt,listings-bw,microtype] \n"
-      "#+LATEX_HEADER: \\usepackage{longtable,tabulary,booktabs,threeparttable,tabularx,graphicx,float,wrapfig,url,underscore} \n"
+      "#+LATEX_HEADER: \\usepackage{longtable,tabulary,booktabs,threeparttable,tabularx,graphicx, svg, float,wrapfig,url,underscore} \n"
       "#+LaTeX_HEADER: \\usepackage{parnotes,amsmath,amssymb,marvosym,wasysym} \n"
       "#+LATEX_HEADER: \\usepackage[citestyle=authoryear-icomp,bibstyle=authoryear,hyperref=true,maxcitenames=3,url=true,backend=biber,natbib=true]{biblatex} \n"
       "#+LATEX_HEADER: \\usepackage[section,below]{placeins} \n"
