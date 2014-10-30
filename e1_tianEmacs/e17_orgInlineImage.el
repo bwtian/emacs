@@ -1,8 +1,5 @@
-** Org Inline images
-C-c C-x C-v     (org-toggle-inline-images)
-C-c M-s         (org-screenshot-take)
-#+BEGIN_SRC emacs-lisp
-    ;; Inline Images 
+
+;; Inline Images 
     (add-hook 'org-mode-hook 'org-display-inline-images) 
     ;; Inline Images for Babel
     (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)   
@@ -49,4 +46,3 @@ C-c M-s         (org-screenshot-take)
     ;;               'do-org-show-all-inline-images)
 
     ;; (setq org-export-htmlize-output-type 'css)
-#+END_SRC
