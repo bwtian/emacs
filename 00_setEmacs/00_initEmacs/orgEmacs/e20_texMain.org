@@ -16,11 +16,13 @@
       (require 'tex-mik))
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
+  (setq TeX-default-mode 'LaTeX-mode)
   #+END_SRC
 ** Tex main settings
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq TeX-electric-escape t)
 (setq-default TeX-master nil) ;t for not ask 
       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Use Okular as the pdf viewer. Build okular 
@@ -50,9 +52,10 @@
 ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
  ; (load "auctex.el" nil t)
   ;(load "preview-latex" nil t))
- (load "auctex.el" nil t )
-  (load "preview.el" nil t)
+(load "auctex.el" nil t )
+(load "preview.el" nil t)
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+
 #+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "auctex.el" nil t )
