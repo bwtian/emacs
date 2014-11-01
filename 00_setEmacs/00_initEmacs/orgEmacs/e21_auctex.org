@@ -9,13 +9,9 @@
 #+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
 * e21_auctex.org
  Latex Editor: AuxTex
-** DONE Invoke Tex Packages
+** DONE Open texfile use LaTex mode
 #+BEGIN_SRC emacs-lisp
-  ;; (setenv "PATH" (concat "/usr/texbin:" (getenv "PATH")))
-  (require 'tex-site)   ; invoke the AUCTeX package (LaTeX support)
-  (if (string-equal system-type "windows-nt")
-      (require 'tex-mik))
-  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 #+END_SRC
 
 *** CANCEL Load Auctex mode
@@ -29,7 +25,7 @@
   ;;(load "auctex-pkg.el" nil t t)
   (load "latex.el" nil t t) ;; import for not ask master files
 +END_SRC
-** LaTex and AuTtex Core
+** AuTtex LaTex mode Core
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
   (setq TeX-auto-save t)
@@ -42,7 +38,7 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
   (setq TeX-auto-untabify t)     ; remove all tabs before saving
   (setq TeX-save-query nil)
   (setq TeX-show-compilation t) ; display compilation windows
-  
+
               (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
             
               (imenu-add-menubar-index)
