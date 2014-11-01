@@ -36,34 +36,27 @@
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
 #+END_SRC
-** Emacs 
+** Emacs Default Tex Hook
 #+BEGIN_SRC emacs-lisp
   (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
   (add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
 
 #+END_SRC
 
-#+RESULTS[980725cbaa40929f8ac88d25e704f7ee382fa2f9]:
 
-** AUCTex mode
+** AUCTex mode hook
 C-c [
 #+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
 (setq reftex-plug-into-AUCTeX t)
 (setq reftex-plug-into-auctex t)
 #+END_SRC
-** Rnw mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with Rnw mode
-#+END_SRC
-
 ** yatex-mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
 #+END_SRC
 
 ** zotero
-
   (when (locate-library "zotero")
     (add-hook 'TeX-mode-hook 'zotero-minor-mode))
 *** zotelo
@@ -91,25 +84,6 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
 (define-key org-mode-map (kbd "C-M-i") 'completion-at-point)
 +END_SRC
 
-** PDF Processing
-
-This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
-
-#+begin_src emacs-lisp
-  (setq org-latex-pdf-process
-            '("pdflatex -interaction nonstopmode -output-directory %o %f"
-              "bibtex %b"
-              "pdflatex -interaction nonstopmode -output-directory %o %f"
-              "pdflatex -interaction nonstopmode -output-directory %o %f"))
-    ;; (setq org-latex-pdf-process
-    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
-    ;;           "biber %b"
-    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
-    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
-  ;;;; biber
-  ;; (setq org-latex-to-pdf-process 
-  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
-#+end_src
 
 ** Bibtex
 #+begin_src emacs-lisp
@@ -172,4 +146,5 @@ begin_src emacs-lisp
   (setq mm-url-use-external nil)
 )
 end_src
+
 
