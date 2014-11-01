@@ -23,6 +23,13 @@
 (setq reftex-toc-split-windows-horizontally-fraction 0.15) 
 (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
 (add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+;; Change key bindings
+(add-hook 'reftex-mode-hook
+ '(lambda ()
+               (define-key reftex-mode-map (kbd "\C-cr") 'reftex-reference)
+               (define-key reftex-mode-map (kbd "\C-cl") 'reftex-label)
+               (define-key reftex-mode-map (kbd "\C-cc") 'reftex-citation)
+))
 
 (defun org-mode-reftex-setup ()
   (interactive)

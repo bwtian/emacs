@@ -23,7 +23,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
   (require 'cdlatex)
   (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
-
 #+END_SRC
 ** DONE PDFLaTex
 #+BEGIN_SRC emacs-lisp
@@ -38,8 +37,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
   (add-hook 'LaTeX-mode-hook 'flyspell-mode)
   (add-hook 'LaTeX-mode-hook 'flycheck-mode)
   (add-hook 'LaTeX-mode-hook 'linum-mode)
-  (add-hook 'LaTeX-mode-hook 'folding-mode)
-  (add-hook 'LaTeX-mode-hook 'font-lock-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 #+END_SRC
 
@@ -131,8 +128,8 @@ If there is still something left do do start the next latex-command."
   ;;(require 'latex-pretty-symbols)
 #+END_SRC
 ** NEXT preview 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    (setq TeX-view-program-list
+#+BEGIN_SRC emacs-lisp
+(setq TeX-view-program-list
           '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
             ("Gsview" "gsview32.exe %o")
             ("Okular" "okular --unique %o")
@@ -150,6 +147,8 @@ If there is still something left do do start the next latex-command."
                   (setq TeX-view-program-selection '((output-pdf "Okular")
                                                      (output-dvi "Okular")))))))
 
+#+END_SRC
+    
     (setq TeX-output-view-style (quote (
                                         ("^pdf$" "." "evince %o")
                                         ("^ps$" "." "gv %o")

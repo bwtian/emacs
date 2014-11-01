@@ -5,7 +5,7 @@
     (require 'tex-mik))
 (setq TeX-file-extensions
       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
-(setq TeX-default-mode 'LaTeX-mode)
+(setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
