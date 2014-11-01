@@ -1,3 +1,4 @@
+#+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
 * e20_reftex.org
 ** reftex-mode
 #+BEGIN_SRC emacs-lisp
@@ -22,9 +23,12 @@
   (autoload 'reftex-citation "reftex-cite" "Make citation" nil) 
   (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t) 
 (setq reftex-toc-split-windows-horizontally t) 
-(setq reftex-toc-split-windows-horizontally-fraction 0.15)   
+(setq reftex-toc-split-windows-horizontally-fraction 0.15) 
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+  
 #+END_SRC
-** org-mode: reftex, cdlatex, pdflatex
+** Org-mode: reftex, cdlatex, pdflatex
 #+BEGIN_SRC emacs-lisp
 (defun org-mode-reftex-setup ()
   (interactive)
@@ -36,14 +40,6 @@
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
 #+END_SRC
-** Emacs Default Tex Hook
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
-  (add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
-
-#+END_SRC
-
-
 ** AUCTex mode hook
 C-c [
 #+BEGIN_SRC emacs-lisp
@@ -56,7 +52,7 @@ C-c [
 (add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
 #+END_SRC
 
-** zotero
+** SOMEDAY zotero
   (when (locate-library "zotero")
     (add-hook 'TeX-mode-hook 'zotero-minor-mode))
 *** zotelo
