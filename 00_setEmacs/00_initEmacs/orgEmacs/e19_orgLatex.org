@@ -95,3 +95,22 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
                               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
                              ))
 #+END_SRC
+** org PDF Processing
+
+This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
+
+#+begin_src emacs-lisp
+  (setq org-latex-pdf-process
+            '("pdflatex -interaction nonstopmode -output-directory %o %f"
+              "bibtex %b"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+    ;; (setq org-latex-pdf-process
+    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "biber %b"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;;; biber
+  ;; (setq org-latex-to-pdf-process 
+  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
+#+end_src
