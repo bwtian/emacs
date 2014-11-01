@@ -13,9 +13,11 @@ http://www.emacswiki.org/emacs/AUCTeX
 ** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
-(require 'company-auctex)
-(company-auctex-init)
-(require 'auto-complete-auctex)
+  (require 'company-auctex)
+  (company-auctex-init)
+  (require 'auto-complete-auctex)
+  (add-hook 'LaTeX-mode-hook 'company-auctex)
+  (add-hook 'LaTeX-mode-hook 'auto-complete-auctex)
 #+END_SRC 
 ** DONE CDLatex
 #+BEGIN_SRC emacs-lisp
