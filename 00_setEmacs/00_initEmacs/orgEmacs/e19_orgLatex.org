@@ -9,6 +9,7 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
 ** Default setting
 #+BEGIN_SRC emacs-lisp
 (setq org-latex-default-class "koma-article")
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 #+END_SRC
 ** Define article class
 #+BEGIN_SRC emacs-lisp
