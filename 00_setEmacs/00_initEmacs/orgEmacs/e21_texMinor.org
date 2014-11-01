@@ -20,7 +20,7 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 ** DONE CDLatex
 #+BEGIN_SRC emacs-lisp
   (require 'cdlatex)
-  (add-hook 'LaTex-mode-hook 'turn-on-cdlatex)
+  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 
 #+END_SRC
 ** DONE PDFLaTex
