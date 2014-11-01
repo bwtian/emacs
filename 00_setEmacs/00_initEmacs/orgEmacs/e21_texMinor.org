@@ -14,8 +14,8 @@ http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
   (require 'cdlatex)
   (add-hook 'LaTex-mode-hook 'turn-on-cdlatex)
-
 #+END_SRC
+** Company and auto-complete
 
 ** AuTtex LaTex mode Core
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
