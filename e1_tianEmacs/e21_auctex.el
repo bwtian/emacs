@@ -15,14 +15,13 @@
 (setq TeX-auto-untabify t)     ; remove all tabs before saving
 (setq TeX-save-query nil)
 (setq TeX-show-compilation t) ; display compilation windows
+
             (TeX-global-PDF-mode t)       ; PDF mode enable, not plain
           
             (imenu-add-menubar-index)
                  ;;(setq TeX-open-quote "«~")
                  ;;(setq TeX-close-quote "~»")
-            (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))
-
-(require 'cdlatex)
+            (define-key LaTeX-mode-map (kbd "C-TAB") 'TeX-complete-symbol)))
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex) ; with AUCTeX LaTeX mode 
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -32,7 +31,29 @@
 (add-hook 'LaTeX-mode-hook 'font-lock-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'TeX-mode-hook 'font-lock-mode)
-(add-hook 'LaTeX-mode-hook
+(require 'cdlatex)
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Use Okular as the pdf viewer. Build okular 
+  ;; command, so that Okular jumps to the current line 
+  ;; in the viewer.
+  ;; (setq TeX-view-program-selection
+  ;;  '((output-pdf "PDF Viewer")))
+  ;; (setq TeX-view-program-list
+  ;;  '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-indent-level 4)
+ '(TeX-PDF-mode t)
+ '(TeX-engine (quote xetex))
+ '(TeX-source-correlate-method (quote synctex))
+ '(TeX-source-correlate-mode t)
+ '(TeX-source-correlate-start-server t)
+ '(TeX-view-program-list (quote (("Okular" "okular --unique %o#src:%n%b"))))
+ '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
+ '(show-paren-mode t))
 
 (setq TeX-source-correlate-method 'synctex)
 ;; Enable synctex generation. Even though the command shows
@@ -57,29 +78,6 @@
 ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
 
 ;;(require 'latex-pretty-symbols)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Use Okular as the pdf viewer. Build okular 
-  ;; command, so that Okular jumps to the current line 
-  ;; in the viewer.
-  ;; (setq TeX-view-program-selection
-  ;;  '((output-pdf "PDF Viewer")))
-  ;; (setq TeX-view-program-list
-  ;;  '(("PDF Viewer" "okular --unique %o#src:%n%b")))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(LaTeX-indent-level 4)
- '(TeX-PDF-mode t)
- '(TeX-engine (quote xetex))
- '(TeX-source-correlate-method (quote synctex))
- '(TeX-source-correlate-mode t)
- '(TeX-source-correlate-start-server t)
- '(TeX-view-program-list (quote (("Okular" "okular --unique %o#src:%n%b"))))
- '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
- '(show-paren-mode t))
 
 ;; sudo apt-get install whizzytex
 (autoload 'whizzytex-mode "whizzytex" "WhizzyTeX, a minor-mode WYSIWIG environment for LaTeX" t)
