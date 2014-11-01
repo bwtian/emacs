@@ -43,7 +43,7 @@ redo : Ctrl+?, Meta+_
 ;(global-set-key [f1] 'cua-mode)
 #+END_SRC
 
-**  Mullti-terminal
+** Mullti-terminal
 #+BEGIN_SRC emacs-lisp
  (require 'sane-term)
  (global-set-key (kbd "C-x t") 'sane-term)
