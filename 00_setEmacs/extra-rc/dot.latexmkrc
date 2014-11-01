@@ -17,10 +17,10 @@ if ($^O eq 'MSWin32') {
     $pdf_previewer = 'texworks';
   }
 } else {
-  $latex = 'uplatex %O -synctex=1 -interaction=nonstopmode %S';
+  $latex = 'latex %O -synctex=1 -interaction=nonstopmode %S';
   $pdflatex = 'lualatex %O -synctex=1 -interaction=nonstopmode %S';
   $biber = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
-  $bibtex = 'upbibtex %O %B';
+  $bibtex = 'bibtex %O %B';
   $makeindex = 'mendex %O -U -o %D %S';
   $dvipdf = 'dvipdfmx %O -o %D %S';
   $dvips = 'dvips %O -z -f %S | convbkmk -u > %D';
