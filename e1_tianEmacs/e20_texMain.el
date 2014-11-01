@@ -7,7 +7,6 @@
 (setq TeX-file-extensions
       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
-(define-key LaTeX-mode-map (kbd "C-TAB") 'TeX-complete-symbol)))
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)

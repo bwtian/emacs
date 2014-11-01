@@ -1,3 +1,4 @@
+#+TODO: TODO FIXIT NEXT | SUB DONE SOMEDAY CANCEL 
 * e06_autocomplete.org
 |-----------------+---------------+-----------+---------+---------|
 | Settings        | auto-complete | Company   | ESS     | Default |
@@ -381,7 +382,8 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                'python-mode-hook
                'haskell-mode-hook
                'asm-mode-hook
-	       'org-mode-hook
+	           'org-mode-hook
+	           'LaTex-mode-hook
 	     ;  'text-mode-hook
                'emms-tag-editor-mode-hook
                'sh-mode-hook))
@@ -405,13 +407,6 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                                    )))
     
 #+END_SRC
-
-*** Auctex
-#+BEGIN_SRC emacs-lisp
-(require 'company-auctex)
-(company-auctex-init)
-(require 'auto-complete-auctex)
-#+END_SRC 
 
 ** Keybindings
 #+BEGIN_SRC emacs-lisp
@@ -459,8 +454,8 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
  
 #+END_SRC
 
-* Predictive mode 
-#+BEGIN_SRC emacs-lisp
+* SOMEDAY Predictive mode 
++BEGIN_SRC emacs-lisp
 (autoload 'predictive-mode "predictive" "predictive" t)
 (set-default 'predictive-auto-add-to-dict t)
 (setq predictive-main-dict 'rpg-dictionary
@@ -468,7 +463,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
       predictive-add-to-dict-ask nil
       predictive-use-auto-learn-cache nil
       predictive-which-dict t)
-#+END_SRC
++END_SRC
 * yasnippet
 ** Invoke Yas
 #+BEGIN_SRC emacs-lisp

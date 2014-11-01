@@ -308,7 +308,8 @@
                'python-mode-hook
                'haskell-mode-hook
                'asm-mode-hook
-               'org-mode-hook
+                   'org-mode-hook
+                   'LaTex-mode-hook
              ;  'text-mode-hook
                'emms-tag-editor-mode-hook
                'sh-mode-hook))
@@ -326,10 +327,6 @@
                                         company-yasnippet
                                         ))
                                  )))
-
-(require 'company-auctex)
-(company-auctex-init)
-(require 'auto-complete-auctex)
 
 ;; Table Key
 ;(define-key company-active-map "\t" 'company-complete) 
