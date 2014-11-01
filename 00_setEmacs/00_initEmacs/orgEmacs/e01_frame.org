@@ -75,5 +75,6 @@
 #+BEGIN_SRC emacs-lisp
 (require 'sr-speedbar)
 (setq sr-speedbar-right-side nil)
+;;(setq speedbar-use-images nil) ;;disable the icons?
 
 #+END_SRC
