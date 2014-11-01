@@ -2,7 +2,7 @@
 #+AUTHOR: Bingwei TIAN
 #+EMAIL: bwtian@gmail.com
 #+OPTIONS: toc:nil num:nil 
-#+STARTUP: overview
+#+STARTUP: contents
 #+CREATED: [2014-06-03 Tue 11:09]  
 #+LASTEDIT:  
 #+CATEGORIES: Org-babel for Emacs init
