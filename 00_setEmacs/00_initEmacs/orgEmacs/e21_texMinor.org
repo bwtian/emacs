@@ -36,36 +36,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 
 #+END_SRC
 
-** TODO Use #+BEGIN_LaTeX
-
-#+END_LaTeXmk for compilation by default
-#+srcname: latemkdefault
-(eval-after-load "tex"
-      '(add-to-list 'TeX-command-list '("latexmk" "latexmk -synctex=1 -shell-escape -pdf %s" TeX-run-TeX nil t :help "Process file with latexmk")))
-(eval-after-load "tex"
-      '(add-to-list 'TeX-command-list '("xelatexmk" "latexmk -synctex=1 -shell-escape -xelatex %s" TeX-run-TeX nil t :help "Process file with xelatexmk")))
-(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))  
-
-** PDF Processing
-
-This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
-
-#+begin_src emacs-lisp
-  (setq org-latex-pdf-process
-            '("pdflatex -interaction nonstopmode -output-directory %o %f"
-              "bibtex %b"
-              "pdflatex -interaction nonstopmode -output-directory %o %f"
-              "pdflatex -interaction nonstopmode -output-directory %o %f"))
-    ;; (setq org-latex-pdf-process
-    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
-    ;;           "biber %b"
-    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
-    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
-  ;;;; biber
-  ;; (setq org-latex-to-pdf-process 
-  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
-#+end_src
-
 ** TODO TeX-texify
 ;;; http://www.emacswiki.org/emacs/TN
 
