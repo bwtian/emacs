@@ -77,3 +77,23 @@
 (setq sr-speedbar-right-side nil)
 ;;(setq speedbar-use-images nil) ;;disable the icons?
 #+END_SRC
+** Window 
+#+BEGIN_SRC emacs-lisp
+
+  ;;(setq pop-up-frames t) ;; each file opens in a new window
+  ;;popwin.el and e2wm.el  
+  (auto-image-file-mode)
+  (setq uniquify-buffer-name-style 'forward)
+  (auto-compression-mode 1)
+;;SPLIT VERTIVALLY
+(setq split-width-threshold 0
+     split-height-threshold nil)
+
+;;MARK COLUMN 80
+(require 'fill-column-indicator)
+(add-hook 'after-change-major-mode-hook
+	  '(lambda ()
+	     (setq fci-rule-column 80)
+	     (fci-mode)))
+  ;; (setq Man-notify-method 'pushy)
+#+END_SRC
