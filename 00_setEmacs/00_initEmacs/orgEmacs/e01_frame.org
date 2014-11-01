@@ -73,6 +73,7 @@
 #+END_SRC
 ** Dir Tree
 #+BEGIN_SRC emacs-lisp
-
+(require 'sr-speedbar)
+(setq sr-speedbar-right-side nil)
 
 #+END_SRC
