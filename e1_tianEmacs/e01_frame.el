@@ -59,4 +59,37 @@
   (global-hl-line-mode 1) ; turn on highlighting current line
   ;;(setq linum-format "%5d ") ;; Width of linum
 
+(defun wc () (interactive) (shell-command (concat "wc " buffer-file-name)))
+(global-set-key "\C-cw" 'wc)
+ (defun count-word (start end)
+    "Print number of words in the region."
+    (interactive "r")
+    (save-excursion
+      (save-restriction
+        (narrow-to-region start end)
+        (goto-char (point-min))
+        (count-matches "\\sw+"))))
+(defalias 'word-count 'count-word)
+
 ;;(set-face-attribute 'default nil :family "Consolas" :height 104)
+
+(require 'sr-speedbar)
+(setq sr-speedbar-right-side nil)
+;;(setq speedbar-use-images nil) ;;disable the icons?
+
+;;(setq pop-up-frames t) ;; each file opens in a new window
+  ;;popwin.el and e2wm.el  
+  (auto-image-file-mode)
+  (setq uniquify-buffer-name-style 'forward)
+  (auto-compression-mode 1)
+;;SPLIT VERTIVALLY
+(setq split-width-threshold 0
+     split-height-threshold nil)
+
+;;MARK COLUMN 80
+(require 'fill-column-indicator)
+(add-hook 'after-change-major-mode-hook
+          '(lambda ()
+             (setq fci-rule-column 80)
+             (fci-mode)))
+  ;; (setq Man-notify-method 'pushy)

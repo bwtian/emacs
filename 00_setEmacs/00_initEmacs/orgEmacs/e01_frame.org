@@ -71,6 +71,17 @@
 #+BEGIN_SRC emacs-lisp
 (defun wc () (interactive) (shell-command (concat "wc " buffer-file-name)))
 (global-set-key "\C-cw" 'wc)
+ (defun count-word (start end)
+    "Print number of words in the region."
+    (interactive "r")
+    (save-excursion
+      (save-restriction
+        (narrow-to-region start end)
+        (goto-char (point-min))
+        (count-matches "\\sw+"))))
+(defalias 'word-count 'count-word)
+
+
 #+END_SRC
 ** Font
 #+BEGIN_SRC emacs-lisp

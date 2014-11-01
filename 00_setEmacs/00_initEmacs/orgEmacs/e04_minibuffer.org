@@ -1,5 +1,5 @@
 * e04_minibuffer.org
-** Mini buffer Core
+** mini buffer Core
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p) ;; Treat 'y' as yes, 'n' as no
   (setq enable-recursive-minibuffers t) ;; nil

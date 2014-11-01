@@ -33,26 +33,9 @@
 (add-hook 'ess-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'R-mode-hook 'turn-on-eldoc-mode)
 
-;;(setq pop-up-frames t) ;; each file opens in a new window
-  ;;popwin.el and e2wm.el  
-  (auto-image-file-mode)
-  (setq uniquify-buffer-name-style 'forward)
-  (auto-compression-mode 1)
-;;SPLIT VERTIVALLY
-(setq split-width-threshold 0
-     split-height-threshold nil)
-
-;;MARK COLUMN 80
-(require 'fill-column-indicator)
-(add-hook 'after-change-major-mode-hook
-          '(lambda ()
-             (setq fci-rule-column 80)
-             (fci-mode)))
-  ;; (setq Man-notify-method 'pushy)
-
 (require 'smex)
 (smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "C-M-x") 'smex)
 (global-set-key (kbd "C-x x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
