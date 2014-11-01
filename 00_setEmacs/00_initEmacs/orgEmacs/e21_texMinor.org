@@ -21,6 +21,7 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
   (require 'cdlatex)
   (add-hook 'LaTex-mode-hook 'turn-on-cdlatex)
+
 #+END_SRC
 ** DONE PDFLaTex
 #+BEGIN_SRC emacs-lisp
@@ -156,7 +157,7 @@ If there is still something left do do start the next latex-command."
     (setq tex-dvi-print-command "dvips")
     (setq tex-alt-dvi-print-command "dvips")
 ** TODO Whizzy Preview: Toggle the preview window on/off with F9
-#+BEGIN_SRC emacs-lisp
++BEGIN_SRC emacs-lisp
   ;; sudo apt-get install whizzytex
   (autoload 'whizzytex-mode "whizzytex" "WhizzyTeX, a minor-mode WYSIWIG environment for LaTeX" t)
   (setq my-toggle-whizzy-count 0)
@@ -203,7 +204,7 @@ If there is still something left do do start the next latex-command."
   ;;                ac-sources)))
   ;; (add-hook 'latex-mode-hook 'ac-latex-mode-setup)
   ;; (ac-flyspell-workaround)
-#+END_SRC
++END_SRC
 
 ** Note
 ;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
