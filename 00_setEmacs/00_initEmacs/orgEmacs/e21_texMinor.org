@@ -9,14 +9,20 @@
 #+TODO: TODO FIXIT NEXT | SUB DONE SOMEDAY CANCEL 
 http://www.emacswiki.org/emacs/AUCTeX
 * e21_texMinor.org
+** SUB Company and auto-complete
+Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 ** SUB [[file:e22_reftex.org][Reftex]]
 ** DONE CDLatex
 #+BEGIN_SRC emacs-lisp
   (require 'cdlatex)
   (add-hook 'LaTex-mode-hook 'turn-on-cdlatex)
 #+END_SRC
-** SUB Company and auto-complete
-Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
+** DONE PDFLaTex
+#+BEGIN_SRC emacs-lisp
+ (setq TeX-PDF-mode t)
+;(require 'tex)
+;(TeX-global-PDF-mode t)
+#+END_SRC
 ** FIXIT Hooks
 #+BEGIN_SRC emacs-lisp
   (add-hook 'LaTeX-mode-hook 'visual-line-mode)
@@ -144,7 +150,7 @@ If there is still something left do do start the next latex-command."
     (setq tex-dvi-view-command "xdvi")
     (setq tex-dvi-print-command "dvips")
     (setq tex-alt-dvi-print-command "dvips")
-** Whizzy Preview: Toggle the preview window on/off with F9
+** TODO Whizzy Preview: Toggle the preview window on/off with F9
 #+BEGIN_SRC emacs-lisp
   ;; sudo apt-get install whizzytex
   (autoload 'whizzytex-mode "whizzytex" "WhizzyTeX, a minor-mode WYSIWIG environment for LaTeX" t)

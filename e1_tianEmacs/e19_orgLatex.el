@@ -1,6 +1,4 @@
 
-(setq org-latex-pdf-process
-       '("pdflatex %f" "pdflatex %f" "pdflatex %f"))
 (setq org-latex-default-class "koma-article")
 
 (setq org-latex-classes '(
@@ -77,3 +75,20 @@
                             ("\\paragraph{%s}" . "\\paragraph*{%s}")
                             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
                            ))
+
+(setq org-latex-pdf-process
+            '("pdflatex -interaction nonstopmode -output-directory %o %f"
+              "bibtex %b"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+    ;; (setq org-latex-pdf-process
+    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "biber %b"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;;; biber
+  ;; (setq org-latex-to-pdf-process 
+  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
+;(setq org-latex-to-pdf-process
+;'("xelatex -interaction nonstopmode %b"
+;"xelatex -interaction nonstopmode %b"))
