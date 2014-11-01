@@ -23,6 +23,9 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-electric-escape t)
+(setq TeX-electric-sub-and-superscript t)
+(setq TeX-show-compilation t) ; display compilation windows
+(setq TeX-auto-untabify t)     ; remove all tabs before saving
 (setq-default TeX-master nil) ;t for not ask 
       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Use Okular as the pdf viewer. Build okular 
@@ -59,18 +62,11 @@
   (auctex-latexmk-setup)
 #+END_SRC
 +BEGIN_SRC emacs-lisp
-  (load "auctex.el" nil t )
-  (load "preview.el" nil t)
-  ;;(load "preview-latex.el" nil t t)
-  ;;(load "auctex-pkg.el" nil t t)
   (load "latex.el" nil t t) ;; import for not ask master files
-  (setq TeX-electric-escape t)
-  (setq TeX-electric-sub-and-superscript t)
   (setq TeX-engine 'xetex)  ; or latex, pdftex
   (setq preview-scale-function 1.5)
-  (setq TeX-auto-untabify t)     ; remove all tabs before saving
   (setq TeX-save-query nil)
-  (setq TeX-show-compilation t) ; display compilation windows
+  
 (setq TeX-source-correlate-method 'synctex)
 
                    ;;(setq TeX-open-quote "«~")

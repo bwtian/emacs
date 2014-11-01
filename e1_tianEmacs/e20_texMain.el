@@ -2,13 +2,17 @@
 ;; (setenv "PATH" (concat "/usr/texbin:" (getenv "PATH")))
 (require 'tex-site)   ; invoke the AUCTeX package (LaTeX support)
 (if (string-equal system-type "windows-nt")
-    (require 'tex-mik)
-  (load "auctex.el" nil t t))
+    (require 'tex-mik))
 (setq TeX-file-extensions
       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
+(setq TeX-default-mode 'LaTeX-mode)
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq TeX-electric-escape t)
+(setq TeX-electric-sub-and-superscript t)
+(setq TeX-show-compilation t) ; display compilation windows
+(setq TeX-auto-untabify t)     ; remove all tabs before saving
 (setq-default TeX-master nil) ;t for not ask 
       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; Use Okular as the pdf viewer. Build okular 
@@ -36,6 +40,8 @@
 ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
  ; (load "auctex.el" nil t)
   ;(load "preview-latex" nil t))
- (load "auctex.el" nil t )
-  (load "preview.el" nil t)
+(load "auctex.el" nil t )
+(load "preview.el" nil t)
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
