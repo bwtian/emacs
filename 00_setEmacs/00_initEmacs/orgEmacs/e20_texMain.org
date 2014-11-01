@@ -8,23 +8,22 @@
 #+CATEGORIES: Org-babel for Emacs init
 #+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
 http://www.emacswiki.org/emacs/CategoryTex
-|-------------+------+----------------|
-| Input Files | Bars | Main mode      |
-|-------------+------+----------------|
-|             |      | Auctex-mode    |
-| Tex         |      | plain-tex-mode |
-| LaTex       |      | latex-mode     |
-|             |      | LaTeX-mode     |
-| SliTex      |      | slitex-mode    |
-| DocTex      |      | doctex-mode    |
-| Texinfo     |      | texinfo-mode   |
-| ConTex      |      |                |
-| luaTex      |      |                |
-|-------------+------+----------------|
-| Minor mode  |      | CDLatex        |
-|             |      | reftex         |
-|             |      |                |
-|-------------+------+----------------|
+|-------------+----------------+----------+----------|
+| Input Files | Main mode      | Packages | Bars     |
+|-------------+----------------+----------+----------|
+| Tex         | plain-tex-mode |          | tex      |
+| SliTex      | slitex-mode    |          |          |
+| DocTex      | doctex-mode    |          |          |
+| Texinfo     | texinfo-mode   |          |          |
+| LaTex       | latex-mode     |          |          |
+|-------------+----------------+----------+----------|
+| LaTex       | LaTeX-mode     | Auctex   | LaTeX/Ms |
+| ConTex      |                |          |          |
+| luaTex      |                |          |          |
+|-------------+----------------+----------+----------|
+| Minor mode  | CDLatex        | CDLatex  |          |
+|             | reftex         | reftex   |          |
+|-------------+----------------+----------+----------|
 * e20_tex.org
 ** DONE Invoke Tex Packages
 #+BEGIN_SRC emacs-lisp
