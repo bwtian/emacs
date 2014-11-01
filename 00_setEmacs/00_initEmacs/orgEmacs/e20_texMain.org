@@ -64,7 +64,11 @@ http://www.emacswiki.org/emacs/CategoryTex
    '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
    '(show-paren-mode t))
 #+END_SRC
-** CANCEL Load Auctex mode
+** CANCEL Auctex mode
+#+BEGIN_SRC emacs-lisp
+
+
+#+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "auctex.el" nil t t)
   (load "preview.el" nil t t)
