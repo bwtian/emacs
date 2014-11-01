@@ -6,14 +6,10 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
 | org-latex.el             | ox-latex.el           |
 | org-latex-to-pdf-process | org-latex-pdf-process |
 | org-export-latex-classes | org-latex-classes     |
-
-
 ** Default setting
 #+BEGIN_SRC emacs-lisp
 (setq org-latex-default-class "koma-article")
-
 #+END_SRC
-
 ** Define article class
 #+BEGIN_SRC emacs-lisp
    (setq org-latex-classes '(
