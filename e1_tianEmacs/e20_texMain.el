@@ -6,7 +6,6 @@
   (load "auctex.el" nil t t))
 (setq TeX-file-extensions
       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
-(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
@@ -33,3 +32,10 @@
    '(TeX-view-program-list (quote (("Okular" "okular --unique %o#src:%n%b"))))
    '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
    '(show-paren-mode t))
+
+;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
+ ; (load "auctex.el" nil t)
+  ;(load "preview-latex" nil t))
+ (load "auctex.el" nil t )
+  (load "preview.el" nil t)
+(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))

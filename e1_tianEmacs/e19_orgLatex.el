@@ -1,5 +1,6 @@
 
 (setq org-latex-default-class "koma-article")
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
 (setq org-latex-classes '(
                            ("book"

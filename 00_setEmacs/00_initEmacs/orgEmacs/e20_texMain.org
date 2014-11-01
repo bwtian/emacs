@@ -34,7 +34,7 @@ http://www.emacswiki.org/emacs/CategoryTex
     (load "auctex.el" nil t t))
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
-  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+
   #+END_SRC
 ** Tex main settings
 #+BEGIN_SRC emacs-lisp
@@ -66,12 +66,16 @@ http://www.emacswiki.org/emacs/CategoryTex
 #+END_SRC
 ** CANCEL Auctex mode
 #+BEGIN_SRC emacs-lisp
-
-
+;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
+ ; (load "auctex.el" nil t)
+  ;(load "preview-latex" nil t))
+ (load "auctex.el" nil t )
+  (load "preview.el" nil t)
+(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 #+END_SRC
 +BEGIN_SRC emacs-lisp
-  (load "auctex.el" nil t t)
-  (load "preview.el" nil t t)
+  (load "auctex.el" nil t )
+  (load "preview.el" nil t)
   ;;(load "preview-latex.el" nil t t)
   ;;(load "auctex-pkg.el" nil t t)
   (load "latex.el" nil t t) ;; import for not ask master files
