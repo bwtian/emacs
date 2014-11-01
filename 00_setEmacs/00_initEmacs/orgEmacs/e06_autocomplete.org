@@ -459,7 +459,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
  
 #+END_SRC
 
-* 
+* Predictive mode 
 #+BEGIN_SRC emacs-lisp
 (autoload 'predictive-mode "predictive" "predictive" t)
 (set-default 'predictive-auto-add-to-dict t)
