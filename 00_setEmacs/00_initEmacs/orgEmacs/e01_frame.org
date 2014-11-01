@@ -67,6 +67,11 @@
   (global-hl-line-mode 1) ; turn on highlighting current line
   ;;(setq linum-format "%5d ") ;; Width of linum
 #+END_SRC
+** Word Count
+#+BEGIN_SRC emacs-lisp
+(defun wc () (interactive) (shell-command (concat "wc " buffer-file-name)))
+(global-set-key "\C-cw" 'wc)
+#+END_SRC
 ** Font
 #+BEGIN_SRC emacs-lisp
 ;;(set-face-attribute 'default nil :family "Consolas" :height 104)
