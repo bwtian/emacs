@@ -47,15 +47,16 @@
    '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
    '(show-paren-mode t))
 #+END_SRC
-** CANCEL Auctex mode
+** DONE Auctex mode
 #+BEGIN_SRC emacs-lisp
-;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
- ; (load "auctex.el" nil t)
-  ;(load "preview-latex" nil t))
-(load "auctex.el" nil t )
-(load "preview.el" nil t)
-(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
-
+  ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
+   ; (load "auctex.el" nil t)
+    ;(load "preview-latex" nil t))
+  (load "auctex.el" nil t )
+  (load "preview.el" nil t)
+  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+  (require 'auctex-latexmk)
+  (auctex-latexmk-setup)
 #+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "auctex.el" nil t )
