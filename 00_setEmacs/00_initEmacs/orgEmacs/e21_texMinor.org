@@ -9,8 +9,14 @@
 #+TODO: TODO FIXIT NEXT | SUB DONE SOMEDAY CANCEL 
 http://www.emacswiki.org/emacs/AUCTeX
 * e21_texMinor.org
-** SUB Company and auto-complete
+** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
+#+BEGIN_SRC emacs-lisp
+(require 'company-auctex)
+(company-auctex-init)
+(require 'auto-complete-auctex)
+#+END_SRC 
+
 ** SUB [[file:e22_reftex.org][Reftex]]
 ** DONE CDLatex
 #+BEGIN_SRC emacs-lisp
