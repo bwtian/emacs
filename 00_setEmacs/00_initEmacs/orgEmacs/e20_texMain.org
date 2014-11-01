@@ -8,21 +8,23 @@
 #+CATEGORIES: Org-babel for Emacs init
 #+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
 http://www.emacswiki.org/emacs/CategoryTex
-|-------------+------+----------------+------------|
-| Input Files | Bars | Main mode      | Auctex     |
-|-------------+------+----------------+------------|
-| Tex         |      | plain-tex-mode |            |
-| LaTex       |      | latex-mode     | LaTeX-mode |
-| SliTex      |      | slitex-mode    |            |
-| DocTex      |      | doctex-mode    |            |
-| Texinfo     |      | texinfo-mode   |            |
-| ConTex      |      | Auctex-mode    |            |
-|             |      |                |            |
-|-------------+------+----------------+------------|
-| Minor mode  |      | CDLatex        |            |
-|             |      | reftex         |            |
-|             |      |                |            |
-|-------------+------+----------------+------------|
+|-------------+------+----------------|
+| Input Files | Bars | Main mode      |
+|-------------+------+----------------|
+|             |      | Auctex-mode    |
+| Tex         |      | plain-tex-mode |
+| LaTex       |      | latex-mode     |
+|             |      | LaTeX-mode     |
+| SliTex      |      | slitex-mode    |
+| DocTex      |      | doctex-mode    |
+| Texinfo     |      | texinfo-mode   |
+| ConTex      |      |                |
+| luaTex      |      |                |
+|-------------+------+----------------|
+| Minor mode  |      | CDLatex        |
+|             |      | reftex         |
+|             |      |                |
+|-------------+------+----------------|
 * e20_tex.org
 ** DONE Invoke Tex Packages
 #+BEGIN_SRC emacs-lisp
@@ -34,13 +36,35 @@ http://www.emacswiki.org/emacs/CategoryTex
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
   (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
-#+END_SRC
+  (define-key LaTeX-mode-map (kbd "C-TAB") 'TeX-complete-symbol)))
+  #+END_SRC
 ** Tex main settings
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq-default TeX-master nil) t for not ask 
-
+(setq-default TeX-master nil) ;t for not ask 
+      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; Use Okular as the pdf viewer. Build okular 
+    ;; command, so that Okular jumps to the current line 
+    ;; in the viewer.
+    ;; (setq TeX-view-program-selection
+    ;;  '((output-pdf "PDF Viewer")))
+    ;; (setq TeX-view-program-list
+    ;;  '(("PDF Viewer" "okular --unique %o#src:%n%b")))
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(LaTeX-indent-level 4)
+   '(TeX-engine (quote xetex))
+   '(TeX-source-correlate-method (quote synctex))
+   '(LaTeX-command "latex -synctex=1")
+   '(TeX-source-correlate-mode t)
+   '(TeX-source-correlate-start-server t)
+   '(TeX-view-program-list (quote (("Okular" "okular --unique %o#src:%n%b"))))
+   '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
+   '(show-paren-mode t))
 #+END_SRC
 ** CANCEL Load Auctex mode
 +BEGIN_SRC emacs-lisp
@@ -49,4 +73,15 @@ http://www.emacswiki.org/emacs/CategoryTex
   ;;(load "preview-latex.el" nil t t)
   ;;(load "auctex-pkg.el" nil t t)
   (load "latex.el" nil t t) ;; import for not ask master files
+  (setq TeX-electric-escape t)
+  (setq TeX-electric-sub-and-superscript t)
+  (setq TeX-engine 'xetex)  ; or latex, pdftex
+  (setq preview-scale-function 1.5)
+  (setq TeX-auto-untabify t)     ; remove all tabs before saving
+  (setq TeX-save-query nil)
+  (setq TeX-show-compilation t) ; display compilation windows
+(setq TeX-source-correlate-method 'synctex)
+
+                   ;;(setq TeX-open-quote "«~")
+                   ;;(setq TeX-close-quote "~»")
 +END_SRC
