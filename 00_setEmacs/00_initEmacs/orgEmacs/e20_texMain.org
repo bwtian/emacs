@@ -16,8 +16,10 @@
       (require 'tex-mik))
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
-  (setq TeX-default-mode 'LaTeX-mode)
+  (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
   #+END_SRC
+
+
 ** Tex main settings
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
@@ -60,6 +62,7 @@
   (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
   (require 'auctex-latexmk)
   (auctex-latexmk-setup)
+
 #+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "latex.el" nil t t) ;; import for not ask master files
