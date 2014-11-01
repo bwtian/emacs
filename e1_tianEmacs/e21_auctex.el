@@ -1,8 +1,4 @@
 
-;; (setenv "PATH" (concat "/usr/texbin:" (getenv "PATH")))
-(require 'tex-site)   ; invoke the AUCTeX package (LaTeX support)
-(if (string-equal system-type "windows-nt")
-    (require 'tex-mik))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 (setq TeX-auto-save t)
