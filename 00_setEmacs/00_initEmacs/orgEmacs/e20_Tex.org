@@ -7,22 +7,21 @@
 #+LASTEDIT:  
 #+CATEGORIES: Org-babel for Emacs init
 #+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
-|----------+----------------+-----------------------------|
-| Tex-mode | Emacs          | input files                 |
-|----------+----------------+-----------------------------|
-| Main     | plain-tex-mode |                             |
-| Main     | latex-mode     | LaTeX-mode                  |
-|          | slitex-mode    |                             |
-|          | doctex-mode    |                             |
-|----------+----------------+-----------------------------|
-|          | LaTex          |                             |
-|          | AucTex         | Tex, LaTex, ConTex, Texinfo |
-|          |                |                             |
-|----------+----------------+-----------------------------|
-| Minor    | cdlatex        |                             |
-|          | reftex         |                             |
-|          |                |                             |
-|----------+----------------+-----------------------------|
+|-------------+------+----------------+------------|
+| Input Files | Bars | Main mode      | Auctex     |
+|-------------+------+----------------+------------|
+| Tex         |      | plain-tex-mode |            |
+| LaTex       |      | latex-mode     | LaTeX-mode |
+| SliTex      |      | slitex-mode    |            |
+| DocTex      |      | doctex-mode    |            |
+| Texinfo     |      | texinfo-mode   |            |
+| ConTex      |      |                |            |
+| Auctex      |      |                |            |
+|-------------+------+----------------+------------|
+| Minor       |      | cdlatex        |            |
+|             |      | reftex         |            |
+|             |      |                |            |
+|-------------+------+----------------+------------|
 * e20_tex.org
 ** DONE Invoke Tex Packages
 #+BEGIN_SRC emacs-lisp
