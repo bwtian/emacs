@@ -65,12 +65,6 @@
 (setq TeX-open-quote "<<")
 (setq TeX-close-quote ">>")
 #+END_SRC
-** auto directory
-#+BEGIN_SRC emacs-lisp
-;; change auto name
-(setq TeX-auto-local ".auctex")
- 
-#+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
  (setq preview-scale-function 1.5)
@@ -104,6 +98,12 @@
     (setq tex-dvi-view-command "xdvi")
     (setq tex-dvi-print-command "dvips")
     (setq tex-alt-dvi-print-command "dvips")
+** auto directory
+#+BEGIN_SRC emacs-lisp
+;; change auto name
+(setq TeX-auto-local ".auctex")
+ 
+#+END_SRC
 ** DONE Auctex mode
 #+BEGIN_SRC emacs-lisp
   ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
@@ -160,13 +160,19 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
                '("exmp" LaTeX-env-label)
                '("defn" LaTeX-env-label)
                '("thm" LaTeX-env-label))))
-#+END_SRC
-** DONE Highlighting magic-latex-buffer
-#+BEGIN_SRC emacs-lisp
+(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)
+			      (local-set-key [(meta n)] 'outline-next-visible-heading)
+			      (local-set-key [(meta p)] 'outline-previous-visible-heading)))
 (require 'magic-latex-buffer)
 (add-hook 'LaTex-mode-hook 'magic-latex-buffer)
-
 #+END_SRC
+** Sections
+         (setq LaTeX-section-hook
+             '(LaTeX-section-heading
+               LaTeX-section-title
+               LaTeX-section-toc
+               LaTeX-section-section
+               LaTeX-section-label))
 
 ** TODO TeX-texify
 ;;; http://www.emacswiki.org/emacs/TN
@@ -269,78 +275,6 @@ If there is still something left do do start the next latex-command."
               (define-key LaTeX-mode-map (kbd "<f9>") 'my-toggle-whizzy-mode)))
 
 +END_SRC
-
-** Note
-;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
-(setq my-tex-commands-extra (list 
-                            (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
-(require 'tex) 
-(setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
-
-C-c C-s         加入章节,LaTeX-section,可以有一些参数，
-        如toc在目录里生成标题的简称， 不过一般不加也可以。
-         (setq LaTeX-section-hook
-             '(LaTeX-section-heading
-               LaTeX-section-title
-               LaTeX-section-toc
-               LaTeX-section-section
-               LaTeX-section-label))
-
-
-
-C-c (         生成label，可以根据上下文自动加上key
-
-C-c )         生成ref，并自动带上括号，有几个选项
-  SPC         所有的选项
-  e         equation align等
-  f         figure等
-  i         enumerate
-  t         table
-  s         section
-
-
-M-q              AUC TeX 里选择字体
-
-$的自动补全     例如输入$$x$后，会自动补全剩下的$
-
-C-c &            在Ref环境中，当光标停在一个
-                 \ref,\label,\index,\cite,\bibitem
-                 括号中的内容时，自动显示源（目标）文件
-
-C-c ;         注释掉一行
-
-C-c %         注释掉一段
-
-C-c '            同上，（引号下边那个点）
-
-C-c `            看编译结果中的错误（键盘左上角）
-
-快速更改字体
-
-auctex 也提供了一系列方便的快捷键用以方便的插入指定应该文本如何格式化的命
-令，这系列命令一致以 'C-c C-f' 为前缀，以 'C- ' 结尾告诉 auctex 你具体需
-要如何排版文本。
-
-C-c C-f C-b  插入粗体文本 
-
-C-c C-f C-i  插入斜体文本 
-
-C-c C-f C-e  插入强调文本 
-
-C-c C-f C-s  插入微斜体文本 
-
-C-c C-f C-r  插入罗马体文本 
-
-C-c C-f C-f  插入无衬线体文本 
-
-C-c C-f C-t  插入打印机体字体 
-
-C-c C-f C-c  插入小型大写文本 
-
-C-c C-f C-d  删除字体信息 
-
-
-
 
 
 * e22_reftex.org
@@ -462,7 +396,7 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
 +END_SRC
 
 
-* Bibtex
+** Bibtex
 #+begin_src emacs-lisp
 
 ;;; bibtex
@@ -587,4 +521,69 @@ http://www.emacswiki.org/emacs/CategoryTex
 | C-c C-f C-b |                    |                              |
 | C-c C-f C-b |                    |                              |
 |-------------+--------------------+------------------------------|
+
+** Note
+;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
+(setq my-tex-commands-extra (list 
+                            (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
+(require 'tex) 
+(setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
+
+C-c C-s         加入章节,LaTeX-section,可以有一些参数，
+        如toc在目录里生成标题的简称， 不过一般不加也可以。
+
+
+
+C-c (         生成label，可以根据上下文自动加上key
+
+C-c )         生成ref，并自动带上括号，有几个选项
+  SPC         所有的选项
+  e         equation align等
+  f         figure等
+  i         enumerate
+  t         table
+  s         section
+
+
+M-q              AUC TeX 里选择字体
+
+$的自动补全     例如输入$$x$后，会自动补全剩下的$
+
+C-c &            在Ref环境中，当光标停在一个
+                 \ref,\label,\index,\cite,\bibitem
+                 括号中的内容时，自动显示源（目标）文件
+
+C-c ;         注释掉一行
+
+C-c %         注释掉一段
+
+C-c '            同上，（引号下边那个点）
+
+C-c `            看编译结果中的错误（键盘左上角）
+
+快速更改字体
+
+auctex 也提供了一系列方便的快捷键用以方便的插入指定应该文本如何格式化的命
+令，这系列命令一致以 'C-c C-f' 为前缀，以 'C- ' 结尾告诉 auctex 你具体需
+要如何排版文本。
+
+C-c C-f C-b  插入粗体文本 
+
+C-c C-f C-i  插入斜体文本 
+
+C-c C-f C-e  插入强调文本 
+
+C-c C-f C-s  插入微斜体文本 
+
+C-c C-f C-r  插入罗马体文本 
+
+C-c C-f C-f  插入无衬线体文本 
+
+C-c C-f C-t  插入打印机体字体 
+
+C-c C-f C-c  插入小型大写文本 
+
+C-c C-f C-d  删除字体信息 
+
+
 
