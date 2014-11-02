@@ -17,6 +17,7 @@
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
   (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
+  (setq TeX-force-default-mode t)
   #+END_SRC
 
 ** FIXIT  Tex main settings
@@ -33,6 +34,12 @@
   (setq TeX-auto-untabify t)     ; remove all tabs before saving
   (setq completion-ignored-extensions (append completion-ignored-extensions
                                               '(".synctex.gz")))
+  (setq 
+      LaTeX-top-caption-list		'("table" "tabular")
+      LaTeX-float			"tn"
+      LaTeX-figure-label		"fig:"
+      LaTeX-table-label		"tab:"
+      LaTeX-section-label		"sec:")
 #+END_SRC
 ** DONE Auctex mode
 #+BEGIN_SRC emacs-lisp
