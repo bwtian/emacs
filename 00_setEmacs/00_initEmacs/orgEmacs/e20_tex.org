@@ -46,6 +46,8 @@
 #+BEGIN_SRC emacs-lisp
 (setq TeX-engine 'xetex)  ; or latex, pdftex
 #+END_SRC
+** Tex-commands
+
 +BEGIN_SRC emacs-lisp
   (load "latex.el" nil t t) ;; import for not ask master files
 
