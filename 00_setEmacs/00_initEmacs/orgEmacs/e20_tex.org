@@ -362,14 +362,28 @@ C-c C-f C-d  删除字体信息
   (setq reftex-external-file-finders   
         '(("tex" . "kpsewhich -format=.tex %f")   
           ("bib" . "kpsewhich -format=.bib %f")))
-  (autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t) 
-  (autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil) 
-  (autoload 'reftex-citation "reftex-cite" "Make citation" nil) 
-  (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t) 
 (setq reftex-toc-split-windows-horizontally t) 
 (setq reftex-toc-split-windows-horizontally-fraction 0.15) 
 (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
 (add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode C-c [
+(setq reftex-plug-into-AUCTeX t)
+(setq reftex-plug-into-auctex t)
+setq reftex-label-alist
+      '(
+        ("section" ?s "%S" "~\\secref{%s}" (nil . t)
+         (regexp "parts?""chapter" "chap." "sections?" "sect?\\." "paragraphs?" "par\\." "\\\\S" "\247" "Teile?" "Kapitel" "Kap\\." "Abschnitte?" "appendi\\(x\\|ces\\)" "App\\." "Anh\"?ange?" "Anh\\."))
+        ("figure" ?f "fig:" "~\\ref{%s}" caption
+         (regexp "figure?[sn]?" "figs?\\." "Abbildung\\(en\\)?" "Abb\\."))
+        ("figure*" ?f nil nil caption)
+        ("table" ?t "tab:" "~\\ref{%s}" caption
+         (regexp "tables?" "tab\\." "Tabellen?"))
+        ("table*" ?t nil nil caption)
+        ))
+(autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t)
+(autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil)
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t)
 ;; Change key bindings
 (add-hook 'reftex-mode-hook
  '(lambda ()
@@ -378,7 +392,7 @@ C-c C-f C-d  删除字体信息
                (define-key reftex-mode-map (kbd "\C-cc") 'reftex-citation)
 ))  
 #+END_SRC
-** Org-mode: reftex, cdlatex, pdflatex
+** Org-mode: reftex, cdlatex, pdflatex C-c )
 #+BEGIN_SRC emacs-lisp
 (defun org-mode-reftex-setup ()
   (interactive)
@@ -414,13 +428,6 @@ This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed fo
 ;"xelatex -interaction nonstopmode %b"))
 #+end_src
 
-** AUCTex mode hook
-C-c [
-#+BEGIN_SRC emacs-lisp
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
-(setq reftex-plug-into-AUCTeX t)
-(setq reftex-plug-into-auctex t)
-#+END_SRC
 ** yatex-mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
