@@ -97,17 +97,18 @@
                                                    (output-dvi "Okular")
                                                    (output-html "open")
                                                    ))))))
+  ;; (setq TeX-output-view-style (quote (
+  ;;                                       ("^pdf$" "." "evince %o")
+  ;;                                       ("^ps$" "." "gv %o")
+  ;;                                       ("^dvi$" "." "xdvi %o")
+  ;;                                       )))
+  ;;   (setq tex-dvi-view-command "xdvi")
+  ;;   (setq tex-dvi-print-command "dvips")
+  ;;   (setq tex-alt-dvi-print-command "dvips")  
 
 #+END_SRC
     
-    (setq TeX-output-view-style (quote (
-                                        ("^pdf$" "." "evince %o")
-                                        ("^ps$" "." "gv %o")
-                                        ("^dvi$" "." "xdvi %o")
-                                        )))
-    (setq tex-dvi-view-command "xdvi")
-    (setq tex-dvi-print-command "dvips")
-    (setq tex-alt-dvi-print-command "dvips")
+  
 ** auto directory
 #+BEGIN_SRC emacs-lisp
 ;; change auto name
