@@ -9,7 +9,7 @@
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq TeX-electric-escape t)
+(setq TeX-electric-escape t)  ; make \ = C-c C-m
 (setq TeX-electric-sub-and-superscript t)
 (setq TeX-show-compilation t) ; display compilation windows
 (setq TeX-auto-untabify t)     ; remove all tabs before saving

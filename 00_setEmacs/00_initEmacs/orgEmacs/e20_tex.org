@@ -23,7 +23,7 @@
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq TeX-electric-escape t)
+(setq TeX-electric-escape t)  ; make \ = C-c C-m
 (setq TeX-electric-sub-and-superscript t)
 (setq TeX-show-compilation t) ; display compilation windows
 (setq TeX-auto-untabify t)     ; remove all tabs before saving
@@ -283,15 +283,6 @@ If there is still something left do do start the next latex-command."
                             (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
 (require 'tex) 
 (setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
-C-c C-m         加入macro，如\frac,\ref等等很多，也可以用
-C-c RET
-
-\         TeX-electric-escap，这个命令需要在.emamcs里声明
-         (setq  TeX-electric-escape t)，以后在输入'\'后
-        会直接进入macro状态，相当于C-c C-m，唯一不同的就是
-        SPC相当于完成并退出。
-
-
 
 C-c C-s         加入章节,LaTeX-section,可以有一些参数，
         如toc在目录里生成标题的简称， 不过一般不加也可以。
@@ -314,13 +305,6 @@ C-c )         生成ref，并自动带上括号，有几个选项
   t         table
   s         section
 
-C-c =         生成目录
-
-C-c {            生成括号对，光标移到第一个括号前
-
-C-c ]            补全命令,\end{}
-
-M-RET         自动加入item，bibitem等
 
 M-q              AUC TeX 里选择字体
 
@@ -337,15 +321,6 @@ C-c %         注释掉一段
 C-c '            同上，（引号下边那个点）
 
 C-c `            看编译结果中的错误（键盘左上角）
-C-c C-s  插入章节 
-
-C-c C-e  插入 LaTex 环境 
-
-C-c C-j  插入列表 item 
-
-C-c ]  闭合 LaTeX 环境 
-
-C-c C-m  插入 Tex 宏 
 
 快速更改字体
 
@@ -571,19 +546,39 @@ http://www.emacswiki.org/emacs/CategoryTex
 |-------------+----------------+----------+----------|
 
 ** Keys
-| Keys    | default            | my settings                  |
-|---------+--------------------+------------------------------|
-| C-c C-c | latex              | latexmk                      |
-| view    | view               |                              |
-| file    | dvips              |                              |
-| print   | view ps            |                              |
-| index   | makeidx            |                              |
-| bibtex  | bibtex             |                              |
-|---------+--------------------+------------------------------|
-| C-c ~   | latex-math-mode    | `a = \alpha{}                |
-| C-c r   | Region             |                              |
-| C-c C-e | LaTeX-environment  |                              |
-| C-c C-m | marco or \ below   |                              |
-| \       | TeX-electric-escap | (setq TeX-electric-escape t) |
-|---------+--------------------+------------------------------|
+| Keys        | default            | my settings                  |
+|-------------+--------------------+------------------------------|
+| C-c C-c     | latex              | latexmk                      |
+| view        | view               |                              |
+| file        | dvips              |                              |
+| print       | view ps            |                              |
+| index       | makeidx            |                              |
+| bibtex      | bibtex             |                              |
+|-------------+--------------------+------------------------------|
+| C-c ~       | latex-math-mode    | `a = \alpha{}                |
+| C-c r       | Region             |                              |
+| C-c C-s     | Section            |                              |
+| C-c C-e     | LaTeX-environment  |                              |
+| C-c C-m     | marco or \ below   | C-c RET                      |
+| \           | TeX-electric-escap | (setq TeX-electric-escape t) |
+| C-c =       | TOC                |                              |
+| C-c {       |                    |                              |
+| C-c }       |                    |                              |
+| C-c [       |                    |                              |
+| C-c ]       |                    |                              |
+| \$          |                    |                              |
+| C-c C-j     | Insert item        |                              |
+| M-RET       | Insert item        |                              |
+|-------------+--------------------+------------------------------|
+| C-c C-f C-b | bold               | yas b                        |
+| C-c C-f C-i | italic             |                              |
+| C-c C-f C-e | eph                |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+|-------------+--------------------+------------------------------|
 

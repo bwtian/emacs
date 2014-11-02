@@ -201,8 +201,8 @@
  (add-hook 'after-init-hook 'global-company-mode)
 
  ;; this will show a lot of garbage, use it only necessary
- ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
- ;(defalias 'ci 'company-ispell)
+ (add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
+ (defalias 'ci 'company-ispell)
 
    ;; put most often used completions at stop of list
 ; (setq company-backends '(company-dabbrev
