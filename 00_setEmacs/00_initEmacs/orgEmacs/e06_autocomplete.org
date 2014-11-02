@@ -45,7 +45,6 @@
         ac-trigger-key "<C-tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
         ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
         ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
-
         ;;ac-show-menu-immediately-on-auto-complete t
         ;; ac-candidate-limit 25 ;; nil
         ac-use-comphist t ;; sort Candidate
@@ -241,7 +240,7 @@
 #+BEGIN_SRC emacs-lisp
     (require 'company)
     (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
-    (setq company-minimum-prefix-length 2)
+    (setq company-minimum-prefix-length 4)
 
     (setq company-tooltip-delay 0)
     ;(setq company-echo-delay 0)  ; remove annoying blinking

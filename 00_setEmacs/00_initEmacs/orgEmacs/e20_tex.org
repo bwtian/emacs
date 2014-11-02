@@ -19,7 +19,6 @@
   (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
   #+END_SRC
 
-
 ** Tex main settings
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
@@ -60,10 +59,12 @@
   (load "auctex.el" nil t )
   (load "preview.el" nil t)
   (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+;; C-c C-c
   (require 'auctex-latexmk)
   (auctex-latexmk-setup)
 
 #+END_SRC
+** TeX-engine
 +BEGIN_SRC emacs-lisp
   (load "latex.el" nil t t) ;; import for not ask master files
   (setq TeX-engine 'xetex)  ; or latex, pdftex
@@ -282,26 +283,6 @@ If there is still something left do do start the next latex-command."
                             (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
 (require 'tex) 
 (setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                    AUCTeX的用法                         ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-C-c C-c         系列命令，如下
-  latex         编译
-  view         一般编译一次或两次以后会自动转换到这个格式
-  file         dvips
-  print         view ps
-  index         makeidx
-  bibtex     bibtex
-
-C-c C-r         对区域操作，可以选中一个区域
-         latex，然后再重复命令看输出
-
-C-c ~             进入latex-math-mode，进入后可以使用缩写
-    `         左上角的`，例如`a生成\alpha{}
-
-C-c C-e         LaTeX-environment，加入各种环境
-
 C-c C-m         加入macro，如\frac,\ref等等很多，也可以用
 C-c RET
 
@@ -394,27 +375,6 @@ C-c C-f C-d  删除字体信息
 
 
 
-
-** note 
-http://www.emacswiki.org/emacs/CategoryTex
-|-------------+----------------+----------+----------|
-| Input Files | Main mode      | Packages | Bars     |
-|-------------+----------------+----------+----------|
-| Tex         | plain-tex-mode |          | tex      |
-| SliTex      | slitex-mode    |          |          |
-| DocTex      | doctex-mode    |          |          |
-| Texinfo     | texinfo-mode   |          |          |
-| LaTex       | latex-mode     |          |          |
-|-------------+----------------+----------+----------|
-| LaTex       | LaTeX-mode     | Auctex   | LaTeX/Ms |
-| ConTex      |                |          |          |
-| luaTex      |                |          |          |
-|-------------+----------------+----------+----------|
-| Minor mode  | CDLatex        | CDLatex  |          |
-|             | reftex         | reftex   |          |
-|-------------+----------------+----------+----------|
-
-#+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
 * e22_reftex.org
 ** reftex-mode
 #+BEGIN_SRC emacs-lisp
@@ -463,6 +423,29 @@ http://www.emacswiki.org/emacs/CategoryTex
 (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 #+END_SRC
+*** org PDF Processing
+
+This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
+
+#+begin_src emacs-lisp
+  (setq org-latex-pdf-process
+            '("pdflatex -interaction nonstopmode -output-directory %o %f"
+              "bibtex %b"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+    ;; (setq org-latex-pdf-process
+    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "biber %b"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;;; biber
+  ;; (setq org-latex-to-pdf-process 
+  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
+;(setq org-latex-to-pdf-process
+;'("xelatex -interaction nonstopmode %b"
+;"xelatex -interaction nonstopmode %b"))
+#+end_src
+
 ** AUCTex mode hook
 C-c [
 #+BEGIN_SRC emacs-lisp
@@ -524,7 +507,6 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
 (add-hook 'org-export-before-parsing-hook 'my-bibliography-selector-hook)
 #+end_src
 
-
 *** Bibretrieve customisations
 
 begin_src emacs-lisp
@@ -566,4 +548,41 @@ begin_src emacs-lisp
 )
 end_src
 
+
+* Note
+
+** Modes
+http://www.emacswiki.org/emacs/CategoryTex
+|-------------+----------------+----------+----------|
+| Input Files | Main mode      | Packages | Bars     |
+|-------------+----------------+----------+----------|
+| Tex         | plain-tex-mode |          | tex      |
+| SliTex      | slitex-mode    |          |          |
+| DocTex      | doctex-mode    |          |          |
+| Texinfo     | texinfo-mode   |          |          |
+| LaTex       | latex-mode     |          |          |
+|-------------+----------------+----------+----------|
+| LaTex       | LaTeX-mode     | Auctex   | LaTeX/Ms |
+| ConTex      |                |          |          |
+| luaTex      |                |          |          |
+|-------------+----------------+----------+----------|
+| Minor mode  | CDLatex        | CDLatex  |          |
+|             | reftex         | reftex   |          |
+|-------------+----------------+----------+----------|
+
+** Keys
+| Keys    | default           | my settings   |
+|---------+-------------------+---------------|
+| C-c C-c | latex             | latexmk       |
+| view    | view              |               |
+| file    | dvips             |               |
+| print   | view ps           |               |
+| index   | makeidx           |               |
+| bibtex  | bibtex            |               |
+|---------+-------------------+---------------|
+| C-c ~   | latex-math-mode   | `a = \alpha{} |
+| C-c r   | Region            |               |
+| C-c C-e | LaTeX-environment |               |
+| C-c C-m | marco             |               |
+|---------+-------------------+---------------|
 

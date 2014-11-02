@@ -6,10 +6,9 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
 | org-latex.el             | ox-latex.el           |
 | org-latex-to-pdf-process | org-latex-pdf-process |
 | org-export-latex-classes | org-latex-classes     |
-** Default setting
+** Default Class setting
 #+BEGIN_SRC emacs-lisp
 (setq org-latex-default-class "koma-article")
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 #+END_SRC
 ** Define article class
 #+BEGIN_SRC emacs-lisp
@@ -88,26 +87,4 @@ http://qiita.com/PowerPC7450/items/575291f7aa8ff6807abd
                               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
                              ))
 #+END_SRC
-** org PDF Processing
-
-This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
-
-#+begin_src emacs-lisp
-  (setq org-latex-pdf-process
-            '("pdflatex -interaction nonstopmode -output-directory %o %f"
-              "bibtex %b"
-              "pdflatex -interaction nonstopmode -output-directory %o %f"
-              "pdflatex -interaction nonstopmode -output-directory %o %f"))
-    ;; (setq org-latex-pdf-process
-    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
-    ;;           "biber %b"
-    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
-    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
-  ;;;; biber
-  ;; (setq org-latex-to-pdf-process 
-  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
-;(setq org-latex-to-pdf-process
-;'("xelatex -interaction nonstopmode %b"
-;"xelatex -interaction nonstopmode %b"))
-#+end_src
 
