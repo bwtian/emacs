@@ -8,7 +8,7 @@
 #+CATEGORIES: Org-babel for Emacs init
 #+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
 * e20_tex.org
-** DONE Invoke Tex Packages
+** DONE Invoke Tex Packages and Mode
 #+BEGIN_SRC emacs-lisp
     ;; (setenv "PATH" (concat "/usr/texbin:" (getenv "PATH")))
   (require 'tex-site)   ; invoke the AUCTeX package (LaTeX support)
@@ -19,7 +19,7 @@
   (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
   #+END_SRC
 
-** Tex main settings
+** FIXIT  Tex main settings
 #+BEGIN_SRC emacs-lisp
 ;; Makes sections independently possible
 (setq TeX-auto-save t)
@@ -52,6 +52,7 @@
 ;; C-c C-c
   (require 'auctex-latexmk)
   (auctex-latexmk-setup)
+  (setq TeX-command-default  "latexmk")
 #+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "latex.el" nil t t) ;; import for not ask master files
@@ -64,8 +65,6 @@
                    ;;(setq TeX-open-quote "«~")
                    ;;(setq TeX-close-quote "~»")
 +END_SRC
-* e21_texMinor.org
-http://www.emacswiki.org/emacs/AUCTeX
 ** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
@@ -95,6 +94,21 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
   (add-hook 'LaTeX-mode-hook 'linum-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 #+END_SRC
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (require 'smartparens-latex)
+            (TeX-run-style-hooks "amsmath" "amsthm" "latex2e")
+            (TeX-fold-mode 1)
+            (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)
+            (LaTeX-math-mode)
+            (TeX-source-correlate-mode)
+            (turn-on-reftex)
+            (auctex-latexmk-setup)
+            (diminish 'reftex-mode)
+            (LaTeX-add-environments
+             '("exmp" LaTeX-env-label)
+             '("defn" LaTeX-env-label)
+             '("thm" LaTeX-env-label))))
 
 ** DONE Highlighting magic-latex-buffer
 #+BEGIN_SRC emacs-lisp
@@ -525,7 +539,7 @@ http://www.emacswiki.org/emacs/CategoryTex
 | Texinfo     | texinfo-mode   |          |          |
 | LaTex       | latex-mode     |          |          |
 |-------------+----------------+----------+----------|
-| LaTex       | LaTeX-mode     | Auctex   | LaTeX/Ms |
+| LaTeX       | LaTeX-mode     | Auctex   | LaTeX/Ms |
 | ConTex      |                |          |          |
 | luaTex      |                |          |          |
 |-------------+----------------+----------+----------|
