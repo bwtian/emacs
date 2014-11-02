@@ -43,9 +43,12 @@
 
 #+END_SRC
 ** TeX-engine
+#+BEGIN_SRC emacs-lisp
+(setq TeX-engine 'xetex)  ; or latex, pdftex
+#+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "latex.el" nil t t) ;; import for not ask master files
-  (setq TeX-engine 'xetex)  ; or latex, pdftex
+
   (setq preview-scale-function 1.5)
   (setq TeX-save-query nil)
   
