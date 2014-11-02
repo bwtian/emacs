@@ -572,10 +572,10 @@ http://www.emacswiki.org/emacs/CategoryTex
 |-------------+--------------------+------------------------------|
 | C-c C-f C-b | bold               | yas b                        |
 | C-c C-f C-i | italic             |                              |
-| C-c C-f C-e | eph                |                              |
-| C-c C-f C-b |                    |                              |
-| C-c C-f C-b |                    |                              |
-| C-c C-f C-b |                    |                              |
+| C-c C-f C-e | emphasized         |                              |
+| C-c C-f C-r | roman              |                              |
+| C-c C-f C-t | typewritter        |                              |
+| C-c C-f C-s | slanted            |                              |
 | C-c C-f C-b |                    |                              |
 | C-c C-f C-b |                    |                              |
 | C-c C-f C-b |                    |                              |

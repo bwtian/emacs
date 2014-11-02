@@ -211,7 +211,8 @@
    (setq company-dabbrev-time-limit 0.1)
    (setq company-dabbrev-downcase nil)
    (setq company-dabbrev-ignore-case nil)
-   (setq company-dabbrev-other-buffers t)
+   (setq company-dabbrev-other-buffers t)  
+   (setq company-dabbrev-minimum-length 2)
 
 (eval-after-load "company"
   '(progn
@@ -321,7 +322,7 @@
                                  '((
                                         company-dabbrev
                                         company-dabbrev-code
-                                        ;company-ispell
+                                        company-ispell
                                         company-files
                                         company-yasnippet
                                         ))
