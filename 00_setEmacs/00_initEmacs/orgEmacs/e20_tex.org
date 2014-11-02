@@ -77,7 +77,6 @@
 +END_SRC
 * e21_texMinor.org
 http://www.emacswiki.org/emacs/AUCTeX
-** SUB [[file:e22_reftex.org][Reftex]]
 ** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
@@ -462,6 +461,7 @@ http://www.emacswiki.org/emacs/CategoryTex
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 #+END_SRC
 ** AUCTex mode hook
 C-c [
