@@ -6,46 +6,40 @@
 (setq TeX-file-extensions
       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
 (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
+(setq TeX-force-default-mode t)
 
+;; Makes sections independently possible
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq TeX-electric-escape t)  ; make \ = C-c C-m
+(setq-default TeX-master nil) ;t for not ask 
+;; Make \ = C-c C-m to start macro
+(setq TeX-electric-escape t)  
 (setq TeX-electric-sub-and-superscript t)
+
 (setq TeX-show-compilation t) ; display compilation windows
 (setq TeX-auto-untabify t)     ; remove all tabs before saving
-(setq-default TeX-master nil) ;t for not ask 
-      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; Use Okular as the pdf viewer. Build okular 
-    ;; command, so that Okular jumps to the current line 
-    ;; in the viewer.
-    ;; (setq TeX-view-program-selection
-    ;;  '((output-pdf "PDF Viewer")))
-    ;; (setq TeX-view-program-list
-    ;;  '(("PDF Viewer" "okular --unique %o#src:%n%b")))
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(LaTeX-indent-level 4)
-   '(TeX-engine (quote xetex))
-   '(TeX-source-correlate-method (quote synctex))
-   '(LaTeX-command "latex -synctex=1")
-   '(TeX-source-correlate-mode t)
-   '(TeX-source-correlate-start-server t)
-   '(TeX-view-program-list (quote (("Okular" "okular --unique %o#src:%n%b"))))
-   '(TeX-view-program-selection (quote ((output-pdf "Okular"))))
-   '(show-paren-mode t))
+(setq completion-ignored-extensions (append completion-ignored-extensions
+                                            '(".synctex.gz")))
+(setq 
+    LaTeX-top-caption-list            '("table" "tabular")
+    LaTeX-float                       "tn"
+    LaTeX-figure-label                "fig:"
+    LaTeX-table-label         "tab:"
+    LaTeX-section-label               "sec:")
 
 ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
-   ; (load "auctex.el" nil t)
-    ;(load "preview-latex" nil t))
-  (load "auctex.el" nil t )
-  (load "preview.el" nil t)
-  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+ ; (load "auctex.el" nil t)
+  ;(load "preview-latex" nil t))
+(load "auctex.el" nil t )
+(load "preview.el" nil t)
+(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+
+(setq TeX-engine 'xetex)  ; or latex, pdftex
+
 ;; C-c C-c
   (require 'auctex-latexmk)
   (auctex-latexmk-setup)
+  (setq TeX-command-default  "latexmk")
 
 (require 'company-auctex)
 (company-auctex-init)
