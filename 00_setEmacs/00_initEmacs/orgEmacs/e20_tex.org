@@ -57,13 +57,19 @@
 #+END_SRC
 ** Tex-commands
 #+BEGIN_SRC emacs-lisp
-;; C-c C-c
-(require 'auctex-latexmk)
-(auctex-latexmk-setup)
-(add-hook 'TeX-mode-hook
-          (function (lambda () (setq TeX-command-default "LatexMk"))))
-(setq TeX-open-quote "<<")
-(setq TeX-close-quote ">>")
+  ;; C-c C-c
+  (require 'auctex-latexmk)
+  (auctex-latexmk-setup)
+  (add-hook 'TeX-mode-hook
+            (function (lambda () (setq TeX-command-default "LatexMk"))))
+  (setq TeX-open-quote "<<")
+  (setq TeX-close-quote ">>")
+  ;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
+  (setq my-tex-commands-extra (list 
+                               (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
+  (require 'tex) 
+  (setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
+
 #+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
@@ -167,13 +173,10 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (add-hook 'LaTex-mode-hook 'magic-latex-buffer)
 #+END_SRC
 ** Sections
-         (setq LaTeX-section-hook
-             '(LaTeX-section-heading
-               LaTeX-section-title
-               LaTeX-section-toc
-               LaTeX-section-section
-               LaTeX-section-label))
 
+;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
+(setq my-tex-commands-extra (list 
+                            (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && b
 ** TODO TeX-texify
 ;;; http://www.emacswiki.org/emacs/TN
 
@@ -523,11 +526,7 @@ http://www.emacswiki.org/emacs/CategoryTex
 |-------------+--------------------+------------------------------|
 
 ** Note
-;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
-(setq my-tex-commands-extra (list 
-                            (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
-(require 'tex) 
-(setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
+
 
 C-c C-s         加入章节,LaTeX-section,可以有一些参数，
         如toc在目录里生成标题的简称， 不过一般不加也可以。
