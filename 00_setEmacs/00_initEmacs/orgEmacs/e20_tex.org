@@ -571,18 +571,19 @@ http://www.emacswiki.org/emacs/CategoryTex
 |-------------+----------------+----------+----------|
 
 ** Keys
-| Keys    | default           | my settings   |
-|---------+-------------------+---------------|
-| C-c C-c | latex             | latexmk       |
-| view    | view              |               |
-| file    | dvips             |               |
-| print   | view ps           |               |
-| index   | makeidx           |               |
-| bibtex  | bibtex            |               |
-|---------+-------------------+---------------|
-| C-c ~   | latex-math-mode   | `a = \alpha{} |
-| C-c r   | Region            |               |
-| C-c C-e | LaTeX-environment |               |
-| C-c C-m | marco             |               |
-|---------+-------------------+---------------|
+| Keys    | default            | my settings                  |
+|---------+--------------------+------------------------------|
+| C-c C-c | latex              | latexmk                      |
+| view    | view               |                              |
+| file    | dvips              |                              |
+| print   | view ps            |                              |
+| index   | makeidx            |                              |
+| bibtex  | bibtex             |                              |
+|---------+--------------------+------------------------------|
+| C-c ~   | latex-math-mode    | `a = \alpha{}                |
+| C-c r   | Region             |                              |
+| C-c C-e | LaTeX-environment  |                              |
+| C-c C-m | marco or \ below   |                              |
+| \       | TeX-electric-escap | (setq TeX-electric-escape t) |
+|---------+--------------------+------------------------------|
 
