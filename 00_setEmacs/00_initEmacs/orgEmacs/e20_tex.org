@@ -36,12 +36,12 @@
   (setq TeX-save-query nil)
   (setq completion-ignored-extensions (append completion-ignored-extensions
                                               '(".synctex.gz")))
-  (setq 
-      LaTeX-top-caption-list	("table" "tabular")
-      LaTeX-float			"tn"
-      LaTeX-figure-label		"fig:"
-      LaTeX-table-label		"tab:"
-      LaTeX-section-label		"sec:")
+  ;(setq 
+   ;   LaTeX-top-caption-list	("table" "tabular")
+   ;   LaTeX-float			"tn"
+   ;   LaTeX-figure-label		"fig:"
+   ;   LaTeX-table-label		"tab:"
+   ;   LaTeX-section-label		"sec:")
   (setq LaTeX-default-options '("a4"))
   (setq LaTeX-float "hbt")
   (setq LaTeX-indent-level 2)
