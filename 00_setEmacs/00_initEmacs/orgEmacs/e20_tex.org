@@ -20,7 +20,7 @@
   (setq TeX-force-default-mode t)
   #+END_SRC
 
-** FIXIT  Tex main settings
+** FIXIT  Tex settings
 #+BEGIN_SRC emacs-lisp
   ;; Makes sections independently possible
   (setq TeX-auto-save t)
@@ -29,18 +29,73 @@
   ;; Make \ = C-c C-m to start macro
   (setq TeX-electric-escape t)  
   (setq TeX-electric-sub-and-superscript t)
-
+  (setq TeX-source-correlate-method 'synctex)
+  
   (setq TeX-show-compilation t) ; display compilation windows
   (setq TeX-auto-untabify t)     ; remove all tabs before saving
+  (setq TeX-save-query nil)
   (setq completion-ignored-extensions (append completion-ignored-extensions
                                               '(".synctex.gz")))
   (setq 
-      LaTeX-top-caption-list		'("table" "tabular")
+      LaTeX-top-caption-list	("table" "tabular")
       LaTeX-float			"tn"
       LaTeX-figure-label		"fig:"
       LaTeX-table-label		"tab:"
       LaTeX-section-label		"sec:")
 #+END_SRC
+** DONE TeX-engine
+#+BEGIN_SRC emacs-lisp
+(setq TeX-engine 'xetex)  ; or latex, pdftex
+#+END_SRC
+** Tex-commands
+#+BEGIN_SRC emacs-lisp
+;; C-c C-c
+  (require 'auctex-latexmk)
+  (auctex-latexmk-setup)
+  (setq TeX-command-default  "latexmk")
+  (setq TeX-open-quote "<<")
+  (setq TeX-close-quote ">>")
+#+END_SRC
++BEGIN_SRC emacs-lisp
+  (load "latex.el" nil t t) ;; import for not ask master files
+
+  (setq preview-scale-function 1.5)
+
+  
+
++END_SRC
+** NEXT Tex-preview 
+#+BEGIN_SRC emacs-lisp
+  (setq TeX-view-program-list
+            '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+              ("Gsview" "gsview32.exe %o")
+              ("Okular" "okular --unique %o")
+              ("Evince" "evince %o")    ;; Gnomeers
+              ("Firefox" "firefox %o")))
+      (cond
+       ((eq system-type 'windows-nt)
+        (add-hook 'LaTeX-mode-hook
+                  (lambda ()
+                    (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+                                                       (output-dvi "Yap")
+                                                       )))))
+       ((eq system-type 'gnu/linux)
+        (add-hook 'LaTeX-mode-hook
+                  (lambda ()
+                    (setq TeX-view-program-selection '((output-pdf "Okular")
+                                                       (output-dvi "Okular")
+          ))))))
+
+#+END_SRC
+    
+    (setq TeX-output-view-style (quote (
+                                        ("^pdf$" "." "evince %o")
+                                        ("^ps$" "." "gv %o")
+                                        ("^dvi$" "." "xdvi %o")
+                                        )))
+    (setq tex-dvi-view-command "xdvi")
+    (setq tex-dvi-print-command "dvips")
+    (setq tex-alt-dvi-print-command "dvips")
 ** DONE Auctex mode
 #+BEGIN_SRC emacs-lisp
   ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
@@ -51,28 +106,6 @@
   (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 #+END_SRC
-** TeX-engine
-#+BEGIN_SRC emacs-lisp
-(setq TeX-engine 'xetex)  ; or latex, pdftex
-#+END_SRC
-** Tex-commands
-#+BEGIN_SRC emacs-lisp
-;; C-c C-c
-  (require 'auctex-latexmk)
-  (auctex-latexmk-setup)
-  (setq TeX-command-default  "latexmk")
-#+END_SRC
-+BEGIN_SRC emacs-lisp
-  (load "latex.el" nil t t) ;; import for not ask master files
-
-  (setq preview-scale-function 1.5)
-  (setq TeX-save-query nil)
-  
-(setq TeX-source-correlate-method 'synctex)
-
-                   ;;(setq TeX-open-quote "«~")
-                   ;;(setq TeX-close-quote "~»")
-+END_SRC
 ** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
@@ -205,38 +238,6 @@ If there is still something left do do start the next latex-command."
 #+BEGIN_SRC emacs-lisp
   ;;(require 'latex-pretty-symbols)
 #+END_SRC
-** NEXT preview 
-#+BEGIN_SRC emacs-lisp
-  (setq TeX-view-program-list
-            '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
-              ("Gsview" "gsview32.exe %o")
-              ("Okular" "okular --unique %o")
-              ("Evince" "evince %o")    ;; Gnomeers
-              ("Firefox" "firefox %o")))
-      (cond
-       ((eq system-type 'windows-nt)
-        (add-hook 'LaTeX-mode-hook
-                  (lambda ()
-                    (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
-                                                       (output-dvi "Yap")
-                                                       )))))
-       ((eq system-type 'gnu/linux)
-        (add-hook 'LaTeX-mode-hook
-                  (lambda ()
-                    (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                       (output-dvi "Okular")
-          ))))))
-
-#+END_SRC
-    
-    (setq TeX-output-view-style (quote (
-                                        ("^pdf$" "." "evince %o")
-                                        ("^ps$" "." "gv %o")
-                                        ("^dvi$" "." "xdvi %o")
-                                        )))
-    (setq tex-dvi-view-command "xdvi")
-    (setq tex-dvi-print-command "dvips")
-    (setq tex-alt-dvi-print-command "dvips")
 ** TODO Whizzy Preview: Toggle the preview window on/off with F9
 +BEGIN_SRC emacs-lisp
   ;; sudo apt-get install whizzytex
