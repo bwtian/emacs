@@ -142,7 +142,6 @@
 (global-set-key (kbd "C-c C-a") 'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)
 
-(setq default-abbrev-mode t)
 (setq transient-mark-mode t)
 (global-auto-revert-mode t)
 (setq read-file-name-completion-ignore-case t)

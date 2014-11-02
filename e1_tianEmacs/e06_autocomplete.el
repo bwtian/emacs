@@ -151,7 +151,7 @@
    ;;              "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
    ;; (setq ac-comphist-file (expand-file-name
    ;;              "~/.emacs.d/ac-comphist.dat"))
-   (setq ac-comphist-file "~/SparkleShare/emacs.d/ac-comphist.dat")
+   (setq ac-comphist-file "~/.emacs.d/share/ac-comphist.dat")
    (setq ac-use-comphist t) 
    (set-default 'ac-sources
               '(ac-source-semantic 
@@ -549,6 +549,3 @@ yas/completing-prompt))
 (provide 'company-ess)
 ;;; company-ESS.el ends here
 (require 'company-ess)
-
-(require 'pabbrev)
-(global-pabbrev-mode)
