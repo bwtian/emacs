@@ -73,7 +73,8 @@
 #+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
- (setq preview-scale-function 1.5)
+(setq preview-scale-function 1.5)
+(setq preview-image-type 'dvipng)
   (setq TeX-view-program-list
             '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
               ("Gsview" "gsview32.exe %o")
