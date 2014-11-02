@@ -203,7 +203,6 @@ M-q::fill-paragraph
 
 ** Misc Default Mode
 #+BEGIN_SRC emacs-lisp
-  (setq default-abbrev-mode t)
   (setq transient-mark-mode t)
   (global-auto-revert-mode t)
   (setq read-file-name-completion-ignore-case t)
