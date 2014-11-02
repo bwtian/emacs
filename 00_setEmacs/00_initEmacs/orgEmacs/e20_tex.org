@@ -58,16 +58,18 @@
 ** Tex-commands
 #+BEGIN_SRC emacs-lisp
 ;; C-c C-c
-  (require 'auctex-latexmk)
-  (auctex-latexmk-setup)
-  (setq TeX-command-default  "latexmk")
-  (setq TeX-open-quote "<<")
-  (setq TeX-close-quote ">>")
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+(add-hook 'TeX-mode-hook
+          (function (lambda () (setq TeX-command-default "LatexMk"))))
+(setq TeX-open-quote "<<")
+(setq TeX-close-quote ">>")
 #+END_SRC
 ** auto directory
 #+BEGIN_SRC emacs-lisp
 ;; change auto name
-(setq TeX-auto-local ".auctex") 
+(setq TeX-auto-local ".auctex")
+ 
 #+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
