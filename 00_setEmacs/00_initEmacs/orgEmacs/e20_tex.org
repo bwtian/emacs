@@ -73,27 +73,30 @@
 #+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
-(setq preview-scale-function 1.5)
-(setq preview-image-type 'dvipng)
+  (setq preview-scale-function 1.5)
+  (setq preview-image-type 'dvipng)
+
   (setq TeX-view-program-list
-            '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
-              ("Gsview" "gsview32.exe %o")
-              ("Okular" "okular --unique %o")
-              ("Evince" "evince %o")    ;; Gnomeers
-              ("Firefox" "firefox %o")))
-      (cond
-       ((eq system-type 'windows-nt)
-        (add-hook 'LaTeX-mode-hook
-                  (lambda ()
-                    (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
-                                                       (output-dvi "Yap")
-                                                       )))))
-       ((eq system-type 'gnu/linux)
-        (add-hook 'LaTeX-mode-hook
-                  (lambda ()
-                    (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                       ;(output-dvi "Okular")
-          ))))))
+              '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+                ("Gsview" "gsview32.exe %o")
+                ("Okular" "okular --unique %o")
+                ("Evince" "evince %o")    ;; Gnomeers
+                ("open" "open %o")
+                ("Firefox" "firefox %o")))
+  (cond
+   ((eq system-type 'windows-nt)
+    (add-hook 'LaTeX-mode-hook
+              (lambda ()
+                (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+                                                   (output-dvi "Yap")
+                                                   )))))
+   ((eq system-type 'gnu/linux)
+    (add-hook 'LaTeX-mode-hook
+              (lambda ()
+                (setq TeX-view-program-selection '((output-pdf "Okular")
+                                                   (output-dvi "Okular")
+                                                   (output-html "open")
+                                                   ))))))
 
 #+END_SRC
     
