@@ -21,17 +21,18 @@
 
 ** FIXIT  Tex main settings
 #+BEGIN_SRC emacs-lisp
-;; Makes sections independently possible
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil) ;t for not ask 
-;; Make \ = C-c C-m to start macro
-(setq TeX-electric-escape t)  
-(setq TeX-electric-sub-and-superscript t)
+  ;; Makes sections independently possible
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil) ;t for not ask 
+  ;; Make \ = C-c C-m to start macro
+  (setq TeX-electric-escape t)  
+  (setq TeX-electric-sub-and-superscript t)
 
-(setq TeX-show-compilation t) ; display compilation windows
-(setq TeX-auto-untabify t)     ; remove all tabs before saving
-
+  (setq TeX-show-compilation t) ; display compilation windows
+  (setq TeX-auto-untabify t)     ; remove all tabs before saving
+  (setq completion-ignored-extensions (append completion-ignored-extensions
+                                              '(".synctex.gz")))
 #+END_SRC
 ** DONE Auctex mode
 #+BEGIN_SRC emacs-lisp
