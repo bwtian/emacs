@@ -37,9 +37,6 @@
   (load "auctex.el" nil t )
   (load "preview.el" nil t)
   (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
-;; C-c C-c
-  (require 'auctex-latexmk)
-  (auctex-latexmk-setup)
 
 #+END_SRC
 ** TeX-engine
@@ -47,7 +44,11 @@
 (setq TeX-engine 'xetex)  ; or latex, pdftex
 #+END_SRC
 ** Tex-commands
-
+#+BEGIN_SRC emacs-lisp
+;; C-c C-c
+  (require 'auctex-latexmk)
+  (auctex-latexmk-setup)
+#+END_SRC
 +BEGIN_SRC emacs-lisp
   (load "latex.el" nil t t) ;; import for not ask master files
 
