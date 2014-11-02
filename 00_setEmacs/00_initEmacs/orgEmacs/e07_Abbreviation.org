@@ -1,0 +1,19 @@
+
+* Abbrev-mode
+#+BEGIN_SRC emacs-lisp
+;; turn on abbrev mode globally
+(setq default-abbrev-mode t)  
+(setq abbrev-file-name             ;; tell emacs where to read abbrev  
+        "~/.emacs.d/share/abbrevDefs")    ;; definitions from...  
+(setq save-abbrevs t)              ;; save abbrevs when files are saved  
+                                     ;; you will be asked before the abbreviations are saved  
+(quietly-read-abbrev-file)       ;; reads the abbreviations file on startup  
+;Avoid errors if the abbrev-file is missing  
+(if (file-exists-p abbrev-file-name)  
+        (quietly-read-abbrev-file))  
+#+END_SRC
+* pabbrev 
+#+BEGIN_SRC emacs-lisp
+(require 'pabbrev)
+(global-pabbrev-mode)
+#+END_SRC
