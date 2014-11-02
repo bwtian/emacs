@@ -131,8 +131,12 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 ** DONE PDFLaTex
 #+BEGIN_SRC emacs-lisp
  (setq TeX-PDF-mode t)
+
 ;(require 'tex)
 ;(TeX-global-PDF-mode t)
+  ;; pdf-model
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 #+END_SRC
 ** FIXIT Hooks
 #+BEGIN_SRC emacs-lisp
@@ -451,8 +455,14 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
 +END_SRC
 
 
-** Bibtex
+* Bibtex
 #+begin_src emacs-lisp
+
+;;; bibtex
+;;;
+(setq bib-bibtex-env-variable	"TEXMFHOME")
+(autoload 'turn-on-bib-cite "bib-cite")
+(add-hook 'LaTeX-mode-hook 'turn-on-bib-cite)
 (defun my-bibliography-selector-hook (backend)
     (case backend
       (latex
@@ -471,7 +481,7 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
 (add-hook 'org-export-before-parsing-hook 'my-bibliography-selector-hook)
 #+end_src
 
-*** Bibretrieve customisations
+** Bibretrieve customisations
 
 begin_src emacs-lisp
 (add-to-list 'load-path "~/.emacs.d/elpa/bibretrieve-20131013.1132/bibretrieve")
