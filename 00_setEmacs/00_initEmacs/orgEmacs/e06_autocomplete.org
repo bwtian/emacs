@@ -14,7 +14,7 @@
 | shwo Source     |               | C-w       |         |         |
 | search cad      |               | C-s/C-M-s |         |         |
 |-----------------+---------------+-----------+---------+---------|
-* hippie-expand
+* DONE hippie-expand
 #+BEGIN_SRC emacs-lisp
 (global-set-key "\C-o" 'hippie-expand)
 (setq hippie-expand-try-functions-list
@@ -240,11 +240,11 @@
 #+BEGIN_SRC emacs-lisp
    (require 'company)
    (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
-   (setq company-minimum-prefix-length 4)
+   (setq company-minimum-prefix-length 3)
 
    (setq company-tooltip-delay 0)
-   ;(setq company-echo-delay 0)  ; remove annoying blinking
-   ;(setq company-display-style 'pseudo-tooltip)
+   (setq company-echo-delay 0)  ; remove annoying blinking
+   (setq company-display-style 'pseudo-tooltip)
    (setq company-tooltip-limit 20)
    (setq company-auto-expand t)
    (setq company-auto-complete t)
@@ -272,7 +272,7 @@
      (setq company-dabbrev-downcase nil)
      (setq company-dabbrev-ignore-case nil)
      (setq company-dabbrev-other-buffers t)  
-     (setq company-dabbrev-minimum-length 2)
+   ;  (setq company-dabbrev-minimum-length 2)
 
 #+END_SRC
 ** DONE Company-Color
