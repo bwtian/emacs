@@ -21,13 +21,16 @@
 
 ** Tex main settings
 #+BEGIN_SRC emacs-lisp
+;; Makes sections independently possible
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
-(setq TeX-electric-escape t)  ; make \ = C-c C-m
+(setq-default TeX-master nil) ;t for not ask 
+;;  make \ = C-c C-m to start macro
+(setq TeX-electric-escape t)  
 (setq TeX-electric-sub-and-superscript t)
 (setq TeX-show-compilation t) ; display compilation windows
 (setq TeX-auto-untabify t)     ; remove all tabs before saving
-(setq-default TeX-master nil) ;t for not ask 
+
 #+END_SRC
 ** DONE Auctex mode
 #+BEGIN_SRC emacs-lisp
