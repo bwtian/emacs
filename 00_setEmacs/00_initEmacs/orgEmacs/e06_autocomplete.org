@@ -126,16 +126,10 @@
 ** AC-Math
 #+BEGIN_SRC emacs-lisp
 (require 'ac-math)
-(add-to-list 'ac-modes 'latex-mode)  
 (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
   (setq ac-sources
      (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
                ac-sources)))
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-               ac-sources))
-)
 (add-hook 'LaTeX-mode-hook 'ac-latex-mode-setup)
 (setq ac-math-unicode-in-math-p t) ;;use unicode input
 #+END_SRC
