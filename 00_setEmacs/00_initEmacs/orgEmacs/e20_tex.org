@@ -97,6 +97,7 @@
                                                    (output-dvi "Okular")
                                                    (output-html "open")
                                                    ))))))
+  (setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
   ;; (setq TeX-output-view-style (quote (
   ;;                                       ("^pdf$" "." "evince %o")
   ;;                                       ("^ps$" "." "gv %o")
@@ -108,7 +109,7 @@
 
 #+END_SRC
     
-  
+
 ** auto directory
 #+BEGIN_SRC emacs-lisp
 ;; change auto name
