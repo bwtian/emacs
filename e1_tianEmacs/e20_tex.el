@@ -86,10 +86,10 @@
     (add-hook 'LaTeX-mode-hook
               (lambda ()
                 (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                   (output-dvi "Okular")
-                                                   (output-html "open")
+                                                   ;(output-dvi "Okular")
+                                                   ;(output-html "open")
                                                    ))))))
-  (setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
+  ;(setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
   ;; (setq TeX-output-view-style (quote (
   ;;                                       ("^pdf$" "." "evince %o")
   ;;                                       ("^ps$" "." "gv %o")
