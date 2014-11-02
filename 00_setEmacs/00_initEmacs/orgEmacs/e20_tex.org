@@ -524,7 +524,7 @@ begin_src emacs-lisp
 end_src
 
 
-* Note
+* TODO Note
 
 ** Modes
 http://www.emacswiki.org/emacs/CategoryTex
