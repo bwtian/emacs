@@ -186,7 +186,7 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode C-c [
 (setq reftex-plug-into-AUCTeX t)
 (setq reftex-plug-into-auctex t)
-setq reftex-label-alist
+(setq reftex-label-alist
       '(
         ("section" ?s "%S" "~\\secref{%s}" (nil . t)
          (regexp "parts?""chapter" "chap." "sections?" "sect?\\." "paragraphs?" "par\\." "\\\\S" "\247" "Teile?" "Kapitel" "Kap\\." "Abschnitte?" "appendi\\(x\\|ces\\)" "App\\." "Anh\"?ange?" "Anh\\."))
