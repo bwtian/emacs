@@ -75,26 +75,27 @@
                 ("Evince" "evince %o")    ;; Gnomeers
                 ("open" "open %o")
                 ("Firefox" "firefox %o")))
-  (cond
-   ((eq system-type 'windows-nt)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
-                                                   (output-dvi "Yap")
-                                                   )))))
-   ((eq system-type 'gnu/linux)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                   ;(output-dvi "Okular")
-                                                   ;(output-html "open")
-                                                   ))))))
+  ;; (cond
+  ;;  ((eq system-type 'windows-nt)
+  ;;   (add-hook 'LaTeX-mode-hook
+  ;;             (lambda ()
+  ;;               (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+  ;;                                                  (output-dvi "Yap")
+  ;;                                                  )))))
+  ;;  ((eq system-type 'gnu/linux)
+  ;;   (add-hook 'LaTeX-mode-hook
+  ;;             (lambda ()
+  ;;               (setq TeX-view-program-selection '((output-pdf "Okular")
+  ;;                                                  ;(output-dvi "Okular")
+  ;;                                                  ;(output-html "open")
+  ;;                                                  ))))))
   ;(setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
-  ;; (setq TeX-output-view-style (quote (
-  ;;                                       ("^pdf$" "." "evince %o")
-  ;;                                       ("^ps$" "." "gv %o")
-  ;;                                       ("^dvi$" "." "xdvi %o")
-  ;;                                       )))
+   (setq TeX-output-view-style (quote (
+                                         ; ("^pdf$" "." "evince %o")
+                                          ("^pdf$" "." "Okular")
+                                         ("^ps$" "." "gv %o")
+                                         ("^dvi$" "." "xdvi %o")
+                                        )))
   ;;   (setq tex-dvi-view-command "xdvi")
   ;;   (setq tex-dvi-print-command "dvips")
   ;;   (setq tex-alt-dvi-print-command "dvips")

@@ -84,41 +84,42 @@ z** Tex-commands
 #+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
-(setq font-latex-fontify-sectioning 1.0) ;フォントサイズの変更を無効化
-(setq font-latex-fontify-script nil) ;上付き, 下付きの無効化
-  (setq preview-scale-function 1.5)
-  (setq preview-image-type 'dvipng)
+  (setq font-latex-fontify-sectioning 1.0) ;フォントサイズの変更を無効化
+  (setq font-latex-fontify-script nil) ;上付き, 下付きの無効化
+    (setq preview-scale-function 1.5)
+    (setq preview-image-type 'dvipng)
 
-  (setq TeX-view-program-list
-              '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
-                ("Gsview" "gsview32.exe %o")
-                ("Okular" "okular --unique %o")
-                ("Evince" "evince %o")    ;; Gnomeers
-                ("open" "open %o")
-                ("Firefox" "firefox %o")))
-  (cond
-   ((eq system-type 'windows-nt)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
-                                                   (output-dvi "Yap")
-                                                   )))))
-   ((eq system-type 'gnu/linux)
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                   ;(output-dvi "Okular")
-                                                   ;(output-html "open")
-                                                   ))))))
-  ;(setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
-  ;; (setq TeX-output-view-style (quote (
-  ;;                                       ("^pdf$" "." "evince %o")
-  ;;                                       ("^ps$" "." "gv %o")
-  ;;                                       ("^dvi$" "." "xdvi %o")
-  ;;                                       )))
-  ;;   (setq tex-dvi-view-command "xdvi")
-  ;;   (setq tex-dvi-print-command "dvips")
-  ;;   (setq tex-alt-dvi-print-command "dvips")  
+    (setq TeX-view-program-list
+                '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+                  ("Gsview" "gsview32.exe %o")
+                  ("Okular" "okular --unique %o")
+                  ("Evince" "evince %o")    ;; Gnomeers
+                  ("open" "open %o")
+                  ("Firefox" "firefox %o")))
+    ;; (cond
+    ;;  ((eq system-type 'windows-nt)
+    ;;   (add-hook 'LaTeX-mode-hook
+    ;;             (lambda ()
+    ;;               (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+    ;;                                                  (output-dvi "Yap")
+    ;;                                                  )))))
+    ;;  ((eq system-type 'gnu/linux)
+    ;;   (add-hook 'LaTeX-mode-hook
+    ;;             (lambda ()
+    ;;               (setq TeX-view-program-selection '((output-pdf "Okular")
+    ;;                                                  ;(output-dvi "Okular")
+    ;;                                                  ;(output-html "open")
+    ;;                                                  ))))))
+    ;(setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
+     (setq TeX-output-view-style (quote (
+                                           ; ("^pdf$" "." "evince %o")
+                                            ("^pdf$" "." "Okular")
+                                           ("^ps$" "." "gv %o")
+                                           ("^dvi$" "." "xdvi %o")
+                                          )))
+    ;;   (setq tex-dvi-view-command "xdvi")
+    ;;   (setq tex-dvi-print-command "dvips")
+    ;;   (setq tex-alt-dvi-print-command "dvips")  
 
 #+END_SRC
     
