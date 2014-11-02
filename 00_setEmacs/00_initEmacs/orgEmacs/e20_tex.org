@@ -197,23 +197,25 @@ If there is still something left do do start the next latex-command."
 #+END_SRC
 ** NEXT preview 
 #+BEGIN_SRC emacs-lisp
-(setq TeX-view-program-list
-          '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
-            ("Gsview" "gsview32.exe %o")
-            ("Okular" "okular --unique %o")
-            ("Evince" "evince %o")    ;; Gnomeers
-            ("Firefox" "firefox %o")))
-    (cond
-     ((eq system-type 'windows-nt)
-      (add-hook 'LaTeX-mode-hook
-                (lambda ()
-                  (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
-                                                     (output-dvi "Yap"))))))
-     ((eq system-type 'gnu/linux)
-      (add-hook 'LaTeX-mode-hook
-                (lambda ()
-                  (setq TeX-view-program-selection '((output-pdf "Okular")
-                                                     (output-dvi "Okular")))))))
+  (setq TeX-view-program-list
+            '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+              ("Gsview" "gsview32.exe %o")
+              ("Okular" "okular --unique %o")
+              ("Evince" "evince %o")    ;; Gnomeers
+              ("Firefox" "firefox %o")))
+      (cond
+       ((eq system-type 'windows-nt)
+        (add-hook 'LaTeX-mode-hook
+                  (lambda ()
+                    (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+                                                       (output-dvi "Yap")
+                                                       )))))
+       ((eq system-type 'gnu/linux)
+        (add-hook 'LaTeX-mode-hook
+                  (lambda ()
+                    (setq TeX-view-program-selection '((output-pdf "Okular")
+                                                       (output-dvi "Okular")
+          ))))))
 
 #+END_SRC
     
