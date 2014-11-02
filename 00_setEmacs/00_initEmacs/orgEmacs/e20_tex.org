@@ -17,7 +17,7 @@
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
   (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
-  (setq TeX-auto-local ".auctex")
+
   (setq TeX-force-default-mode t)
   #+END_SRC
 
@@ -63,6 +63,11 @@
   (setq TeX-command-default  "latexmk")
   (setq TeX-open-quote "<<")
   (setq TeX-close-quote ">>")
+#+END_SRC
+** auto directory
+#+BEGIN_SRC emacs-lisp
+;; change auto name
+(setq TeX-auto-local ".auctex") 
 #+END_SRC
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
