@@ -6,7 +6,7 @@
 (setq TeX-file-extensions
       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
 (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
-
+(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 (setq TeX-force-default-mode t)
 
 ;; Makes sections independently possible
@@ -113,9 +113,8 @@
 ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
  ; (load "auctex.el" nil t)
   ;(load "preview-latex" nil t))
-(load "auctex.el" nil t )
-(load "preview.el" nil t)
-(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+;(load "auctex.el" nil t )
+;(load "preview.el" nil t)
 
 (require 'company-auctex)
 (company-auctex-init)

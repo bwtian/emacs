@@ -17,7 +17,7 @@
   (setq TeX-file-extensions
         '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
   (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
-
+  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
   (setq TeX-force-default-mode t)
   #+END_SRC
 
@@ -54,7 +54,7 @@
 #+BEGIN_SRC emacs-lisp
 (setq TeX-engine 'xetex)  ; or latex, pdftex
 #+END_SRC
-z** Tex-commands
+** Tex-commands
 #+BEGIN_SRC emacs-lisp
   ;; C-c C-c
   (require 'auctex-latexmk)
@@ -140,9 +140,9 @@ z** Tex-commands
   ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
    ; (load "auctex.el" nil t)
     ;(load "preview-latex" nil t))
-  (load "auctex.el" nil t )
-  (load "preview.el" nil t)
-  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+  ;(load "auctex.el" nil t )
+  ;(load "preview.el" nil t)
+  
 
 #+END_SRC
 ** DONE Company and auto-complete
