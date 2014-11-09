@@ -16,8 +16,8 @@
 (setq TeX-parse-self t)
 (setq-default TeX-master nil) ;t for not ask 
 ;; Make \ = C-c C-m to start macro
-(setq TeX-electric-escape t)  
-(setq TeX-electric-sub-and-superscript t)
+;(setq TeX-electric-escape t)  
+;(setq TeX-electric-sub-and-superscript t)
 
 (setq TeX-show-compilation t) ; display compilation windows
 (setq TeX-auto-untabify t)     ; remove all tabs before saving
