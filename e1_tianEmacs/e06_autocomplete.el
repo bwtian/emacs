@@ -329,7 +329,7 @@
 ;; default keybinding is in company.el
 ;; Company-abort
 (define-key company-active-map "\e\e\e"           'company-abort)
-(define-key company-active-map [return]       'company-abort)
+(define-key company-active-map [return]           'company-abort)
 (define-key company-active-map (kbd "<C-return>") 'company-abort)
 (define-key company-active-map (kbd "\C-g")       '(lambda ()
                                                      (interactive)
@@ -342,7 +342,7 @@
       (interactive "P")
       (company-abort)
       (kbd arg)
-      )
+      ))
 (define-key company-active-map (kbd "SPC")    'my-company-pass-key)
 ;; Company-select
 (define-key company-active-map (kbd "\C-n") 'company-select-next)
