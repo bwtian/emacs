@@ -403,71 +403,69 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
 
 ** Keybindings
 #+BEGIN_SRC emacs-lisp
-  ;; Table Key
-  ;(define-key company-active-map "\t" 'company-complete) 
-  (define-key company-mode-map "\t" nil)
-  (define-key company-mode-map [(backtab)] 'company-complete-common)     
-  (eval-after-load 'company
-               '(progn
-                (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
-  ;  (define-key company-active-map [tab] 'company-complete-selection)
-  ;  (define-key company-active-map (kbd "S-TAB") 'company-complete-common)
-            ;; invert the navigation direction if the the completion popup-isearch-match
-            ;; is displayed on top (happens near the bottom of windows)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
   (setq company-tooltip-flip-when-above t)
   ;; default keybinding is in company.el
   ;; Company-abort
-  (define-key company-active-map "\e\e\e" 'company-abort)
-  (define-key company-active-map (kbd "<SPC>") 'company-abort) ; space
+  (define-key company-active-map "\e\e\e"           'company-abort)
+  ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
+  (define-key company-active-map [return]       'company-abort)
   (define-key company-active-map (kbd "<C-return>") 'company-abort)
-  (define-key company-active-map (kbd "\C-g") '(lambda ()
-                                                 (interactive)
-                                                 (company-abort)))
-  ;(define-key company-active-map (kbd "l") 'company-abort)
+  (define-key company-active-map (kbd "\C-g")       '(lambda ()
+                                                       (interactive)
+                                                       (company-abort)))
+  ;(define-key company-active-map (kbd "l")         'company-abort)
   ;; Company-select
   (define-key company-active-map (kbd "\C-n") 'company-select-next)
   (define-key company-active-map (kbd "\C-p") 'company-select-previous)
-  ;(define-key company-active-map (kbd "j") 'company-select-next)
-  ;(define-key company-active-map (kbd "k") 'company-select-previous)
+  ;(define-key company-active-map (kbd "j")   'company-select-next)
+  ;(define-key company-active-map (kbd "k")   'company-select-previous)
+  ;(define-key company-active-map (kbd "C-j")  'company-select-next)
+  ;(define-key company-active-map (kbd "C-k")  'company-select-previous)
   ;;(define-key company-active-map (kbd "<down>") 'company-select-next)
   ;;(define-key company-active-map (kbd "<up>") 'company-select-previous)
 
    ;; Company-Complete
+  ;(define-key company-active-map "\t"                       'company-complete) 
+  (define-key company-mode-map "\t" nil)
+  (define-key company-mode-map [(backtab)]                   'company-complete-common)     
+  (eval-after-load                                           'company
+                                                             '(progn
+                (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
+  ;  (define-key company-active-map [tab]                    'company-complete-selection)
+  ;  (define-key company-active-map (kbd "S-TAB")            'company-complete-common)
+  (define-key company-active-map [mouse-1]                   'company-complete-mouse)
+  (define-key company-active-map [mouse-3]                   'company-select-mouse)
 
-  (define-key company-active-map [mouse-1] 'company-complete-mouse)
-  (define-key company-active-map [mouse-3] 'company-select-mouse)
-  (define-key company-active-map [up-mouse-1] 'ignore)
-  (define-key company-active-map [up-mouse-3] 'ignore)
+  (define-key company-active-map [down-mouse-1] 'ignore)
+  (define-key company-active-map [down-mouse-3] 'ignore)
+  (define-key company-active-map [mouse-1]      'ignore)
+  (define-key company-active-map [mouse-3]      'ignore)
+  (define-key company-active-map [up-mouse-1]   'ignore)
+  (define-key company-active-map [up-mouse-3]   'ignore)
 
   ;(define-key company-active-map "" 'company-complete-selection) ;space
-  ;(define-key company-active-map "" 'company-complete) ; space
+  ;(define-key company-active-map ""            'company-complete) ; space
   (define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
-  (define-key company-active-map "\C-w" 'company-show-location)
-  (define-key company-active-map "\C-s" 'company-search-candidates)
-  (define-key company-active-map "\C-\M-s" 'company-filter-candidates)
-  (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-  (define-key company-active-map (kbd "\C-v") 'company-show-location)
-   (define-key company-active-map (kbd "C-h") 'company-show-doc-buffer)
-    (define-key company-active-map (kbd "C-l") 'company-show-location)
-    (define-key company-active-map (kbd "C-j") 'company-select-next)
-    (define-key company-active-map (kbd "C-k") 'company-select-previous)
-    (define-key company-active-map (kbd "<down>") 'company-select-next-or-abort)
-    (define-key company-active-map (kbd "<up>") 'company-select-previous-or-abort)
-    (define-key company-active-map [down-mouse-1] 'ignore)
-    (define-key company-active-map [down-mouse-3] 'ignore)
-    (define-key company-active-map [mouse-1] 'ignore)
-    (define-key company-active-map [mouse-3] 'ignore)
-    (define-key company-active-map [up-mouse-1] 'ignore)
-    (define-key company-active-map [up-mouse-3] 'ignore)
-    (define-key company-active-map [return] 'company-abort)
-    (define-key company-active-map (kbd "SPC") 'my-company-pass-key)
+  (define-key company-active-map (kbd "\C-d")   'company-show-doc-buffer)
+  (define-key company-active-map (kbd "\C-w")   'company-show-location)
+  (define-key company-active-map (kbd "C-l")    'company-show-location)
+  (define-key company-active-map "\C-s"         'company-search-candidates)
+  (define-key company-active-map "\C-\M-s"      'company-filter-candidates)
 
-    (define-key company-active-map (kbd "<f1>") 'company-show-doc-buffer)
-    (define-key company-active-map "\C-w" 'company-show-location)
-    (define-key company-active-map "\C-s" 'company-search-candidates)
-    (define-key company-active-map "\C-\M-s" 'company-filter-candidates)
-  ;(define-key company-active-map (kbd "<tab>") 'company-complete)
- 
+  (define-key company-active-map (kbd "\C-v") 'company-show-location)
+  (define-key company-active-map (kbd "\C-h")  'company-show-doc-buffer)
+
+
+  (define-key company-active-map (kbd "<down>") 'company-select-next-or-abort)
+  (define-key company-active-map (kbd "<up>")   'company-select-previous-or-abort)
+
+
+  (define-key company-active-map (kbd "SPC")    'my-company-pass-key)
+
+  (define-key company-active-map (kbd "<f1>")  'company-show-doc-buffer)
+   
 #+END_SRC
 
 * SOMEDAY Predictive mode 
