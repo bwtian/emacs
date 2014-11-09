@@ -409,7 +409,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
   ;; default keybinding is in company.el
   ;; Company-abort
   (define-key company-active-map "\e\e\e"           'company-abort)
-  (define-key company-active-map [return]           'company-abort)
+  ;(define-key company-active-map [return]           'company-abort)
   (define-key company-active-map (kbd "<C-return>") 'company-abort)
   (define-key company-active-map (kbd "\C-g")       '(lambda ()
                                                        (interactive)
