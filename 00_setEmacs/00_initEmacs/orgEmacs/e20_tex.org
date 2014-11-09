@@ -20,8 +20,12 @@
   (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
   (setq TeX-force-default-mode t)
   #+END_SRC
+** DONE TeX-engine
+#+BEGIN_SRC emacs-lisp
+(setq TeX-engine 'xetex)  ; or latex, pdftex
+#+END_SRC
 
-** FIXIT  Tex settings
+** FIXIT  Tex Basic settings
 #+BEGIN_SRC emacs-lisp
   ;; Makes sections independently possible
   (setq TeX-auto-save t)
@@ -49,10 +53,6 @@
   (setq LaTeX-brace-indent-level 2)
   (setq TeX-insert-braces nil)
   (setq LaTeX-math-menu-unicode t)
-#+END_SRC
-** DONE TeX-engine
-#+BEGIN_SRC emacs-lisp
-(setq TeX-engine 'xetex)  ; or latex, pdftex
 #+END_SRC
 ** Tex-commands
 #+BEGIN_SRC emacs-lisp
@@ -142,8 +142,6 @@
     ;(load "preview-latex" nil t))
   ;(load "auctex.el" nil t )
   ;(load "preview.el" nil t)
-  
-
 #+END_SRC
 ** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
@@ -180,22 +178,22 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
   (add-hook 'LaTeX-mode-hook 'linum-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
-  (add-hook 'LaTeX-mode-hook
-            (lambda ()
-              (require 'smartparens-latex)
-              (TeX-run-style-hooks "amsmath" "amsthm" "latex2e")
-              (TeX-fold-mode 1)
-              (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)
-              (LaTeX-(message "FORMATSTRING" &optional ARGS)ath-mode)
-              (TeX-source-correlate-mode)
-              (diminish 'reftex-mode)
-              (LaTeX-add-environments
-               '("exmp" LaTeX-env-label)
-               '("defn" LaTeX-env-label)
-               '("thm" LaTeX-env-label))))
-(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)
-			      (local-set-key [(meta n)] 'outline-next-visible-heading)
-			      (local-set-key [(meta p)] 'outline-previous-visible-heading)))
+;  (add-hook 'LaTeX-mode-hook
+ ;           (lambda ()
+  ;            (require 'smartparens-latex)
+   ;           (TeX-run-style-hooks "amsmath" "amsthm" "latex2e")
+    ;          (TeX-fold-mode 1)
+     ;         (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)
+      ;        (LaTeX-(message "FORMATSTRING" &optional ARGS)ath-mode)
+       ;       (TeX-source-correlate-mode)
+        ;      (diminish 'reftex-mode)
+         ;     (LaTeX-add-environments
+          ;     '("exmp" LaTeX-env-label)
+           ;    '("defn" LaTeX-env-label)
+            ;   '("thm" LaTeX-env-label))))
+;(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)
+	;		      (local-set-key [(meta n)] 'outline-next-visible-heading)
+		;	      (local-set-key [(meta p)] 'outline-previous-visible-heading)))
 (require 'magic-latex-buffer)
 (add-hook 'LaTex-mode-hook 'magic-latex-buffer)
 #+END_SRC
