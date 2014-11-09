@@ -329,13 +329,20 @@
 ;; default keybinding is in company.el
 ;; Company-abort
 (define-key company-active-map "\e\e\e"           'company-abort)
-;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
 (define-key company-active-map [return]       'company-abort)
 (define-key company-active-map (kbd "<C-return>") 'company-abort)
 (define-key company-active-map (kbd "\C-g")       '(lambda ()
                                                      (interactive)
                                                      (company-abort)))
 ;(define-key company-active-map (kbd "l")         'company-abort)
+;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
+(progn
+    (defun my-company-pass-key (arg)
+      "Pass a key out of company-mode"
+      (interactive "P")
+      (company-abort)
+      (kbd arg)
+      )
 (define-key company-active-map (kbd "SPC")    'my-company-pass-key)
 ;; Company-select
 (define-key company-active-map (kbd "\C-n") 'company-select-next)
@@ -351,9 +358,9 @@
 ;(define-key company-active-map "\t"                       'company-complete) 
 (define-key company-mode-map "\t" nil)
 (define-key company-mode-map [(backtab)]                   'company-complete-common)     
-(eval-after-load                                           'company
-                                                           '(progn
-              (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
+;; (eval-after-load                                           'company
+;;                                                            '(progn
+;;               (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
 (define-key company-active-map (kbd "<down>") 'company-select-next-or-abort)
 (define-key company-active-map (kbd "<up>")   'company-select-previous-or-abort)
 ;  (define-key company-active-map [tab]                    'company-complete-selection)

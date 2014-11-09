@@ -438,9 +438,9 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
   ;(define-key company-active-map "\t"                       'company-complete) 
   (define-key company-mode-map "\t" nil)
   (define-key company-mode-map [(backtab)]                   'company-complete-common)     
-  (eval-after-load                                           'company
-                                                             '(progn
-                (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
+  ;; (eval-after-load                                           'company
+  ;;                                                            '(progn
+  ;;               (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
   (define-key company-active-map (kbd "<down>") 'company-select-next-or-abort)
   (define-key company-active-map (kbd "<up>")   'company-select-previous-or-abort)
   ;  (define-key company-active-map [tab]                    'company-complete-selection)
