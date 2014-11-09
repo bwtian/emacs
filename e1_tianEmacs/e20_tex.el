@@ -101,7 +101,7 @@
   ;;   (setq tex-alt-dvi-print-command "dvips")
 
 ;; change auto name
-(setq TeX-auto-local ".auctex")
+;;(setq TeX-auto-local ".auctex")
 ;;;; put to tmp
 ;; (setq TeX-auto-local
 ;;       (expand-file-name
