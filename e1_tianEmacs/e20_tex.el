@@ -239,25 +239,3 @@
 ;"xelatex -interaction nonstopmode %b"))
 
 (add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
-
-;;; bibtex
-;;;
-(setq bib-bibtex-env-variable   "TEXMFHOME")
-(autoload 'turn-on-bib-cite "bib-cite")
-(add-hook 'LaTeX-mode-hook 'turn-on-bib-cite)
-(defun my-bibliography-selector-hook (backend)
-    (case backend
-      (latex
-       (when (save-excursion
-               (re-search-forward "^[ \t]*\\bibliography\\(?:style\\)?{" nil t))
-         (while (re-search-forward "^[ \t]*#+BIBLIOGRAPHY:.*$" nil t)
-           (when (eq (org-element-type (save-match-data (org-element-at-point)))
-                     'keyword)
-             (replace-match "")))))
-      (html
-       (when (save-excursion
-               (re-search-forward "^[ \t]*#+BIBLIOGRAPHY:.*$" nil t))
-         (while (re-search-forward "^[ \t]*\\bibliography\\(?:style\\)?{.*$" nil t)
-           (replace-match ""))))))
-
-(add-hook 'org-export-before-parsing-hook 'my-bibliography-selector-hook)

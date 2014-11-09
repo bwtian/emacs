@@ -427,7 +427,7 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
 
 
 ** Bibtex
-#+begin_src emacs-lisp
++begin_src emacs-lisp
 
 ;;; bibtex
 ;;;
@@ -450,7 +450,7 @@ sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
            (replace-match ""))))))
 
 (add-hook 'org-export-before-parsing-hook 'my-bibliography-selector-hook)
-#+end_src
++end_src
 
 ** Bibretrieve customisations
 
