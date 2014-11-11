@@ -171,31 +171,32 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+END_SRC
 ** FIXIT Hooks
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-  (add-hook 'LaTeX-mode-hook 'longlines-mode)
-  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-  (add-hook 'LaTeX-mode-hook 'flycheck-mode)
-  (add-hook 'LaTeX-mode-hook 'linum-mode)
-  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+    (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+    (add-hook 'LaTeX-mode-hook 'longlines-mode)
+    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+    (add-hook 'LaTeX-mode-hook 'flycheck-mode)
+    (add-hook 'LaTeX-mode-hook 'linum-mode)
+    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+    (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
 
-;  (add-hook 'LaTeX-mode-hook
- ;           (lambda ()
-  ;            (require 'smartparens-latex)
-   ;           (TeX-run-style-hooks "amsmath" "amsthm" "latex2e")
-    ;          (TeX-fold-mode 1)
-     ;         (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)
-      ;        (LaTeX-(message "FORMATSTRING" &optional ARGS)ath-mode)
-       ;       (TeX-source-correlate-mode)
-        ;      (diminish 'reftex-mode)
-         ;     (LaTeX-add-environments
-          ;     '("exmp" LaTeX-env-label)
-           ;    '("defn" LaTeX-env-label)
-            ;   '("thm" LaTeX-env-label))))
-;(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)
-	;		      (local-set-key [(meta n)] 'outline-next-visible-heading)
-		;	      (local-set-key [(meta p)] 'outline-previous-visible-heading)))
-(require 'magic-latex-buffer)
-(add-hook 'LaTex-mode-hook 'magic-latex-buffer)
+  ;  (add-hook 'LaTeX-mode-hook
+   ;           (lambda ()
+    ;            (require 'smartparens-latex)
+     ;           (TeX-run-style-hooks "amsmath" "amsthm" "latex2e")
+      ;          (TeX-fold-mode 1)
+       ;         (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)
+        ;        (LaTeX-(message "FORMATSTRING" &optional ARGS)ath-mode)
+         ;       (TeX-source-correlate-mode)
+          ;      (diminish 'reftex-mode)
+           ;     (LaTeX-add-environments
+            ;     '("exmp" LaTeX-env-label)
+             ;    '("defn" LaTeX-env-label)
+              ;   '("thm" LaTeX-env-label))))
+  ;(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)
+          ;                     (local-set-key [(meta n)] 'outline-next-visible-heading)
+                  ;             (local-set-key [(meta p)] 'outline-previous-visible-heading)))
+  (require 'magic-latex-buffer)
+  (add-hook 'LaTex-mode-hook 'magic-latex-buffer)
 #+END_SRC
 ** Sections
 
