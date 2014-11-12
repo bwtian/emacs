@@ -416,14 +416,14 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                                                        (company-abort)))
   ;(define-key company-active-map (kbd "l")         'company-abort)
   ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
-  (progn
-      (defun my-company-pass-key (arg)
-        "Pass a key out of company-mode"
-        (interactive "P")
-        (company-abort)
-        (kbd arg)
-        ))
-  (define-key company-active-map (kbd "SPC")    'my-company-pass-key)
+  ;; (progn
+  ;;     (defun my-company-pass-key (arg)
+  ;;       "Pass a key out of company-mode"
+  ;;       (interactive "P")
+  ;;       (company-abort)
+  ;;       (kbd arg)
+  ;;       ))
+  ;; (define-key company-active-map (kbd "SPC")    'my-company-pass-key)
   ;; Company-select
   (define-key company-active-map (kbd "\C-n") 'company-select-next)
   (define-key company-active-map (kbd "\C-p") 'company-select-previous)
@@ -455,8 +455,8 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
   (define-key company-active-map [up-mouse-1]   'ignore)
   (define-key company-active-map [up-mouse-3]   'ignore)
 
-  ;(define-key company-active-map "" 'company-complete-selection) ;space
-  ;(define-key company-active-map ""            'company-complete) ; space
+  (define-key company-active-map "" 'company-complete-selection) ;space
+  (define-key company-active-map ""            'company-complete) ; space
   (define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
   (define-key company-active-map (kbd "\C-d")   'company-show-doc-buffer)
   (define-key company-active-map (kbd "<f1>")  'company-show-doc-buffer)
