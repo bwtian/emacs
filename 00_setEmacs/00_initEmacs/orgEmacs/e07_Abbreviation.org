@@ -21,7 +21,7 @@
 #+BEGIN_SRC emacs-lisp
 ;; Command completion with Alt-space
 (global-set-key "\M- " 'dabbrev-expand)
-
+(global-set-key (kbd "M-RET") 'dabbrev-expand)
 #+END_SRC
 * pabbrev 
 #+BEGIN_SRC emacs-lisp
