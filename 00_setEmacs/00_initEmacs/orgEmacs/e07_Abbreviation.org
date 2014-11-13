@@ -11,6 +11,7 @@
 ;(setq save-abbrevs t)              ;; save abbrevs when files are saved  
                                      ;; you will be asked before the abbreviations are saved 
 ;; stop asking whether to save newly added abbrev when quitting emacs
+;(setq save-abbrevs t)
 (setq save-abbrevs nil) 
 (quietly-read-abbrev-file)       ;; reads the abbreviations file on startup  
 ;Avoid errors if the abbrev-file is missing  
@@ -20,7 +21,7 @@
 * dabbrev 
 #+BEGIN_SRC emacs-lisp
 ;; Command completion with Alt-space
-(setq save-abbrevs t)
+
 	(define-key global-map "\C-o" 'dabbrev-expand)
 	(define-key global-map (kbd "C-M-/") 'expand-abbrev)
 (global-set-key "\M- " 'dabbrev-expand)
