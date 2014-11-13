@@ -79,7 +79,7 @@ redo : Ctrl+?, Meta+_
 #+END_SRC
 ** Auto-save enhanced
 #+BEGIN_SRC emacs-lisp
-(require 'auto-save-buffers-enhanced)
-(setq auto-save-buffers-enhanced-interval 10)
-(auto-save-buffers-enhanced t)
+  (require 'auto-save-buffers-enhanced)
+  (setq auto-save-buffers-enhanced-interval 1)
+  (auto-save-buffers-enhanced t)
 #+END_SRC
