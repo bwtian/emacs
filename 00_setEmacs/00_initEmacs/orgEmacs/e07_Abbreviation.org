@@ -22,6 +22,8 @@
 ;; Command completion with Alt-space
 (global-set-key "\M- " 'dabbrev-expand)
 (global-set-key (kbd "M-RET") 'dabbrev-expand)
+(global-set-key (kbd "M-<tab>") 'dabbrev-expand)
+(define-key minibuffer-local-map (kbd "M-<tab>") 'dabbrev-expand)
 #+END_SRC
 * pabbrev 
 #+BEGIN_SRC emacs-lisp
