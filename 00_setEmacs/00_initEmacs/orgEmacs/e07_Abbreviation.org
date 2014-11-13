@@ -18,6 +18,11 @@
         (quietly-read-abbrev-file))  
 #+END_SRC
 * dabbrev 
+#+BEGIN_SRC emacs-lisp
+;; Command completion with Alt-space
+(global-set-key "\M- " 'dabbrev-expand)
+
+#+END_SRC
 * pabbrev 
 #+BEGIN_SRC emacs-lisp
 (require 'pabbrev)
