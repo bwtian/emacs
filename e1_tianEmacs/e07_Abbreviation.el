@@ -16,12 +16,10 @@
 (setq dabbrev-abbrev-char-regexp "[A-z0-9:-]") ;; mathc words
 
 ;; Command completion with Alt-space
-(require 'dabbrev-highlight)
 (define-key global-map (kbd "C-M-/") 'expand-abbrev)
-(global-set-key "\M- " 'dabbrev-expand)
+(global-set-key (kbd "\M- ") 'dabbrev-expand)
 (global-set-key (kbd "M-RET") 'dabbrev-expand)
 (global-set-key (kbd "M-<tab>") 'dabbrev-expand)
-(define-key minibuffer-local-map (kbd "M-<tab>") 'dabbrev-expand)
 
 (global-set-key "\C-o" 'hippie-expand)
 (setq hippie-expand-try-functions-list
