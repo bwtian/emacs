@@ -415,7 +415,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                                                        (interactive)
                                                        (company-abort)))
   ;(define-key company-active-map (kbd "l")         'company-abort)
-  (define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
+  ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
   ;; (progn
   ;;     (defun my-company-pass-key (arg)
   ;;       "Pass a key out of company-mode"
