@@ -20,7 +20,7 @@
 (global-auto-composition-mode 1)
 (ac-flyspell-workaround)    ;; conflict with flyspell 
 (setq 
-      ac-auto-start 4 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
+      ac-auto-start 2 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
       ac-trigger-key "<C-tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
       ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
@@ -196,8 +196,8 @@
  (add-hook 'after-init-hook 'global-company-mode)
 
  ;; this will show a lot of garbage, use it only necessary
- ;(add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
- ;(defalias 'ci 'company-ispell)
+ (add-to-list 'company-backends 'company-ispell) ; make company work as a dictionary
+ (defalias 'ci 'company-ispell)
 
    ;; put most often used completions at stop of list
 ; (setq company-backends '(company-dabbrev
