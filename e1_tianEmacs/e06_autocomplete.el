@@ -20,7 +20,7 @@
 (global-auto-composition-mode 1)
 (ac-flyspell-workaround)    ;; conflict with flyspell 
 (setq 
-      ac-auto-start 4 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
+      ac-auto-start 1 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
       ac-trigger-key "<C-tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"  "<C-tab>"
       ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
@@ -55,8 +55,8 @@
          (cons 'backward-delete-char-untabify ac-trigger-commands))  
    (define-key ac-menu-map (kbd "C-n")         'ac-next)
    (define-key ac-menu-map (kbd "C-p")         'ac-previous)
-   (define-key ac-completing-map "\M-n" nil) ;; was ac-next
-   (define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+   ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
+   ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
    ;;(define-key ac-completing-map (kbd "<tab>") nil)
    ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
    ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)

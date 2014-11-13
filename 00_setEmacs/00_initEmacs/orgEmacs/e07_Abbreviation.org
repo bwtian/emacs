@@ -1,3 +1,7 @@
+* Note
+|        | Abbrev | dabbrev | pabbrev |   |
+|--------+--------+---------+---------+---|
+| expand |        | M-/     |         |   |
 * Abbrev-mode
 #+BEGIN_SRC emacs-lisp
 ;; turn on abbrev mode globally
@@ -13,10 +17,11 @@
 (if (file-exists-p abbrev-file-name)  
         (quietly-read-abbrev-file))  
 #+END_SRC
+* dabbrev 
 * pabbrev 
 #+BEGIN_SRC emacs-lisp
-;(require 'pabbrev)
-;(global-pabbrev-mode)
+(require 'pabbrev)
+(global-pabbrev-mode)
 #+END_SRC
 * Abbreviations
 #+BEGIN_SRC emacs-lisp
@@ -74,3 +79,5 @@
     ))
 
 #+END_SRC
+
+
