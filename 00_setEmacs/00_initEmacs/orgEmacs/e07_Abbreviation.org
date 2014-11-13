@@ -15,8 +15,8 @@
 #+END_SRC
 * pabbrev 
 #+BEGIN_SRC emacs-lisp
-(require 'pabbrev)
-(global-pabbrev-mode)
+;(require 'pabbrev)
+;(global-pabbrev-mode)
 #+END_SRC
 * Abbreviations
 #+BEGIN_SRC emacs-lisp

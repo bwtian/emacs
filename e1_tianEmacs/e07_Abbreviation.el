@@ -12,8 +12,8 @@
 (if (file-exists-p abbrev-file-name)  
         (quietly-read-abbrev-file))
 
-(require 'pabbrev)
-(global-pabbrev-mode)
+;(require 'pabbrev)
+;(global-pabbrev-mode)
 
 (define-abbrev-table 'global-abbrev-table '(
 
