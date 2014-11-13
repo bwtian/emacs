@@ -49,3 +49,10 @@ redo : Ctrl+?, Meta+_
  (global-set-key (kbd "C-x t") 'sane-term)
  (global-set-key (kbd "C-x T") 'sane-term-create)
 #+END_SRC
+
+** Auto-save enhanced
+#+BEGIN_SRC emacs-lisp
+(require 'auto-save-buffers-enhanced)
+(setq auto-save-buffers-enhanced-interval 1)
+(auto-save-buffers-enhanced t)
+#+END_SRC

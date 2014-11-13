@@ -3,7 +3,7 @@
 #+BEGIN_SRC emacs-lisp
   (setq default-directory "~/SparkleShare/")
 #+END_SRC
-** Version Contorl and Auto save
+** Auto save and Version Contorl
 #+BEGIN_SRC emacs-lisp
     (setq backup-by-copying t) ;automatically backup
     (setq kept-new-versions 5) ;Keep 6 newest Bankup files
@@ -24,8 +24,6 @@
         `((".*" . ,temporary-file-directory)))
   (setq auto-save-file-name-transforms
         `((".*" ,temporary-file-directory t)))
-  (require 'auto-save-buffers)
-  (run-with-idle-timer 0.5 t 'auto-save-buffers) 
   ;; (setq backup-directory-alist
   ;;       `((".*" . "~/.saves")))
   ;; (setq auto-save-file-name-transforms

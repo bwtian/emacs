@@ -20,8 +20,6 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
-(require 'auto-save-buffers)
-(run-with-idle-timer 0.5 t 'auto-save-buffers) 
 ;; (setq backup-directory-alist
 ;;       `((".*" . "~/.saves")))
 ;; (setq auto-save-file-name-transforms
