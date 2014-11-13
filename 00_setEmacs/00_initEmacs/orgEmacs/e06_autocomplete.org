@@ -81,7 +81,7 @@
      (define-key ac-menu-map (kbd "C-p")         'ac-previous)
      ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
      ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
-     ;;(define-key ac-completing-map (kbd "<tab>") nil)
+     (define-key ac-completing-map (kbd "<tab>") nil)
      ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
      ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
      ;(define-key ac-completing-map [tab] 'ac-complete)
