@@ -334,7 +334,7 @@
 (define-key company-active-map (kbd "\C-g")       '(lambda ()
                                                      (interactive)
                                                      (company-abort)))
-;(define-key company-active-map (kbd "l")         'company-abort)
+(define-key company-active-map (kbd "l")         'company-abort)
 ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
 ;; (progn
 ;;     (defun my-company-pass-key (arg)
