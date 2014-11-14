@@ -191,6 +191,7 @@
   (define-key ac-menu-map (kbd "j")   'ac-next)
   (define-key ac-menu-map (kbd "k")   'ac-previous)
  ; (define-key ac-menu-map (kbd "l")   'ac-stop)
+  (define-key ac-menu-map (kbd "henkan")   'ac-stop)
   (define-key ac-menu-map (kbd "SPC") 'ac-complete)
   (define-key ac-completing-map (kbd "C-g")   'ac-stop)
   (define-key ac-completing-map (kbd "M-RET") 'ac-stop)
@@ -415,6 +416,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                                                        (interactive)
                                                        (company-abort)))
   ;(define-key company-active-map (kbd "l")         'company-abort)
+  (define-key company-active-map (kbd "henkan")         'company-abort)
   ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
   ;; (progn
   ;;     (defun my-company-pass-key (arg)

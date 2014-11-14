@@ -143,32 +143,33 @@
 (ac-config-default) ; make above work.
 
 ;; Motion
-    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
-(setq ac-use-menu-map t)    ;; Keybinding
-(setq ac-trigger-commands
-      (cons 'backward-delete-char-untabify ac-trigger-commands))  
+     ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
+ (setq ac-use-menu-map t)    ;; Keybinding
+ (setq ac-trigger-commands
+       (cons 'backward-delete-char-untabify ac-trigger-commands))  
 
-(define-key ac-menu-map (kbd "C-n") 'ac-next)
-(define-key ac-menu-map (kbd "C-p") 'ac-previous)
-(define-key ac-menu-map (kbd "j")   'ac-next)
-(define-key ac-menu-map (kbd "k")   'ac-previous)
-(define-key ac-menu-map (kbd "l")   'ac-stop)
-(define-key ac-menu-map (kbd "SPC") 'ac-complete)
-(define-key ac-completing-map (kbd "C-g")   'ac-stop)
-(define-key ac-completing-map (kbd "M-RET") 'ac-stop)
-(define-key ac-completing-map (kbd "C-RET") 'ac-stop)
+ (define-key ac-menu-map (kbd "C-n") 'ac-next)
+ (define-key ac-menu-map (kbd "C-p") 'ac-previous)
+ (define-key ac-menu-map (kbd "j")   'ac-next)
+ (define-key ac-menu-map (kbd "k")   'ac-previous)
+; (define-key ac-menu-map (kbd "l")   'ac-stop)
+ (define-key ac-menu-map (kbd "henkan")   'ac-stop)
+ (define-key ac-menu-map (kbd "SPC") 'ac-complete)
+ (define-key ac-completing-map (kbd "C-g")   'ac-stop)
+ (define-key ac-completing-map (kbd "M-RET") 'ac-stop)
+ (define-key ac-completing-map (kbd "C-RET") 'ac-stop)
 
-                                        ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
+                                         ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
 
-;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
-(define-key ac-completing-map (kbd "<tab>") nil)
-;;(define-key ac-completing-map (kbd "RET") nil) ; return 
-;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-;(define-key ac-completing-map [tab] 'ac-complete)
+ ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+ (define-key ac-completing-map (kbd "<tab>") nil)
+ ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
+ ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+ ;(define-key ac-completing-map [tab] 'ac-complete)
 
-(define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
-(define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
-(define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
+ (define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
+ (define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
+ (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 (require 'company)
  (setq company-idle-delay 0.1)  ; delay autocompletion popup shows; nil 
@@ -331,7 +332,8 @@
 (define-key company-active-map (kbd "\C-g")       '(lambda ()
                                                      (interactive)
                                                      (company-abort)))
-(define-key company-active-map (kbd "l")         'company-abort)
+;(define-key company-active-map (kbd "l")         'company-abort)
+(define-key company-active-map (kbd "henkan")         'company-abort)
 ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
 ;; (progn
 ;;     (defun my-company-pass-key (arg)
