@@ -12,12 +12,12 @@
       ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
       ;;ac-show-menu-immediately-on-auto-complete t
-      ac-candidate-limit 6 ;; nil
+      ac-candidate-limit 10 ;; nil
       ac-use-comphist t ;; sort Candidate
-      ac-menu-height 7 ;;12 Max height for complete candidate menu
+      ac-menu-height 12 ;;12 Max height for complete candidate menu
       ac-ignore-case 'smart
       ac-fuzzy-enable t ;; Fuzzy mode
-      ;ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
+      ac-dwim t    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
       )
 
 (require 'pos-tip)
