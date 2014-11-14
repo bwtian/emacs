@@ -12,9 +12,9 @@
       ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
       ;;ac-show-menu-immediately-on-auto-complete t
-      ac-candidate-limit 10 ;; nil
+      ac-candidate-limit 6 ;; nil
       ac-use-comphist t ;; sort Candidate
-      ac-menu-height 12 ;;12 Max height for complete candidate menu
+      ac-menu-height 7 ;;12 Max height for complete candidate menu
       ac-ignore-case 'smart
       ac-fuzzy-enable t ;; Fuzzy mode
       ;ac-dwim nil    ;; t DO What I mean nil pop-ups with docs even if a word is uniquely completed
@@ -26,33 +26,14 @@
  (setq ac-quick-help-use-pos-tip-p t)
 ; (ac-quick-help-prefer-pos-tip) 
                                          ;(setq ac-setup t)
-   ; (setq ac-quick-help-height 25)
-   ;(setq ac-quick-help-scroll-down t)
+   (setq ac-quick-help-height 12)
+   (setq ac-quick-help-scroll-down t)
 
    ;; ac-Popup background colors
 
    (set-face-attribute 'ac-candidate-face nil   :background "#00222c" :foreground "light gray") ;; pop menu
    (set-face-attribute 'ac-selection-face nil   :background "SteelBlue4" :foreground "white") ;; seletced pop menu
    (set-face-attribute 'popup-tip-face    nil   :background "LightGoldenrod1"  :foreground "black") ;;pop help
-
-   ;; Motion
-       ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
-   (setq ac-use-menu-map t)    ;; Keybinding
-   (setq ac-trigger-commands
-         (cons 'backward-delete-char-untabify ac-trigger-commands))  
-   (define-key ac-menu-map (kbd "C-n")         'ac-next)
-   (define-key ac-menu-map (kbd "C-p")         'ac-previous)
-   ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
-   ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
-   (define-key ac-completing-map (kbd "<tab>") nil)
-   ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
-   ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
-   ;(define-key ac-completing-map [tab] 'ac-complete)
-   ;(define-key ac-completing-map [return] nil)
-   (define-key ac-completing-map (kbd "M-/")   'ac-stop)
-   (define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
-   (define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
-   (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 ;; ----------------------------------------------------------------
 ;; 0.2.0 Popup and Show color of "Colorword or Hex code" with C-c p
@@ -134,7 +115,7 @@
    ;; (setq ac-comphist-file (expand-file-name
    ;;              "~/.emacs.d/ac-comphist.dat"))
    (setq ac-comphist-file "~/.emacs.d/share/ac-comphist.dat")
-   (setq ac-use-comphist t) 
+   (setq ac-use-comphist t)
    (set-default 'ac-sources
               '(ac-source-semantic 
                 ac-source-R
@@ -145,11 +126,12 @@
                 ac-source-words-in-buffer
                 ac-source-words-in-all-buffer
                 ;ac-source-css-property
-                ac-source-abbrev      
+                ac-source-abbrev 
+                ac-source-dabbrev
                 ac-source-math-unicode
                 ac-source-math-latex
                 ac-source-latex-commands
-                ;ac-source-dictionary
+                ac-source-dictionary
                 ac-source-look
                 ac-source-imenu
                 ac-source-features
@@ -159,6 +141,34 @@
                 ac-source-files-in-current-dir
                 ac-source-filename))
 (ac-config-default) ; make above work.
+
+;; Motion
+    ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
+(setq ac-use-menu-map t)    ;; Keybinding
+(setq ac-trigger-commands
+      (cons 'backward-delete-char-untabify ac-trigger-commands))  
+
+(define-key ac-menu-map (kbd "C-n") 'ac-next)
+(define-key ac-menu-map (kbd "C-p") 'ac-previous)
+(define-key ac-menu-map (kbd "j")   'ac-next)
+(define-key ac-menu-map (kbd "k")   'ac-previous)
+(define-key ac-menu-map (kbd "l")   'ac-stop)
+(define-key ac-menu-map (kbd "SPC") 'ac-complete)
+(define-key ac-completing-map (kbd "C-g")   'ac-stop)
+(define-key ac-completing-map (kbd "M-RET") 'ac-stop)
+(define-key ac-completing-map (kbd "C-RET") 'ac-stop)
+
+                                        ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
+
+;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+(define-key ac-completing-map (kbd "<tab>") nil)
+;;(define-key ac-completing-map (kbd "RET") nil) ; return 
+;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+;(define-key ac-completing-map [tab] 'ac-complete)
+
+(define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
+(define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
+(define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 (require 'company)
  (setq company-idle-delay 0.1)  ; delay autocompletion popup shows; nil 
@@ -321,7 +331,7 @@
 (define-key company-active-map (kbd "\C-g")       '(lambda ()
                                                      (interactive)
                                                      (company-abort)))
-;(define-key company-active-map (kbd "l")         'company-abort)
+(define-key company-active-map (kbd "l")         'company-abort)
 ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
 ;; (progn
 ;;     (defun my-company-pass-key (arg)
