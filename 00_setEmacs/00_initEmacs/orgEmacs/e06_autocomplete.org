@@ -236,7 +236,7 @@
 #+BEGIN_SRC emacs-lisp
    (require 'company)
    (setq company-idle-delay 0.1)  ; delay autocompletion popup shows; nil 
-   (setq company-minimum-prefix-length 5)
+   (setq company-minimum-prefix-length 4)
 
    ;(setq company-tooltip-delay 0)
    ;(setq company-echo-delay 0)  ; remove annoying blinking
