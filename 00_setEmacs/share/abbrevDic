@@ -1,0 +1,100 @@
+;;-*-coding: utf-8;-*-
+(define-abbrev-table 'Buffer-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'bookmark-bmenu-mode-abbrev-table '())
+
+(define-abbrev-table 'calendar-mode-abbrev-table '())
+
+(define-abbrev-table 'comint-mode-abbrev-table '())
+
+(define-abbrev-table 'completion-list-mode-abbrev-table '())
+
+(define-abbrev-table 'display-time-world-mode-abbrev-table '())
+
+(define-abbrev-table 'emacs-lisp-byte-code-mode-abbrev-table '())
+
+(define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'fundamental-mode-abbrev-table '())
+
+(define-abbrev-table 'global-abbrev-table
+  '(
+    ("8ahk" "AutoHotkey" nil 0)
+    ("8alt" "alternative" nil 0)
+    ("8bg" "background" nil 0)
+    ("8char" "character" nil 0)
+    ("8cp" "computer" nil 0)
+    ("8d" "\\([0-9]+?\\)" nil 0)
+    ("8def" "definition" nil 0)
+    ("8ditto" "ditto -ck --sequesterRsrc --keepParent src dest" nil 0)
+    ("8env" "environment" nil 0)
+    ("8ev" "environment variable" nil 0)
+    ("8ex" "example" nil 0)
+    ("8f0" "find . -type f -size 0 -exec rm {} ';'" nil 0)
+    ("8g" "Google" nil 0)
+    ("8ie" "Internet Explorer" nil 0)
+    ("8im" "convert -quality 85% " nil 0)
+    ("8in" "∈" nil 0)
+    ("8inf" "∞" nil 0)
+    ("8it" "IntelliType" nil 0)
+    ("8kb" "keyboard" nil 0)
+    ("8kbd" "keybinding" nil 0)
+    ("8luv" "♥" nil 0)
+    ("8me" "bwtian@gmail.com" nil 0)
+    ("8ms" "Microsoft" nil 0)
+    ("8msw" "Microsoft Windows" nil 0)
+    ("8nin" "∉" nil 0)
+    ("8rsync" "rsync -z -r -v -t --exclude=\"*~\" --exclude=\".DS_Store\" --exclude=\".bash_history\" --exclude=\"**/xx_xahlee_info/*\"  --exclude=\"*/_curves_robert_yates/*.png\" --exclude=\"logs/*\"  --exclude=\"xlogs/*\" --delete --rsh=\"ssh -l xah\" ~/web/ xah@example.com:~/" nil 0)
+    ("8smly" "☺" nil 0)
+    ("8str" "\\([^\"]+?\\)\"" nil 0)
+    ("8uxl" "http://xahlee.info/" nil 0)
+    ("8var" "variable" nil 0)
+    ("8win" "Windows" nil 0)
+    ("8wp" "Wikipedia" nil 0)
+    ("8xl" "Xah Lee" nil 0)
+   ))
+
+(define-abbrev-table 'graphviz-dot-mode-abbrev-table '())
+
+(define-abbrev-table 'grep-mode-abbrev-table '())
+
+(define-abbrev-table 'helm-grep-mode-abbrev-table '())
+
+(define-abbrev-table 'helm-moccur-mode-abbrev-table '())
+
+(define-abbrev-table 'help-mode-abbrev-table '())
+
+(define-abbrev-table 'image-dired-display-image-mode-abbrev-table '())
+
+(define-abbrev-table 'image-dired-thumbnail-mode-abbrev-table '())
+
+(define-abbrev-table 'lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'occur-edit-mode-abbrev-table '())
+
+(define-abbrev-table 'occur-mode-abbrev-table '())
+
+(define-abbrev-table 'org-export-stack-mode-abbrev-table '())
+
+(define-abbrev-table 'org-mode-abbrev-table '())
+
+(define-abbrev-table 'outline-mode-abbrev-table '())
+
+(define-abbrev-table 'package-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'process-menu-mode-abbrev-table '())
+
+(define-abbrev-table 'prog-mode-abbrev-table '())
+
+(define-abbrev-table 'shell-mode-abbrev-table '())
+
+(define-abbrev-table 'snippet-mode-abbrev-table '())
+
+(define-abbrev-table 'special-mode-abbrev-table '())
+
+(define-abbrev-table 'speedbar-mode-abbrev-table '())
+
+(define-abbrev-table 'tabulated-list-mode-abbrev-table '())
+
+(define-abbrev-table 'text-mode-abbrev-table '())
+
