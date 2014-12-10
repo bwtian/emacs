@@ -7,7 +7,7 @@
 (global-auto-composition-mode 1)
 (ac-flyspell-workaround)    ;; conflict with flyspell 
 (setq 
-      ac-auto-start 2 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
+      ac-auto-start 4 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
       ac-trigger-key "C-<tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"
       ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
@@ -150,8 +150,8 @@
 
  (define-key ac-menu-map (kbd "C-n") 'ac-next)
  (define-key ac-menu-map (kbd "C-p") 'ac-previous)
- (define-key ac-menu-map (kbd "j")   'ac-next)
- (define-key ac-menu-map (kbd "k")   'ac-previous)
+ ;(define-key ac-menu-map (kbd "j")   'ac-next)
+ ;(define-key ac-menu-map (kbd "k")   'ac-previous)
 ; (define-key ac-menu-map (kbd "l")   'ac-stop)
  (define-key ac-menu-map (kbd "henkan")   'ac-stop)
  (define-key ac-menu-map (kbd "SPC") 'ac-complete)
@@ -173,7 +173,7 @@
 
 (require 'company)
  (setq company-idle-delay 0.1)  ; delay autocompletion popup shows; nil 
- (setq company-minimum-prefix-length 4)
+ (setq company-minimum-prefix-length 6)
 
  ;(setq company-tooltip-delay 0)
  ;(setq company-echo-delay 0)  ; remove annoying blinking
@@ -346,8 +346,8 @@
 ;; Company-select
 (define-key company-active-map (kbd "\C-n") 'company-select-next)
 (define-key company-active-map (kbd "\C-p") 'company-select-previous)
-(define-key company-active-map (kbd "j")   'company-select-next)
-(define-key company-active-map (kbd "k")   'company-select-previous)
+;(define-key company-active-map (kbd "j")   'company-select-next)
+;(define-key company-active-map (kbd "k")   'company-select-previous)
 ;(define-key company-active-map (kbd "C-j")  'company-select-next)
 ;(define-key company-active-map (kbd "C-k")  'company-select-previous)
 ;;(define-key company-active-map (kbd "<down>") 'company-select-next)  ;0
