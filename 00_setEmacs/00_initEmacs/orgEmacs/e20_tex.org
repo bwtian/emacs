@@ -25,52 +25,7 @@
 (setq TeX-engine 'xetex)  ; or latex, pdftex
 #+END_SRC
 
-** FIXIT Hooks and Tex Basic settings
-#+BEGIN_SRC emacs-lisp
-      (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-      (add-hook 'LaTeX-mode-hook 'longlines-mode)
-      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-      (add-hook 'LaTeX-mode-hook 'flycheck-mode)
-      (add-hook 'LaTeX-mode-hook 'linum-mode)
-      (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-      (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
-      (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
-      ;; (require 'magic-latex-buffer)
-      ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
-
-    ;; Makes sections independently possible
-
-    (setq TeX-parse-self t)
-    (setq-default TeX-master t) ;t for not ask 
-    ;; Make \ = C-c C-m to start macro
-    ;; (setq TeX-electric-escape t)  
-     ;;(setq TeX-electric-sub-and-superscript t)
-    
-    (setq TeX-show-compilation t) ; display compilation windows
-    (setq TeX-auto-save t)
-    (setq TeX-auto-untabify t)     ; remove all tabs before saving
-    (setq TeX-save-query nil)
-    (setq completion-ignored-extensions (append completion-ignored-extensions
-                                                '(".synctex.gz")))
-    ;(setq 
-     ;   LaTeX-top-caption-list   ("table" "tabular")
-     ;   LaTeX-float                      "tn"
-     ;   LaTeX-figure-label               "fig:"
-     ;   LaTeX-table-label                "tab:"
-     ;   LaTeX-section-label              "sec:")
-    (setq LaTeX-default-options '("a4paper"))
-    (setq LaTeX-float "!ht")
-    (setq LaTeX-indent-level 2)
-    (setq LaTeX-item-indent 0)
-    (setq LaTeX-brace-indent-level 2)
-    (setq TeX-insert-braces t)
-    (setq LaTeX-math-menu-unicode t)
-  ;;;; Quotes
-  ;; (defun quote-hook ()
-  ;;   (local-unset-key "\""))
-  ;;   (add-hook 'LaTeX-mode-hook 'quote-hook)
-#+END_SRC
 ** Tex Compile commands
 #+BEGIN_SRC emacs-lisp
       ;; C-c C-c
@@ -328,7 +283,52 @@ If there is still something left do do start the next latex-command."
 
 +END_SRC
 
+** FIXIT Hooks and Tex Basic settings
+#+BEGIN_SRC emacs-lisp
+      (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+      (add-hook 'LaTeX-mode-hook 'longlines-mode)
+      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+      (add-hook 'LaTeX-mode-hook 'flycheck-mode)
+      (add-hook 'LaTeX-mode-hook 'linum-mode)
+      (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+      (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
+      (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
+      ;; (require 'magic-latex-buffer)
+      ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
+
+    ;; Makes sections independently possible
+
+    (setq TeX-parse-self t)
+    (setq-default TeX-master t) ;t for not ask 
+    ;; Make \ = C-c C-m to start macro
+    ;; (setq TeX-electric-escape t)  
+     ;;(setq TeX-electric-sub-and-superscript t)
+    
+    (setq TeX-show-compilation t) ; display compilation windows
+    (setq TeX-auto-save t)
+    (setq TeX-auto-untabify t)     ; remove all tabs before saving
+    (setq TeX-save-query nil)
+    (setq completion-ignored-extensions (append completion-ignored-extensions
+                                                '(".synctex.gz")))
+    ;(setq 
+     ;   LaTeX-top-caption-list   ("table" "tabular")
+     ;   LaTeX-float                      "tn"
+     ;   LaTeX-figure-label               "fig:"
+     ;   LaTeX-table-label                "tab:"
+     ;   LaTeX-section-label              "sec:")
+    (setq LaTeX-default-options '("a4paper"))
+    (setq LaTeX-float "!ht")
+    (setq LaTeX-indent-level 2)
+    (setq LaTeX-item-indent 0)
+    (setq LaTeX-brace-indent-level 2)
+    (setq TeX-insert-braces t)
+    (setq LaTeX-math-menu-unicode t)
+  ;;;; Quotes
+  ;; (defun quote-hook ()
+  ;;   (local-unset-key "\""))
+  ;;   (add-hook 'LaTeX-mode-hook 'quote-hook)
+#+END_SRC
 * e22_reftex.org
 ** reftex-mode
 #+BEGIN_SRC emacs-lisp
