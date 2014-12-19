@@ -19,12 +19,12 @@
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
     (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
     (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
-    (require 'magic-latex-buffer)
-    (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
+    ;; (require 'magic-latex-buffer)
+    ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
 
   ;; Makes sections independently possible
-  (setq TeX-auto-save t)
+
   (setq TeX-parse-self t)
   (setq-default TeX-master t) ;t for not ask 
   ;; Make \ = C-c C-m to start macro
@@ -32,6 +32,7 @@
    ;;(setq TeX-electric-sub-and-superscript t)
   
   (setq TeX-show-compilation t) ; display compilation windows
+  (setq TeX-auto-save t)
   (setq TeX-auto-untabify t)     ; remove all tabs before saving
   (setq TeX-save-query nil)
   (setq completion-ignored-extensions (append completion-ignored-extensions
@@ -50,75 +51,73 @@
   (setq TeX-insert-braces t)
   (setq LaTeX-math-menu-unicode t)
 ;;;; Quotes
-
 ;; (defun quote-hook ()
 ;;   (local-unset-key "\""))
 ;;   (add-hook 'LaTeX-mode-hook 'quote-hook)
 
 ;; C-c C-c
-   (require 'auctex-latexmk)
+    (require 'auctex-latexmk)
+    (auctex-latexmk-setup)
+   (add-hook 'LaTeX-mode-hook (lambda ()
+                              (push 
+                               '("LatexMK" "latexmk -pdf -pv -view=pdf -outdir=build %t" TeX-run-TeX nil t
+                                 :help "Make pdf output using latexmk.")
+                               ;; The -pv option opens pdf-viewer after finishing compiling.
+                               ;; The -pdf option tells latexmk to use pdflatex.
+                               ;; Could use the -pvc option to continually process the file and check for checks,
+                               ;; which creates a type of "WYSIWYG" process. However, the -f option will need to
+                               ;; be removed.
+                               TeX-command-list)))
+ ;; To set the default to use the latexmk instead of LaTeX
 
-   (auctex-latexmk-setup)
-  (add-hook 'LaTeX-mode-hook (lambda ()
-                             (push 
-                              '("LatexMK" "latexmk -pdf -pv -view=pdf -outdir=build %t" TeX-run-TeX nil t
-                                :help "Make pdf output using latexmk.")
-                              ;; The -pv option opens pdf-viewer after finishing compiling.
-                              ;; The -pdf option tells latexmk to use pdflatex.
-                              ;; Could use the -pvc option to continually process the file and check for checks,
-                              ;; which creates a type of "WYSIWYG" process. However, the -f option will need to
-                              ;; be removed.
-                              TeX-command-list)))
-;; To set the default to use the latexmk instead of LaTeX
+;;  (define-key LaTeX-mode-map [s-S-mouse-1] 'TeX-view)
+  
+      ;;; "latex+DVI+PS+PDF+PDFViewer" routine
+    (setq latexBuild (list 
+                    (list "zLatex"
+      "latex -interaction=nonstopmode -output-directory=./build %s.tex
+    bibtex ./build/%s.aux
+    makeindex ./build/%s.aux
+    makeindex ./build/%s.idx    
+    makeglossaries -d ./build/ %    
+    latex -interaction=nonstopmode -output-directory=./build %s.tex
+    makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+    latex -interaction=nonstopmode -output-directory=./build %s.tex
+    dvips ./build/%s.dvi -o ./build/%s.ps
+    ps2pdf ./build/%s.ps ./build/%s.pdf
+    evince ./build/%s.pdf" 'TeX-run-command nil t)))
 
-(define-key LaTeX-mode-map [s-S-mouse-1] 'TeX-view)
- 
-     ;;; "latex+DVI+PS+PDF+PDFViewer" routine
-   (setq latexBuild (list 
-                   (list "zLatex"
-     "latex -interaction=nonstopmode -output-directory=./build %s.tex
-   bibtex ./build/%s.aux
+
+   (setq pdflatexBuild (list 
+                    (list "aPDFlatex"
+   "pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+   bibtex ./build/%s.aux    
    makeindex ./build/%s.aux
    makeindex ./build/%s.idx    
-   makeglossaries -d ./build/ %    
-   latex -interaction=nonstopmode -output-directory=./build %s.tex
+   makeglossaries -d ./build %s    
    makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
-   latex -interaction=nonstopmode -output-directory=./build %s.tex
-   dvips ./build/%s.dvi -o ./build/%s.ps
-   ps2pdf ./build/%s.ps ./build/%s.pdf
-   evince ./build/%s.pdf" 'TeX-run-command nil t)))
+   pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+   makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+   pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+   okular build/%s.pdf" 'TeX-run-command nil t)))
+ (add-hook 'LaTeX-mode-hook '(lambda ()
+                               (setq TeX-command-default "aPDFlatex")))            
 
-
-  (setq pdflatexBuild (list 
-                   (list "aPDFlatex"
-  "pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
-  bibtex ./build/%s.aux    
-  makeindex ./build/%s.aux
-  makeindex ./build/%s.idx    
-  makeglossaries -d ./build %s    
-  makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
-  pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
-  makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
-  pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
-  okular build/%s.pdf" 'TeX-run-command nil t)))
-(add-hook 'LaTeX-mode-hook '(lambda ()
-                              (setq TeX-command-default "aPDFlatex")))            
-
-   (require 'tex) 
-   (setq TeX-command-list (append TeX-command-list latexBuild))
-   (setq TeX-command-list (append TeX-command-list pdflatexBuild))
-   (add-hook 'LaTeX-mode-hook (function (lambda ()
-                                          (add-to-list 'TeX-command-list
-                                                       '("pTeX" "%(PDF)ptex %`%S%(PDFout)%(mode)%' %t"
-                                                         TeX-run-TeX nil (plain-tex-mode) :help "Run ASCII pTeX"))
-                                          (add-to-list 'TeX-command-list
-                                                       '("pLaTeX" "%(PDF)platex %`%S%(PDFout)%(mode)%' %t"
-                                                         TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
-                                          (add-to-list 'TeX-command-list
-                                                       '("acroread" "acroread '%s.pdf' " TeX-run-command t nil))
-                                          (add-to-list 'TeX-command-list
-                                                       '("pdf" "dvipdfmx -V 4 '%s' " TeX-run-command t nil))
-                                          )))
+    (require 'tex) 
+    (setq TeX-command-list (append TeX-command-list latexBuild))
+    (setq TeX-command-list (append TeX-command-list pdflatexBuild))
+    ;; (add-hook 'LaTeX-mode-hook (function (lambda ()
+    ;;                                        (add-to-list 'TeX-command-list
+    ;;                                                     '("pTeX" "%(PDF)ptex %`%S%(PDFout)%(mode)%' %t"
+    ;;                                                       TeX-run-TeX nil (plain-tex-mode) :help "Run ASCII pTeX"))
+    ;;                                        (add-to-list 'TeX-command-list
+    ;;                                                     '("pLaTeX" "%(PDF)platex %`%S%(PDFout)%(mode)%' %t"
+    ;;                                                       TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
+    ;;                                        (add-to-list 'TeX-command-list
+    ;;                                                     '("acroread" "acroread '%s.pdf' " TeX-run-command t nil))
+    ;;                                        (add-to-list 'TeX-command-list
+    ;;                                                     '("pdf" "dvipdfmx -V 4 '%s' " TeX-run-command t nil))
+    ;;                                        )))
 
 (setq font-latex-fontify-sectioning 1.0) ;フォントサイズの変更を無効化
 (setq font-latex-fontify-script nil) ;上付き, 下付きの無効化
