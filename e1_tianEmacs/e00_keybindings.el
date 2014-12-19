@@ -25,6 +25,11 @@
 ;; (global-set-key (kbd "<C-down-mouse-2>") 'mouse-popup-menuar-stuff) ;text properties menue
 ;; (global-set-key (kbd "<C-down-mouse-3>") 'mouse-major-mode-menu) ;mouse-major-mode-menu
 
+(setq mac-command-modifier 'control)
+(setq mac-control-modifier 'meta)
+(setq x-alt-keysym 'meta)
+(setq x-super-keysym 'meta)
+
 (defun rename-file-and-buffer ()
 "Rename the current buffer and file it is visiting."
 (interactive)

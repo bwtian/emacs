@@ -25,63 +25,122 @@
 (setq TeX-engine 'xetex)  ; or latex, pdftex
 #+END_SRC
 
-** FIXIT  Tex Basic settings
+** FIXIT Hooks and Tex Basic settings
 #+BEGIN_SRC emacs-lisp
-  ;; Makes sections independently possible
-  (setq TeX-auto-save t)
-  (setq TeX-parse-self t)
-  (setq-default TeX-master nil) ;t for not ask 
-  ;; Make \ = C-c C-m to start macro
-  ;(setq TeX-electric-escape t)  
-  ;(setq TeX-electric-sub-and-superscript t)
-  
-  (setq TeX-show-compilation t) ; display compilation windows
-  (setq TeX-auto-untabify t)     ; remove all tabs before saving
-  (setq TeX-save-query nil)
-  (setq completion-ignored-extensions (append completion-ignored-extensions
-                                              '(".synctex.gz")))
-  ;(setq 
-   ;   LaTeX-top-caption-list	("table" "tabular")
-   ;   LaTeX-float			"tn"
-   ;   LaTeX-figure-label		"fig:"
-   ;   LaTeX-table-label		"tab:"
-   ;   LaTeX-section-label		"sec:")
-  (setq LaTeX-default-options '("a4"))
-  (setq LaTeX-float "hbt")
-  (setq LaTeX-indent-level 2)
-  (setq LaTeX-item-indent 0)
-  (setq LaTeX-brace-indent-level 2)
-  (setq TeX-insert-braces nil)
-  (setq LaTeX-math-menu-unicode t)
+      (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+      (add-hook 'LaTeX-mode-hook 'longlines-mode)
+      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+      (add-hook 'LaTeX-mode-hook 'flycheck-mode)
+      (add-hook 'LaTeX-mode-hook 'linum-mode)
+      (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+      (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
+      (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
+      (require 'magic-latex-buffer)
+      (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
+
+
+    ;; Makes sections independently possible
+    (setq TeX-auto-save t)
+    (setq TeX-parse-self t)
+    (setq-default TeX-master t) ;t for not ask 
+    ;; Make \ = C-c C-m to start macro
+    ;; (setq TeX-electric-escape t)  
+     ;;(setq TeX-electric-sub-and-superscript t)
+    
+    (setq TeX-show-compilation t) ; display compilation windows
+    (setq TeX-auto-untabify t)     ; remove all tabs before saving
+    (setq TeX-save-query nil)
+    (setq completion-ignored-extensions (append completion-ignored-extensions
+                                                '(".synctex.gz")))
+    ;(setq 
+     ;   LaTeX-top-caption-list   ("table" "tabular")
+     ;   LaTeX-float                      "tn"
+     ;   LaTeX-figure-label               "fig:"
+     ;   LaTeX-table-label                "tab:"
+     ;   LaTeX-section-label              "sec:")
+    (setq LaTeX-default-options '("a4paper"))
+    (setq LaTeX-float "!ht")
+    (setq LaTeX-indent-level 2)
+    (setq LaTeX-item-indent 0)
+    (setq LaTeX-brace-indent-level 2)
+    (setq TeX-insert-braces t)
+    (setq LaTeX-math-menu-unicode t)
+  ;;;; Quotes
+
+  ;; (defun quote-hook ()
+  ;;   (local-unset-key "\""))
+  ;;   (add-hook 'LaTeX-mode-hook 'quote-hook)
 #+END_SRC
-** Tex-commands
+** Tex Compile commands
 #+BEGIN_SRC emacs-lisp
-  ;; C-c C-c
-  (require 'auctex-latexmk)
-  (auctex-latexmk-setup)
-  (add-hook 'TeX-mode-hook
-            (function (lambda () (setq TeX-command-default "LatexMk"))))
-  (setq TeX-open-quote "<<")
-  (setq TeX-close-quote ">>")
-    ;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
-  (setq my-tex-commands-extra (list 
-                               (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && bibtex %s.aux && cd ../TeX && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && mv ../Outputs/%s.dvi ../DVI/%s.dvi && dvips ../DVI/%s.dvi -o ../PS/%s.ps && ps2pdf ../PS/%s.ps ../PDF/%s.pdf && evince ../PDF/%s.pdf" 'TeX-run-command nil t)))
-  (require 'tex) 
-  (setq TeX-command-list (append TeX-command-list my-tex-commands-extra))
-  (add-hook 'LaTeX-mode-hook (function (lambda ()
-                                         (add-to-list 'TeX-command-list
-                                                      '("pTeX" "%(PDF)ptex %`%S%(PDFout)%(mode)%' %t"
-                                                        TeX-run-TeX nil (plain-tex-mode) :help "Run ASCII pTeX"))
-                                         (add-to-list 'TeX-command-list
-                                                      '("pLaTeX" "%(PDF)platex %`%S%(PDFout)%(mode)%' %t"
-                                                        TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
-                                         (add-to-list 'TeX-command-list
-                                                      '("acroread" "acroread '%s.pdf' " TeX-run-command t nil))
-                                         (add-to-list 'TeX-command-list
-                                                      '("pdf" "dvipdfmx -V 4 '%s' " TeX-run-command t nil))
-                                         )))
+     ;; C-c C-c
+     (require 'auctex-latexmk)
+
+     (auctex-latexmk-setup)
+    (add-hook 'LaTeX-mode-hook (lambda ()
+                               (push 
+                                '("LatexMK" "latexmk -pdf -pv -view=pdf -outdir=build %t" TeX-run-TeX nil t
+                                  :help "Make pdf output using latexmk.")
+                                ;; The -pv option opens pdf-viewer after finishing compiling.
+                                ;; The -pdf option tells latexmk to use pdflatex.
+                                ;; Could use the -pvc option to continually process the file and check for checks,
+                                ;; which creates a type of "WYSIWYG" process. However, the -f option will need to
+                                ;; be removed.
+                                TeX-command-list)))
+  ;; To set the default to use the latexmk instead of LaTeX
+
+  (define-key LaTeX-mode-map [s-S-mouse-1] 'TeX-view)
+   
+       ;;; "latex+DVI+PS+PDF+PDFViewer" routine
+     (setq latexBuild (list 
+                     (list "zLatex"
+       "latex -interaction=nonstopmode -output-directory=./build %s.tex
+     bibtex ./build/%s.aux
+     makeindex ./build/%s.aux
+     makeindex ./build/%s.idx    
+     makeglossaries -d ./build/ %    
+     latex -interaction=nonstopmode -output-directory=./build %s.tex
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     latex -interaction=nonstopmode -output-directory=./build %s.tex
+     dvips ./build/%s.dvi -o ./build/%s.ps
+     ps2pdf ./build/%s.ps ./build/%s.pdf
+     evince ./build/%s.pdf" 'TeX-run-command nil t)))
+
+
+    (setq pdflatexBuild (list 
+                     (list "aPDFlatex"
+    "pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+    bibtex ./build/%s.aux    
+    makeindex ./build/%s.aux
+    makeindex ./build/%s.idx    
+    makeglossaries -d ./build %s    
+    makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+    pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+    makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+    pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+    okular build/%s.pdf" 'TeX-run-command nil t)))
+  (add-hook 'LaTeX-mode-hook '(lambda ()
+                                (setq TeX-command-default "aPDFlatex")))            
+
+     (require 'tex) 
+     (setq TeX-command-list (append TeX-command-list latexBuild))
+     (setq TeX-command-list (append TeX-command-list pdflatexBuild))
+     (add-hook 'LaTeX-mode-hook (function (lambda ()
+                                            (add-to-list 'TeX-command-list
+                                                         '("pTeX" "%(PDF)ptex %`%S%(PDFout)%(mode)%' %t"
+                                                           TeX-run-TeX nil (plain-tex-mode) :help "Run ASCII pTeX"))
+                                            (add-to-list 'TeX-command-list
+                                                         '("pLaTeX" "%(PDF)platex %`%S%(PDFout)%(mode)%' %t"
+                                                           TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
+                                            (add-to-list 'TeX-command-list
+                                                         '("acroread" "acroread '%s.pdf' " TeX-run-command t nil))
+                                            (add-to-list 'TeX-command-list
+                                                         '("pdf" "dvipdfmx -V 4 '%s' " TeX-run-command t nil))
+                                            )))
 
 #+END_SRC
+
+
 ** NEXT Tex-preview 
 #+BEGIN_SRC emacs-lisp
   (setq font-latex-fontify-sectioning 1.0) ;フォントサイズの変更を無効化
@@ -160,7 +219,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 ** DONE PDFLaTex
 #+BEGIN_SRC emacs-lisp
  (setq TeX-PDF-mode t)
-
 ;(require 'tex)
 ;(TeX-global-PDF-mode t)
   ;; pdf-model
@@ -169,40 +227,6 @@ Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 #+END_SRC
-** FIXIT Hooks
-#+BEGIN_SRC emacs-lisp
-    (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-    (add-hook 'LaTeX-mode-hook 'longlines-mode)
-    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-    (add-hook 'LaTeX-mode-hook 'flycheck-mode)
-    (add-hook 'LaTeX-mode-hook 'linum-mode)
-    (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-    (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
-
-  ;  (add-hook 'LaTeX-mode-hook
-   ;           (lambda ()
-    ;            (require 'smartparens-latex)
-     ;           (TeX-run-style-hooks "amsmath" "amsthm" "latex2e")
-      ;          (TeX-fold-mode 1)
-       ;         (define-key LaTeX-mode-map (kbd "$") 'self-insert-command)
-        ;        (LaTeX-(message "FORMATSTRING" &optional ARGS)ath-mode)
-         ;       (TeX-source-correlate-mode)
-          ;      (diminish 'reftex-mode)
-           ;     (LaTeX-add-environments
-            ;     '("exmp" LaTeX-env-label)
-             ;    '("defn" LaTeX-env-label)
-              ;   '("thm" LaTeX-env-label))))
-  ;(add-hook 'LaTeX-mode-hook '(lambda () (outline-minor-mode t)
-          ;                     (local-set-key [(meta n)] 'outline-next-visible-heading)
-                  ;             (local-set-key [(meta p)] 'outline-previous-visible-heading)))
-  (require 'magic-latex-buffer)
-  (add-hook 'LaTex-mode-hook 'magic-latex-buffer)
-#+END_SRC
-** Sections
-
-;;; "LaTeX+DVI+PS+PDF+PDFViewer" routine
-(setq my-tex-commands-extra (list 
-                            (list "Custom Compile" "latex -interaction=nonstopmode -output-directory=../Outputs/ %s.tex && cd ../Outputs && b
 ** TODO TeX-texify
 ;;; http://www.emacswiki.org/emacs/TN
 

@@ -29,7 +29,13 @@
   ;; (global-set-key (kbd "<C-down-mouse-3>") 'mouse-major-mode-menu) ;mouse-major-mode-menu
   
 #+END_SRC
-
+** Mac KeyBoard
+#+BEGIN_SRC emacs-lisp
+  (setq mac-command-modifier 'control)
+  (setq mac-control-modifier 'meta)
+  (setq x-alt-keysym 'meta)
+  (setq x-super-keysym 'meta)
+#+END_SRC
 ** Rename file and buffer with C-c r
 #+BEGIN_SRC emacs-lisp
   (defun rename-file-and-buffer ()
