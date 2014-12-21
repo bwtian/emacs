@@ -59,5 +59,5 @@
   ;;       `((".*" "~/.saves" t)))
 
 (require 'auto-save-buffers-enhanced)
-(setq auto-save-buffers-enhanced-interval 5)
+(setq auto-save-buffers-enhanced-interval 2)
 (auto-save-buffers-enhanced t)
