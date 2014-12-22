@@ -93,6 +93,7 @@
       (require 'tex) 
       (setq TeX-command-list (append TeX-command-list latexBuild))
       (setq TeX-command-list (append TeX-command-list pdflatexBuild))
+      (setq TeX-command-list (append TeX-command-list biberTexBuild))
       ;; (add-hook 'LaTeX-mode-hook (function (lambda ()
       ;;                                        (add-to-list 'TeX-command-list
       ;;                                                     '("pTeX" "%(PDF)ptex %`%S%(PDFout)%(mode)%' %t"
