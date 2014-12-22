@@ -75,6 +75,20 @@
      okular build/%s.pdf" 'TeX-run-command nil t)))
    (add-hook 'LaTeX-mode-hook '(lambda ()
                                  (setq TeX-command-default "aPDFlatex")))            
+  (setq biberTexBuild (list 
+                      (list "bPDFlatex"
+     "pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     bibter ./build/%s.aux    
+     makeindex ./build/%s.aux
+     makeindex ./build/%s.idx    
+     makeglossaries -d ./build %s    
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     okular build/%s.pdf" 'TeX-run-command nil t)))
+   (add-hook 'LaTeX-mode-hook '(lambda ()
+                                 (setq TeX-command-default "bPDFlatex")))            
 
       (require 'tex) 
       (setq TeX-command-list (append TeX-command-list latexBuild))
