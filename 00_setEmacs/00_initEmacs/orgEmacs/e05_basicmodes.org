@@ -76,6 +76,7 @@ redo : Ctrl+?, Meta+_
   ;;                                        (".*" ,sj/auto-save-directory t)))
 
   ;; garbage collection settings
+  (setq gc-cons-threshold (max gc-cons-threshold (* 4 1024 1024)))
       ;; (setq backup-by-copying t) ;automatically backup
       ;; (setq kept-new-versions 5) ;Keep 6 newest Bankup files
       ;; (setq kept-old-versions 5) ;Keep 6 oldest Bankup files
