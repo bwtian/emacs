@@ -173,7 +173,7 @@
 
 (require 'company)
  (setq company-idle-delay 0.1)  ; delay autocompletion popup shows; nil 
- (setq company-minimum-prefix-length 5)
+ (setq company-minimum-prefix-length 2)
 
  ;(setq company-tooltip-delay 0)
  ;(setq company-echo-delay 0)  ; remove annoying blinking
@@ -334,7 +334,7 @@
                                                      (company-abort)))
 ;(define-key company-active-map (kbd "l")         'company-abort)
 (define-key company-active-map (kbd "henkan")         'company-abort)
-;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
+(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
 ;; (progn
 ;;     (defun my-company-pass-key (arg)
 ;;       "Pass a key out of company-mode"
