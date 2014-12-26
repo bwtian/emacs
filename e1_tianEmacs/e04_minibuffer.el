@@ -61,10 +61,7 @@
 ;; ミニバッファで C-k 入力時にカーソル以降を削除する（C-u C-k でも同様の動きをする）
 (setq helm-delete-minibuffer-contents-from-point t)
 
-(global-set-key (kbd "C-x C-;") 'helm-for-files)
-(global-set-key (kbd "C-c b") 'helm-for-files)
 (global-set-key (kbd "C-;") 'helm-resume)
-(global-set-key (kbd "C-;") 'helm-mini)
 (global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -79,6 +76,7 @@
 (define-key global-map (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x C-b") 'helm-for-files)
 (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+(global-set-key (kbd "C-c b") 'helm-for-files)
 (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
 (define-key global-map (kbd "M-z")     'helm-do-grep)
 (define-key global-map (kbd "M-s")     'helm-occur)
