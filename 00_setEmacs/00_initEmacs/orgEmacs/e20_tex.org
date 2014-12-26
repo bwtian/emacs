@@ -301,7 +301,7 @@ If there is still something left do do start the next latex-command."
 ** FIXIT Hooks and Tex Basic settings
 #+BEGIN_SRC emacs-lisp
       (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-      (add-hook 'LaTeX-mode-hook 'longlines-mode)
+      ;;(add-hook 'LaTeX-mode-hook 'longlines-mode)
       (add-hook 'LaTeX-mode-hook 'flyspell-mode)
       (add-hook 'LaTeX-mode-hook 'flycheck-mode)
       (add-hook 'LaTeX-mode-hook 'linum-mode)

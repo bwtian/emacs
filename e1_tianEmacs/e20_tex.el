@@ -164,7 +164,7 @@
 ;;(require 'latex-pretty-symbols)
 
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-    (add-hook 'LaTeX-mode-hook 'longlines-mode)
+    ;;(add-hook 'LaTeX-mode-hook 'longlines-mode)
     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     (add-hook 'LaTeX-mode-hook 'flycheck-mode)
     (add-hook 'LaTeX-mode-hook 'linum-mode)
