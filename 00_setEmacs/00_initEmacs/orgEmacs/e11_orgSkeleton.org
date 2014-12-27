@@ -223,16 +223,17 @@
       )
       (global-set-key [C-S-f10] 'fig-skeleton)
 
-;;; Tex-figure
-      (define-skeleton texFig-skeleton
-      "Input R babel in org-mode"
+;;; Tex-Equation
+      (define-skeleton texEq-skeleton
+\begin{equation}\label{eq:lsts}
+        LST = \frac{T_B}{1 + (\lambda \times T_B/c_2) \times ln\varepsilon}
+\end{equation}
+\myequations{\gls{LST}}
+      "Input texFig babel in tex-mode"
       ""
-      "#+HEADER: :cache yes :tangle yes :noweb yes :colnames yes :var \n"
-      "#+HEADER: :export both :results output graphics :width 400 :height 300\n"
-      "#+NAME: R:"str" \n"
-      "#+BEGIN_SRC R :session :file ./"str".png  \n"
+      "\begin{equation}\label{eq:"str"} \n"
       _"\n"
-      _"\n"
+      "\end{equation}"
       "#+END_SRC\n"
 
       "#+CAPTION: Table/figure name Out put of above code\n"
