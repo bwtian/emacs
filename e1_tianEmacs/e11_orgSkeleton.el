@@ -129,7 +129,28 @@
       _"\n"
       "#+END_COMMENT\n")
       (global-set-key [C-ccc] 'comment-skeleton)
+;;;; R skeleton
+      (define-skeleton R-skeleton
+      "Input R babel in org-mode"
+      ""
+      "#+HEADER: :cache yes :tangle yes :noweb yes :colnames yes :var \n"
+      "#+HEADER: :export both :results output graphics :width 400 :height 300\n"
+      "#+NAME: R:"str" \n"
+      "#+BEGIN_SRC R :session :file ./"str".png  \n"
+      ;;"###############################################################################\n"
+      ;;"## R code chunk:\n"
+      ;;"###############################################################################\n"
+      ;; "#+ Rmd chunk \n"
+      ;; "#' R Spin comments \n"
+      _"\n"
+      _"\n"
+      "#+END_SRC\n"
 
+      "#+CAPTION: Table/figure name Out put of above code\n"
+      "#+NAME: fig:"str"  \n"
+      "#+RESULTS: R:"str"  \n"
+      )
+      (global-set-key [C-S-f4] 'R-skeleton)
 
       (define-skeleton comment1-skeleton
       "Input code blockers in org-mode"
@@ -194,29 +215,16 @@
       )
       (global-set-key [C-S-f10] 'fig-skeleton)
 
-
-      (define-skeleton R-skeleton
-      "Input R babel in org-mode"
+;;; Tex-Equation
+      (define-skeleton texEq-skeleton
+      "Input texEq babel in tex-mode"
       ""
-      "#+HEADER: :cache yes :tangle yes :noweb yes :colnames yes :var \n"
-      "#+HEADER: :export both :results output graphics :width 400 :height 300\n"
-      "#+NAME: R:"str" \n"
-      "#+BEGIN_SRC R :session :file ./"str".png  \n"
-      ;;"###############################################################################\n"
-      ;;"## R code chunk:\n"
-      ;;"###############################################################################\n"
-      ;; "#+ Rmd chunk \n"
-      ;; "#' R Spin comments \n"
+      "\begin{equation}\label{eq:"str"} \n"
       _"\n"
-      _"\n"
-      "#+END_SRC\n"
-
-      "#+CAPTION: Table/figure name Out put of above code\n"
-      "#+NAME: fig:"str"  \n"
-      "#+RESULTS: R:"str"  \n"
+      "\end{equation} \n"
+      "\myequations{\gls{"str"}}\n"
       )
-      (global-set-key [C-S-f11] 'R-skeleton)
-
+      (global-set-key [C-S-f11] 'texFig-skeleton)
       (define-skeleton dot-skeleton
       "Input Emacs-lisp babel in org-mode"
       ""
@@ -226,6 +234,7 @@
       "#+BEGIN_SRC dot :file ./"str".svg \n"
       ""
       "digraph { \n"
+               "rankdir=LR; \n"
                "fontname=\"Times\"; \n"
                "fontsize = 12; \n"
                "splines = false; \n"
