@@ -235,12 +235,12 @@
     ;; M-NUM to select specific one, C-w to view its source file
 #+BEGIN_SRC emacs-lisp
    (require 'company)
-   (setq company-idle-delay 0.1)  ; delay autocompletion popup shows; nil 
+   (setq company-idle-delay 1)  ; delay autocompletion popup shows; nil 
    (setq company-minimum-prefix-length 4)
 
-   ;(setq company-tooltip-delay 0)
-   ;(setq company-echo-delay 0)  ; remove annoying blinking
-   ;(setq company-display-style 'pseudo-tooltip)
+   (setq company-tooltip-delay 2)
+   (setq company-echo-delay 0)  ; remove annoying blinking
+   (setq company-display-style 'pseudo-tooltip)
    (setq company-tooltip-limit 10)
    (setq company-auto-expand t)
    (setq company-auto-complete t)
