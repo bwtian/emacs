@@ -231,11 +231,6 @@
       "#+HEADER: :export both :results output graphics :width 400 :height 300\n"
       "#+NAME: R:"str" \n"
       "#+BEGIN_SRC R :session :file ./"str".png  \n"
-      ;;"###############################################################################\n"
-      ;;"## R code chunk:\n"
-      ;;"###############################################################################\n"
-      ;; "#+ Rmd chunk \n"
-      ;; "#' R Spin comments \n"
       _"\n"
       _"\n"
       "#+END_SRC\n"
@@ -245,7 +240,7 @@
       "#+RESULTS: R:"str"  \n"
       )
       (global-set-key [C-S-f11] 'texFig-skeleton)
-
+<s
       (define-skeleton dot-skeleton
       "Input Emacs-lisp babel in org-mode"
       ""
