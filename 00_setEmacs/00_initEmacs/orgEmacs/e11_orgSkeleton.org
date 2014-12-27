@@ -225,10 +225,6 @@
 
 ;;; Tex-Equation
       (define-skeleton texEq-skeleton
-\begin{equation}\label{eq:lsts}
-        LST = \frac{T_B}{1 + (\lambda \times T_B/c_2) \times ln\varepsilon}
-\end{equation}
-\myequations{\gls{LST}}
       "Input texEq babel in tex-mode"
       ""
       "\begin{equation}\label{eq:"str"} \n"
