@@ -234,6 +234,7 @@
       "\begin{equation}\label{eq:"str"} \n"
       _"\n"
       "\end{equation}"
+      "\myequations{\gls{"str"}}"
       "#+END_SRC\n"
 
       )
