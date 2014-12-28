@@ -75,6 +75,9 @@
 * Abbreviations
 #+BEGIN_SRC emacs-lisp
 (define-abbrev-table 'global-abbrev-table '(
+    ;; geothermal
+    ("8ga" "Geothrmal Anomaies")
+    
 
     ;; math/unicode symbols
     ("8in" "∈")
@@ -85,6 +88,7 @@
 
     ;; email
     ("8me" "bwtian@gmail.com")
+    
 
     ;; computing tech
     ("8wp" "Wikipedia")
