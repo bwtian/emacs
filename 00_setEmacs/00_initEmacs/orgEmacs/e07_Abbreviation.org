@@ -88,7 +88,7 @@
 
     ;; email
     ("8me" "bwtian@gmail.com")
-    
+    ("8ku" "")
 
     ;; computing tech
     ("8wp" "Wikipedia")
