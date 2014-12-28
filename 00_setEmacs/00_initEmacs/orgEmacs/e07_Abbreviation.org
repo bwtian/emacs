@@ -77,6 +77,7 @@
 (define-abbrev-table 'global-abbrev-table '(
     ;; geothermal
     ("8ga" "Geothrmal Anomaies")
+    ("8tir" "Thermal Infrared Remote Sensing")
     
 
     ;; math/unicode symbols
