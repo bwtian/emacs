@@ -89,7 +89,7 @@
 
     ;; email
     ("8me" "bwtian@gmail.com")
-    ("8ku" "")
+    ("8ku" "Kyoto Univerisy")
 
     ;; computing tech
     ("8wp" "Wikipedia")
