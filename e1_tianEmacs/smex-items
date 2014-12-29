@@ -1,16 +1,16 @@
 
 ;; ----- smex-history -----
 (
+ org-evaluate-time-range
  R
  S
  cd
  wc
  5x5
  arp
- dbx
 )
 
 ;; ----- smex-data -----
 (
- 
+ (org-evaluate-time-range . 1)
 )
