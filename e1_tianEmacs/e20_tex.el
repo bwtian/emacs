@@ -171,6 +171,7 @@
     (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
     (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
     (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
+    (add-hook 'LaTeX-mode-hook (lambda () (turn-off-auto-fill)))
     ;; (require 'magic-latex-buffer)
     ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
