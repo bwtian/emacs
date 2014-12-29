@@ -1,13 +1,7 @@
 (1
- (org2jekyll .
-	     [(0 0 7)
-	      ((dash
-		(2 10 0))
-	       (s
-		(1 9 0))
-	       (deferred
-		   (0 3 2)))
-	      "Minor mode to publish org-mode post to jekyll without specific yaml" single])
+ (form-feed .
+	    [(0 1)
+	     nil "Display ^L glyphs as horizontal lines" single])
  (zone-matrix .
 	      [(0 0 1)
 	       nil "Matrix themed Zone mode" tar])
@@ -1521,6 +1515,17 @@
  (org2nikola .
 	     [(0 0 8)
 	      nil "export html and meta data used by static blog like nikola from org file" tar])
+ (org2jekyll .
+	     [(0 1 1)
+	      ((dash
+		(2 10 0))
+	       (dash-functional
+		(1 2 0))
+	       (s
+		(1 9 0))
+	       (deferred
+		   (0 3 1)))
+	      "Minor mode to publish org-mode post to jekyll without specific yaml" single])
  (org2blog .
 	   [(0 5)
 	    ((org
@@ -2992,6 +2997,17 @@
 		((flycheck
 		  (0 17)))
 		"A flycheck checker for Tcl using ActiveState's tclchecker" single])
+ (flycheck-ocaml .
+		 [(0 2)
+		  ((emacs
+		    (24 1))
+		   (flycheck
+		    (0 22 -3 1))
+		   (merlin
+		    (2 0))
+		   (let-alist
+		    (1 0 3)))
+		  "Flycheck: OCaml support" single])
  (flycheck-ledger .
 		  [(0 2)
 		   ((flycheck
