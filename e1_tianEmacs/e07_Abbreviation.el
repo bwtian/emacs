@@ -62,11 +62,15 @@
 (fset 'pabbrev-suggestions-goto-buffer 'pabbrevx-suggestions-goto-buffer)
 
 (define-abbrev-table 'global-abbrev-table '(
+
+    ;; email
+    ("1me" "bwtian@gmail.com")
+    ("1ku" "Kyoto Univerisy")
     ;; geothermal
     ("8ga" "geothrmal anomaies")
     ("8tir" "thermal infrared remote sensing")
     ("8rs"  "remote sensing")    
-
+      
     ;; math/unicode symbols
     ("8in" "∈")
     ("8nin" "∉")
@@ -74,9 +78,6 @@
     ("8luv" "♥")
     ("8smly" "☺")
 
-    ;; email
-    ("8me" "bwtian@gmail.com")
-    ("8ku" "Kyoto Univerisy")
 
     ;; computing tech
     ("8wp" "Wikipedia")
