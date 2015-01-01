@@ -192,7 +192,7 @@
   ;(define-key ac-menu-map (kbd "k")   'ac-previous)
  ; (define-key ac-menu-map (kbd "l")   'ac-stop)
   (define-key ac-menu-map (kbd "henkan")   'ac-complete)
-  (define-key ac-menu-map (kbd "SPC") 'ac-stop)
+  ;(define-key ac-menu-map (kbd "SPC") 'ac-stop)
   (define-key ac-completing-map (kbd "C-g")   'ac-stop)
   (define-key ac-completing-map (kbd "M-RET") 'ac-stop)
   (define-key ac-completing-map (kbd "C-RET") 'ac-stop)
@@ -235,11 +235,11 @@
     ;; M-NUM to select specific one, C-w to view its source file
 #+BEGIN_SRC emacs-lisp
    (require 'company)
-   (setq company-idle-delay 3)  ; delay autocompletion popup shows; nil 
+   (setq company-idle-delay 1)  ; delay autocompletion popup shows; nil 
    (setq company-minimum-prefix-length 4)
 
-   (setq company-tooltip-delay 3)
-   (setq company-echo-delay 3)  ; remove annoying blinking
+   (setq company-tooltip-delay 1.1)
+   (setq company-echo-delay 0)  ; remove annoying blinking
    (setq company-display-style 'pseudo-tooltip)
    (setq company-tooltip-limit 10)
    (setq company-auto-expand t)
@@ -417,7 +417,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                                                        (company-abort)))
   ;(define-key company-active-map (kbd "l")         'company-abort)
   (define-key company-active-map (kbd "henkan")         'company-abort)
-  (define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
+  ;(define-key company-active-map (kbd "<SPC>")      'company-abort) ; space
   ;; (progn
   ;;     (defun my-company-pass-key (arg)
   ;;       "Pass a key out of company-mode"
