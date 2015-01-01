@@ -172,10 +172,10 @@
  (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 (require 'company)
- (setq company-idle-delay 1)  ; delay autocompletion popup shows; nil 
+ (setq company-idle-delay 3)  ; delay autocompletion popup shows; nil 
  (setq company-minimum-prefix-length 4)
 
- (setq company-tooltip-delay 1.1)
+ (setq company-tooltip-delay 3)
  (setq company-echo-delay 0)  ; remove annoying blinking
  (setq company-display-style 'pseudo-tooltip)
  (setq company-tooltip-limit 10)
