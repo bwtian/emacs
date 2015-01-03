@@ -84,5 +84,5 @@
   ;;       `((".*" "~/.saves" t)))
 
 (require 'auto-save-buffers-enhanced)
-(setq auto-save-buffers-enhanced-interval 2)
+(setq auto-save-buffers-enhanced-interval 10)
 (auto-save-buffers-enhanced t)
