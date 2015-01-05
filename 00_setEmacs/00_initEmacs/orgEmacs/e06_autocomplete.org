@@ -377,7 +377,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
                'haskell-mode-hook
                'asm-mode-hook
 	           'org-mode-hook
-	           'LaTex-mode-hook
+	           'LaTeX-mode-hook
 	     ;  'text-mode-hook
                'emms-tag-editor-mode-hook
                'sh-mode-hook))
