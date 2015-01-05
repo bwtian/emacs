@@ -28,6 +28,7 @@ Auto-scrolling of R console to bottom and Shift key extension
 #+BEGIN_SRC emacs-lisp
 ;;(setq ess-use-auto-complete 'script-only)
 (setq ess-use-auto-complete t) ;DEFAULT > 12.09
+(require 'company-ess)
 #+END_SRC
 ** DONE ESS Code indentation 
 ;; http://ess.r-project.org/Manual/ess.html#Indenting
