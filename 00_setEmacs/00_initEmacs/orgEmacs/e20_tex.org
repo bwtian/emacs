@@ -174,6 +174,8 @@
 ** DONE Company and auto-complete
 Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
 #+BEGIN_SRC emacs-lisp
+
+  (require 'company-math)
   (require 'company-auctex)
   (company-auctex-init)
   (require 'auto-complete-auctex)
