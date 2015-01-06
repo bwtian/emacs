@@ -13,7 +13,7 @@
 (global-set-key [(meta backspace)] 'undo)
 (global-set-key [(meta shift backspace)] 'redo)
 (define-key global-map (kbd "C-/") 'undo)
-(define-key global-map (kbd "C-x C-/") 'redo) 
+(define-key global-map (kbd "C-x C-/") 'redo)
 (defalias 'redo 'undo-tree-redo)
 ;(global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
@@ -69,7 +69,7 @@
     ;;(setq x-select-enable-clipboard t) ;; enable Copy from outside
     ;;(setq make-backup-files nil) ; stop creating those backup~ files
     (setq auto-save-default nil) ; stop creating those #autosave# files
-    
+
 ;; place all auto-saves and backups in the directory pointed to by temporary-file-directory
     ;; (e.g., /tmp; C:/Temp/ on Windows).To see where that is, use C-h v then type
     ;; temporary-file-directory and hit enter.
@@ -88,3 +88,4 @@
 (auto-save-buffers-enhanced t)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
