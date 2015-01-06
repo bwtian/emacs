@@ -108,3 +108,7 @@ redo : Ctrl+?, Meta+_
   (setq auto-save-buffers-enhanced-interval 3)
   (auto-save-buffers-enhanced t)
 #+END_SRC
+** White space
+#+BEGIN_SRC emacs-lisp
+(add-hook 'before-save-hook 'whitespace-cleanup)
+#+END_SRC
