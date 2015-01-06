@@ -458,7 +458,7 @@ https://github.com/expez/.emacs.d/blob/9770d56a12c9774ba4d500c659420e9a2509b4fb/
   (define-key company-active-map [up-mouse-1]   'ignore)
   (define-key company-active-map [up-mouse-3]   'ignore)
 
-  (define-key company-active-map "" 'company-complete-selection) ;space
+  (define-key company-active-map "" 'company-complete-selection) ;space to skip
   (define-key company-active-map ""            'company-complete) ; space
   (define-key company-active-map (kbd "<home>") 'company-show-doc-buffer)
   (define-key company-active-map (kbd "\C-d")   'company-show-doc-buffer)
