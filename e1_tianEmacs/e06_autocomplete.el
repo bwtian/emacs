@@ -172,7 +172,7 @@
  (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 (require 'company)
- (setq company-idle-delay 3)  ; delay autocompletion popup shows; nil 
+ (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil 
  (setq company-minimum-prefix-length 4)
 
  (setq company-tooltip-delay 3)
@@ -302,7 +302,7 @@
                'haskell-mode-hook
                'asm-mode-hook
                    'org-mode-hook
-                   'LaTex-mode-hook
+                   'LaTeX-mode-hook
              ;  'text-mode-hook
                'emms-tag-editor-mode-hook
                'sh-mode-hook))

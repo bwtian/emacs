@@ -18,6 +18,7 @@
 
 ;;(setq ess-use-auto-complete 'script-only)
 (setq ess-use-auto-complete t) ;DEFAULT > 12.09
+(require 'company-ess)
 
 (setq ess-default-style 'BSD)   ; Common R chosen
 

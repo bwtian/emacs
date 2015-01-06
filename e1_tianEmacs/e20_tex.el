@@ -143,6 +143,7 @@
 ;(load "auctex.el" nil t )
 ;(load "preview.el" nil t)
 
+(require 'company-math)
 (require 'company-auctex)
 (company-auctex-init)
 (require 'auto-complete-auctex)
