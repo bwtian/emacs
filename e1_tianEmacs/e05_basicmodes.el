@@ -89,3 +89,4 @@
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(global-set-key (kbd "C-c j") 'just-one-space)
