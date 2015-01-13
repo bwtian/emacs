@@ -1,15 +1,15 @@
 
 (require 'auto-complete-config nil 'noerror)
-;(require 'auto-complete-config)  
+;(require 'auto-complete-config)
 ;(require 'auto-complete)
-;;(load "auto-complete") 
+;;(load "auto-complete")
 (global-auto-complete-mode t) ;; ac all mode
 (global-auto-composition-mode 1)
-(ac-flyspell-workaround)    ;; conflict with flyspell 
-(setq 
-      ac-auto-start 2 ; nil ;; t conflict with ESS, complete form fourth character, t=2 
+(ac-flyspell-workaround)    ;; conflict with flyspell
+(setq
+      ac-auto-start 2 ; nil ;; t conflict with ESS, complete form fourth character, t=2
       ac-trigger-key "C-<tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"
-      ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R   
+      ac-delay 0.1 ;; 0.1 fast for fisrt complete ; tiem setting very import to R
       ac-auto-show-menu 0.2 ;; nil or ; tiem setting very import to R
       ;;ac-show-menu-immediately-on-auto-complete t
       ac-candidate-limit 10 ;; nil
@@ -24,7 +24,7 @@
  (setq ac-use-quick-help t)
  (setq ac-quick-help-delay 0.1)
  (setq ac-quick-help-use-pos-tip-p t)
-; (ac-quick-help-prefer-pos-tip) 
+; (ac-quick-help-prefer-pos-tip)
                                          ;(setq ac-setup t)
    (setq ac-quick-help-height 12)
    (setq ac-quick-help-scroll-down t)
@@ -91,7 +91,7 @@
 
   (defvar ac-source-look
     '((candidates . my-ac-look)
-      (requires . 2)))  
+      (requires . 2)))
 
 (global-set-key (kbd "M-h") 'ac-complete-look))
 (push 'ac-source-look ac-sources)
@@ -106,7 +106,7 @@
 (add-to-list 'ac-modes 'LaTeX-mode)
 ;; (setq ac-modes
 ;;       (append ac-modes '(org-mode objc-mode jde-mode sql-mode ess-mode
-;;                                   change-log-mode text-mode 
+;;                                   change-log-mode text-mode
 ;;                                   makefile-gmake-mode makefile-bsdmake-mo
 ;;                                   autoconf-mode makefile-automake-mode)))
 
@@ -117,7 +117,7 @@
    (setq ac-comphist-file "~/.emacs.d/share/ac-comphist.dat")
    (setq ac-use-comphist t)
    (set-default 'ac-sources
-              '(ac-source-semantic 
+              '(ac-source-semantic
                 ac-source-R
                 ac-source-R-args
                 ac-source-R-objects
@@ -126,7 +126,7 @@
                 ac-source-words-in-buffer
                 ac-source-words-in-all-buffer
                 ;ac-source-css-property
-                ac-source-abbrev 
+                ac-source-abbrev
                 ac-source-dabbrev
                 ac-source-math-unicode
                 ac-source-math-latex
@@ -136,7 +136,7 @@
                 ac-source-imenu
                 ac-source-features
                 ac-source-functions
-                ac-source-variables 
+                ac-source-variables
                 ac-source-symbols
                 ac-source-files-in-current-dir
                 ac-source-filename))
@@ -146,7 +146,7 @@
      ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
  (setq ac-use-menu-map t)    ;; Keybinding
  (setq ac-trigger-commands
-       (cons 'backward-delete-char-untabify ac-trigger-commands))  
+       (cons 'backward-delete-char-untabify ac-trigger-commands))
 
  (define-key ac-menu-map (kbd "C-n") 'ac-next)
  (define-key ac-menu-map (kbd "C-p") 'ac-previous)
@@ -163,7 +163,7 @@
 
  ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
  (define-key ac-completing-map (kbd "<tab>") nil)
- ;;(define-key ac-completing-map (kbd "RET") nil) ; return 
+ ;;(define-key ac-completing-map (kbd "RET") nil) ; return
  ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
  ;(define-key ac-completing-map [tab] 'ac-complete)
 
@@ -172,7 +172,7 @@
  (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 (require 'company)
- (setq company-idle-delay 3)  ; delay autocompletion popup shows; nil 
+ (setq company-idle-delay 3)  ; delay autocompletion popup shows; nil
  (setq company-minimum-prefix-length 4)
 
  (setq company-tooltip-delay 0)
@@ -185,7 +185,7 @@
  (setq company-show-numbers t)
  (setq company-transformers '(company-sort-by-occurrence))
  (setq company-complete-on-edit t)
- (setq company-begin-commands '(self-insert-command 
+ (setq company-begin-commands '(self-insert-command
                                 org-self-insert-command
                                 ;c-electric-lt-gt
                                 ;c-electric-colon
@@ -204,7 +204,7 @@
    (setq company-dabbrev-time-limit 0.1)
    (setq company-dabbrev-downcase nil)
    (setq company-dabbrev-ignore-case nil)
-   (setq company-dabbrev-other-buffers t)  
+   (setq company-dabbrev-other-buffers t)
  ;  (setq company-dabbrev-minimum-length 2)
 
 (eval-after-load "company"
@@ -231,7 +231,7 @@
 ;;; WIP, somewhat usable
 (require 'company)
 (require 'pos-tip)
- 
+
 (defun company-quickhelp-frontend (command)
   "`company-mode' front-end showing documentation in a
   `pos-tip' popup."
@@ -240,7 +240,7 @@
     (`hide
      (company-quickhelp--cancel-timer)
      (pos-tip-hide))))
- 
+
 (defun company-quickhelp--show ()
   (company-quickhelp--cancel-timer)
   (let* ((selected (nth company-selection company-candidates))
@@ -261,24 +261,24 @@
                         (* (frame-char-width)
                            (- width (length company-prefix)
                               (if (< 0 extra) extra 1)))))))))
- 
+
 (defvar company-quickhelp--timer nil
   "Quickhelp idle timer.")
- 
+
 (defcustom company-quickhelp--delay 0.5
   "Delay, in seconds, before the quickhelp popup appears.")
- 
+
 (defun company-quickhelp--set-timer ()
   (when (null company-quickhelp--timer)
     (setq company-quickhelp--timer
           (run-with-idle-timer company-quickhelp--delay nil
                                'company-quickhelp--show))))
- 
+
 (defun company-quickhelp--cancel-timer ()
   (when (timerp company-quickhelp--timer)
     (cancel-timer company-quickhelp--timer)
     (setq company-quickhelp--timer nil)))
- 
+
 ;;;###autoload
 (define-minor-mode company-quickhelp-mode
   "Provides documentation popups for `company-mode' using `pos-tip'."
@@ -288,7 +288,7 @@
     (setq company-frontends
           (delq 'company-quickhelp-frontend company-frontends))
     (company-quickhelp--cancel-timer)))
- 
+
 (provide 'company-quickhelp)
 (require 'company-quickhelp)
 
@@ -354,10 +354,10 @@
 ;;(define-key company-active-map (kbd "<up>") 'company-select-previous);0
 
  ;; Company-Complete
-;(define-key company-active-map "\t"                       'company-complete) 
+;(define-key company-active-map "\t"                       'company-complete)
 (define-key company-mode-map "\t" nil)
-(define-key company-mode-map [(backtab)]                   'company-complete-common)  
-(global-set-key [(control tab)] 'company-complete-common)   
+(define-key company-mode-map [(backtab)]                   'company-complete-common)
+(global-set-key [(control tab)] 'company-complete-common)
 ;; (eval-after-load                                           'company
 ;;                                                            '(progn
 ;;               (define-key company-mode-map (kbd "<S-TAB>") 'company-complete)))
@@ -401,10 +401,10 @@ yas/completing-prompt))
   (let ((table (yas/get-snippet-tables major-mode)))
     (if table
       (let (candidates (list))
-            (mapcar (lambda (mode)          
-              (maphash (lambda (key value)    
-                (push key candidates))          
-              (yas/snippet-table-hash mode))) 
+            (mapcar (lambda (mode)
+              (maphash (lambda (key value)
+                (push key candidates))
+              (yas/snippet-table-hash mode)))
             table)
         (all-completions ac-prefix candidates)))))
 
@@ -416,7 +416,7 @@ yas/completing-prompt))
     (selection-face . ac-selection-face)
     ;(candidate-face . ac-yasnippet-candidate-face)
     ;(selection-face . ac-yasnippet-selection-face)
-) 
+)
   "Source for Yasnippet.")
 (provide 'auto-complete-yasnippet)
 
@@ -441,7 +441,7 @@ yas/completing-prompt))
 
 ;;; company-ESS.el --- R Completion Backend for Company-mode  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  
+;; Copyright (C) 2014
 
 ;; Author:  <Lompik@ORION>
 ;; Keywords: extensions, matching
@@ -461,7 +461,7 @@ yas/completing-prompt))
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -476,7 +476,7 @@ yas/completing-prompt))
   "Call R internal completion utilities (rcomp) for possible completions.
 "
   (let* (
-         
+
          ;; (opts1 (if no-args "op<-rc.options(args=FALSE)" ""))
          ;; (opts2 (if no-args "rc.options(op)" ""))
          (comm (format ".ess_get_completions(\"%s\", %d)\n"
@@ -488,7 +488,7 @@ yas/completing-prompt))
   "Get the args of the function when inside parentheses."
   (when  ess--funname.start ;; stored by a coll to ess-ac-start-args
     (let ((args (nth 2 (ess-function-arguments (car ess--funname.start))))
-          (len (length symb)))    
+          (len (length symb)))
       (delete "..." args)
       (mapcar (lambda (a) (concat a ess-ac-R-argument-suffix))
               args))))
@@ -497,7 +497,7 @@ yas/completing-prompt))
 (defun ess-company-candidates ( symb)
   (let ((args (ess-company-args symb))
         (comps (cdr (ess-R-my-get-rcompletions symb))))
-    
+
     (if args
         (setq comps (append
                      (delq nil (mapcar (lambda (x)
@@ -560,10 +560,32 @@ yas/completing-prompt))
 
 (add-to-list 'company-backends 'company-ess-backend)
 
-;(remove-hook 'completion-at-point-functions 'ess-R-object-completion) 
+;(remove-hook 'completion-at-point-functions 'ess-R-object-completion)
 ; FIXME: Is this required ?
 
 
 (provide 'company-ess)
 ;;; company-ESS.el ends here
 (require 'company-ess)
+
+;; smartparens global
+(require 'smartparens-config)
+(smartparens-global-mode t)
+
+;; highlights matching pairs
+(show-smartparens-global-mode t)
+
+;; Key bindigs like paredit mode
+(sp-use-paredit-bindings)
+(--each sp--html-modes
+ (eval-after-load (symbol-name it) '(require 'smartparens-html)))
+(eval-after-load "latex" '(require 'smartparens-latex))
+(eval-after-load "tex-mode" '(require 'smartparens-latex))
+(eval-after-load "lua-mode" '(require 'smartparens-lua))
+(eval-after-load "ruby-mode" '(require 'smartparens-ruby))
+(eval-after-load "enh-ruby-mode" '(require 'smartparens-ruby))
+
+(sp-local-tag 'emacs-lisp-mode "`" "`" "'" :actions '(wrap))
+(sp-local-tag 'org-mode "*" "*" "*" :actions '(wrap))
+(sp-local-tag 'org-mode "=" "=""=" :actions '(wrap))
+(sp-local-tag 'org-mode "~" "~""~" :actions '(wrap))
