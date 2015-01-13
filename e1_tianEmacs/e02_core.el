@@ -136,8 +136,8 @@
 ))
 ;; Latex %
 (add-to-list 'align-rules-list
-'(yatex-table
-(regexp . "\\(\\s-*\\)%")
+'(tex-comment
+(regexp . "\\( *\\)%")
 ))
 (global-set-key (kbd "C-c C-a") 'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)
