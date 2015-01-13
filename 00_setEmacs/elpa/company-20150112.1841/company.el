@@ -1,11 +1,11 @@
 ;;; company.el --- Modular text completion framework  -*- lexical-binding: t -*-
 
-;; Copyright (C) 2009-2014  Free Software Foundation, Inc.
+;; Copyright (C) 2009-2015  Free Software Foundation, Inc.
 
 ;; Author: Nikolaj Schumacher
 ;; Maintainer: Dmitry Gutov <dgutov@yandex.ru>
 ;; URL: http://company-mode.github.io/
-;; Version: 0.8.8-cvs
+;; Version: 0.8.8
 ;; Keywords: abbrev, convenience, matching
 ;; Package-Requires: ((emacs "24.1") (cl-lib "0.5"))
 
@@ -1161,21 +1161,25 @@ can retrieve meta-data for them."
   (company--transform-candidates candidates))
 
 (defun company--strip-duplicates (candidates)
-  (let ((c2 candidates))
+  (let ((c2 candidates)
+        (annos 'unk))
     (while c2
       (setcdr c2
-              (let ((str (car c2))
-                    (anno 'unk))
-                (pop c2)
+              (let ((str (pop c2)))
                 (while (let ((str2 (car c2)))
                          (if (not (equal str str2))
-                             nil
-                           (when (eq anno 'unk)
-                             (setq anno (company-call-backend
-                                         'annotation str)))
-                           (equal anno
-                                  (company-call-backend
-                                   'annotation str2))))
+                             (progn
+                               (setq annos 'unk)
+                               nil)
+                           (when (eq annos 'unk)
+                             (setq annos (list (company-call-backend
+                                                'annotation str))))
+                           (let ((anno2 (company-call-backend
+                                         'annotation str2)))
+                             (if (member anno2 annos)
+                                 t
+                               (push anno2 annos)
+                               nil))))
                   (pop c2))
                 c2)))))
 
