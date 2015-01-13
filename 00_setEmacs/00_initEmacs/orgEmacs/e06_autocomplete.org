@@ -684,4 +684,5 @@ yas/completing-prompt))
 * Smart smartparens
 #+BEGIN_SRC emacs-lisp
 (require 'smartparens-config)
+(require 'smartparens-latex)
 #+END_SRC
