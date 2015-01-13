@@ -21,8 +21,8 @@
 (run-with-idle-timer 300 t 'recentf-save-list)
 (run-with-idle-timer 600 t 'recentf-cleanup)
 
-(setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe
-    (setq skeleton-pair-on-word t)
+; (setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe
+  ;  (setq skeleton-pair-on-word t)
     ;; (global-set-key "("  'skeleton-pair-insert-maybe)
     ;; (global-set-key "["  'skeleton-pair-insert-maybe)
     ;; (global-set-key "{"  'skeleton-pair-insert-maybe)
@@ -47,7 +47,7 @@
 ;; (global-set-key "(" 'quoted-parentheses)
 ;; (global-set-key "[" 'quoted-brackets)
 
-(electric-pair-mode t)
+; (electric-pair-mode t)
 
 (show-paren-mode t)                 ; turn paren-mode on match highlighting
  (setq show-paren-delay 0)           ; how long to wait?  default was o.15s
