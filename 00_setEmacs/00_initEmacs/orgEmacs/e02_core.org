@@ -9,11 +9,11 @@
 (setq vc-follow-symlinks t) ;; Avoid Yes No to Symbol link to Git-Control ed source file
 (setq auto-revert-check-vc-info t)
 (setq auto-revert-interval 1)
-(add-hook 'find-file-hook                                                                                                                                                          
-          '(lambda ()                                                                                                                                                              
-             (when                                                                                                                                                                 
-                 (and buffer-file-name                                                                                                                                             
-                      (vc-backend buffer-file-name))                                                                                                                               
+(add-hook 'find-file-hook
+          '(lambda ()
+             (when
+                 (and buffer-file-name
+                      (vc-backend buffer-file-name))
                (auto-revert-mode))))
 #+END_SRC
 ** Recentf-mode
@@ -27,14 +27,14 @@
   (setq recentf-auto-cleanup 'never)
   (run-with-idle-timer 300 t 'recentf-save-list)
   (run-with-idle-timer 600 t 'recentf-cleanup)
-  
+
 #+END_SRC
 
 
 ** Make pair of {,[ and (
-*** skeleton-pair
+*** skeleton-pair: enable pairing
 #+BEGIN_SRC emacs-lisp
-  (setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe 
+  (setq skeleton-pair t) ;; Skeleton library provides pair insertion via the skeleton-insert-maybe
     (setq skeleton-pair-on-word t)
     (global-set-key "("  'skeleton-pair-insert-maybe)
     (global-set-key "["  'skeleton-pair-insert-maybe)
@@ -46,21 +46,34 @@
     ;;(global-set-key "\`" 'skeleton-pair-insert-maybe)
     ;;(global-set-key "\:" 'skeleton-pair-insert-maybe)
     ;;(global-set-key "<"  'skeleton-pair-insert-maybe)
+;; for Latex
+ (defun quoted-parentheses (arg)
+      (interactive "P")
+      (if (looking-back "\\\\")
+          (skeleton-insert '(nil "(" _ "\\)") -1)
+        (skeleton-pair-insert-maybe arg)))
+ (defun quoted-brackets (arg)
+      (interactive "P")
+      (if (looking-back "\\\\")
+          (skeleton-insert '(nil "[" _ "\\]") -1)
+        (skeleton-pair-insert-maybe arg)))
+(global-set-key "(" 'quoted-parentheses)
+(global-set-key "[" 'quoted-brackets)
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
    (electric-pair-mode t)
 #+END_SRC
-  
+
 *** show-paren-mode color
 
 #+BEGIN_SRC emacs-lisp
    (show-paren-mode t)                 ; turn paren-mode on match highlighting
    (setq show-paren-delay 0)           ; how long to wait?  default was o.15s
    (setq show-paren-style  'expression) ; highlight entire bracket expression alternatives are 'parenthesis' and 'mixed'
-   (set-face-foreground    'show-paren-mismatch-face "red") 
+   (set-face-foreground    'show-paren-mismatch-face "red")
    (set-face-background    'show-paren-match-face nil) ;; for colors change nil to color
   ;; (set-face-foreground    'show-paren-match-face nil)
-   (set-face-attribute     'show-paren-match-face nil 
+   (set-face-attribute     'show-paren-match-face nil
                        ;;:background nil :foreground nil
                        :underline t :weight 'extra-bold :overline nil :slant 'normal) ;; #ffff00
 #+END_SRC
@@ -92,11 +105,11 @@ Linewrapping comes in a few flavors:
 |      | longlines-auto-wrap | hard logical | org-table       | text    | fill-column  | fill-column   | changed, danger |
 |------+---------------------+--------------+-----------------+---------+--------------+---------------+-----------------|
 *** Soft Wrap Lines::visual-line-mode<->lonelines-mode
-+ visual-line-mode makes emacs act like a "usual" text editor (w.r.t. line 
++ visual-line-mode makes emacs act like a "usual" text editor (w.r.t. line
   wrappings), act on visual lines instead of logical lines
 + or for LaTeX:  M-x longlines-mode
 #+BEGIN_SRC emacs-lisp
-(global-visual-line-mode 1) ;; Make long lines soft wrapped at word boundary 
+(global-visual-line-mode 1) ;; Make long lines soft wrapped at word boundary
 ;; (setq line-move-visual nil) ;; original behavior  with logical lines
 ;; line-wrap settings for code and one for text
 (add-hook 'text-mode-hook '(lambda ()
@@ -110,7 +123,7 @@ Linewrapping comes in a few flavors:
 
 
 #+BEGIN_SRC emacs-lisp
-  ;;(set-default 'truncate-lines t)  ;;Make lines NOT soft-wrap but short lines 
+  ;;(set-default 'truncate-lines t)  ;;Make lines NOT soft-wrap but short lines
   ;;(define-key global-map (kbd "C-c M-l") 'toggle-truncate-lines)
   ;; (setq truncate-partial-width-windows nil)  ;; for vertically-split windows
   ;; do not truncate and wrap long lines
@@ -142,11 +155,11 @@ M-q::fill-paragraph
   (setq org-mode-hook 'turn-on-auto-fill)
   (setq LaTeX-mode-hook 'turn-on-auto-fill)
 #+END_SRC
-   
-** Align 
+
+** Align
 #+BEGIN_SRC emacs-lisp
   (require 'align)
-  ;; >> Shell and gmt 
+  ;; >> Shell and gmt
   (add-to-list 'align-rules-list
   '(shell-assignment
   (regexp . "\\( *\\)>>")
@@ -186,5 +199,3 @@ M-q::fill-paragraph
   (global-auto-revert-mode t)
   (setq read-file-name-completion-ignore-case t)
 #+END_SRC
-
-
