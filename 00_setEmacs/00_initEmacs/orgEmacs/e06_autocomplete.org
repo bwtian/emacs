@@ -683,6 +683,13 @@ yas/completing-prompt))
 
 * Smart smartparens
 #+BEGIN_SRC emacs-lisp
+;; smartparens global
 (require 'smartparens-config)
-(require 'smartparens-latex)
+(smartparens-global-mode t)
+
+;; highlights matching pairs
+(show-smartparens-global-mode t)
+
+;; Key bindigs like paredit mode
+(sp-use-paredit-bindings)
 #+END_SRC
