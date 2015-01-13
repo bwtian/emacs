@@ -692,4 +692,16 @@ yas/completing-prompt))
 
 ;; Key bindigs like paredit mode
 (sp-use-paredit-bindings)
+(--each sp--html-modes
+ (eval-after-load (symbol-name it) '(require 'smartparens-html)))
+(eval-after-load "latex" '(require 'smartparens-latex))
+(eval-after-load "tex-mode" '(require 'smartparens-latex))
+(eval-after-load "lua-mode" '(require 'smartparens-lua))
+(eval-after-load "ruby-mode" '(require 'smartparens-ruby))
+(eval-after-load "enh-ruby-mode" '(require 'smartparens-ruby))
+
+(sp-local-tag 'emacs-lisp-mode "`" "`" "'" :actions '(wrap))
+(sp-local-tag 'org-mode "*" "*" "*" :actions '(wrap))
+(sp-local-tag 'org-mode "=" "=""=" :actions '(wrap))
+(sp-local-tag 'org-mode "~" "~""~" :actions '(wrap))
 #+END_SRC
