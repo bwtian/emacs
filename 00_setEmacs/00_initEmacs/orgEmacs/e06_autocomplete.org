@@ -691,9 +691,9 @@ yas/completing-prompt))
 (show-smartparens-global-mode t)
 
 ;; Key bindigs like paredit mode
-(sp-use-paredit-bindings)
+;;(sp-use-paredit-bindings)
 (--each sp--html-modes
- (eval-after-load (symbol-name it) '(require 'smartparens-html)))
+(eval-after-load (symbol-name it) '(require 'smartparens-html)))
 (eval-after-load "latex" '(require 'smartparens-latex))
 (eval-after-load "tex-mode" '(require 'smartparens-latex))
 (eval-after-load "lua-mode" '(require 'smartparens-lua))
