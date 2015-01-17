@@ -45,7 +45,7 @@
 #+BEGIN_SRC emacs-lisp
    (require 'pos-tip)
    (setq ac-use-quick-help t)
-   (setq ac-quick-help-delay 0.5)
+   (setq ac-quick-help-delay 0.01)
    (setq ac-quick-help-use-pos-tip-p t)
   ; (ac-quick-help-prefer-pos-tip)
                                            ;(setq ac-setup t)
