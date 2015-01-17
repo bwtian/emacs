@@ -238,9 +238,10 @@
    (setq company-idle-delay 3)  ; delay autocompletion popup shows; nil
    (setq company-minimum-prefix-length 4)
 
-   (setq company-tooltip-delay 0)
+
    (setq company-echo-delay 0)  ; remove annoying blinking
    (setq company-display-style 'pseudo-tooltip)
+   (setq company-tooltip-delay 0)
    (setq company-tooltip-limit 10)
    (setq company-auto-expand t)
    (setq company-auto-complete t)
