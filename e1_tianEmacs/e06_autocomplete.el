@@ -10,7 +10,7 @@
       ac-auto-start 3 ; nil ;; t conflict with ESS, complete form fourth character, t=2
       ac-trigger-key "C-<tab>" ;;ac-auto-start nil + ac-trigger-key "TAB"
       ac-delay 0.01 ;; 0.1 fast for fisrt complete ; tiem setting very import to R
-      ac-auto-show-menu 0.1 ;; nil or ; tiem setting very import to R
+      ac-auto-show-menu 0.3 ;; tiem setting very import to R ;; 候補が出るまでの時間 default 0.8
       ;;ac-show-menu-immediately-on-auto-complete t
       ac-candidate-limit 10 ;; nil
       ac-use-comphist t ;; sort Candidate
@@ -22,7 +22,7 @@
 
 (require 'pos-tip)
  (setq ac-use-quick-help t)
- (setq ac-quick-help-delay 0.5)
+ (setq ac-quick-help-delay 0.01)
  (setq ac-quick-help-use-pos-tip-p t)
 ; (ac-quick-help-prefer-pos-tip)
                                          ;(setq ac-setup t)
@@ -143,33 +143,38 @@
 (ac-config-default) ; make above work.
 
 ;; Motion
-     ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
- (setq ac-use-menu-map t)    ;; Keybinding
- (setq ac-trigger-commands
-       (cons 'backward-delete-char-untabify ac-trigger-commands))
+      ;;;ac-disable-faces (quote (font-lock-comment-face font-lock-doc-face))
+  (setq ac-use-menu-map t)    ;; Keybinding
+  (setq ac-trigger-commands
+        (cons 'backward-delete-char-untabify ac-trigger-commands))
 
- (define-key ac-menu-map (kbd "C-n") 'ac-next)
- (define-key ac-menu-map (kbd "C-p") 'ac-previous)
- ;(define-key ac-menu-map (kbd "j")   'ac-next)
- ;(define-key ac-menu-map (kbd "k")   'ac-previous)
-; (define-key ac-menu-map (kbd "l")   'ac-stop)
- (define-key ac-menu-map (kbd "henkan")   'ac-complete)
- ;(define-key ac-menu-map (kbd "SPC") 'ac-stop)
- (define-key ac-completing-map (kbd "C-g")   'ac-stop)
- (define-key ac-completing-map (kbd "M-RET") 'ac-stop)
- (define-key ac-completing-map (kbd "C-RET") 'ac-stop)
+  (define-key ac-menu-map (kbd "C-n") 'ac-next)
+  (define-key ac-menu-map (kbd "C-p") 'ac-previous)
+  ;(define-key ac-menu-map (kbd "j")   'ac-next)
+  ;(define-key ac-menu-map (kbd "k")   'ac-previous)
+ ; (define-key ac-menu-map (kbd "l")   'ac-stop)
+  (define-key ac-menu-map (kbd "henkan")   'ac-complete)
+  ;(define-key ac-menu-map (kbd "SPC") 'ac-stop)
+  (define-key ac-completing-map (kbd "C-g")   'ac-stop)
+  (define-key ac-completing-map (kbd "M-RET") 'ac-stop)
+  (define-key ac-completing-map (kbd "C-RET") 'ac-stop)
+;(define-key ac-completing-map (kbd "M-/")   'ac-stop)
+                                          ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
 
-                                         ;(define-key ac-completing-map "\M-n" nil) ;; was ac-next
+  ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
+  (define-key ac-completing-map (kbd "<tab>") nil)
+  ;;(define-key ac-completing-map (kbd "RET") nil) ; return
+  ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
+  ;(define-key ac-completing-map [tab] 'ac-complete)
 
- ;(define-key ac-completing-map "\M-p" nil) ;; was ac-previous
- (define-key ac-completing-map (kbd "<tab>") nil)
- ;;(define-key ac-completing-map (kbd "RET") nil) ; return
- ;; (define-key ac-completing-map (kbd "<tab>") 'ac-complete)
- ;(define-key ac-completing-map [tab] 'ac-complete)
-
- (define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
- (define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
- (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
+;(define-key ac-completing-map (kbd "RET") nil) ; return での補完禁止
+(setf (symbol-function 'yas-active-keys)
+      (lambda ()
+        (remove-duplicates
+         (mapcan #'yas--table-all-keys (yas--get-snippet-tables)))))
+  (define-key ac-completing-map (kbd "C-c q h") 'ac-quick-help)
+  (define-key ac-mode-map (kbd "C-c l q h") 'ac-last-quick-help)
+  (define-key ac-mode-map (kbd "C-c l h ") 'ac-last-help)
 
 (require 'company)
  (setq company-idle-delay 0.5)  ; delay autocompletion popup shows; nil
