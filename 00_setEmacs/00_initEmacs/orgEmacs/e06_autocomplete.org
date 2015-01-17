@@ -235,7 +235,7 @@
     ;; M-NUM to select specific one, C-w to view its source file
 #+BEGIN_SRC emacs-lisp
    (require 'company)
-   (setq company-idle-delay 1)  ; delay autocompletion popup shows; nil
+   (setq company-idle-delay 0.5)  ; delay autocompletion popup shows; nil
    (setq company-minimum-prefix-length 4)
 
 
