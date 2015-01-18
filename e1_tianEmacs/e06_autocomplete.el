@@ -178,7 +178,7 @@
 
 (require 'company)
  (autoload 'company-mode "company" nil t)
- (setq company-idle-delay 0.3)  ; delay autocompletion popup shows; nil
+ (setq company-idle-delay 0.8)  ; delay autocompletion popup shows; nil
  (setq company-minimum-prefix-length 4)
 
  (setq company-echo-delay 0)  ; remove annoying blinking
