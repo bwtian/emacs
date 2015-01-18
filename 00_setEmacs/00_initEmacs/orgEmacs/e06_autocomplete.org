@@ -241,7 +241,7 @@
 #+BEGIN_SRC emacs-lisp
    (require 'company)
    (autoload 'company-mode "company" nil t)
-   (setq company-idle-delay 0.01)  ; delay autocompletion popup shows; nil
+   (setq company-idle-delay 0.3)  ; delay autocompletion popup shows; nil
    (setq company-minimum-prefix-length 4)
 
    (setq company-echo-delay 0)  ; remove annoying blinking
@@ -685,7 +685,6 @@ yas/completing-prompt))
 ;;; company-ESS.el ends here
 (require 'company-ess)
 #+END_SRC
-
 
 * Smart smartparens
 #+BEGIN_SRC emacs-lisp
