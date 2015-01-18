@@ -84,7 +84,7 @@
   ;;       `((".*" "~/.saves" t)))
 
 (require 'auto-save-buffers-enhanced)
-(setq auto-save-buffers-enhanced-interval 3)
+(setq auto-save-buffers-enhanced-interval 30)
 (auto-save-buffers-enhanced t)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)

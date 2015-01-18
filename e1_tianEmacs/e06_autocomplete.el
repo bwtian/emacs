@@ -178,7 +178,7 @@
 
 (require 'company)
  (autoload 'company-mode "company" nil t)
- (setq company-idle-delay 0)  ; delay autocompletion popup shows; nil
+ (setq company-idle-delay 0.3)  ; delay autocompletion popup shows; nil
  (setq company-minimum-prefix-length 4)
 
  (setq company-echo-delay 0)  ; remove annoying blinking
@@ -207,7 +207,7 @@
 ; (setq company-backends '(company-dabbrev
                        ; (company-keywords company-dabbrev-code)
                        ; company-files))
-   (setq company-dabbrev-time-limit 0.1)
+   (setq company-dabbrev-time-limit 0.01)
    (setq company-dabbrev-downcase nil)
    (setq company-dabbrev-ignore-case nil)
    (setq company-dabbrev-other-buffers t)
