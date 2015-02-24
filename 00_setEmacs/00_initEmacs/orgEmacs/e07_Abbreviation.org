@@ -5,22 +5,22 @@
 * Abbrev-mode
 #+BEGIN_SRC emacs-lisp
   ;; turn on abbrev mode globally
-  (setq default-abbrev-mode t)  
-  (setq abbrev-file-name             ;; tell emacs where to read abbrev  
-          "~/SparkleShare/emacs.d/00_setEmacs/share/abbrevDic")    ;; definitions from...  
-  ;(setq save-abbrevs t)              ;; save abbrevs when files are saved  
-                                       ;; you will be asked before the abbreviations are saved 
+  (setq default-abbrev-mode t)
+  (setq abbrev-file-name             ;; tell emacs where to read abbrev
+          "~/SparkleShare/emacs.d/00_setEmacs/share/abbrevDic")    ;; definitions from...
+  ;(setq save-abbrevs t)              ;; save abbrevs when files are saved
+                                       ;; you will be asked before the abbreviations are saved
   ;; stop asking whether to save newly added abbrev when quitting emacs
   (setq save-abbrevs t)
-  ;;(setq save-abbrevs nil) 
-  (quietly-read-abbrev-file)       ;; reads the abbreviations file on startup  
-  ;Avoid errors if the abbrev-file is missing  
-  (if (file-exists-p abbrev-file-name)  
-          (quietly-read-abbrev-file))  
+  ;;(setq save-abbrevs nil)
+  (quietly-read-abbrev-file)       ;; reads the abbreviations file on startup
+  ;Avoid errors if the abbrev-file is missing
+  (if (file-exists-p abbrev-file-name)
+          (quietly-read-abbrev-file))
 (setq dabbrev-case-fold-search nil) ; ignore up and lowcase
 (setq dabbrev-abbrev-char-regexp "[A-z0-9:-]") ;; mathc words
 #+END_SRC
-* dabbrev 
+* dabbrev
 #+BEGIN_SRC emacs-lisp
 ;; Command completion with Alt-space
 (define-key global-map (kbd "C-M-/") 'expand-abbrev)
@@ -42,11 +42,11 @@
         try-expand-list try-expand-line
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
-#+END_SRC 
-* pabbrev 
+#+END_SRC
+* pabbrev
 #+BEGIN_SRC emacs-lisp
-(require 'pabbrev)
-(global-pabbrev-mode)
+;(require 'pabbrev)
+;(global-pabbrev-mode)
 (setq pabbrev-idle-timer-verbose nil)
 ; Let Pabbrev popup
 ;;(require 'popup)
@@ -82,8 +82,8 @@
     ;; geothermal
     ("8ga" "geothrmal anomaies")
     ("8tir" "thermal infrared remote sensing")
-    ("8rs"  "remote sensing")    
-      
+    ("8rs"  "remote sensing")
+
     ;; math/unicode symbols
     ("8in" "∈")
     ("8nin" "∉")
@@ -134,5 +134,3 @@
     ))
 
 #+END_SRC
-
-
