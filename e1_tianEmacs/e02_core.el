@@ -89,3 +89,58 @@
   ;; (add-hook 'diff-mode-hook (lambda () (setq truncate-lines t)))
 (add-hook 'minibuffer-setup-hook
       (lambda () (setq truncate-lines nil)))
+
+;; default fill column is 70, why?
+(setq default-fill-column 80) ;;60 half paper, 70, 72 good,80,120 full paper
+(setq-default auto-fill-function 'do-auto-fill)
+(setq sentence-end-double-space nil) ;; Sentence end with a . not with 2 spaces
+;;(setq require-final-newline t) ;; End a file with a newline
+(setq next-line-add-newlines nil) ;; Stop at the end of the file, not just add
+;; lines
+(setq paragraph-start '"^\\([　・○<\t\n\f]\\|(?[0-9a-zA-Z]+)\\)")
+(setq text-mode-hook 'turn-on-auto-fill)
+(setq org-mode-hook 'turn-on-auto-fill)
+(setq LaTeX-mode-hook 'turn-on-auto-fill)
+
+(require 'align)
+;; >> Shell and gmt
+(add-to-list 'align-rules-list
+'(shell-assignment
+(regexp . "\\( *\\)>>")
+))
+;; Shell and gmt '
+(add-to-list 'align-rules-list
+'(lisp-assignment
+(regexp . "\\( *\\)'")
+))
+;; R <-
+(add-to-list 'align-rules-list
+'(R-assignment
+(regexp . "\\( *\\)<-")
+))
+;; Comment #
+(add-to-list 'align-rules-list
+'(comment-assignment
+(regexp . "\\( *\\)#")
+))
+;; Python
+(add-to-list 'align-rules-list
+'(python-assignment
+(regexp . "\\( *\\)=")
+))
+;; Latex Tabel&
+(add-to-list 'align-rules-list
+'(yatex-table
+(regexp . "\\(\\s-*\\)&")
+))
+;; Latex %
+(add-to-list 'align-rules-list
+'(tex-comment
+(regexp . "\\( *\\)%")
+))
+(global-set-key (kbd "C-c C-a") 'align)
+(global-set-key (kbd "C-c M-a") 'align-regexp)
+
+(setq transient-mark-mode t)
+(global-auto-revert-mode t)
+(setq read-file-name-completion-ignore-case t)
