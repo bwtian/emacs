@@ -174,3 +174,107 @@
   (when (string= "S" ess-language)
     (add-hook 'auto-indent-after-yank-hook 'emacsmate-ess-fix-code t t)))
 (add-hook 'ess-mode-hook 'emacsmate-ess-turn-on-fix-code)
+
+;; ESS Mode (.R file)
+  (define-key ess-mode-map "\C-l" 'ess-eval-line-and-step)
+  (define-key ess-mode-map "\C-p" 'ess-eval-function-or-paragraph-and-step)
+  (define-key ess-mode-map "\C-r" 'ess-eval-region)
+
+;; iESS Mode (R console)
+  (define-key inferior-ess-mode-map "\C-u" 'comint-kill-input)
+  (define-key inferior-ess-mode-map "\C-w" 'backward-kill-word)
+  (define-key inferior-ess-mode-map "\C-a" 'comint-bol)
+  (define-key inferior-ess-mode-map [home] 'comint-bol)
+
+;; Comint Mode (R console as well)
+  (define-key comint-mode-map "\C-e" 'comint-show-maximum-output)
+  (define-key comint-mode-map "\C-r" 'comint-show-output)
+  (define-key comint-mode-map "\C-o" 'comint-kill-output)
+
+;;Tracing bug
+  (define-key ess-mode-map "\M-]" 'next-error)
+  (define-key ess-mode-map "\M-[" 'previous-error)
+  (define-key inferior-ess-mode-map "\M-]" 'next-error-no-select)
+  (define-key inferior-ess-mode-map "\M-[" 'previous-error-no-select)
+  (define-key compilation-minor-mode-map [(?n)] 'next-error-no-select)
+  (define-key compilation-minor-mode-map [(?p)] 'previous-error-no-select)
+
+(defun my-ess-start-R ()
+  (interactive)
+  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+        (delete-other-windows)
+        (setq w1 (selected-window))
+        (setq w1name (buffer-name))
+        (setq w2 (split-window w1 nil t))
+        (R)
+        (set-window-buffer w2 "*R*")
+        (set-window-buffer w1 w1name))))
+(defun my-ess-eval ()
+  (interactive)
+  (my-ess-start-R)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+    (call-interactively 'ess-eval-line-and-step))
+  (when (eobp) ;; Bug Fix to allow end of buffer to insert line
+    (insert "\n")))
+
+(defun emacsmate-ess-add-shift-return ()
+  (when (boundp 'auto-indent-alternate-return-function-for-end-of-line-then-newline)
+    (set (make-local-variable 'auto-indent-alternate-return-function-for-end-of-line-then-newline)
+         'my-ess-eval))
+  (local-set-key [(shift return)] 'my-ess-eval))
+
+(defun emacsmate-add-control-up-and-down ()
+  (local-set-key [C-up] 'comint-previous-input)
+  (local-set-key [C-down] 'comint-next-input))
+
+(add-hook 'ess-mode-hook 'emacsmate-ess-add-shift-return)
+(add-hook 'inferior-ess-mode-hook 'emacsmate-add-control-up-and-down)
+(add-hook 'Rnw-mode-hook 'emacsmate-ess-add-shift-return)
+
+;; changed by vinh
+(defun ess-swv-run-in-R2 (cmd &optional choose-process)
+  "Run \\[cmd] on the current .Rnw file. Utility function not called by user."
+  (let* ((rnw-buf (current-buffer)))
+    (if choose-process ;; previous behavior
+        (ess-force-buffer-current "R process to load into: ")
+      ;; else
+      (update-ess-process-name-list)
+      (cond ((= 0 (length ess-process-name-list))
+             (message "no ESS processes running; starting R")
+             (sit-for 1); so the user notices before the next msgs/prompt
+             (R)
+             (set-buffer rnw-buf)
+             )
+            ((not (string= "R" (ess-make-buffer-current))); e.g. Splus, need R
+             (ess-force-buffer-current "R process to load into: "))
+            ))
+
+    (save-excursion
+      (ess-execute (format "require(tools)")) ;; Make sure tools is loaded.
+      (basic-save-buffer); do not Sweave/Stangle old version of file !
+      (let* ((sprocess (get-ess-process ess-current-process-name))
+             (sbuffer (process-buffer sprocess))
+             (rnw-file (buffer-file-name))
+             (Rnw-dir (file-name-directory rnw-file))
+             (Sw-cmd
+              (format
+               "local({..od <- getwd(); setwd(%S); %s(%S, cacheSweaveDriver()); setwd(..od) })"
+               Rnw-dir cmd rnw-file))
+             )
+        (message "%s()ing %S" cmd rnw-file)
+        (ess-execute Sw-cmd 'buffer nil nil)
+        (switch-to-buffer rnw-buf)
+        (ess-show-buffer (buffer-name sbuffer) nil)))))
+
+(defun ess-swv-weave2 ()
+  "Run Sweave on the current .Rnw file."
+  (interactive)
+  (ess-swv-run-in-R2 "Sweave"))
+;; This is a modification to allow dynamic loading of Rnw-mode.
+(when (not (boundp 'Rnw-mode-hook))
+  (setq Rnw-mode-hook nil ))
+(defun emacsmate-add-weave2-key ()
+  (define-key noweb-minor-mode-map "\M-nw" 'ess-swv-weave2))
+(add-hook 'Rnw-mode-hook 'emacsmate-add-weave2-key)
