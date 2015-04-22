@@ -1,0 +1,9 @@
+#+TODO: TODO(t!) WAIT(w!) | DONE(d!) SOMEDAY(s!) CANCEL(c!) 
+* e13_org-todo.org
+** TODO Sequence
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+      '((sequence "TODO(t!)" "DOING(i!)" "|" "DONE(d!)")))
+(setq org-todo-keyword-faces
+       (quote (("DOING" :foreground "gold" :weight bold))))
+#+END_SRC
