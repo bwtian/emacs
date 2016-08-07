@@ -695,12 +695,7 @@ Set `org-capture-templates' to be similar to `org-remember-templates'.
 
 ;;;***
 
-;;;### (autoloads (org-clock-update-time-maybe org-dblock-write:clocktable
-;;;;;;  org-clocktable-shift org-clock-report org-clock-get-clocktable
-;;;;;;  org-clock-remove-overlays org-clock-display org-clock-sum
-;;;;;;  org-clock-goto org-clock-cancel org-clock-out org-clock-in-last
-;;;;;;  org-clock-in org-resolve-clocks) "org-clock" "org-clock.el"
-;;;;;;  "f352efb3624e5f6acdcda3eeb6cd6cd6")
+;;;### (autoloads nil "org-clock" "org-clock.el" "9512be5f0cbd83a5a3f9f80231193d2c")
 ;;; Generated autoloads from org-clock.el
 
 (autoload 'org-resolve-clocks "org-clock" "\
@@ -868,18 +863,18 @@ PARAMS is a property list of parameters:
 
 :width    enforce same column widths with <N> specifiers.
 :id       the :ID: property of the entry where the columns view
-	  should be built.  When the symbol `local', call locally.
-	  When `global' call column view with the cursor at the beginning
-	  of the buffer (usually this means that the whole buffer switches
-	  to column view).  When \"file:path/to/file.org\", invoke column
-	  view at the start of that file.  Otherwise, the ID is located
-	  using `org-id-find'.
+          should be built.  When the symbol `local', call locally.
+          When `global' call column view with the cursor at the beginning
+          of the buffer (usually this means that the whole buffer switches
+          to column view).  When \"file:path/to/file.org\", invoke column
+          view at the start of that file.  Otherwise, the ID is located
+          using `org-id-find'.
 :hlines   When t, insert a hline before each item.  When a number, insert
-	  a hline before each level <= that number.
+          a hline before each level <= that number.
 :vlines   When t, make each column a colgroup to enforce vertical lines.
 :maxlevel When set to a number, don't capture headlines below this level.
 :skip-empty-rows
-	  When t, skip rows where all specifiers other than ITEM are empty.
+          When t, skip rows where all specifiers other than ITEM are empty.
 :format   When non-nil, specify the column view format to use.
 
 \(fn PARAMS)" nil nil)
@@ -2250,9 +2245,175 @@ Call the customize function with org as argument.
 
 ;;;***
 
-;;;### (autoloads (org-ascii-publish-to-utf8 org-ascii-publish-to-latin1
-;;;;;;  org-ascii-publish-to-ascii org-ascii-export-to-ascii org-ascii-export-as-ascii)
-;;;;;;  "ox-ascii" "ox-ascii.el" "18c316ed803aa330fd3faea0de033049")
+;;;### (autoloads nil "ox" "ox.el" "f028ccdfb78e7f9773768099cf252db2")
+;;; Generated autoloads from ox.el
+
+(autoload 'org-export-as "ox" "\
+Transcode current Org buffer into BACKEND code.
+
+BACKEND is either an export back-end, as returned by, e.g.,
+`org-export-create-backend', or a symbol referring to
+a registered back-end.
+
+If narrowing is active in the current buffer, only transcode its
+narrowed part.
+
+If a region is active, transcode that region.
+
+When optional argument SUBTREEP is non-nil, transcode the
+sub-tree at point, extracting information from the headline
+properties first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+When optional argument BODY-ONLY is non-nil, only return body
+code, without surrounding template.
+
+Optional argument EXT-PLIST, when provided, is a property list
+with external parameters overriding Org default settings, but
+still inferior to file-local settings.
+
+Return code as a string.
+
+\(fn BACKEND &optional SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST)" nil nil)
+
+(autoload 'org-export-string-as "ox" "\
+Transcode STRING into BACKEND code.
+
+BACKEND is either an export back-end, as returned by, e.g.,
+`org-export-create-backend', or a symbol referring to
+a registered back-end.
+
+When optional argument BODY-ONLY is non-nil, only return body
+code, without preamble nor postamble.
+
+Optional argument EXT-PLIST, when provided, is a property list
+with external parameters overriding Org default settings, but
+still inferior to file-local settings.
+
+Return code as a string.
+
+\(fn STRING BACKEND &optional BODY-ONLY EXT-PLIST)" nil nil)
+
+(autoload 'org-export-replace-region-by "ox" "\
+Replace the active region by its export to BACKEND.
+BACKEND is either an export back-end, as returned by, e.g.,
+`org-export-create-backend', or a symbol referring to
+a registered back-end.
+
+\(fn BACKEND)" nil nil)
+
+(autoload 'org-export-insert-default-template "ox" "\
+Insert all export keywords with default values at beginning of line.
+
+BACKEND is a symbol referring to the name of a registered export
+back-end, for which specific export options should be added to
+the template, or `default' for default template.  When it is nil,
+the user will be prompted for a category.
+
+If SUBTREEP is non-nil, export configuration will be set up
+locally for the subtree through node properties.
+
+\(fn &optional BACKEND SUBTREEP)" t nil)
+
+(autoload 'org-export-to-buffer "ox" "\
+Call `org-export-as' with output to a specified buffer.
+
+BACKEND is either an export back-end, as returned by, e.g.,
+`org-export-create-backend', or a symbol referring to
+a registered back-end.
+
+BUFFER is the name of the output buffer.  If it already exists,
+it will be erased first, otherwise, it will be created.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting buffer should then be accessible
+through the `org-export-stack' interface.  When ASYNC is nil, the
+buffer is displayed if `org-export-show-temporary-export-buffer'
+is non-nil.
+
+Optional arguments SUBTREEP, VISIBLE-ONLY, BODY-ONLY and
+EXT-PLIST are similar to those used in `org-export-as', which
+see.
+
+Optional argument POST-PROCESS is a function which should accept
+no argument.  It is always called within the current process,
+from BUFFER, with point at its beginning.  Export back-ends can
+use it to set a major mode there, e.g,
+
+  (defun org-latex-export-as-latex
+    (&optional async subtreep visible-only body-only ext-plist)
+    (interactive)
+    (org-export-to-buffer \\='latex \"*Org LATEX Export*\"
+      async subtreep visible-only body-only ext-plist (lambda () (LaTeX-mode))))
+
+This function returns BUFFER.
+
+\(fn BACKEND BUFFER &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST POST-PROCESS)" nil nil)
+
+(put 'org-export-to-buffer 'lisp-indent-function '2)
+
+(autoload 'org-export-to-file "ox" "\
+Call `org-export-as' with output to a specified file.
+
+BACKEND is either an export back-end, as returned by, e.g.,
+`org-export-create-backend', or a symbol referring to
+a registered back-end.  FILE is the name of the output file, as
+a string.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting buffer will then be accessible
+through the `org-export-stack' interface.
+
+Optional arguments SUBTREEP, VISIBLE-ONLY, BODY-ONLY and
+EXT-PLIST are similar to those used in `org-export-as', which
+see.
+
+Optional argument POST-PROCESS is called with FILE as its
+argument and happens asynchronously when ASYNC is non-nil.  It
+has to return a file name, or nil.  Export back-ends can use this
+to send the output file through additional processing, e.g,
+
+  (defun org-latex-export-to-latex
+    (&optional async subtreep visible-only body-only ext-plist)
+    (interactive)
+    (let ((outfile (org-export-output-file-name \".tex\" subtreep)))
+      (org-export-to-file \\='latex outfile
+        async subtreep visible-only body-only ext-plist
+        (lambda (file) (org-latex-compile file)))
+
+The function returns either a file name returned by POST-PROCESS,
+or FILE.
+
+\(fn BACKEND FILE &optional ASYNC SUBTREEP VISIBLE-ONLY BODY-ONLY EXT-PLIST POST-PROCESS)" nil nil)
+
+(put 'org-export-to-file 'lisp-indent-function '2)
+
+(autoload 'org-export-dispatch "ox" "\
+Export dispatcher for Org mode.
+
+It provides an access to common export related tasks in a buffer.
+Its interface comes in two flavors: standard and expert.
+
+While both share the same set of bindings, only the former
+displays the valid keys associations in a dedicated buffer.
+Scrolling (resp. line-wise motion) in this buffer is done with
+SPC and DEL (resp. C-n and C-p) keys.
+
+Set variable `org-export-dispatch-use-expert-ui' to switch to one
+flavor or the other.
+
+When ARG is \\[universal-argument], repeat the last export action, with the same set
+of options used back then, on the current buffer.
+
+When ARG is \\[universal-argument] \\[universal-argument], display the asynchronous export stack.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "ox-ascii" "ox-ascii.el" "9afab2fe6261e300e32af82a66e4bcf8")
 ;;; Generated autoloads from ox-ascii.el
 
 (autoload 'org-ascii-export-as-ascii "ox-ascii" "\
