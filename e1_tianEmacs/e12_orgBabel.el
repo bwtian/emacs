@@ -1,4 +1,3 @@
-
 (add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
   ;;(require 'org-install)
   (require 'ob-tangle)

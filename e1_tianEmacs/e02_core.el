@@ -1,4 +1,3 @@
-
 (setq default-directory "~/SparkleShare/")
 
 (setq vc-follow-symlinks t) ;; Avoid Yes No to Symbol link to Git-Control ed source file

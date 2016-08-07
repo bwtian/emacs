@@ -1,4 +1,3 @@
-
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))  (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.todo\\'" . org-mode))

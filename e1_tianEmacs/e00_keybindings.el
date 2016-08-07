@@ -1,4 +1,3 @@
-
 (mouse-avoidance-mode 'animate)
 (blink-cursor-mode -1)
 (mouse-wheel-mode t)

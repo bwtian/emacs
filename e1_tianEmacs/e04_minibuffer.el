@@ -1,4 +1,3 @@
-
 (defalias 'yes-or-no-p 'y-or-n-p) ;; Treat 'y' as yes, 'n' as no
 (setq enable-recursive-minibuffers t) ;; nil
 (icomplete-mode 1)

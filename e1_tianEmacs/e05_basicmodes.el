@@ -1,4 +1,3 @@
-
 ;; (setq el-get-dir "~/Dropbox/config/emacs/00_setEmacs/el-get")
 ;; (url-retrieve
 ;;  "https://raw.github.com/dimitri/el-get/master/el-get-install.el"

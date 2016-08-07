@@ -1,4 +1,3 @@
-
 (require 'auto-complete-config nil 'noerror)
 ;(require 'auto-complete-config)
 ;(require 'auto-complete)

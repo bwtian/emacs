@@ -1,4 +1,3 @@
-
 (setq default-frame-alist
         '((background-color . "DarkSlateGray") ;;Colors:black,darkblue,abc88b,DarkSlateGray,#171717
          (foreground-color  . "Wheat") ;;Colors:white,grey85,Wheat,#c0c0c0,tomato DarkGrey grey66

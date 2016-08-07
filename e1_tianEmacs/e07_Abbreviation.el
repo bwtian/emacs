@@ -1,4 +1,3 @@
-
 ;; turn on abbrev mode globally
   (setq default-abbrev-mode t)
   (setq abbrev-file-name             ;; tell emacs where to read abbrev

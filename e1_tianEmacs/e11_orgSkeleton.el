@@ -1,4 +1,3 @@
-
 ;; C-c C-e t
        (define-skeleton org-skeleton
        "Header info for a emacs-org file."
