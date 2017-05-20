@@ -41,7 +41,7 @@ I    #+INCLUDE: line
     (python      . t)
     ;;(ruby        . t)
     ;;(perl        . t)
-   ;; (js          . t)
+    (js          . t)
     ;;(scheme      . t)
     ;;(C           . t)
     ;;(clojure     . t)
@@ -51,10 +51,10 @@ I    #+INCLUDE: line
     ;;(gnuplot     . t)
     ;;(screen      . nil)
    ; (shell       . t) ;; not work
-    ;;(sql         . nil)
-    ;;(sqlite      . t)
+    (sql         . nil)
+    (sqlite      . t)
     (ditaa       . t)
-    ;;(plantuml    . t)
+    (plantuml    . t)
     ))
 
 
