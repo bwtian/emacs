@@ -1,4 +1,3 @@
-
 ;;(setq initial-frame-alist '((top . 10) (left . 10) (width . 80) (height . 40)))
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 ;; (setq default-frame-alist
