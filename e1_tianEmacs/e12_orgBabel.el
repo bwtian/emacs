@@ -1,6 +1,6 @@
 ;;(require 'org-install)
-  (require 'ob-tangle)
-  ;;(require 'ob-clojure)
+  ;;(require 'ob-tangle)
+  (require 'ob-clojure)
   (org-babel-do-load-languages
   'org-babel-load-languages
   '(
