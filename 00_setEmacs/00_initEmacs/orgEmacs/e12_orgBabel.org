@@ -76,8 +76,8 @@ I    #+INCLUDE: line
 
 
 ;; R-babel Languages set up for windows
-  (if (string-equal system-type "windows-nt")
-  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.1bin/x64/R --slave --no-save"))
+;;  (if (string-equal system-type "windows-nt")
+;;  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.1bin/x64/R --slave --no-save"))
 #+END_SRC
 ;; Face for Babel
   ;; (defface org-block-begin-line
