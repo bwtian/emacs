@@ -26,10 +26,9 @@ I    #+INCLUDE: line
 ** Add [[http://orgmode.org/worg/org-contrib/babel/languages.html][languages]] :active code in Org-mode
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
   ;;(require 'org-install)
   (require 'ob-tangle)
-  (require 'ob-clojure)
+  ;;(require 'ob-clojure)
   (org-babel-do-load-languages
   'org-babel-load-languages
   '(
@@ -62,8 +61,8 @@ I    #+INCLUDE: line
 
   ;;;; Use the current window for indirect buffer display
   ;;(setq org-indirect-buffer-display 'current-window)
-  (setq org-src-window-setup 'current-window) ;; After C-c '
-  (setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
+  ;;(setq org-src-window-setup 'current-window) ;; After C-c '
+  ;;(setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
 
 ;;graphviz mode for dot hilight in babel
 ;;install graphviz
