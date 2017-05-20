@@ -28,7 +28,7 @@
     (ditaa       . t)
     ;;(plantuml    . t)
     ))
-  
+
 
   (setq org-confirm-babel-evaluate nil) ;;; Do not prompt to confirm evaluation
 
@@ -36,7 +36,7 @@
   ;;(setq org-indirect-buffer-display 'current-window)
   (setq org-src-window-setup 'current-window) ;; After C-c '
   (setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
- 
+
 ;;graphviz mode for dot hilight in babel
 ;;install graphviz
 (load "graphviz-dot-mode.el")
