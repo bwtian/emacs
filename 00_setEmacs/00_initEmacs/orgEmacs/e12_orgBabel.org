@@ -56,7 +56,7 @@ I    #+INCLUDE: line
     (ditaa       . t)
     ;;(plantuml    . t)
     ))
-  
+
 
   (setq org-confirm-babel-evaluate nil) ;;; Do not prompt to confirm evaluation
 
@@ -64,7 +64,7 @@ I    #+INCLUDE: line
   ;;(setq org-indirect-buffer-display 'current-window)
   (setq org-src-window-setup 'current-window) ;; After C-c '
   (setq org-src-fontify-natively t) ;; syntax highlighting fontify code in code blocks
- 
+
 ;;graphviz mode for dot hilight in babel
 ;;install graphviz
 (load "graphviz-dot-mode.el")
@@ -77,32 +77,32 @@ I    #+INCLUDE: line
 
 ;; R-babel Languages set up for windows
   (if (string-equal system-type "windows-nt")
-  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.1bin/x64/R --slave --no-save"))  
+  (setq org-babel-R-command "C:/PROGRA~1/R/R-3.1.1bin/x64/R --slave --no-save"))
 #+END_SRC
 ;; Face for Babel
   ;; (defface org-block-begin-line
   ;;   '((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
   ;;   "Face used for the line delimiting the begin of source blocks.")
-  
+
   ;; (defface org-block-background
   ;;   '((t (:background "#FFFFEA")))
   ;;   "Face used for the source block background.")
-  
+
   ;; (defface org-block-end-line
   ;;   '((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
   ;;   "Face used for the line delimiting the end of source blocks.")
 ** Babel Headers
 +BEGIN_SRC emacs-lisp
 (setq org-babel-default-header-args
-		   (list '(:session . "*R*")
-			 '(:eval . ,(if (getopt "evaluate") "yes" "no"))
-			 '(:results . "output replace")
-			 '(:exports . "both")
-			 '(:cache . "yes")
-			 '(:noweb . "yes")
-			 '(:hlines . "no")
-			 '(:tangle . "no")
-			 '(:padnewline . "yes")
-			 ))
+                   (list '(:session . "*R*")
+                         '(:eval . ,(if (getopt "evaluate") "yes" "no"))
+                         '(:results . "output replace")
+                         '(:exports . "both")
+                         '(:cache . "yes")
+                         '(:noweb . "yes")
+                         '(:hlines . "no")
+                         '(:tangle . "no")
+                         '(:padnewline . "yes")
+                         ))
 
 +END_SRC
