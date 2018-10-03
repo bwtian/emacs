@@ -7,7 +7,7 @@
   ;; turn on abbrev mode globally
   (setq default-abbrev-mode t)
   (setq abbrev-file-name             ;; tell emacs where to read abbrev
-          "~/SparkleShare/emacs.d/00_setEmacs/share/abbrevDic")    ;; definitions from...
+          "~/github/emacs/00_setEmacs/share/abbrevDic")    ;; definitions from...
   ;(setq save-abbrevs t)              ;; save abbrevs when files are saved
                                        ;; you will be asked before the abbreviations are saved
   ;; stop asking whether to save newly added abbrev when quitting emacs

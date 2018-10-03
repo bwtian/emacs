@@ -54,9 +54,9 @@
         )
 
         ("learnR"               ;Used to export .org file
-         :base-directory "~/SparkleShare/learnRviaCode/Org"  ;directory holds .org files 
+         :base-directory "~/github/learnRviaCode/Org"  ;directory holds .org files 
          :base-extension "org"     ;process .org file only    
-         :publishing-directory  "~/SparkleShare/learnRviaCode/html"    ;export destination
+         :publishing-directory  "~/github/learnRviaCode/html"    ;export destination
          :recursive t
          :publishing-function org-html-publish-to-html
          :headline-levels 3               ; Just the default for this project.

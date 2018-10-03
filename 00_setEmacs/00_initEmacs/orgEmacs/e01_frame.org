@@ -22,7 +22,7 @@
     ;;     (menu-bar-mode -1))
   
   ;; Tool Bar
-    (tool-bar-mode -1) ;; 1 to show toolbar
+    ;;(tool-bar-mode -1) ;; 1 to show toolbar ;; cannot 181003
     ;; (if (fboundp 'tool-bar-mode)
     ;; (tool-bar-mode -1)
   ;; Ruler Bar
@@ -31,7 +31,7 @@
   
   ;; Scroll Bar
   ;;  (set-scroll-bar-mode t) ;;'right
-  (set-scroll-bar-mode nil) ;;'right
+  ;;(set-scroll-bar-mode nil) ;;'right, cannot on 20181003
   ;; ring-bell
   (setq ring-bell-function 'ignore)
 #+END_SRC
@@ -81,16 +81,14 @@
         (count-matches "\\sw+"))))
 (defalias 'word-count 'count-word)
 
-
 #+END_SRC
 ** Font
 #+BEGIN_SRC emacs-lisp
 ;;(set-face-attribute 'default nil :family "Consolas" :height 104)
 #+END_SRC
 ** Dir Tree
-#+BEGIN_SRC emacs-lisp
-(require 'sr-speedbar)
-(setq sr-speedbar-right-side nil)
+;;(require 'sr-speedbar) ;; cannot on 20181003 
+;;(setq sr-speedbar-right-side nil)
 ;;(setq speedbar-use-images nil) ;;disable the icons?
 #+END_SRC
 ** Window 
@@ -106,10 +104,10 @@
      split-height-threshold nil)
 
 ;;MARK COLUMN 80
-(require 'fill-column-indicator)
-(add-hook 'after-change-major-mode-hook
-	  '(lambda ()
-	     (setq fci-rule-column 80)
-	     (fci-mode)))
+;;(require 'fill-column-indicator) ;;cannot on 1003
+;;(add-hook 'after-change-major-mode-hook
+	;;  '(lambda ()
+	;;     (setq fci-rule-column 80)
+	;;     (fci-mode)))
   ;; (setq Man-notify-method 'pushy)
 #+END_SRC

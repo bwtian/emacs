@@ -1,1 +1,0 @@
-(define-package "helm-backup" "20151213.1047" "Backup each file change using git" '((helm "1.5.5") (s "1.8.0") (cl-lib "0")) :url "http://github.com/antham/helm-backup" :keywords '("backup" "convenience" "files" "tools" "vc"))

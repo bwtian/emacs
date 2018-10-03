@@ -1,4 +1,4 @@
-* Frame Color
+** Frame Color
 #+BEGIN_SRC emacs-lisp
    (setq default-frame-alist
            '((background-color . "DarkSlateGray") ;;Colors:black,darkblue,abc88b,DarkSlateGray,#171717
@@ -7,7 +7,7 @@
             (cursor-color      . "green"))) ;;Colors:green.red,white,gold2
 #+END_SRC
 
-* Font-lock Color 
+** Font-lock Color 
 #+BEGIN_SRC emacs-lisp
     ;;;; Font-lock color
     (global-font-lock-mode t)                                           ; S/R   TeX
@@ -38,4 +38,3 @@
 ******* 7
 ******** 8
 ********* 9
-
