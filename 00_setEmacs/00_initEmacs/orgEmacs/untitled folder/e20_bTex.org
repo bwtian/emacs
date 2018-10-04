@@ -1,0 +1,667 @@
+#+TITLE:tex 
+#+AUTHOR: Bingwei TIAN
+#+EMAIL: bwtian@gmail.com
+#+OPTIONS: toc:nil num:nil 
+#+STARTUP: content
+#+CREATED: [2014-06-03 Tue 11:09]  
+#+LASTEDIT:  
+#+CATEGORIES: Org-babel for Emacs init
+#+TODO: TODO FIXIT NEXT | DONE SOMEDAY CANCEL 
+* e20_tex.org
+** DONE Invoke Tex Packages and Mode
+#+BEGIN_SRC emacs-lisp
+    ;; (setenv "PATH" (concat "/usr/texbin:" (getenv "PATH")))
+  (require 'tex-site)   ; invoke the AUCTeX package (LaTeX support)
+  (if (string-equal system-type "windows-nt")
+      (require 'tex-mik))
+  (setq TeX-file-extensions
+        '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
+  (setq TeX-default-mode 'LaTeX-mode) ;; Use auctex
+  (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+  (setq TeX-force-default-mode t)
+  #+END_SRC
+** DONE TeX-engine
+#+BEGIN_SRC emacs-lisp
+(setq TeX-engine 'xetex)  ; or latex, pdftex
+#+END_SRC
+
+
+** Tex Compile commands
+#+BEGIN_SRC emacs-lisp
+      ;; C-c C-c
+      ;;(require 'auctex-latexmk)
+      (auctex-latexmk-setup)
+     (add-hook 'LaTeX-mode-hook (lambda ()
+                                (push 
+                                 '("LatexMK" "latexmk -pdf -pv -view=pdf -outdir=build %t" TeX-run-TeX nil t
+                                   :help "Make pdf output using latexmk.")
+                                 ;; The -pv option opens pdf-viewer after finishing compiling.
+                                 ;; The -pdf option tells latexmk to use pdflatex.
+                                 ;; Could use the -pvc option to continually process the file and check for checks,
+                                 ;; which creates a type of "WYSIWYG" process. However, the -f option will need to
+                                 ;; be removed.
+                                 TeX-command-list)))
+   ;; To set the default to use the latexmk instead of LaTeX
+
+  ;;  (define-key LaTeX-mode-map [s-S-mouse-1] 'TeX-view)
+    
+        ;;; "latex+DVI+PS+PDF+PDFViewer" routine
+      (setq latexBuild (list 
+                      (list "zLatex"
+        "latex -interaction=nonstopmode -output-directory=./build %s.tex
+      bibtex ./build/%s.aux
+      makeindex ./build/%s.aux
+      makeindex ./build/%s.idx    
+      makeglossaries -d ./build/ %    
+      latex -interaction=nonstopmode -output-directory=./build %s.tex
+      makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+      latex -interaction=nonstopmode -output-directory=./build %s.tex
+      dvips ./build/%s.dvi -o ./build/%s.ps
+      ps2pdf ./build/%s.ps ./build/%s.pdf
+      evince ./build/%s.pdf" 'TeX-run-command nil t)))
+
+
+     (setq pdflatexBuild (list 
+                      (list "aPDFlatex"
+     "pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     bibtex ./build/%s.aux    
+     makeindex ./build/%s.aux
+     makeindex ./build/%s.idx    
+     makeglossaries -d ./build %s    
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     okular build/%s.pdf" 'TeX-run-command nil t)))
+   (add-hook 'LaTeX-mode-hook '(lambda ()
+                                 (setq TeX-command-default "aPDFlatex")))            
+  (setq biberTexBuild (list 
+                      (list "bPDFlatex"
+     "pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     bibter ./build/%s.aux    
+     makeindex ./build/%s.aux
+     makeindex ./build/%s.idx    
+     makeglossaries -d ./build %s    
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     makeindex  ./build/%s.nlo -s  ./build/nomencl.ist -o  ./build/%s.nls
+     pdflatex -synctex=1 -interaction=nonstopmode -output-directory=./build  %s.tex
+     okular build/%s.pdf" 'TeX-run-command nil t)))
+   (add-hook 'LaTeX-mode-hook '(lambda ()
+                                 (setq TeX-command-default "bPDFlatex")))            
+
+      (require 'tex) 
+      (setq TeX-command-list (append TeX-command-list latexBuild))
+      (setq TeX-command-list (append TeX-command-list pdflatexBuild))
+      (setq TeX-command-list (append TeX-command-list biberTexBuild))
+      ;; (add-hook 'LaTeX-mode-hook (function (lambda ()
+      ;;                                        (add-to-list 'TeX-command-list
+      ;;                                                     '("pTeX" "%(PDF)ptex %`%S%(PDFout)%(mode)%' %t"
+      ;;                                                       TeX-run-TeX nil (plain-tex-mode) :help "Run ASCII pTeX"))
+      ;;                                        (add-to-list 'TeX-command-list
+      ;;                                                     '("pLaTeX" "%(PDF)platex %`%S%(PDFout)%(mode)%' %t"
+      ;;                                                       TeX-run-TeX nil (latex-mode) :help "Run ASCII pLaTeX"))
+      ;;                                        (add-to-list 'TeX-command-list
+      ;;                                                     '("acroread" "acroread '%s.pdf' " TeX-run-command t nil))
+      ;;                                        (add-to-list 'TeX-command-list
+      ;;                                                     '("pdf" "dvipdfmx -V 4 '%s' " TeX-run-command t nil))
+      ;;                                        )))
+
+#+END_SRC
+
+
+** NEXT Tex-preview 
+#+BEGIN_SRC emacs-lisp
+  (setq font-latex-fontify-sectioning 1.0) ;フォントサイズの変更を無効化
+  (setq font-latex-fontify-script nil) ;上付き, 下付きの無効化
+    (setq preview-scale-function 1.5)
+    (setq preview-image-type 'dvipng)
+
+    (setq TeX-view-program-list
+                '(("SumatraPDF" "SumatraPDF.exe %o") ;;Windows
+                  ("Gsview" "gsview32.exe %o")
+                  ("Okular" "okular --unique %o")
+                  ("Evince" "evince %o")    ;; Gnomeers
+                  ("open" "open %o")
+                  ("Firefox" "firefox %o")))
+    ;; (cond
+    ;;  ((eq system-type 'windows-nt)
+    ;;   (add-hook 'LaTeX-mode-hook
+    ;;             (lambda ()
+    ;;               (setq TeX-view-program-selection '((output-pdf "SumatraPDF")
+    ;;                                                  (output-dvi "Yap")
+    ;;                                                  )))))
+    ;;  ((eq system-type 'gnu/linux)
+    ;;   (add-hook 'LaTeX-mode-hook
+    ;;             (lambda ()
+    ;;               (setq TeX-view-program-selection '((output-pdf "Okular")
+    ;;                                                  ;(output-dvi "Okular")
+    ;;                                                  ;(output-html "open")
+    ;;                                                  ))))))
+    ;(setq TeX-output-view-style '(("^dvi$" "." "xdvi '%d'")))
+     (setq TeX-output-view-style (quote (
+                                           ; ("^pdf$" "." "evince %o")
+                                            ("^pdf$" "." "Okular")
+                                           ("^ps$" "." "gv %o")
+                                           ("^dvi$" "." "xdvi %o")
+                                          )))
+    ;;   (setq tex-dvi-view-command "xdvi")
+    ;;   (setq tex-dvi-print-command "dvips")
+    ;;   (setq tex-alt-dvi-print-command "dvips")  
+
+#+END_SRC
+    
+** DONE auto directory
+#+BEGIN_SRC emacs-lisp
+  ;; change auto name
+  ;;(setq TeX-auto-local ".auctex")
+  ;;;; put to tmp
+  ;; (setq TeX-auto-local
+  ;;       (expand-file-name
+  ;;        (concat my:user-emacs-temporary-directory ".auctex/auto")))
+  ;; (setq TeX-style-local
+  ;;       (expand-file-name
+  ;;        (concat my:user-emacs-temporary-directory ".auctex/style")))
+#+END_SRC
+** DONE Auctex mode
+#+BEGIN_SRC emacs-lisp
+  ;(unless (file-exists-p "/etc/emacs/site-start.d/50auctex.el")
+   ; (load "auctex.el" nil t)
+    ;(load "preview-latex" nil t))
+  ;(load "auctex.el" nil t )
+  ;(load "preview.el" nil t)
+#+END_SRC
+** DONE Company and auto-complete
+Auto Completion and Auto Save ;; http://www.emacswiki.org/emacs/AUCTeX
+#+BEGIN_SRC emacs-lisp
+  (require 'company-math)
+  (require 'company-auctex)
+  (company-auctex-init)
+  (require 'auto-complete-auctex)
+  (add-hook 'LaTeX-mode-hook 'company-auctex)
+  (add-hook 'LaTeX-mode-hook 'auto-complete-auctex)
+#+END_SRC 
+** DONE CDLatex
+#+BEGIN_SRC emacs-lisp
+  (require 'cdlatex)
+  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+#+END_SRC
+** DONE PDFLaTex
+#+BEGIN_SRC emacs-lisp
+ (setq TeX-PDF-mode t)
+;(require 'tex)
+;(TeX-global-PDF-mode t)
+  ;; pdf-model
+(setq TeX-source-correlate-method 'synctex)
+(setq TeX-source-correlate-start-server t)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+#+END_SRC
+** TODO TeX-texify
+;;; http://www.emacswiki.org/emacs/TN
+
+(require 'tex-buf)
+(defun TeX-command-default (name)
+  "Next TeX command to use. Most of the code is stolen from `TeX-command-query'."
+  (cond ((if (string-equal name TeX-region)
+             (TeX-check-files (concat name "." (TeX-output-extension))
+                              (list name)
+                              TeX-file-extensions)
+           (TeX-save-document (TeX-master-file)))
+         TeX-command-default)
+        ((and (memq major-mode '(doctex-mode latex-mode))
+              (TeX-check-files (concat name ".bbl")
+                               (mapcar 'car
+                                       (LaTeX-bibliography-list))
+                               BibTeX-file-extensions))
+         ;; We should check for bst files here as well.
+         TeX-command-BibTeX)
+        ((TeX-process-get-variable name
+                                   'TeX-command-next
+                                   TeX-command-Show))
+        (TeX-command-Show)))
+
+;;;  from wiki
+(defcustom TeX-texify-Show t
+  "Start view-command at end of TeX-texify?"
+  :type 'boolean
+  :group 'TeX-command)
+
+(defcustom TeX-texify-max-runs-same-command 5
+  "Maximal run number of the same command"
+  :type 'integer
+  :group 'TeX-command)
+
+(defun TeX-texify-sentinel (&optional proc sentinel)
+  "Non-interactive! Call the standard-sentinel of the current LaTeX-process.
+If there is still something left do do start the next latex-command."
+  (set-buffer (process-buffer proc))
+  (funcall TeX-texify-sentinel proc sentinel)
+  (let ((case-fold-search nil))
+    (when (string-match "\\(finished\\|exited\\)" sentinel)
+      (set-buffer TeX-command-buffer)
+      (unless (plist-get TeX-error-report-switches (intern (TeX-master-file)))
+        (TeX-texify)))))
+
+(defun TeX-texify ()
+  "Get everything done."
+  (interactive)
+  (let ((nextCmd (TeX-command-default (TeX-master-file)))
+        proc)
+    (if (and (null TeX-texify-Show)
+             (equal nextCmd TeX-command-Show))
+        (when  (called-interactively-p 'any)
+          (message "TeX-texify: Nothing to be done."))
+      (TeX-command nextCmd 'TeX-master-file)
+      (when (or (called-interactively-p 'any)
+                (null (boundp 'TeX-texify-count-same-command))
+                (null (boundp 'TeX-texify-last-command))
+                (null (equal nextCmd TeX-texify-last-command)))
+        (mapc 'make-local-variable '(TeX-texify-sentinel TeX-texify-count-same-command TeX-texify-last-command))
+        (setq TeX-texify-count-same-command 1))
+      (if (>= TeX-texify-count-same-command TeX-texify-max-runs-same-command)
+          (message "TeX-texify: Did %S already %d times. Don't want to do it anymore." TeX-texify-last-command TeX-texify-count-same-command)
+        (setq TeX-texify-count-same-command (1+ TeX-texify-count-same-command))
+        (setq TeX-texify-last-command nextCmd)
+        (and (null (equal nextCmd TeX-command-Show))
+             (setq proc (get-buffer-process (current-buffer)))
+             (setq TeX-texify-sentinel (process-sentinel proc))
+             (set-process-sentinel proc 'TeX-texify-sentinel))))))
+
+(add-hook 'LaTeX-mode-hook
+         '(lambda ()
+            (define-key LaTeX-mode-map (kbd <"C-c C-a">) 'TeX-texify)))
+
+** TODO Prettify Math in Buffers
+#+source: latex-pretty-symbols 
+#+BEGIN_SRC emacs-lisp
+  ;;(require 'latex-pretty-symbols)
+#+END_SRC
+** TODO Whizzy Preview: Toggle the preview window on/off with F9
++BEGIN_SRC emacs-lisp
+  ;; sudo apt-get install whizzytex
+  (autoload 'whizzytex-mode "whizzytex" "WhizzyTeX, a minor-mode WYSIWIG environment for LaTeX" t)
+  (setq my-toggle-whizzy-count 0)
+  (defun my-toggle-whizzy-mode ()
+    (interactive)
+    (if (= (mod my-toggle-whizzy-count 2) 0)
+        (progn
+          (whizzytex-mode)
+          (message "WhizzyTeX on"))
+      (progn
+        (whizzy-mode-off)
+        (kill-buffer (concat "*" (buffer-name) "*"))
+        (message "WhizzyTeX off")))
+    (setq my-toggle-whizzy-count (+ my-toggle-whizzy-count 1)))
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (define-key LaTeX-mode-map (kbd "<f9>") 'my-toggle-whizzy-mode)))
+
++END_SRC
+
+** FIXIT Hooks and Tex Basic settings
+#+BEGIN_SRC emacs-lisp
+      (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+      ;;(add-hook 'LaTeX-mode-hook 'longlines-mode)
+      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+      (add-hook 'LaTeX-mode-hook 'flycheck-mode)
+      (add-hook 'LaTeX-mode-hook 'linum-mode)
+      (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+      (add-hook 'LaTeX-mode-hook 'auto-revert-mode)
+      (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
+      (add-hook 'LaTeX-mode-hook (lambda () (turn-off-auto-fill)))
+      (add-hook 'LaTeX-mode-hook 'turn-on-font-lock)
+      ;; (require 'magic-latex-buffer)
+      ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
+
+
+    ;; Makes sections independently possible
+
+    (setq TeX-parse-self t)
+    (setq-default TeX-master t) ;t for not ask 
+    ;; Make \ = C-c C-m to start macro
+    ;; (setq TeX-electric-escape t)  
+     ;;(setq TeX-electric-sub-and-superscript t)
+    
+    (setq TeX-show-compilation t) ; display compilation windows
+    (setq TeX-auto-save t)
+    (setq TeX-auto-untabify t)     ; remove all tabs before saving
+    (setq TeX-save-query nil)
+    (setq completion-ignored-extensions (append completion-ignored-extensions
+                                                '(".synctex.gz")))
+    ;(setq 
+     ;   LaTeX-top-caption-list   ("table" "tabular")
+     ;   LaTeX-float                      "tn"
+     ;   LaTeX-figure-label               "fig:"
+     ;   LaTeX-table-label                "tab:"
+     ;   LaTeX-section-label              "sec:")
+    (setq LaTeX-default-options '("a4paper"))
+    (setq LaTeX-float "!ht")
+    (setq LaTeX-indent-level 4)
+    (setq LaTeX-item-indent 0)
+    (setq LaTeX-brace-indent-level 4)
+    (setq TeX-insert-braces t)
+    (setq LaTeX-math-menu-unicode t)
+  ;;;; Quotes
+  ;; (defun quote-hook ()
+  ;;   (local-unset-key "\""))
+  ;;   (add-hook 'LaTeX-mode-hook 'quote-hook)
+#+END_SRC
+* e22_reftex.org
+** reftex-mode
+#+BEGIN_SRC emacs-lisp
+    (require 'reftex)
+    (setq reftex-default-bibliography '(
+                                        ;;"/home/tian/Dropbox/4refs/bib/library.bib"
+                                        "/home/tian/SparkleShare/p1402/p1402-cited.bib"
+                                        ))
+    (setq reftex-file-extensions
+          '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
+    ;; Make RefTeX faster
+  (setq reftex-enable-partial-scans t)
+  (setq reftex-keep-temporary-buffers nil)
+  (setq reftex-enable-partial-scans t)
+  (setq reftex-allow-automatic-rescan nil)
+  (setq reftex-use-multiple-selection-buffers t)
+  (setq reftex-external-file-finders   
+        '(("tex" . "kpsewhich -format=.tex %f")   
+          ("bib" . "kpsewhich -format=.bib %f")))
+(setq reftex-toc-split-windows-horizontally t) 
+(setq reftex-toc-split-windows-horizontally-fraction 0.15) 
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'Tex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode C-c [
+(setq reftex-plug-into-AUCTeX t)
+(setq reftex-plug-into-auctex t)
+(setq reftex-label-alist
+      '(
+        ("section" ?s "%S" "~\\secref{%s}" (nil . t)
+         (regexp "parts?""chapter" "chap." "sections?" "sect?\\." "paragraphs?" "par\\." "\\\\S" "\247" "Teile?" "Kapitel" "Kap\\." "Abschnitte?" "appendi\\(x\\|ces\\)" "App\\." "Anh\"?ange?" "Anh\\."))
+        ("figure" ?f "fig:" "~\\ref{%s}" caption
+         (regexp "figure?[sn]?" "figs?\\." "Abbildung\\(en\\)?" "Abb\\."))
+        ("figure*" ?f nil nil caption)
+        ("table" ?t "tab:" "~\\ref{%s}" caption
+         (regexp "tables?" "tab\\." "Tabellen?"))
+        ("table*" ?t nil nil caption)
+        ))
+(autoload 'reftex-mode     "reftex" "RefTeX Minor Mode" t)
+(autoload 'turn-on-reftex  "reftex" "RefTeX Minor Mode" nil)
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase mode" t)
+;; Change key bindings
+(add-hook 'reftex-mode-hook
+ '(lambda ()
+               (define-key reftex-mode-map (kbd "\C-cr") 'reftex-reference)
+               (define-key reftex-mode-map (kbd "\C-cl") 'reftex-label)
+               (define-key reftex-mode-map (kbd "\C-cc") 'reftex-citation)
+))  
+#+END_SRC
+** Org-mode: reftex, cdlatex, pdflatex C-c )
+#+BEGIN_SRC emacs-lisp
+(defun org-mode-reftex-setup ()
+  (interactive)
+  (load-library "reftex")
+  (and (buffer-file-name)
+       (file-exists-p (buffer-file-name))
+       (reftex-parse-all)))
+(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+(define-key org-mode-map (kbd "C-c )") 'reftex-citation)
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+#+END_SRC
+*** org PDF Processing
+
+This customises LaTeX export to run pdflatex, biber and then pdflatex. Needed for citations.
+
+#+begin_src emacs-lisp
+  (setq org-latex-pdf-process
+            '("pdflatex -interaction nonstopmode -output-directory %o %f"
+              "bibtex %b"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"
+              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+    ;; (setq org-latex-pdf-process
+    ;;         '("pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "biber %b"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"
+    ;;           "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;;; biber
+  ;; (setq org-latex-to-pdf-process 
+  ;;    '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
+;(setq org-latex-to-pdf-process
+;'("xelatex -interaction nonstopmode %b"
+;"xelatex -interaction nonstopmode %b"))
+#+end_src
+
+** yatex-mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'yatex-mode-hook 'turn-on-reftex) ; with YaTeX mode
+#+END_SRC
+** Tex Folding
++ C-c C-o C-f :on/off hide the environment
++ C-c C-o C-b :hide all fold-able items
++ C-c C-o C-c :hide a comments
+  
+#+BEGIN_SRC emacs-lisp
+  ;;; Automatically activate TeX-fold-mode.
+    (add-hook 'LaTeX-mode-hook(lambda ()
+                                (Tex-fold-mode 1)))
+;;(setq TeX-fold-type-list '(comment))
+
+#+END_SRC
+
+** SOMEDAY zotero
+  (when (locate-library "zotero")
+    (add-hook 'TeX-mode-hook 'zotero-minor-mode))
+*** zotelo
+C-c z c         zotelo-set-collection (also C-c z s)
+C-c z u         zotelo-update-database
+C-c z e         zotelo-export-secondary
+C-c z r         zotelo-reset
+C-c z t         zotelo-set-translator
+\bibliography{file1, file2, ...}
+\zotelo{file1, file2, ...}
+\nobibliography{file1, file2, ...}
+
++BEGIN_SRC emacs-lisp
+(require 'zotelo)
+(add-hook 'TeX-mode-hook 'zotelo-minor-mode)
++END_SRC
+
+*** zotxt
+M-x org-zotxt-mode
+sh::xdg-mime default firefox.desktop x-scheme-handler/zotero
++BEGIN_SRC emacs-lisp
+;; prefer completion-at-point to pcomplete
+(require 'zotxt)
+(add-hook 'org-mode-hook 'org-zotxt-mode)
+(define-key org-mode-map (kbd "C-M-i") 'completion-at-point)
++END_SRC
+
+
+** Bibtex
++begin_src emacs-lisp
+
+;;; bibtex
+;;;
+(setq bib-bibtex-env-variable	"TEXMFHOME")
+(autoload 'turn-on-bib-cite "bib-cite")
+(add-hook 'LaTeX-mode-hook 'turn-on-bib-cite)
+(defun my-bibliography-selector-hook (backend)
+    (case backend
+      (latex
+       (when (save-excursion
+               (re-search-forward "^[ \t]*\\bibliography\\(?:style\\)?{" nil t))
+         (while (re-search-forward "^[ \t]*#+BIBLIOGRAPHY:.*$" nil t)
+           (when (eq (org-element-type (save-match-data (org-element-at-point)))
+                     'keyword)
+             (replace-match "")))))
+      (html
+       (when (save-excursion
+               (re-search-forward "^[ \t]*#+BIBLIOGRAPHY:.*$" nil t))
+         (while (re-search-forward "^[ \t]*\\bibliography\\(?:style\\)?{.*$" nil t)
+           (replace-match ""))))))
+
+(add-hook 'org-export-before-parsing-hook 'my-bibliography-selector-hook)
++end_src
+
+** Bibretrieve customisations
+
+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/elpa/bibretrieve-20131013.1132/bibretrieve")
+(byte-recompile-directory "~/.emacs.d/elpa/bibretrieve-20131013.1132" 0)
+(load "bibretrieve")
+(setq bibretrieve-backends '(("citebase" . 10) ("mrl" . 10) ("arxiv" . 5) ("zbm" . 5)))
+
+(defun bibretrieve-scholar-create-url (author title)
+
+  (let ((tempfile (make-temp-file "scholar" nil ".bib")))
+
+    (call-process-shell-command "~/bin/gscholar/gscholar/gscholar.py --all" nil nil nil 
+                (if (> (length author) 0) (concat "\"" author "\""))
+                (if (> (length title) 0)  (concat "\"" title "\""))
+                (concat " > " tempfile))
+    (concat "file://" tempfile)
+))
+
+(defun bibretrieve-scholar ()
+  (interactive)
+  (setq mm-url-use-external t)
+  (setq bibretrieve-backends '(("scholar" . 5)))
+  (bibretrieve)
+  (setq mm-url-use-external nil)
+)
+
+(defun bibretrieve-amazon-create-url (author title)
+  (concat "http://lead.to/amazon/en/?key="(mm-url-form-encode-xwfu title) "&si=ble&op=bt&bn=&so=sa&ht=us"))
+
+(defun bibretrieve-amazon ()
+  (interactive)
+  (setq mm-url-use-external t)
+  (setq mm-url-program "w3m")
+  (setq mm-url-arguments (list "-dump"))
+  (setq bibretrieve-backends '(("amazon" . 5)))
+  (bibretrieve)
+  (setq mm-url-use-external nil)
+)
+end_src
+
+
+* TODO Note
+
+** Modes
+http://www.emacswiki.org/emacs/CategoryTex
+|-------------+----------------+----------+----------|
+| Input Files | Main mode      | Packages | Bars     |
+|-------------+----------------+----------+----------|
+| Tex         | plain-tex-mode |          | tex      |
+| SliTex      | slitex-mode    |          |          |
+| DocTex      | doctex-mode    |          |          |
+| Texinfo     | texinfo-mode   |          |          |
+| LaTex       | latex-mode     |          |          |
+|-------------+----------------+----------+----------|
+| LaTeX       | LaTeX-mode     | Auctex   | LaTeX/Ms |
+| ConTex      |                |          |          |
+| luaTex      |                |          |          |
+|-------------+----------------+----------+----------|
+| Minor mode  | CDLatex        | CDLatex  |          |
+|             | reftex         | reftex   |          |
+|-------------+----------------+----------+----------|
+
+** Keys
+| Keys        | default            | my settings                  |
+|-------------+--------------------+------------------------------|
+| C-c C-c     | latex              | latexmk                      |
+| view        | view               |                              |
+| file        | dvips              |                              |
+| print       | view ps            |                              |
+| index       | makeidx            |                              |
+| bibtex      | bibtex             |                              |
+|-------------+--------------------+------------------------------|
+| C-c ~       | latex-math-mode    | `a = \alpha{}                |
+| C-c r       | Region             |                              |
+| C-c C-s     | Section            |                              |
+| C-c C-e     | LaTeX-environment  |                              |
+| C-c C-m     | marco or \ below   | C-c RET                      |
+| \           | TeX-electric-escap | (setq TeX-electric-escape t) |
+| C-c =       | TOC                |                              |
+| C-c {       |                    |                              |
+| C-c }       |                    |                              |
+| C-c [       |                    |                              |
+| C-c ]       |                    |                              |
+| \$          |                    |                              |
+| C-c C-j     | Insert item        |                              |
+| M-RET       | Insert item        |                              |
+|-------------+--------------------+------------------------------|
+| C-c C-f C-b | bold               | yas b                        |
+| C-c C-f C-i | italic             |                              |
+| C-c C-f C-e | emphasized         |                              |
+| C-c C-f C-r | roman              |                              |
+| C-c C-f C-t | typewritter        |                              |
+| C-c C-f C-s | slanted            |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+| C-c C-f C-b |                    |                              |
+|-------------+--------------------+------------------------------|
+
+** Note
+
+
+C-c C-s         加入章节,LaTeX-section,可以有一些参数，
+        如toc在目录里生成标题的简称， 不过一般不加也可以。
+
+
+
+C-c (         生成label，可以根据上下文自动加上key
+
+C-c )         生成ref，并自动带上括号，有几个选项
+  SPC         所有的选项
+  e         equation align等
+  f         figure等
+  i         enumerate
+  t         table
+  s         section
+
+
+M-q              AUC TeX 里选择字体
+
+$的自动补全     例如输入$$x$后，会自动补全剩下的$
+
+C-c &            在Ref环境中，当光标停在一个
+                 \ref,\label,\index,\cite,\bibitem
+                 括号中的内容时，自动显示源（目标）文件
+
+C-c ;         注释掉一行
+
+C-c %         注释掉一段
+
+C-c '            同上，（引号下边那个点）
+
+C-c `            看编译结果中的错误（键盘左上角）
+
+快速更改字体
+
+auctex 也提供了一系列方便的快捷键用以方便的插入指定应该文本如何格式化的命
+令，这系列命令一致以 'C-c C-f' 为前缀，以 'C- ' 结尾告诉 auctex 你具体需
+要如何排版文本。
+
+C-c C-f C-b  插入粗体文本 
+
+C-c C-f C-i  插入斜体文本 
+
+C-c C-f C-e  插入强调文本 
+
+C-c C-f C-s  插入微斜体文本 
+
+C-c C-f C-r  插入罗马体文本 
+
+C-c C-f C-f  插入无衬线体文本 
+
+C-c C-f C-t  插入打印机体字体 
+
+C-c C-f C-c  插入小型大写文本 
+
+C-c C-f C-d  删除字体信息 
+
+
+

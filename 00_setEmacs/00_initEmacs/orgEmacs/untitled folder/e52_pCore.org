@@ -1,0 +1,101 @@
+* e52_core.org
+
+
+** Align
+#+BEGIN_SRC emacs-lisp
+  (require 'align)
+  ;; >> Shell and gmt
+  (add-to-list 'align-rules-list
+  '(shell-assignment
+  (regexp . "\\( *\\)>>")
+  ))
+  ;; Shell and gmt '
+  (add-to-list 'align-rules-list
+  '(lisp-assignment
+  (regexp . "\\( *\\)'")
+  ))
+  ;; R <-
+  (add-to-list 'align-rules-list
+  '(R-assignment
+  (regexp . "\\( *\\)<-")
+  ))
+  ;; Comment #
+  (add-to-list 'align-rules-list
+  '(comment-assignment
+  (regexp . "\\( *\\)#")
+  ))
+  ;; Python
+  (add-to-list 'align-rules-list
+  '(python-assignment
+  (regexp . "\\( *\\)=")
+  ))
+  ;; Latex Tabel&
+  (add-to-list 'align-rules-list
+  '(yatex-table
+  (regexp . "\\(\\s-*\\)&")
+  ))
+  ;; Latex %
+  (add-to-list 'align-rules-list
+  '(tex-comment
+  (regexp . "\\( *\\)%")
+  ))
+  (global-set-key (kbd "C-c C-a") 'align)
+  (global-set-key (kbd "C-c M-a") 'align-regexp)
+#+END_SRC
+** Undo-Tree-Mode
+http://ergoemacs.org/emacs/emacs_best_redo_mode.html
+undo : Ctrl+/, Ctrl+_
+redo : Ctrl+?, Meta+_
+
+#+BEGIN_SRC emacs-lisp
+(require 'undo-tree)
+(global-undo-tree-mode 1)
+
+(global-set-key [(meta backspace)] 'undo)
+(global-set-key [(meta shift backspace)] 'redo)
+(define-key global-map (kbd "C-/") 'undo)
+(define-key global-map (kbd "C-x C-/") 'redo)
+(defalias 'redo 'undo-tree-redo)
+;(global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
+(global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】;  Mac style
+;;(global-set-key (kbd "C-y") 'redo) ; 【Ctrl+y】; Microsoft Windows style
+
+
+#+END_SRC
+** Auto-save enhanced to save minutess interval
+#+BEGIN_SRC emacs-lisp
+  (require 'auto-save-buffers-enhanced)
+  (setq auto-save-buffers-enhanced-interval 3)
+  (auto-save-buffers-enhanced t)
+#+END_SRC
+
+** Mullti-terminal
+#+BEGIN_SRC emacs-lisp
+ (require 'sane-term)
+ (global-set-key (kbd "C-x t") 'sane-term)
+ (global-set-key (kbd "C-x T") 'sane-term-create)
+#+END_SRC
+
+*** show-paren-mode color
+unworked
+
++BEGIN_SRC emacs-lisp
+   (show-paren-mode t)                 ; turn paren-mode on match highlighting
+   (setq show-paren-delay 0)           ; how long to wait?  default was o.15s
+   (setq show-paren-style  'expression) ; highlight entire bracket expression alternatives are 'parenthesis' and 'mixed'
+   ;;(set-face-foreground    'show-paren-mismatch-face "red") ;; cannot
+   (set-face-background    'show-paren-match-face nil) ;; for colors change nil to color
+  ;; (set-face-foreground    'show-paren-match-face nil)
+   (set-face-attribute     'show-paren-match-face nil
+                       ;;:background nil :foreground nil
+                       :underline t :weight 'extra-bold :overline nil :slant 'normal) ;; #ffff00
++END_SRC
+* 1 
+** 2
+*** 3
+**** 4
+***** 5
+****** 6
+******* 7
+******** 8
+********* 9

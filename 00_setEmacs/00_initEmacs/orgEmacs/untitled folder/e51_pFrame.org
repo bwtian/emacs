@@ -1,0 +1,20 @@
+* e51_frame.org
+delete from e01
+ ;; Scroll Bar
+  ;;  (set-scroll-bar-mode t) ;;'right
+  ;;  (set-scroll-bar-mode nil) ;;'right
+** Dir Tree
+#+BEGIN_SRC emacs-lisp
+(require 'sr-speedbar)
+(setq sr-speedbar-right-side nil)
+;;(setq speedbar-use-images nil) ;;disable the icons?
+#+END_SRC
+** Window 
+#+BEGIN_SRC emacs-lisp
+(require 'fill-column-indicator)
+(add-hook 'after-change-major-mode-hook
+	  '(lambda ()
+	     (setq fci-rule-column 80)
+	     (fci-mode)))
+  ;; (setq Man-notify-method 'pushy)
+#+END_SRC

@@ -1,0 +1,7 @@
+#+STARTUP: showall
+* e08_folding.org
+** Folding Mode
+#+BEGIN_SRC emacs-lisp
+(load "folding" 'nomessage 'noerror)
+;;(folding-mode-add-find-file-hook)
+#+END_SRC

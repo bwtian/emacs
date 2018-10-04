@@ -1,0 +1,24 @@
+#+STARTUP: showall
+* e50_keyBuilt.org
+** Mouse and Cursor
+deleted from e00
+   ;;(mouse-wheel-mode t) ;; notwork on 201810
+
+#+BEGIN_SRC emacs-lisp
+  
+  (require 'mouse-drag)
+  (global-set-key (kbd "<S-down-mouse-1>") 'mouse-drag-drag) ;move with mouse
+  
+  (require 'mouse-copy)
+  (global-set-key [M-C-down-mouse-1] 'mouse-drag-secondary-moving) ;cut and paste to point,not yank
+  (global-set-key [M-S-down-mouse-1] 'mouse-drag-secondary-pasting) ;copy and paste to point, not yank  ;; Default Mouse Activity
+  ;; (global-set-key (kbd "<mouse-1>") 'mouse-set-point)
+  ;; (global-set-key (kbd "<down-mouse-1>") 'mouse-drag-region)
+  ;; (global-set-key (kbd "<C-down-mouse-1>") 'mouse-buffer-menu)
+  ;; (global-set-key (kbd "<S-down-mouse-1>") 'mouse-set-font)
+  ;; (global-set-key (kbd "<mouse-2>") 'mouse-yank-at-click)
+  ;; (global-set-key (kbd "<mouse-3>") 'mouse-save-then-kill)
+  ;; (global-set-key (kbd "<C-down-mouse-2>") 'mouse-popup-menuar-stuff) ;text properties menue
+  ;; (global-set-key (kbd "<C-down-mouse-3>") 'mouse-major-mode-menu) ;mouse-major-mode-menu
+  
+#+END_SRC

@@ -1,0 +1,205 @@
+* e04_minibuffer.org
+   
+** elodc
+#+BEGIN_SRC emacs-lisp
+  (require 'eldoc)
+  (setq eldoc-idle-delay 0)
+  (setq eldoc-echo-area-use-multiline-p t)
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'ess-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'R-mode-hook 'turn-on-eldoc-mode)
+#+END_SRC
+** Smex
+#+BEGIN_SRC emacs-lisp
+  (require 'smex)
+  (smex-initialize)
+  (global-set-key (kbd "C-M-x") 'smex)
+  (global-set-key (kbd "C-x x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+#+END_SRC
+
+** helm
+*** Load Helm
+
+#+BEGIN_SRC emacs-lisp
+(require 'helm-config)
+(require 'helm-descbinds)
+(require 'helm-ag)
+(require 'helm-flymake)
+;;(require 'helm-migemo)
+(require 'helm-orgcard)
+(require 'helm-gtags)
+(require 'helm-helm-commands)
+(setq helm-idle-delay             0.0
+      helm-input-idle-delay       0.0
+      helm-candidate-number-limit 200
+      helm-buffer-max-length      50)
+(require 'popwin)
+(popwin-mode 1)
+(setq display-buffer-function 'popwin:display-buffer)
+(push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
+ (global-set-key (kbd "C-z") popwin:keymap)
+;; helm-follow-mode （C-c C-f で ON/OFF）の前回の状態を維持する
+(setq helm-follow-mode-persistent t)
+;; ミニバッファで C-k 入力時にカーソル以降を削除する（C-u C-k でも同様の動きをする）
+(setq helm-delete-minibuffer-contents-from-point t)
+#+END_SRC
+
+*** Helm Keybindings
+#+BEGIN_SRC emacs-lisp
+  
+  (global-set-key (kbd "C-;") 'helm-resume)
+  (global-set-key (kbd "M-r") 'helm-resume)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-x b") 'helm-buffers-list)
+  ;(custom-set-variables '(helm-command-prefix-key "C-;"))
+  (global-set-key (kbd "C-c h") 'helm-mini)
+  (global-set-key (kbd "C-c d") 'helm-descbinds)
+  (global-set-key (kbd "C-c o") 'helm-occur)
+  (global-set-key (kbd "C-c s") 'helm-ag)
+  (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+  (define-key global-map (kbd "M-x")     'helm-M-x)
+  (define-key global-map (kbd "C-x C-f") 'helm-find-files)
+  (define-key global-map (kbd "C-x C-r") 'helm-recentf)
+  (global-set-key (kbd "C-x C-b") 'helm-for-files)
+  (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+  (global-set-key (kbd "C-c b") 'helm-for-files)
+  (define-key global-map (kbd "M-y")     'helm-show-kill-ring)
+  (define-key global-map (kbd "M-z")     'helm-do-grep)
+  (define-key global-map (kbd "M-s")     'helm-occur)
+  (define-key global-map (kbd "C-c i")   'helm-imenu)
+  (define-key helm-command-map (kbd "y")   'helm-show-kill-ring)
+  (define-key helm-command-map (kbd "o")   'helm-occur)
+  (define-key helm-command-map (kbd "C-s") 'helm-occur-from-isearch)
+  (define-key helm-command-map (kbd "g")   'helm-do-grep) ; C-u 付で起動すると、recursive となる
+  (define-key helm-command-map (kbd "t")   'helm-gtags-find-tag)
+
+  ;;(autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
+  (eval-after-load 'company
+    '(progn
+       (define-key company-mode-map (kbd "C-:") 'helm-company)
+       (define-key company-active-map (kbd "C-:") 'helm-company)))
+  (eval-after-load 'helm
+    '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'R-mode-hook 'helm-gtags-mode)
+  (setq
+   helm-gtags-ignore-case t
+   helm-gtags-auto-update t
+   helm-gtags-use-input-at-cursor t
+   helm-gtags-pulse-at-cursor t
+   helm-gtags-suggested-key-mapping t
+   )
+  ;; key bindings
+  (add-hook 'helm-gtags-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "M-t") 'helm-gtags-find-tag)
+               (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
+               (local-set-key (kbd "M-f") 'helm-gtags-find-symbol)
+               (local-set-key (kbd "M-g") 'helm-gtags-dwim)
+  ;             (local-set-key (kbd "M-s") 'helm-gtags-show-stack)
+               (local-set-key (kbd "M-p") 'helm-gtags-previous-history)
+               (local-set-key (kbd "M-n") 'helm-gtags-next-history)   
+               (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
+#+END_SRC
+
+
+*** Note
+(require 'migemo)
+;; for cmigemo
+;; helmコマンドで migemo を有効にする
+(setq helm-migemize-command-idle-delay helm-idle-delay)
+(helm-migemize-command helm-for-files)
+(helm-migemize-command helm-firefox-bookmarks
+(setq migemo-command "cmigemo"
+      migemo-options '("-q" "--emacs" "-i" "\g")
+      migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict"
+      migemo-user-dictionary nil
+      migemo-regex-dictionary nil
+      migemo-coding-system 'utf-8)
+;; for helm-migemo
+(require 'helm-migemo)
+(setq helm-use-migemo t)
+;; 候補が表示されないときがあるので
+;; migemoらないように設定
+(defadvice helm-c-apropos
+  (around ad-helm-apropos activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+(defadvice helm-M-x
+  (around ad-helm-M-x activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it));; http://fukuyama.co/nonexpansion
+
+
+
+
+;; 情報源 helm-source-occur と helm-source-grep について、利用開始時点から helm-follow-mode を ON にする
+;; 情報源 helm-source-locate と helm-source-grep について、検索必要最低文字数を 2 とする。
+;; helm-occur コマンドを使う際に migemo でマッチした箇所がハイライトするようにする
+(add-hook 'helm-before-initialize-hook
+          (lambda ()
+            (when helm-source-locate
+              ;; (setcdr (assq 'candidate-number-limit helm-source-locate) helm-candidate-number-limit)
+              (setcdr (assq 'requires-pattern helm-source-locate) 2))
+            (when helm-source-occur
+              (helm-attrset 'follow 1 helm-source-occur)
+              (delete '(nohighlight) helm-source-occur))
+            (when helm-source-grep
+              (helm-attrset 'follow 1 helm-source-grep)
+              ;; (setcdr (assq 'candidate-number-limit helm-source-grep) helm-candidate-number-limit)
+              (setcdr (assq 'requires-pattern helm-source-grep) 2))))
+
+;; http://d.hatena.ne.jp/a666666/20100221/1266695355
+;; エラーを抑制する対策（エラーが発生した際に設定してみてください）
+;; (setq max-lisp-eval-depth 5000)
+;; (setq max-specpdl-size 5000)
+
+;; helm-delete-minibuffer-contents-from-point（ミニバッファで C-k 入力時にカーソル以降を
+;; 削除する)を設定すると、pattern 文字入力後に action が表示されない症状が出ることの対策
+(defadvice helm-select-action (around ad-helm-select-action activate)
+  (let ((helm-delete-minibuffer-contents-from-point nil))
+    ad-do-it))
+
+;; helm と elscreen を一緒に使う際に helm の helm-follow-mode を使うと、カーソル制御が
+;; おかしくなることの対策
+(defadvice helm (around ad-helm-for-elscreen activate)
+  (let ((elscreen-screen-update-hook nil))
+    ad-do-it))
+
+NTEmacs を使っている場合は、以下も設定すると良いようです。
+
+;; w32-ime-buffer-switch-p が t の場合に、ミニバッファで漢字を使えるようにする対策
+(setq w32-ime-buffer-switch-p t) ; バッファ切り替え時にIME状態を引き継ぐ
+(defadvice helm (around ad-helm-for-w32-ime activate)
+  (let ((select-window-functions nil)
+        (w32-ime-composition-window (minibuffer-window)))
+    ad-do-it))
+
+;; UNC や Tramp のパスに対して、helm-reduce-file-name が正しく機能しないことの対策
+;; （ (helm-mode 1) として dired を動かした際に C-l（helm-find-files-up-one-level）
+;; 　が正しく機能するようにする対策）
+(defadvice helm-reduce-file-name (around ad-helm-reduce-file-name activate)
+  (let ((fname (ad-get-arg 0))
+        (level (ad-get-arg 1)))
+    (while (> level 0)
+      (setq fname (expand-file-name (concat fname "/../")))
+      (setq level (1- level)))
+    (setq ad-return-value fname)))
+
+;; ffap を使っていて find-file-at-point を起動した場合に、カーソル位置の UNC が正しく
+;; 取り込まれないことの対策
+(defadvice helm-completing-read-default-1 (around ad-helm-completing-read-default-1 activate)
+  (if (listp (ad-get-arg 4))
+      (ad-set-arg 4 (car (ad-get-arg 4))))
+  ;; (cl-letf (((symbol-function 'regexp-quote)
+  (letf (((symbol-function 'regexp-quote)
+          (symbol-function 'identity)))
+    ad-do-it))
+
+;; w32-symlinks を使っている場合に C-u 付きで helm-do-grep を起動すると、選択したファイルを
+;; no conversion で開いてしまうことの対策
+(defadvice find-file (around ad-find-file activate)
+  (let ((current-prefix-arg nil))
+    ad-do-it))

@@ -1,9 +1,4 @@
 * e02_core.org
-** setting work directory
-#+BEGIN_SRC emacs-lisp
-  (setq default-directory "~/")
-#+END_SRC
-
 ** gitHub
 #+BEGIN_SRC emacs-lisp
 (setq vc-follow-symlinks t) ;; Avoid Yes No to Symbol link to Git-Control ed source file

@@ -1,0 +1,38 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/tian/Onedrive/gitee/resilient/" . "1body/")
+ ("/Users/tian/Onedrive/gitee/" . "resilient/")
+ ("/Users/tian/Onedrive/" . "gitee/")
+ ("/Users/tian/" . "Onedrive/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/tian/Onedrive/gitee/resilient/1body/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "11-韧性综述-黄斌.md"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/tian/Onedrive/gitee/resilient/1body/" (23476 60474 486515 709000) "202-经济韧性-陆佳玥.md" "11-韧性综述-黄斌.md" "2.1.4-火灾韧性-邬志云.md" "2.3.4-韧性社区-赵龙.md" "2.3.1-韧性城市-逯孟岩.md" "../" "./")
+
+ ("/Users/tian/Onedrive/gitee/resilient/" (23475 13680 287705 339000) "本文件夹内容只可增加，不可删除.txt" "1body/" "3figs/" "6code/" ".git/" ".gitee/" ".gitignore" "4tabs/" "2back/" "8compile/" "README.md" "9note/" "7preamble/" "0front/" "5refs/" "LICENSE" ".DS_Store" "../" "./")
+
+ ("/Users/tian/Onedrive/gitee/" (23475 7932 101656 37000) "md/" "resilient/" "GI/" ".DS_Store" "../" "./")
+
+ ("/Users/tian/Onedrive/" (23477 49483 792450 430000) ".849C9593-D756-4E56-8D6E-42412F2A707B" "Attachments/" "Documents/" "01Doing/" "Icon
+" "OneDrive 入门.pdf" ".DS_Store" "gitee/" "../" "./")
+
+ ("/Users/tian/github/" (23476 16062 743186 590000) "emacs/" "macconfig/" "config/" ".DS_Store" "../" "./")
+
+ ("/Users/tian/" (23477 51815 770163 765000) ".viminfo" ".bash_history" ".mume/" ".gitconfig" ".cache/" "Downloads/" ".oh-my-zsh/" ".vscode/" ".rstudio-desktop/" "Documents/" ".Trash/" ".zcompdump-tian的Mac Pro-5.2" "Applications/" "Movies/" ".ssh/" "OneDrive - scu.edu.cn/" ".zcompdump-tian的Mac Pro-5.3" ".sh_history" ".bash_aliases" "github/" "Public/" ".zshrc.backup.2018-10-03-15:37" ".bash_sessions/" ".cups/" ".bashrc.backup.2018-10-03-13:59" ".emacs.d/" ".oracle_jre_usage/" "Library/" "Desktop/" ".zsh_history" "SparkleShare/" "Pictures/" ".local/" "Onedrive/" ".zshrc" ".zshrc.pre-oh-my-zsh" ".bashrc" ".subversion/" ".wiznote/" ".sogouinput/" ".wget-hsts" ".CFUserTextEncoding" ".DS_Store" ".wns/" "Music/" ".config/" ".Rhistory" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

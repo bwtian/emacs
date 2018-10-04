@@ -1,0 +1,1 @@
+/home/t/SparkleShare/emacs.d/00_setEmacs/00_initEmacs/orgEmacs/e14_orgTag.org
