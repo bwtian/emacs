@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "helm-jstack" "20150603.422" "Helm interface to Jps & Jstack for Java/JVM processes" '((emacs "24") (helm "1.7.0") (cl-lib "0.5")) :commit "2064f7215dcf4ccbd6a7b8784223251507746da4" :keywords '("java" "jps" "jstack" "jvm" "emacs" "elisp" "helm") :authors '(("Raghav Kumar Gautam" . "rgautam@apache.com")) :maintainer '("Raghav Kumar Gautam" . "rgautam@apache.com"))

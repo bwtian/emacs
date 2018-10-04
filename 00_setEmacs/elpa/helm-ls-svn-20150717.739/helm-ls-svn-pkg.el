@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "helm-ls-svn" "20150717.739" "helm extension to list svn files" '((emacs "24.1") (helm "1.7.0") (cl-lib "0.5")) :commit "4d4dc1a272f27fba5fdd7cc47e5d309b53c63ae3" :keywords '("helm" "svn") :authors '(("Chunyang Xu" . "chunyang@macports.org")) :maintainer '("Chunyang Xu" . "chunyang@macports.org") :url "https://svn.macports.org/repository/macports/users/chunyang/helm-ls-svn.el/helm-ls-svn.el")

@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "helm-selected" "20171223.210" "helm extension for selected.el" '((emacs "24.4") (helm "2.8.6") (selected "1.1")) :commit "6743ede584571319e4c29204197e9ff6b7ee97cf" :keywords '("extensions" "convenience") :authors '(("Takaaki ISHIKAWA <takaxp at ieee dot org>")) :maintainer '("Takaaki ISHIKAWA <takaxp at ieee dot org>") :url "https://github.com/takaxp/helm-selected")

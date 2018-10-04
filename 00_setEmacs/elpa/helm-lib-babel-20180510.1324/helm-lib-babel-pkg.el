@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "helm-lib-babel" "20180510.1324" "helm insertion of babel function references" '((cl-lib "0.5") (helm "1.9.2") (emacs "24.4")) :commit "41bc0cdea8a604c6c8dc83ed5066644d33688fad" :keywords '("convenience") :authors '(("Derek Feichtinger" . "dfeich@gmail.com")) :maintainer '("Derek Feichtinger" . "dfeich@gmail.com") :url "https://github.com/dfeich/helm-lib-babel.el")

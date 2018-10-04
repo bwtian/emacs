@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "helm-github-stars" "20180718.111" "Helm integration for your starred repositories on github" '((helm "1.6.8") (emacs "24.4")) :commit "809cf88e2984b121348b1046e1d3890f1fd580b4" :keywords '("helm" "github" "stars") :authors '(("Sliim" . "sliim@mailoo.org") ("xuchunyang" . "xuchunyang56@gmail.com")) :maintainer '("Sliim" . "sliim@mailoo.org") :url "https://github.com/Sliim/helm-github-stars")
